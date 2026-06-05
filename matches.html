@@ -463,7 +463,7 @@
 </head>
 <body>
 
-    <!-- Top Navigation Bar - NO BACK TO HOME BUTTON -->
+    <!-- Top Navigation Bar -->
     <div class="top-bar">
         <div class="nav-left">
             <div class="supersport-logo">
@@ -476,19 +476,19 @@
         </button>
     </div>
 
-    <!-- Sidebar - Home link goes to index.html -->
+    <!-- Sidebar - FIXED: Home link now works -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header"><h3>Menu</h3><button class="close-sidebar" onclick="closeSidebar()">✕</button></div>
         <div class="sidebar-menu">
-            <a href="index.html" class="sidebar-item" onclick="closeSidebar()"><i>🏠</i> <span>Home</span></a>
-            <a href="matches.html" class="sidebar-item" onclick="closeSidebar()"><i>⚽</i> <span>Matches</span></a>
-            <a href="#" class="sidebar-item" onclick="closeSidebar(); showToast('Tickets page coming soon')"><i>🎫</i> <span>Tickets</span></a>
-            <a href="#" class="sidebar-item" onclick="closeSidebar(); showToast('Stadiums page coming soon')"><i>🏟️</i> <span>Stadiums</span></a>
-            <a href="#" class="sidebar-item" onclick="closeSidebar(); showToast('Events page coming soon')"><i>📅</i> <span>Events</span></a>
-            <a href="#" class="sidebar-item" onclick="closeSidebar(); showToast('Cart page coming soon')"><i>🛒</i> <span>Cart</span></a>
-            <a href="#" class="sidebar-item" onclick="closeSidebar(); showToast('Fan Zone coming soon')"><i>❤️</i> <span>Fan Zone</span></a>
-            <a href="#" class="sidebar-item" onclick="closeSidebar(); showToast('Contact page coming soon')"><i>📞</i> <span>Contact</span></a>
+            <a href="index.html" class="sidebar-item" onclick="closeSidebarAfterNav()"><i>🏠</i> <span>Home</span></a>
+            <a href="matches.html" class="sidebar-item" onclick="closeSidebarAfterNav()"><i>⚽</i> <span>Matches</span></a>
+            <a href="#" class="sidebar-item" onclick="showToastAndClose('Tickets page coming soon')"><i>🎫</i> <span>Tickets</span></a>
+            <a href="#" class="sidebar-item" onclick="showToastAndClose('Stadiums page coming soon')"><i>🏟️</i> <span>Stadiums</span></a>
+            <a href="#" class="sidebar-item" onclick="showToastAndClose('Events page coming soon')"><i>📅</i> <span>Events</span></a>
+            <a href="#" class="sidebar-item" onclick="showToastAndClose('Cart page coming soon')"><i>🛒</i> <span>Cart</span></a>
+            <a href="#" class="sidebar-item" onclick="showToastAndClose('Fan Zone coming soon')"><i>❤️</i> <span>Fan Zone</span></a>
+            <a href="#" class="sidebar-item" onclick="showToastAndClose('Contact page coming soon')"><i>📞</i> <span>Contact</span></a>
         </div>
         <div class="sidebar-footer"><p>© TicketRoyal 2020</p><p>Official FIFA Partner</p></div>
     </div>
@@ -693,11 +693,21 @@
             setTimeout(() => toast.style.display = 'none', 2500);
         }
 
+        function showToastAndClose(msg) {
+            showToast(msg);
+            closeSidebar();
+        }
+
+        function closeSidebarAfterNav() {
+            closeSidebar();
+        }
+
         function openSidebar() { 
             document.getElementById('sidebar').classList.add('open'); 
             document.getElementById('sidebarOverlay').classList.add('open'); 
             document.body.style.overflow = 'hidden'; 
         }
+        
         function closeSidebar() { 
             document.getElementById('sidebar').classList.remove('open'); 
             document.getElementById('sidebarOverlay').classList.remove('open'); 
