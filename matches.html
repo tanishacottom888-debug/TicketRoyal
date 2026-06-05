@@ -33,7 +33,7 @@
 
         @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
 
-        /* Top Navigation Bar - EXACT AS YOU REQUESTED */
+        /* Top Navigation Bar */
         .top-bar {
             background: var(--pure-white);
             padding: 12px 20px;
@@ -105,7 +105,7 @@
             background: var(--deep-navy);
         }
 
-        /* Sidebar (same as homepage) */
+        /* Sidebar */
         .sidebar-overlay {
             display: none;
             position: fixed;
@@ -200,7 +200,6 @@
             border-radius: 50px;
             font-size: 14px;
             outline: none;
-            transition: border-color 0.2s;
         }
         .search-box input:focus {
             border-color: var(--rich-gold);
@@ -245,7 +244,6 @@
             border-radius: 30px;
             cursor: pointer;
             font-size: 13px;
-            transition: all 0.2s;
         }
         .view-btn.active {
             background: var(--rich-gold);
@@ -409,15 +407,11 @@
             border-radius: 30px;
             cursor: pointer;
             font-size: 14px;
-            transition: all 0.2s;
         }
         .page-btn.active {
             background: var(--rich-gold);
             border-color: var(--rich-gold);
             color: var(--deep-navy);
-        }
-        .page-btn:hover:not(.active) {
-            border-color: var(--rich-gold);
         }
 
         /* Footer */
@@ -452,7 +446,6 @@
             color: rgba(255,255,255,0.4);
         }
 
-        /* Toast */
         .toast {
             position: fixed;
             bottom: 20px;
@@ -484,7 +477,7 @@
 </head>
 <body>
 
-    <!-- Top Navigation Bar - EXACT AS REQUESTED -->
+    <!-- Top Navigation Bar -->
     <div class="top-bar">
         <a href="index.html" class="back-home">
             <span>←</span> Back to Home
@@ -500,13 +493,13 @@
         </button>
     </div>
 
-    <!-- Sidebar -->
+    <!-- Sidebar - FIXED: Home link goes to index.html -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header"><h3>Menu</h3><button class="close-sidebar" onclick="closeSidebar()">✕</button></div>
         <div class="sidebar-menu">
             <a href="index.html" class="sidebar-item" onclick="closeSidebar()"><i>🏠</i> <span>Home</span></a>
-            <a href="#" class="sidebar-item active" onclick="closeSidebar()"><i>⚽</i> <span>Matches</span></a>
+            <a href="matches.html" class="sidebar-item" onclick="closeSidebar()"><i>⚽</i> <span>Matches</span></a>
             <a href="#" class="sidebar-item" onclick="closeSidebar()"><i>🎫</i> <span>Tickets</span></a>
             <a href="#" class="sidebar-item" onclick="closeSidebar()"><i>🏟️</i> <span>Stadiums</span></a>
             <a href="#" class="sidebar-item" onclick="closeSidebar()"><i>📅</i> <span>Events</span></a>
@@ -565,7 +558,7 @@
 
     <!-- Matches Section -->
     <div class="matches-section">
-        <div class="matches-grid" id="matchesGrid" id="matchesGrid"></div>
+        <div class="matches-grid" id="matchesGrid"></div>
         <div class="pagination" id="pagination"></div>
     </div>
 
@@ -587,25 +580,18 @@
     <script>
         // Complete Match Data - World Cup 2026
         const allMatches = [
-            // Group A
             { id: 1, stage: "Group A", team1: "USA", team2: "Mexico", flag1: "🇺🇸", flag2: "🇲🇽", stadium: "MetLife Stadium", city: "New Jersey", date: "Thu, Jun 11", time: "8:00 PM", price: 199 },
             { id: 2, stage: "Group A", team1: "Canada", team2: "Panama", flag1: "🇨🇦", flag2: "🇵🇦", stadium: "MetLife Stadium", city: "New Jersey", date: "Fri, Jun 12", time: "4:00 PM", price: 179 },
-            // Group B
             { id: 3, stage: "Group B", team1: "Brazil", team2: "Argentina", flag1: "🇧🇷", flag2: "🇦🇷", stadium: "SoFi Stadium", city: "Los Angeles", date: "Fri, Jun 12", time: "9:00 PM", price: 249 },
             { id: 4, stage: "Group B", team1: "Uruguay", team2: "Colombia", flag1: "🇺🇾", flag2: "🇨🇴", stadium: "SoFi Stadium", city: "Los Angeles", date: "Sat, Jun 13", time: "6:00 PM", price: 219 },
-            // Group C
             { id: 5, stage: "Group C", team1: "England", team2: "Germany", flag1: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", flag2: "🇩🇪", stadium: "AT&T Stadium", city: "Dallas", date: "Sat, Jun 13", time: "7:00 PM", price: 229 },
             { id: 6, stage: "Group C", team1: "Netherlands", team2: "Denmark", flag1: "🇳🇱", flag2: "🇩🇰", stadium: "AT&T Stadium", city: "Dallas", date: "Sun, Jun 14", time: "4:00 PM", price: 199 },
-            // Group D
             { id: 7, stage: "Group D", team1: "France", team2: "Spain", flag1: "🇫🇷", flag2: "🇪🇸", stadium: "Hard Rock Stadium", city: "Miami", date: "Sun, Jun 14", time: "10:00 PM", price: 239 },
             { id: 8, stage: "Group D", team1: "Belgium", team2: "Croatia", flag1: "🇧🇪", flag2: "🇭🇷", stadium: "Hard Rock Stadium", city: "Miami", date: "Mon, Jun 15", time: "4:00 PM", price: 209 },
-            // Group E
             { id: 9, stage: "Group E", team1: "Portugal", team2: "Netherlands", flag1: "🇵🇹", flag2: "🇳🇱", stadium: "Mercedes-Benz Stadium", city: "Atlanta", date: "Mon, Jun 15", time: "6:00 PM", price: 219 },
             { id: 10, stage: "Group E", team1: "Switzerland", team2: "Serbia", flag1: "🇨🇭", flag2: "🇷🇸", stadium: "Mercedes-Benz Stadium", city: "Atlanta", date: "Tue, Jun 16", time: "4:00 PM", price: 189 },
-            // Group F
             { id: 11, stage: "Group F", team1: "Italy", team2: "Belgium", flag1: "🇮🇹", flag2: "🇧🇪", stadium: "Gillette Stadium", city: "Boston", date: "Tue, Jun 16", time: "8:30 PM", price: 209 },
             { id: 12, stage: "Group F", team1: "Poland", team2: "Sweden", flag1: "🇵🇱", flag2: "🇸🇪", stadium: "Gillette Stadium", city: "Boston", date: "Wed, Jun 17", time: "4:00 PM", price: 189 },
-            // Knockout Stages
             { id: 13, stage: "Round of 16", team1: "Winner A", team2: "Runner-up B", flag1: "🏆", flag2: "🏆", stadium: "Levi's Stadium", city: "San Francisco", date: "Sat, Jun 27", time: "4:00 PM", price: 299 },
             { id: 14, stage: "Round of 16", team1: "Winner C", team2: "Runner-up D", flag1: "🏆", flag2: "🏆", stadium: "NRG Stadium", city: "Houston", date: "Sun, Jun 28", time: "8:00 PM", price: 299 },
             { id: 15, stage: "Quarter Final", team1: "TBD", team2: "TBD", flag1: "🏆", flag2: "🏆", stadium: "Arrowhead Stadium", city: "Kansas City", date: "Thu, Jul 2", time: "8:00 PM", price: 399 },
@@ -724,7 +710,6 @@
             setTimeout(() => toast.style.display = 'none', 2500);
         }
 
-        // Sidebar functions
         function openSidebar() { 
             document.getElementById('sidebar').classList.add('open'); 
             document.getElementById('sidebarOverlay').classList.add('open'); 
@@ -736,14 +721,12 @@
             document.body.style.overflow = ''; 
         }
 
-        // Add event listener for search input (debounced)
         let searchTimeout;
         document.getElementById('searchInput').addEventListener('input', function() {
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(() => applyFilters(), 300);
         });
 
-        // Initial render
         renderMatches();
     </script>
 </body>
