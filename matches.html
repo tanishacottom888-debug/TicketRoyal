@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>TicketRoyal – All World Cup 2026 Matches</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FC;
+            color: #111827;
+        }
+
+        :root {
+            --royal-purple: #4A1D6D;
+            --royal-purple-dark: #2D0F48;
+            --royal-gold: #F5B042;
+            --royal-gold-dark: #D48F2B;
+            --royal-gray: #F3F4F6;
+            --royal-text: #1F2937;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+            border-bottom: 2px solid var(--royal-gold);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--royal-purple) 0%, var(--royal-purple-dark) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            color: var(--royal-gold);
+            background: none;
+        }
+
+        .nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--royal-text);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .cart-icon {
+            position: relative;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background: var(--royal-gold);
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            font-size: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .queue-indicator {
+            background: var(--royal-gray);
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 32px 0 24px;
+        }
+
+        .page-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        /* Filter Bar - Desktop */
+        .filter-bar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 24px 0;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 10px 16px;
+            border: 1px solid #E5E7EB;
+            border-radius: 40px;
+            background: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .mobile-filter-btn {
+            display: none;
+            background: var(--royal-purple);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+        }
+
+        .match-count {
+            color: #6B7280;
+            font-size: 14px;
+        }
+
+        /* Match Grid - Responsive */
+        .matches-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 32px 0 64px;
+        }
+
+        .match-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .match-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .match-card-image {
+            height: 140px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .round-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--royal-purple);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .match-card-info {
+            padding: 16px;
+        }
+
+        .teams {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .date-location {
+            font-size: 13px;
+            color: #6B7280;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .stadium {
+            font-size: 13px;
+            color: #4B5563;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--royal-purple);
+            margin-bottom: 12px;
+        }
+
+        .availability {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .availability.low {
+            color: #D97706;
+        }
+
+        .availability.sold {
+            color: #DC2626;
+        }
+
+        .select-btn {
+            width: 100%;
+            background: var(--royal-purple);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .select-btn:hover {
+            background: var(--royal-purple-dark);
+        }
+
+        .select-btn.sold-out {
+            background: #9CA3AF;
+            cursor: not-allowed;
+        }
+
+        /* Mobile Bottom Sheet (hidden by default) */
+        .mobile-filter-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 200;
+        }
+
+        .mobile-filter-sheet {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 24px 24px 0 0;
+            padding: 24px;
+            z-index: 201;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .mobile-filter-sheet.open {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1F2937;
+            color: #9CA3AF;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .matches-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .matches-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-group {
+                display: none;
+            }
+            
+            .mobile-filter-btn {
+                display: block;
+                width: 100%;
+            }
+            
+            .match-count {
+                text-align: center;
+            }
+            
+            .header-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <div class="header-inner">
+            <div class="logo">TICKET<span>ROYAL</span></div>
+            <div class="nav">
+                <a href="index.html">Home</a>
+                <a href="#">Matches</a>
+                <a href="#">Hospitality</a>
+                <a href="#">My Tickets</a>
+                <a href="#">Help</a>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge">0</span>
+                </div>
+                <div class="queue-indicator">
+                    <i class="fas fa-clock"></i> 12,341 ahead
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>World Cup 2026 • All Matches</h1>
+        <p>Secure your seat for football's greatest stage</p>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <div class="filter-group" id="filterGroupDesktop">
+            <select class="filter-select" id="roundFilter">
+                <option value="all">All Rounds</option>
+                <option value="Group Stage">Group Stage</option>
+                <option value="Round of 16">Round of 16</option>
+                <option value="Quarterfinal">Quarterfinal</option>
+                <option value="Semifinal">Semifinal</option>
+                <option value="Final">Final</option>
+            </select>
+            <select class="filter-select" id="stadiumFilter">
+                <option value="all">All Stadiums</option>
+                <option value="MetLife Stadium">MetLife Stadium</option>
+                <option value="SoFi Stadium">SoFi Stadium</option>
+                <option value="AT&T Stadium">AT&T Stadium</option>
+                <option value="Arrowhead Stadium">Arrowhead Stadium</option>
+            </select>
+        </div>
+        <button class="mobile-filter-btn" id="mobileFilterBtn">
+            <i class="fas fa-sliders-h"></i> Filter Matches
+        </button>
+        <div class="match-count" id="matchCount">Showing 12 matches</div>
+    </div>
+
+    <!-- Match Grid -->
+    <div class="matches-grid" id="matchesGrid">
+        <!-- Matches will be injected via JavaScript -->
+    </div>
+</div>
+
+<!-- Mobile Filter Bottom Sheet -->
+<div class="mobile-filter-overlay" id="mobileFilterOverlay">
+    <div class="mobile-filter-sheet" id="mobileFilterSheet">
+        <h3 style="margin-bottom: 16px;">Filter Matches</h3>
+        <select class="filter-select" id="mobileRoundFilter" style="width: 100%; margin-bottom: 12px;">
+            <option value="all">All Rounds</option>
+            <option value="Group Stage">Group Stage</option>
+            <option value="Round of 16">Round of 16</option>
+            <option value="Quarterfinal">Quarterfinal</option>
+            <option value="Semifinal">Semifinal</option>
+            <option value="Final">Final</option>
+        </select>
+        <select class="filter-select" id="mobileStadiumFilter" style="width: 100%; margin-bottom: 20px;">
+            <option value="all">All Stadiums</option>
+            <option value="MetLife Stadium">MetLife Stadium</option>
+            <option value="SoFi Stadium">SoFi Stadium</option>
+            <option value="AT&T Stadium">AT&T Stadium</option>
+            <option value="Arrowhead Stadium">Arrowhead Stadium</option>
+        </select>
+        <button id="applyFiltersBtn" style="background: var(--royal-purple); color: white; border: none; padding: 12px; width: 100%; border-radius: 40px; font-weight: 600;">Apply Filters</button>
+        <button id="closeFilterBtn" style="margin-top: 12px; background: none; border: none; color: #6B7280; width: 100%;">Cancel</button>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container" style="text-align: center; font-size: 12px;">
+        © 2026 TicketRoyal. Premium World Cup ticketing.
+    </div>
+</footer>
+
+<script>
+    // Match Data
+    const matches = [
+        { id: 1, teams: "Brazil 🇧🇷 vs Argentina 🇦🇷", round: "Group Stage", stadium: "MetLife Stadium", date: "July 11, 2026", time: "8:00 PM", price: 349, image: "https://images.unsplash.com/photo-1589487391730-580f27ba68b0?q=80&w=2070&auto=format", stock: "low" },
+        { id: 2, teams: "France 🇫🇷 vs Germany 🇩🇪", round: "Quarterfinal", stadium: "SoFi Stadium", date: "July 14, 2026", time: "3:00 PM", price: 279, image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?q=80&w=2070&auto=format", stock: "available" },
+        { id: 3, teams: "England 🏴󠁧󠁢󠁥󠁮󠁧󠁿 vs Spain 🇪🇸", round: "Semifinal", stadium: "AT&T Stadium", date: "July 18, 2026", time: "4:00 PM", price: 429, image: "https://images.unsplash.com/photo-1586891774067-1b4b9b41de69?q=80&w=2070&auto=format", stock: "low" },
+        { id: 4, teams: "Portugal 🇵🇹 vs Netherlands 🇳🇱", round: "Round of 16", stadium: "Arrowhead Stadium", date: "July 8, 2026", time: "12:00 PM", price: 199, image: "https://images.unsplash.com/photo-1459863636187-9dbe49d7bd6f?q=80&w=2070&auto=format", stock: "available" },
+        { id: 5, teams: "USA 🇺🇸 vs Mexico 🇲🇽", round: "Group Stage", stadium: "SoFi Stadium", date: "July 10, 2026", time: "7:00 PM", price: 249, image: "https://images.unsplash.com/photo-1522778119026-d647f0594c86?q=80&w=2070&auto=format", stock: "low" },
+        { id: 6, teams: "Italy 🇮🇹 vs Belgium 🇧🇪", round: "Quarterfinal", stadium: "MetLife Stadium", date: "July 15, 2026", time: "6:00 PM", price: 299, image: "https://images.unsplash.com/photo-1558188246-8c5f8d9cf04a?q=80&w=2070&auto=format", stock: "available" },
+        { id: 7, teams: "Winner QF1 vs Winner QF2", round: "Semifinal", stadium: "AT&T Stadium", date: "July 19, 2026", time: "8:00 PM", price: 499, image: "https://images.unsplash.com/photo-1522778119026-d647f0594c86?q=80&w=2070&auto=format", stock: "available" },
+        { id: 8, teams: "Winner SF1 vs Winner SF2", round: "Final", stadium: "MetLife Stadium", date: "July 25, 2026", time: "7:00 PM", price: 899, image: "https://images.unsplash.com/photo-1559742811-822873691b1b?q=80&w=2070&auto=format", stock: "low" },
+        { id: 9, teams: "Japan 🇯🇵 vs Croatia 🇭🇷", round: "Group Stage", stadium: "Arrowhead Stadium", date: "July 9, 2026", time: "1:00 PM", price: 179, image: "https://images.unsplash.com/photo-1558188248-9e7d0b1d1f5a?q=80&w=2070&auto=format", stock: "available" },
+        { id: 10, teams: "Morocco 🇲🇦 vs Senegal 🇸🇳", round: "Round of 16", stadium: "SoFi Stadium", date: "July 12, 2026", time: "5:00 PM", price: 219, image: "https://images.unsplash.com/photo-1459863636187-9dbe49d7bd6f?q=80&w=2070&auto=format", stock: "available" },
+        { id: 11, teams: "Uruguay 🇺🇾 vs Colombia 🇨🇴", round: "Group Stage", stadium: "AT&T Stadium", date: "July 13, 2026", time: "2:00 PM", price: 189, image: "https://images.unsplash.com/photo-1586891774067-1b4b9b41de69?q=80&w=2070&auto=format", stock: "sold" },
+        { id: 12, teams: "Germany 🇩🇪 vs Spain 🇪🇸", round: "Quarterfinal", stadium: "MetLife Stadium", date: "July 16, 2026", time: "9:00 PM", price: 359, image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?q=80&w=2070&auto=format", stock: "available" }
+    ];
+
+    let currentRound = "all";
+    let currentStadium = "all";
+
+    function renderMatches() {
+        const filtered = matches.filter(match => {
+            const roundMatch = currentRound === "all" || match.round === currentRound;
+            const stadiumMatch = currentStadium === "all" || match.stadium === currentStadium;
+            return roundMatch && stadiumMatch;
+        });
+
+        document.getElementById("matchCount").innerText = `Showing ${filtered.length} matches`;
+
+        const grid = document.getElementById("matchesGrid");
+        grid.innerHTML = filtered.map(match => `
+            <div class="match-card">
+                <div class="match-card-image" style="background-image: url('${match.image}');">
+                    <span class="round-badge">${match.round}</span>
+                </div>
+                <div class="match-card-info">
+                    <div class="teams">${match.teams}</div>
+                    <div class="date-location">
+                        <i class="far fa-calendar-alt"></i> ${match.date} • ${match.time}
+                    </div>
+                    <div class="stadium">
+                        <i class="fas fa-map-marker-alt"></i> ${match.stadium}
+                    </div>
+                    <div class="price">From $${match.price}</div>
+                    <div class="availability ${match.stock === 'low' ? 'low' : (match.stock === 'sold' ? 'sold' : '')}">
+                        ${match.stock === 'low' ? '⚠️ Low Stock' : (match.stock === 'sold' ? '❌ Sold Out' : '✅ Available')}
+                    </div>
+                    <button class="select-btn ${match.stock === 'sold' ? 'sold-out' : ''}" ${match.stock === 'sold' ? 'disabled' : ''}>
+                        ${match.stock === 'sold' ? 'Sold Out' : 'Select Seats →'}
+                    </button>
+                </div>
+            </div>
+        `).join("");
+    }
+
+    function updateFilters() {
+        currentRound = document.getElementById("roundFilter").value;
+        currentStadium = document.getElementById("stadiumFilter").value;
+        renderMatches();
+    }
+
+    // Desktop filters
+    document.getElementById("roundFilter").addEventListener("change", updateFilters);
+    document.getElementById("stadiumFilter").addEventListener("change", updateFilters);
+
+    // Mobile filter logic
+    const overlay = document.getElementById("mobileFilterOverlay");
+    const sheet = document.getElementById("mobileFilterSheet");
+    const mobileFilterBtn = document.getElementById("mobileFilterBtn");
+    const closeFilterBtn = document.getElementById("closeFilterBtn");
+    const applyFiltersBtn = document.getElementById("applyFiltersBtn");
+
+    mobileFilterBtn.addEventListener("click", () => {
+        overlay.style.display = "block";
+        setTimeout(() => sheet.classList.add("open"), 10);
+    });
+
+    function closeMobileFilter() {
+        sheet.classList.remove("open");
+        setTimeout(() => overlay.style.display = "none", 300);
+    }
+
+    closeFilterBtn.addEventListener("click", closeMobileFilter);
+    overlay.addEventListener("click", closeMobileFilter);
+
+    applyFiltersBtn.addEventListener("click", () => {
+        currentRound = document.getElementById("mobileRoundFilter").value;
+        currentStadium = document.getElementById("mobileStadiumFilter").value;
+        // Sync desktop filters
+        document.getElementById("roundFilter").value = currentRound;
+        document.getElementById("stadiumFilter").value = currentStadium;
+        renderMatches();
+        closeMobileFilter();
+    });
+
+    // Initial render
+    renderMatches();
+</script>
+</body>
+</html>
