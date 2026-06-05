@@ -33,7 +33,7 @@
 
         @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
 
-        /* Top Navigation Bar */
+        /* Top Navigation Bar - NO BACK BUTTON */
         .top-bar {
             background: var(--pure-white);
             padding: 12px 20px;
@@ -46,29 +46,7 @@
             border-bottom: 1px solid var(--subtle-border);
         }
 
-        .back-home {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: var(--deep-navy);
-            font-weight: 500;
-            font-size: 14px;
-            transition: color 0.2s;
-            cursor: pointer;
-            background: none;
-            border: none;
-        }
-
-        .back-home:hover {
-            color: var(--rich-gold);
-        }
-
-        .back-home span {
-            font-size: 18px;
-        }
-
-        .nav-center {
+        .nav-left {
             display: flex;
             align-items: center;
             gap: 12px;
@@ -443,7 +421,7 @@
             gap: 40px;
         }
         .footer-col h4 { color: var(--rich-gold); font-size: 14px; margin-bottom: 16px; }
-        .footer-col a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; margin-bottom: 10px; }
+        .footer-col a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; margin-bottom: 10px; cursor: pointer; }
         .footer-col a:hover { color: var(--rich-gold); }
         .footer-bottom {
             text-align: center;
@@ -485,12 +463,9 @@
 </head>
 <body>
 
-    <!-- Top Navigation Bar -->
+    <!-- Top Navigation Bar - NO BACK TO HOME BUTTON -->
     <div class="top-bar">
-        <button class="back-home" onclick="goToHome()">
-            <span>←</span> Back to Home
-        </button>
-        <div class="nav-center">
+        <div class="nav-left">
             <div class="supersport-logo">
                 <img src="https://supersport.com/images/SuperSportsLogo.svg?width=96&quality=90" alt="SuperSport Logo">
             </div>
@@ -501,19 +476,19 @@
         </button>
     </div>
 
-    <!-- Sidebar - ALL LINKS WORKING -->
+    <!-- Sidebar - Home link goes to index.html -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header"><h3>Menu</h3><button class="close-sidebar" onclick="closeSidebar()">✕</button></div>
         <div class="sidebar-menu">
-            <button class="sidebar-item" onclick="goToHome()"><i>🏠</i> <span>Home</span></button>
-            <button class="sidebar-item" onclick="goToMatches()"><i>⚽</i> <span>Matches</span></button>
-            <button class="sidebar-item" onclick="showToast('Tickets page coming soon')"><i>🎫</i> <span>Tickets</span></button>
-            <button class="sidebar-item" onclick="showToast('Stadiums page coming soon')"><i>🏟️</i> <span>Stadiums</span></button>
-            <button class="sidebar-item" onclick="showToast('Events page coming soon')"><i>📅</i> <span>Events</span></button>
-            <button class="sidebar-item" onclick="showToast('Cart page coming soon')"><i>🛒</i> <span>Cart</span></button>
-            <button class="sidebar-item" onclick="showToast('Fan Zone coming soon')"><i>❤️</i> <span>Fan Zone</span></button>
-            <button class="sidebar-item" onclick="showToast('Contact page coming soon')"><i>📞</i> <span>Contact</span></button>
+            <a href="index.html" class="sidebar-item" onclick="closeSidebar()"><i>🏠</i> <span>Home</span></a>
+            <a href="matches.html" class="sidebar-item" onclick="closeSidebar()"><i>⚽</i> <span>Matches</span></a>
+            <a href="#" class="sidebar-item" onclick="closeSidebar(); showToast('Tickets page coming soon')"><i>🎫</i> <span>Tickets</span></a>
+            <a href="#" class="sidebar-item" onclick="closeSidebar(); showToast('Stadiums page coming soon')"><i>🏟️</i> <span>Stadiums</span></a>
+            <a href="#" class="sidebar-item" onclick="closeSidebar(); showToast('Events page coming soon')"><i>📅</i> <span>Events</span></a>
+            <a href="#" class="sidebar-item" onclick="closeSidebar(); showToast('Cart page coming soon')"><i>🛒</i> <span>Cart</span></a>
+            <a href="#" class="sidebar-item" onclick="closeSidebar(); showToast('Fan Zone coming soon')"><i>❤️</i> <span>Fan Zone</span></a>
+            <a href="#" class="sidebar-item" onclick="closeSidebar(); showToast('Contact page coming soon')"><i>📞</i> <span>Contact</span></a>
         </div>
         <div class="sidebar-footer"><p>© TicketRoyal 2020</p><p>Official FIFA Partner</p></div>
     </div>
@@ -574,18 +549,10 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-links">
-                <div class="footer-col"><h4>TicketRoyal</h4><button class="sidebar-item" onclick="showToast('About Us coming soon')" style="background:none; border:none; display:block; padding:0; margin-bottom:10px; color:rgba(255,255,255,0.6); font-size:13px;">About Us</button>
-                <button class="sidebar-item" onclick="showToast('Official Partner info coming soon')" style="background:none; border:none; display:block; padding:0; margin-bottom:10px; color:rgba(255,255,255,0.6); font-size:13px;">Official Partner</button>
-                <button class="sidebar-item" onclick="showToast('Contact page coming soon')" style="background:none; border:none; display:block; padding:0; margin-bottom:10px; color:rgba(255,255,255,0.6); font-size:13px;">Contact</button></div>
-                <div class="footer-col"><h4>Tickets</h4><button class="sidebar-item" onclick="showToast('Buy Tickets coming soon')" style="background:none; border:none; display:block; padding:0; margin-bottom:10px; color:rgba(255,255,255,0.6); font-size:13px;">Buy Tickets</button>
-                <button class="sidebar-item" onclick="showToast('Hospitality coming soon')" style="background:none; border:none; display:block; padding:0; margin-bottom:10px; color:rgba(255,255,255,0.6); font-size:13px;">Hospitality</button>
-                <button class="sidebar-item" onclick="showToast('Group Sales coming soon')" style="background:none; border:none; display:block; padding:0; margin-bottom:10px; color:rgba(255,255,255,0.6); font-size:13px;">Group Sales</button></div>
-                <div class="footer-col"><h4>Info</h4><button class="sidebar-item" onclick="showToast('FAQs coming soon')" style="background:none; border:none; display:block; padding:0; margin-bottom:10px; color:rgba(255,255,255,0.6); font-size:13px;">FAQs</button>
-                <button class="sidebar-item" onclick="showToast('Terms coming soon')" style="background:none; border:none; display:block; padding:0; margin-bottom:10px; color:rgba(255,255,255,0.6); font-size:13px;">Terms & Conditions</button>
-                <button class="sidebar-item" onclick="showToast('Privacy Policy coming soon')" style="background:none; border:none; display:block; padding:0; margin-bottom:10px; color:rgba(255,255,255,0.6); font-size:13px;">Privacy Policy</button></div>
-                <div class="footer-col"><h4>Follow Us</h4><button class="sidebar-item" onclick="showToast('Instagram coming soon')" style="background:none; border:none; display:block; padding:0; margin-bottom:10px; color:rgba(255,255,255,0.6); font-size:13px;">Instagram</button>
-                <button class="sidebar-item" onclick="showToast('Twitter coming soon')" style="background:none; border:none; display:block; padding:0; margin-bottom:10px; color:rgba(255,255,255,0.6); font-size:13px;">Twitter</button>
-                <button class="sidebar-item" onclick="showToast('Facebook coming soon')" style="background:none; border:none; display:block; padding:0; margin-bottom:10px; color:rgba(255,255,255,0.6); font-size:13px;">Facebook</button></div>
+                <div class="footer-col"><h4>TicketRoyal</h4><a onclick="showToast('About Us coming soon')">About Us</a><a onclick="showToast('Official Partner info coming soon')">Official Partner</a><a onclick="showToast('Contact page coming soon')">Contact</a></div>
+                <div class="footer-col"><h4>Tickets</h4><a onclick="showToast('Buy Tickets coming soon')">Buy Tickets</a><a onclick="showToast('Hospitality coming soon')">Hospitality</a><a onclick="showToast('Group Sales coming soon')">Group Sales</a></div>
+                <div class="footer-col"><h4>Info</h4><a onclick="showToast('FAQs coming soon')">FAQs</a><a onclick="showToast('Terms coming soon')">Terms & Conditions</a><a onclick="showToast('Privacy Policy coming soon')">Privacy Policy</a></div>
+                <div class="footer-col"><h4>Follow Us</h4><a onclick="showToast('Instagram coming soon')">Instagram</a><a onclick="showToast('Twitter coming soon')">Twitter</a><a onclick="showToast('Facebook coming soon')">Facebook</a></div>
             </div>
         </div>
         <div class="footer-bottom">© 2020 TicketRoyal — Official FIFA World Cup 2026™ Ticket Marketplace</div>
@@ -621,15 +588,6 @@
         let currentView = 'grid';
         let currentPage = 1;
         const matchesPerPage = 12;
-
-        // Navigation Functions
-        function goToHome() {
-            window.location.href = 'index.html';
-        }
-
-        function goToMatches() {
-            window.location.href = 'matches.html';
-        }
 
         function renderMatches() {
             const start = (currentPage - 1) * matchesPerPage;
