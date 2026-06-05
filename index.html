@@ -326,7 +326,7 @@
         .testimonial-quote { font-size: 40px; color: var(--rich-gold); margin-bottom: 12px; }
         .testimonial-text { font-size: 15px; line-height: 1.5; color: var(--slate-gray); margin-bottom: 16px; }
 
-        /* Newsletter with YOUR IMAGE as background */
+        /* Newsletter with YOUR IMAGE as background - MORE VISIBLE */
         .newsletter {
             position: relative;
             background-image: url('https://images.unsplash.com/photo-1625635166625-4145adc710e5?q=80&w=870&auto=format&fit=crop');
@@ -338,6 +338,7 @@
             margin: 0 auto;
         }
 
+        /* Lighter overlay - image more visible */
         .newsletter::before {
             content: '';
             position: absolute;
@@ -345,7 +346,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(11, 19, 43, 0.75);
+            background: rgba(11, 19, 43, 0.5);
             z-index: 1;
         }
 
@@ -363,7 +364,7 @@
         }
 
         .newsletter-content p {
-            color: rgba(255,255,255,0.85);
+            color: rgba(255,255,255,0.9);
             margin-bottom: 24px;
         }
 
@@ -446,7 +447,7 @@
         .match-price { font-size: 20px; font-weight: 800; color: var(--rich-gold); }
         .select-ticket-btn { background: var(--deep-navy); color: var(--pure-white); border: none; padding: 10px 16px; border-radius: 40px; font-weight: 600; cursor: pointer; font-size: 13px; width: calc(100% - 40px); margin: 0 20px 20px; }
 
-        /* Footer */
+        /* Footer - NO IMAGE */
         .footer {
             background: var(--deep-navy);
             color: var(--pure-white);
@@ -469,20 +470,6 @@
         .footer-col h4 { color: var(--rich-gold); font-size: 14px; margin-bottom: 16px; }
         .footer-col a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; margin-bottom: 10px; }
         .footer-col a:hover { color: var(--rich-gold); }
-        .footer-image {
-            text-align: center;
-            max-width: 200px;
-        }
-        .footer-image img {
-            width: 100%;
-            border-radius: 16px;
-            margin-bottom: 12px;
-        }
-        .footer-quote {
-            font-size: 12px;
-            color: rgba(255,255,255,0.7);
-            font-style: italic;
-        }
         .footer-bottom {
             text-align: center;
             padding-top: 32px;
@@ -615,6 +602,14 @@
         </div>
     </section>
 
+    <!-- UPCOMING MATCHES - DIRECTLY UNDER HERO -->
+    <div class="section" id="matches">
+        <div class="section-header">
+            <h2 class="section-title"><span>Upcoming</span> Matches</h2>
+        </div>
+        <div class="matches-container" id="matchesGrid"></div>
+    </div>
+
     <!-- How It Works -->
     <div class="section">
         <div class="section-header">
@@ -641,16 +636,8 @@
         </div>
     </div>
 
-    <!-- Upcoming Matches -->
-    <div class="section" id="matches">
-        <div class="section-header">
-            <h2 class="section-title"><span>Upcoming</span> Matches</h2>
-        </div>
-        <div class="matches-container" id="matchesGrid"></div>
-    </div>
-
     <!-- Host Cities -->
-    <div class="section" style="background: var(--pure-white);">
+    <div class="section">
         <div class="section-header">
             <h2 class="section-title">Host <span>Cities</span></h2>
             <p class="section-subtitle">16 iconic venues across North America</p>
@@ -659,7 +646,7 @@
     </div>
 
     <!-- Ticket Categories -->
-    <div class="section">
+    <div class="section" style="background: var(--pure-white);">
         <div class="section-header">
             <h2 class="section-title">Ticket <span>Categories</span></h2>
         </div>
@@ -671,7 +658,7 @@
     </div>
 
     <!-- Testimonials -->
-    <div class="section" style="background: var(--pure-white);">
+    <div class="section">
         <div class="section-header">
             <h2 class="section-title">Fan <span>Experiences</span></h2>
         </div>
@@ -682,7 +669,7 @@
         </div>
     </div>
 
-    <!-- Newsletter with YOUR IMAGE as background -->
+    <!-- Newsletter with YOUR IMAGE - MORE VISIBLE -->
     <div class="section">
         <div class="newsletter">
             <div class="newsletter-content">
@@ -709,7 +696,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer - NO IMAGE -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-links">
@@ -717,10 +704,6 @@
                 <div class="footer-col"><h4>Tickets</h4><a href="#">Buy Tickets</a><a href="#">Hospitality</a><a href="#">Group Sales</a></div>
                 <div class="footer-col"><h4>Info</h4><a href="#">FAQs</a><a href="#">Terms & Conditions</a><a href="#">Privacy Policy</a></div>
                 <div class="footer-col"><h4>Follow Us</h4><a href="#">Instagram</a><a href="#">Twitter</a><a href="#">Facebook</a></div>
-            </div>
-            <div class="footer-image">
-                <img src="https://images.unsplash.com/photo-1625635166625-4145adc710e5?q=80&w=870&auto=format&fit=crop" alt="Happy fan with ticket">
-                <div class="footer-quote">"Best experience of my life!"</div>
             </div>
         </div>
         <div class="footer-bottom">© 2020 TicketRoyal — Official FIFA World Cup 2026™ Ticket Marketplace</div>
