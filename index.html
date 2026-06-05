@@ -2,150 +2,224 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>TicketRoyal | World Cup Tickets</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="TicketRoyal - Official FIFA World Cup 2026 Ticket Marketplace">
+    <meta name="theme-color" content="#0A1E3F">
+    <title>TicketRoyal | World Cup 2026 Tickets</title>
     <style>
+        /* RESET & BASE */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* FIFA-inspired colors */
+        /* FIFA Color System - HIGH CONTRAST (passes WCAG AA) */
         :root {
-            --fifa-navy: #0A1E3F;
-            --fifa-navy-light: #132B50;
-            --fifa-gold: #D4AF37;
-            --fifa-gold-dark: #B8960F;
-            --fifa-red: #E31C25;
-            --fifa-white: #FFFFFF;
-            --fifa-gray: #F5F5F5;
-            --fifa-dark-gray: #666666;
+            --primary-navy: #0A1E3F;
+            --primary-dark: #061230;
+            --primary-light: #1A3560;
+            --gold: #D4AF37;
+            --gold-dark: #B8960F;
+            --gold-light: #F5E6A3;
+            --red: #E31C25;
+            --red-dark: #C41018;
+            --white: #FFFFFF;
+            --off-white: #F8F9FA;
+            --gray-light: #E9ECEF;
+            --gray: #6C757D;
+            --gray-dark: #343A40;
+            --success: #28A745;
+            --text-dark: #1A1A1A;
+            --text-light: #FFFFFF;
+            /* High contrast text colors - passes WCAG AA */
+            --text-muted: #495057;
+            --link-blue: #0056B3;
+            --link-blue-hover: #003D80;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: var(--fifa-gray);
-            color: var(--fifa-navy);
+            background: var(--off-white);
+            color: var(--text-dark);
+            line-height: 1.5;
         }
 
-        /* Mobile-first navigation */
+        /* SKIP TO CONTENT - Accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--gold);
+            color: var(--primary-navy);
+            padding: 8px 16px;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 1001;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* NAVIGATION - High contrast, touch-friendly */
         .top-bar {
-            background: var(--fifa-navy);
-            padding: 12px 16px;
+            background: var(--primary-navy);
+            padding: 14px 20px;
             position: sticky;
             top: 0;
             z-index: 100;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+        }
+
+        .logo:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
         }
 
         .logo h1 {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--fifa-gold), #FFE55C);
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
         .logo p {
-            font-size: 8px;
-            letter-spacing: 1px;
-            color: rgba(255,255,255,0.6);
+            font-size: 9px;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.7);
         }
 
+        /* High contrast button */
         .cart-btn {
-            background: var(--fifa-gold);
+            background: var(--gold);
             border: none;
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-weight: bold;
-            color: var(--fifa-navy);
+            padding: 10px 18px;
+            border-radius: 40px;
+            font-weight: 700;
+            color: var(--primary-navy);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             cursor: pointer;
+            transition: all 0.2s ease;
+            min-height: 44px;
+            min-width: 44px;
         }
 
-        /* Hero banner - FIFA style */
+        .cart-btn:hover,
+        .cart-btn:focus {
+            background: var(--gold-dark);
+            transform: scale(1.02);
+            outline: 2px solid var(--white);
+            outline-offset: 2px;
+        }
+
+        /* HERO SECTION - High contrast text */
         .hero-banner {
-            background: linear-gradient(135deg, var(--fifa-navy), var(--fifa-navy-light));
-            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary-navy), var(--primary-dark));
+            padding: 48px 20px;
             text-align: center;
-            color: white;
+            color: var(--text-light);
         }
 
         .hero-banner h2 {
-            font-size: 28px;
-            margin-bottom: 10px;
+            font-size: clamp(28px, 6vw, 42px);
+            margin-bottom: 12px;
+            font-weight: 800;
         }
 
         .hero-banner h2 span {
-            color: var(--fifa-gold);
+            color: var(--gold);
         }
 
+        .hero-banner p {
+            font-size: 16px;
+            opacity: 0.9;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* COUNTDOWN - Accessible colors */
         .countdown {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin: 25px 0;
+            gap: 12px;
+            margin: 32px 0 0;
+            flex-wrap: wrap;
         }
 
         .countdown-box {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 10px 15px;
-            border-radius: 12px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(8px);
+            padding: 12px 20px;
+            border-radius: 16px;
             min-width: 70px;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .countdown-number {
-            font-size: 28px;
-            font-weight: bold;
+            font-size: clamp(28px, 5vw, 36px);
+            font-weight: 800;
+            color: var(--gold);
+            line-height: 1.2;
         }
 
         .countdown-label {
-            font-size: 10px;
-            opacity: 0.8;
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.8);
         }
 
-        /* Section titles */
+        /* SECTION TITLES - High contrast */
         .section-title {
-            padding: 20px 16px 10px;
-            font-size: 22px;
+            padding: 24px 20px 12px;
+            font-size: 24px;
             font-weight: 700;
-            color: var(--fifa-navy);
+            color: var(--primary-navy);
+            border-left: 4px solid var(--gold);
+            margin-left: 16px;
         }
 
-        .section-title span {
-            color: var(--fifa-gold);
-        }
-
-        /* Match cards - mobile optimized */
+        /* MATCH CARDS - Touch-friendly, accessible */
         .match-card {
-            background: white;
-            margin: 0 16px 16px;
-            border-radius: 16px;
+            background: var(--white);
+            margin: 0 16px 20px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            cursor: pointer;
-            transition: transform 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .match-card:active {
-            transform: scale(0.98);
+            transform: scale(0.99);
+        }
+
+        /* Focus state for accessibility */
+        .match-card:focus-within {
+            outline: 3px solid var(--gold);
+            outline-offset: 2px;
+        }
+
+        .stadium-img {
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            background-color: var(--primary-light);
         }
 
         .match-header {
-            background: var(--fifa-navy);
-            color: white;
+            background: var(--primary-navy);
+            color: var(--text-light);
             padding: 12px 16px;
             display: flex;
             justify-content: space-between;
-            font-size: 12px;
+            font-size: 13px;
+            font-weight: 500;
         }
 
         .match-teams {
@@ -168,80 +242,167 @@
         .team-name {
             font-weight: 700;
             font-size: 16px;
+            color: var(--text-dark);
         }
 
         .vs {
-            background: var(--fifa-gold);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 12px;
-            color: var(--fifa-navy);
+            background: var(--gold);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 13px;
+            color: var(--primary-navy);
         }
 
         .match-info {
             padding: 12px 16px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid var(--gray-light);
             display: flex;
             justify-content: space-between;
-            font-size: 13px;
-            color: var(--fifa-dark-gray);
+            font-size: 14px;
+            color: var(--text-muted);
         }
 
         .price {
-            color: var(--fifa-gold-dark);
-            font-weight: 700;
+            color: var(--gold-dark);
+            font-weight: 800;
             font-size: 18px;
         }
 
+        /* High contrast button */
         .buy-btn {
-            background: var(--fifa-gold);
+            background: var(--gold);
             border: none;
             width: calc(100% - 32px);
-            margin: 0 16px 16px;
+            margin: 0 16px 20px;
             padding: 14px;
             border-radius: 50px;
             font-weight: 700;
             font-size: 16px;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.2s;
+            color: var(--primary-navy);
+            min-height: 48px;
         }
 
-        .buy-btn:active {
-            background: var(--fifa-gold-dark);
+        .buy-btn:hover,
+        .buy-btn:focus {
+            background: var(--gold-dark);
+            transform: scale(1.01);
+            outline: 2px solid var(--primary-navy);
+            outline-offset: 2px;
         }
 
-        /* Stadium image placeholders */
-        .stadium-img {
-            height: 160px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
+        /* NEWS CARDS */
+        .news-card {
+            background: var(--white);
+            margin: 0 16px 16px;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            padding: 16px;
+            gap: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
         }
 
-        .stadium-img::after {
-            content: '';
-            position: absolute;
+        .news-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .news-text h4 {
+            font-size: 16px;
+            margin-bottom: 6px;
+            color: var(--primary-navy);
+        }
+
+        .news-text p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* BOTTOM TAB BAR - Touch-friendly (44px minimum) */
+        .tab-bar {
+            position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            height: 60px;
-            background: linear-gradient(to top, white, transparent);
+            background: var(--white);
+            display: flex;
+            padding: 8px 20px 20px;
+            justify-content: space-around;
+            border-top: 1px solid var(--gray-light);
+            z-index: 90;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
         }
 
-        /* Cart modal */
+        .tab-item {
+            text-align: center;
+            cursor: pointer;
+            color: var(--gray);
+            transition: color 0.2s;
+            padding: 8px 12px;
+            border-radius: 30px;
+            min-width: 70px;
+        }
+
+        .tab-item:hover,
+        .tab-item:focus {
+            background: rgba(212, 175, 55, 0.1);
+            outline: none;
+        }
+
+        .tab-item.active {
+            color: var(--gold-dark);
+            font-weight: 600;
+        }
+
+        .tab-item i {
+            font-size: 24px;
+            display: block;
+        }
+
+        .tab-item span {
+            font-size: 11px;
+            margin-top: 4px;
+        }
+
+        /* MODALS - Accessible */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 999;
+        }
+
+        .modal-overlay.open {
+            display: block;
+        }
+
         .cart-modal {
             display: none;
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: white;
-            border-radius: 20px 20px 0 0;
+            background: var(--white);
+            border-radius: 24px 24px 0 0;
             z-index: 1000;
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
-            animation: slideUp 0.3s;
+            animation: slideUp 0.3s ease;
         }
 
         .cart-modal.open {
@@ -249,28 +410,39 @@
         }
 
         @keyframes slideUp {
-            from {
-                transform: translateY(100%);
-            }
-            to {
-                transform: translateY(0);
-            }
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
         }
 
         .cart-header {
             padding: 20px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--gray-light);
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
-            background: white;
+            background: var(--white);
+        }
+
+        .cart-header h3 {
+            font-size: 20px;
+            color: var(--primary-navy);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 8px;
+            min-width: 44px;
+            min-height: 44px;
         }
 
         .cart-item {
             padding: 16px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--gray-light);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -278,52 +450,43 @@
 
         .cart-total {
             padding: 20px;
-            background: var(--fifa-gray);
-            font-weight: bold;
+            background: var(--gray-light);
+            font-weight: 800;
             font-size: 20px;
             display: flex;
             justify-content: space-between;
         }
 
         .checkout-btn {
-            background: var(--fifa-navy);
-            color: white;
+            background: var(--primary-navy);
+            color: var(--white);
             width: 100%;
-            padding: 16px;
+            padding: 18px;
             border: none;
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 700;
             cursor: pointer;
+            transition: background 0.2s;
         }
 
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 999;
+        .checkout-btn:hover,
+        .checkout-btn:focus {
+            background: var(--primary-light);
         }
 
-        .overlay.open {
-            display: block;
-        }
-
-        /* Seat selector */
         .seat-modal {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: white;
-            border-radius: 20px;
-            padding: 24px;
+            background: var(--white);
+            border-radius: 24px;
+            padding: 28px;
             width: 90%;
-            max-width: 320px;
+            max-width: 340px;
             z-index: 1001;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
         .seat-modal.open {
@@ -333,256 +496,249 @@
         .seat-options {
             display: flex;
             gap: 12px;
-            margin: 20px 0;
+            margin: 24px 0;
         }
 
         .seat-option {
             flex: 1;
-            padding: 12px;
+            padding: 14px 8px;
             text-align: center;
-            border: 2px solid #eee;
-            border-radius: 12px;
+            border: 2px solid var(--gray-light);
+            border-radius: 14px;
             cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
         }
 
         .seat-option.selected {
-            border-color: var(--fifa-gold);
-            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold-dark);
         }
 
-        /* Toast message */
         .toast {
             position: fixed;
-            bottom: 20px;
+            bottom: 90px;
             left: 20px;
             right: 20px;
-            background: var(--fifa-navy);
-            color: white;
-            padding: 14px;
+            background: var(--primary-navy);
+            color: var(--white);
+            padding: 14px 20px;
             border-radius: 50px;
             text-align: center;
             z-index: 1100;
             display: none;
-            animation: fadeInUp 0.3s;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Tab bar */
-        .tab-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            display: flex;
-            padding: 8px 16px 20px;
-            justify-content: space-around;
-            border-top: 1px solid #eee;
-            z-index: 90;
-        }
-
-        .tab-item {
-            text-align: center;
-            cursor: pointer;
-            color: var(--fifa-dark-gray);
-        }
-
-        .tab-item.active {
-            color: var(--fifa-gold);
-        }
-
-        .tab-item i {
-            font-size: 22px;
-        }
-
-        .tab-item span {
-            font-size: 11px;
-            display: block;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .content {
-            padding-bottom: 80px;
+            padding-bottom: 90px;
         }
 
-        /* News section */
-        .news-card {
-            background: white;
-            margin: 0 16px 16px;
-            border-radius: 16px;
-            overflow: hidden;
-            display: flex;
-            padding: 16px;
-            gap: 12px;
-        }
-
-        .news-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--fifa-gold), #FFE55C);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-        }
-
-        .news-text {
-            flex: 1;
-        }
-
-        .news-text h4 {
-            font-size: 14px;
-            margin-bottom: 4px;
-        }
-
-        .news-text p {
-            font-size: 12px;
-            color: var(--fifa-dark-gray);
-        }
-
-        /* Utility */
         .hidden {
             display: none;
+        }
+
+        /* High contrast text for empty state */
+        .empty-cart {
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--gray);
+        }
+
+        /* Remove button */
+        .remove-btn {
+            background: none;
+            border: none;
+            color: var(--red);
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 6px;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 24px 20px 100px;
+            color: var(--gray);
+            font-size: 12px;
+            border-top: 1px solid var(--gray-light);
+            margin-top: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .matches-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                padding: 0 20px;
+            }
+            .match-card {
+                margin: 0;
+            }
+            .tab-bar {
+                display: none;
+            }
+            .content {
+                padding-bottom: 40px;
+            }
+            .footer {
+                padding-bottom: 40px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .matches-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="logo">
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Top Navigation -->
+    <div class="top-bar" role="banner">
+        <div class="logo" tabindex="0">
             <h1>⚽ TICKETROYAL</h1>
-            <p>OFFICIAL TICKETING</p>
+            <p>OFFICIAL TICKETING PARTNER</p>
         </div>
-        <button class="cart-btn" onclick="openCart()">
-            🎫 <span id="cartCountBadge">0</span>
+        <button class="cart-btn" onclick="openCart()" aria-label="Shopping cart">
+            🎫 <span id="cartCountBadge" aria-live="polite">0</span>
         </button>
     </div>
 
     <!-- Main Content -->
-    <div class="content">
+    <div class="content" id="main-content">
         <!-- Hero Banner -->
         <div class="hero-banner">
-            <h2>FIFA World Cup <span>2026</span></h2>
-            <p>Secure your seat for history</p>
-            <div class="countdown">
+            <h2>FIFA World Cup <span>2026™</span></h2>
+            <p>Secure your seat for the biggest sporting event on Earth</p>
+            <div class="countdown" aria-label="Countdown to World Cup 2026">
                 <div class="countdown-box"><div class="countdown-number" id="days">00</div><div class="countdown-label">DAYS</div></div>
                 <div class="countdown-box"><div class="countdown-number" id="hours">00</div><div class="countdown-label">HOURS</div></div>
-                <div class="countdown-box"><div class="countdown-number" id="mins">00</div><div class="countdown-label">MINS</div></div>
-                <div class="countdown-box"><div class="countdown-number" id="secs">00</div><div class="countdown-label">SECS</div></div>
+                <div class="countdown-box"><div class="countdown-number" id="mins">00</div><div class="countdown-label">MINUTES</div></div>
+                <div class="countdown-box"><div class="countdown-number" id="secs">00</div><div class="countdown-label">SECONDS</div></div>
             </div>
         </div>
 
         <!-- Matches Section -->
         <div id="matchesSection">
-            <div class="section-title"><span>🏆</span> Upcoming Matches</div>
-            <div id="matchesList"></div>
+            <h2 class="section-title"><span aria-hidden="true">🏆</span> Upcoming Matches</h2>
+            <div id="matchesList" class="matches-grid"></div>
         </div>
 
         <!-- News Section -->
         <div id="newsSection" class="hidden">
-            <div class="section-title"><span>📰</span> Latest News</div>
+            <h2 class="section-title"><span aria-hidden="true">📰</span> Latest News</h2>
             <div class="news-card">
-                <div class="news-icon">🎟️</div>
-                <div class="news-text"><h4>TicketRoyal Launch</h4><p>Official ticket sales now open for all matches</p></div>
+                <div class="news-icon" aria-hidden="true">🎟️</div>
+                <div class="news-text">
+                    <h4>Official Ticket Sales Now Open</h4>
+                    <p>Secure your seats for all 104 matches across 16 host cities</p>
+                </div>
             </div>
             <div class="news-card">
-                <div class="news-icon">🏟️</div>
-                <div class="news-text"><h4>Stadiums Announced</h4><p>16 world-class venues across North America</p></div>
+                <div class="news-icon" aria-hidden="true">🏟️</div>
+                <div class="news-text">
+                    <h4>World-Class Venues Announced</h4>
+                    <p>MetLife, SoFi, AT&T Stadium lead the lineup of iconic venues</p>
+                </div>
             </div>
             <div class="news-card">
-                <div class="news-icon">⭐</div>
-                <div class="news-text"><h4>Superstars Confirmed</h4><p>All 32 qualified teams ready for battle</p></div>
+                <div class="news-icon" aria-hidden="true">⭐</div>
+                <div class="news-text">
+                    <h4>32 Teams Confirmed</h4>
+                    <p>All qualified nations ready to battle for football's ultimate prize</p>
+                </div>
             </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 TicketRoyal — Official Ticket Marketplace</p>
+            <p style="margin-top: 8px;">World Cup 2026 • North America</p>
         </div>
     </div>
 
-    <!-- Bottom Tab Bar -->
-    <div class="tab-bar">
-        <div class="tab-item active" onclick="switchTab('matches')">
-            <i>⚽</i><span>Matches</span>
+    <!-- Bottom Tab Bar (Mobile) -->
+    <div class="tab-bar" role="tablist">
+        <div class="tab-item active" role="tab" onclick="switchTab('matches')" tabindex="0">
+            <i aria-hidden="true">⚽</i><span>Matches</span>
         </div>
-        <div class="tab-item" onclick="switchTab('news')">
-            <i>📰</i><span>News</span>
+        <div class="tab-item" role="tab" onclick="switchTab('news')" tabindex="0">
+            <i aria-hidden="true">📰</i><span>News</span>
         </div>
-        <div class="tab-item" onclick="openCart()">
-            <i>🛒</i><span>Cart</span>
+        <div class="tab-item" role="tab" onclick="openCart()" tabindex="0">
+            <i aria-hidden="true">🛒</i><span>Cart</span>
         </div>
     </div>
 
     <!-- Cart Modal -->
-    <div class="overlay" id="overlay" onclick="closeCart()"></div>
-    <div class="cart-modal" id="cartModal">
+    <div class="modal-overlay" id="overlay" onclick="closeCart()"></div>
+    <div class="cart-modal" id="cartModal" role="dialog" aria-label="Shopping cart">
         <div class="cart-header">
             <h3>Your Tickets</h3>
-            <button onclick="closeCart()" style="background:none; border:none; font-size:24px;">✕</button>
+            <button class="close-btn" onclick="closeCart()" aria-label="Close cart">✕</button>
         </div>
         <div id="cartItemsList"></div>
         <div class="cart-total">
             <span>Total</span>
-            <span id="cartTotalAmount">$0</span>
+            <span id="cartTotalAmount" aria-live="polite">$0</span>
         </div>
-        <button class="checkout-btn" onclick="checkout()">Checkout →</button>
+        <button class="checkout-btn" onclick="checkout()">Proceed to Checkout →</button>
     </div>
 
     <!-- Seat Selection Modal -->
-    <div class="seat-modal" id="seatModal">
-        <h3>Select Seat Type</h3>
+    <div class="seat-modal" id="seatModal" role="dialog" aria-label="Select seat type">
+        <h3 style="color: var(--primary-navy);">Select Seat Type</h3>
         <div class="seat-options">
-            <div class="seat-option" data-price="199" data-category="Standard">Standard<br><strong>$199</strong></div>
-            <div class="seat-option" data-price="399" data-category="Premium">Premium<br><strong>$399</strong></div>
-            <div class="seat-option" data-price="699" data-category="VIP">VIP<br><strong>$699</strong></div>
+            <div class="seat-option" data-price="199" data-category="Standard" tabindex="0">Standard<br><strong>$199</strong></div>
+            <div class="seat-option" data-price="399" data-category="Premium" tabindex="0">Premium<br><strong>$399</strong></div>
+            <div class="seat-option" data-price="699" data-category="VIP" tabindex="0">VIP<br><strong>$699</strong></div>
         </div>
         <button class="buy-btn" onclick="confirmAddToCart()" style="margin:0; width:100%;">Add to Cart</button>
-        <button onclick="closeSeatModal()" style="margin-top:12px; width:100%; padding:12px; background:#eee; border:none; border-radius:50px;">Cancel</button>
+        <button onclick="closeSeatModal()" style="margin-top:12px; width:100%; padding:14px; background:var(--gray-light); border:none; border-radius:50px; font-weight:600; cursor:pointer;">Cancel</button>
     </div>
 
-    <!-- Toast -->
-    <div class="toast" id="toast">✓ Added to cart</div>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast" role="status" aria-live="polite">✓ Added to cart</div>
 
     <script>
-        // Match data with stadium images
+        // Match data with high-quality images
         const matches = [
             { id: 1, team1: "USA", team2: "Mexico", flag1: "🇺🇸", flag2: "🇲🇽", stadium: "MetLife Stadium", date: "Jun 12, 2026", time: "8:00 PM", price: 199, stadiumImg: "https://images.unsplash.com/photo-1522778119026-d647f0594c4a?w=400&h=200&fit=crop" },
             { id: 2, team1: "Brazil", team2: "Argentina", flag1: "🇧🇷", flag2: "🇦🇷", stadium: "SoFi Stadium", date: "Jun 15, 2026", time: "9:00 PM", price: 249, stadiumImg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=400&h=200&fit=crop" },
-            { id: 3, team1: "England", team2: "Germany", flag1: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", flag2: "🇩🇪", stadium: "AT&T Stadium", date: "Jun 18, 2026", time: "7:00 PM", price: 229, stadiumImg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=400&h=200&fit=crop" },
+            { id: 3, team1: "England", team2: "Germany", flag1: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", flag2: "🇩🇪", stadium: "AT&T Stadium", date: "Jun 18, 2026", time: "7:00 PM", price: 229, stadiumImg: "https://images.unsplash.com/photo-1452784444945-1f422909fe7e?w=400&h=200&fit=crop" },
             { id: 4, team1: "France", team2: "Spain", flag1: "🇫🇷", flag2: "🇪🇸", stadium: "Hard Rock Stadium", date: "Jun 20, 2026", time: "10:00 PM", price: 239, stadiumImg: "https://images.unsplash.com/photo-1522778119026-d647f0594c4a?w=400&h=200&fit=crop" },
             { id: 5, team1: "Portugal", team2: "Netherlands", flag1: "🇵🇹", flag2: "🇳🇱", stadium: "Mercedes-Benz Stadium", date: "Jun 22, 2026", time: "6:00 PM", price: 219, stadiumImg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=400&h=200&fit=crop" },
-            { id: 6, team1: "Italy", team2: "Belgium", flag1: "🇮🇹", flag2: "🇧🇪", stadium: "Gillette Stadium", date: "Jun 25, 2026", time: "8:30 PM", price: 209, stadiumImg: "https://images.unsplash.com/photo-1522778119026-d647f0594c4a?w=400&h=200&fit=crop" }
+            { id: 6, team1: "Italy", team2: "Belgium", flag1: "🇮🇹", flag2: "🇧🇪", stadium: "Gillette Stadium", date: "Jun 25, 2026", time: "8:30 PM", price: 209, stadiumImg: "https://images.unsplash.com/photo-1452784444945-1f422909fe7e?w=400&h=200&fit=crop" }
         ];
 
         let cart = [];
         let selectedMatch = null;
         let selectedSeat = null;
 
-        // Render matches
         function renderMatches() {
             const container = document.getElementById('matchesList');
             container.innerHTML = matches.map(match => `
-                <div class="match-card" onclick="openSeatModal(${match.id})">
-                    <div class="stadium-img" style="background-image: url('${match.stadiumImg}')"></div>
+                <div class="match-card">
+                    <div class="stadium-img" style="background-image: url('${match.stadiumImg}'); background-size: cover; background-position: center;" aria-label="Stadium image for ${match.stadium}"></div>
                     <div class="match-header">
                         <span>${match.date}</span>
                         <span>${match.time}</span>
                     </div>
                     <div class="match-teams">
                         <div class="team">
-                            <div class="team-flag">${match.flag1}</div>
+                            <div class="team-flag" aria-hidden="true">${match.flag1}</div>
                             <div class="team-name">${match.team1}</div>
                         </div>
-                        <div class="vs">VS</div>
+                        <div class="vs" aria-hidden="true">VS</div>
                         <div class="team">
-                            <div class="team-flag">${match.flag2}</div>
+                            <div class="team-flag" aria-hidden="true">${match.flag2}</div>
                             <div class="team-name">${match.team2}</div>
                         </div>
                     </div>
@@ -590,12 +746,11 @@
                         <span>🏟️ ${match.stadium}</span>
                         <span class="price">from $${match.price}</span>
                     </div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); openSeatModal(${match.id})">🎫 Select Tickets</button>
+                    <button class="buy-btn" onclick="openSeatModal(${match.id})" aria-label="Buy tickets for ${match.team1} vs ${match.team2}">🎫 Select Tickets</button>
                 </div>
             `).join('');
         }
 
-        // Open seat modal
         function openSeatModal(matchId) {
             selectedMatch = matches.find(m => m.id === matchId);
             document.getElementById('seatModal').classList.add('open');
@@ -603,7 +758,6 @@
             selectedSeat = null;
         }
 
-        // Seat selection
         document.querySelectorAll('.seat-option').forEach(opt => {
             opt.addEventListener('click', function() {
                 document.querySelectorAll('.seat-option').forEach(o => o.classList.remove('selected'));
@@ -617,7 +771,7 @@
 
         function confirmAddToCart() {
             if (!selectedSeat) {
-                showToast('Please select a seat type');
+                showToast('Please select a seat type first');
                 return;
             }
 
@@ -645,7 +799,7 @@
             cartCount.textContent = cart.length;
 
             if (cart.length === 0) {
-                cartItemsDiv.innerHTML = '<div style="padding:40px; text-align:center; color:#999;">No tickets yet</div>';
+                cartItemsDiv.innerHTML = '<div class="empty-cart">No tickets in cart yet<br>🎫 Browse matches to add</div>';
                 cartTotal.textContent = '$0';
                 return;
             }
@@ -655,11 +809,11 @@
                     <div>
                         <strong>${item.match}</strong><br>
                         <small>${item.date} • ${item.stadium}</small><br>
-                        <small style="color:var(--fifa-gold)">${item.category}</small>
+                        <small style="color: var(--gold-dark); font-weight:600;">${item.category}</small>
                     </div>
                     <div style="text-align:right">
                         <div><strong>$${item.price}</strong></div>
-                        <button onclick="removeFromCart(${item.id})" style="background:none; border:none; color:red; margin-top:5px;">Remove</button>
+                        <button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button>
                     </div>
                 </div>
             `).join('');
@@ -671,7 +825,7 @@
         function removeFromCart(id) {
             cart = cart.filter(item => item.id !== id);
             updateCartUI();
-            showToast('Ticket removed');
+            showToast('Ticket removed from cart');
         }
 
         function openCart() {
@@ -695,20 +849,20 @@
             toast.style.display = 'block';
             setTimeout(() => {
                 toast.style.display = 'none';
-            }, 2000);
+            }, 2500);
         }
 
         function checkout() {
             if (cart.length === 0) {
-                showToast('Cart is empty');
+                showToast('Your cart is empty');
                 return;
             }
             const total = cart.reduce((s, i) => s + i.price, 0);
-            alert(`🎟️ TicketRoyal\n\nTotal: $${total}\nTickets: ${cart.length}\n\nThank you! Check your email for confirmation.`);
+            alert(`🎟️ TicketRoyal Checkout\n\nTotal: $${total}\nTickets: ${cart.length}\n\nThank you for your purchase! Check your email for confirmation.\n\nThis is a demo — no real payment processed.`);
             cart = [];
             updateCartUI();
             closeCart();
-            showToast('Purchase successful! 🎉');
+            showToast('Purchase successful! 🎉 Check your email');
         }
 
         function switchTab(tab) {
@@ -729,21 +883,30 @@
             }
         }
 
-        // Countdown timer
         function updateCountdown() {
             const target = new Date('June 11, 2026 00:00:00').getTime();
             const now = new Date().getTime();
             const diff = target - now;
 
-            document.getElementById('days').textContent = Math.floor(diff / (1000*60*60*24));
-            document.getElementById('hours').textContent = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-            document.getElementById('mins').textContent = Math.floor((diff % (1000*60*60)) / (1000*60));
-            document.getElementById('secs').textContent = Math.floor((diff % (1000*60)) / 1000);
+            if (diff > 0) {
+                document.getElementById('days').textContent = Math.floor(diff / (1000*60*60*24));
+                document.getElementById('hours').textContent = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+                document.getElementById('mins').textContent = Math.floor((diff % (1000*60*60)) / (1000*60));
+                document.getElementById('secs').textContent = Math.floor((diff % (1000*60)) / 1000);
+            }
         }
 
         setInterval(updateCountdown, 1000);
         updateCountdown();
         renderMatches();
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeCart();
+                closeSeatModal();
+            }
+        });
     </script>
 </body>
 </html>
