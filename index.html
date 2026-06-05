@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="TicketRoyal - FIFA World Cup 2026 Matches Schedule">
-    <title>TicketRoyal | FIFA World Cup 2026™ Matches</title>
+    <meta name="description" content="TicketRoyal - Official FIFA World Cup 2026 Ticket Marketplace">
+    <title>TicketRoyal | FIFA World Cup 2026™ Official Tickets</title>
     <style>
         * {
             margin: 0;
@@ -33,8 +33,8 @@
 
         @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
 
-        /* Top Navigation Bar - NO BACK BUTTON */
-        .top-bar {
+        /* Navigation Bar */
+        .nav {
             background: var(--pure-white);
             padding: 12px 20px;
             display: flex;
@@ -53,7 +53,7 @@
         }
 
         .supersport-logo img {
-            height: 36px;
+            height: 40px;
             width: auto;
             display: block;
         }
@@ -151,115 +151,279 @@
             text-align: center;
         }
 
-        /* Page Header */
-        .page-header {
-            background: linear-gradient(135deg, var(--deep-navy), #1a2a4a);
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .page-header h1 {
-            color: var(--pure-white);
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
-        .page-header p {
-            color: rgba(255,255,255,0.7);
-            font-size: 14px;
+        /* Hero Slideshow */
+        .hero {
+            position: relative;
+            height: 50vh;
+            min-height: 400px;
+            overflow: hidden;
         }
 
-        /* Filters Bar */
-        .filters-bar {
+        .slideshow-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .slide.active { opacity: 1; }
+
+        .slide-1 { background-image: url('https://images.unsplash.com/photo-1629217855633-79a6925d6c47?q=80&w=870&auto=format&fit=crop'); }
+        .slide-2 { background-image: url('https://images.unsplash.com/photo-1522778526097-ce0a22ceb253?q=80&w=870&auto=format&fit=crop'); }
+        .slide-3 { background-image: url('https://images.unsplash.com/photo-1563299796-b729d0af54a5?q=80&w=725&auto=format&fit=crop'); }
+        .slide-4 { background-image: url('https://images.unsplash.com/photo-1527871252447-4ce32da643c6?q=80&w=1031&auto=format&fit=crop'); }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(11, 19, 43, 0.85) 0%, rgba(11, 19, 43, 0.7) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 600px;
+            padding: 0 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-subtitle { color: var(--rich-gold); font-size: 12px; font-weight: 600; letter-spacing: 2px; margin-bottom: 12px; }
+        .hero-title { color: var(--pure-white); font-size: 32px; font-weight: 800; line-height: 1.2; margin-bottom: 12px; }
+        .hero-title span { color: var(--rich-gold); }
+        .hero-text { color: rgba(255,255,255,0.85); font-size: 14px; line-height: 1.4; margin-bottom: 20px; }
+
+        .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+        .btn-primary { background: var(--rich-gold); color: var(--deep-navy); padding: 10px 20px; border-radius: 40px; text-decoration: none; font-weight: 700; font-size: 14px; display: inline-block; cursor: pointer; border: none; }
+        .btn-outline { background: transparent; color: var(--pure-white); padding: 10px 20px; border-radius: 40px; text-decoration: none; font-weight: 600; border: 1px solid rgba(255,255,255,0.3); font-size: 14px; cursor: pointer; background: none; }
+
+        /* Sections */
+        .section { padding: 50px 20px; }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-title { font-size: 28px; font-weight: 700; color: var(--deep-navy); }
+        .section-title span { color: var(--rich-gold); }
+        .section-subtitle { color: var(--slate-gray); margin-top: 8px; }
+
+        /* How It Works */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .step-card {
+            text-align: center;
+            padding: 30px 20px;
             background: var(--pure-white);
-            padding: 20px;
-            margin: 20px 20px 0;
             border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--rich-gold);
+            color: var(--deep-navy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0 auto 16px;
+        }
+        .step-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+        .step-text { color: var(--slate-gray); font-size: 14px; }
+
+        /* Why Choose Us */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .feature-card {
+            text-align: center;
+            padding: 24px;
+            background: var(--pure-white);
+            border-radius: 16px;
+        }
+        .feature-icon { font-size: 40px; margin-bottom: 12px; }
+        .feature-title { font-weight: 700; margin-bottom: 6px; }
+        .feature-text { font-size: 13px; color: var(--slate-gray); }
+
+        /* Host Cities */
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .city-card {
+            background: var(--pure-white);
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
-        .search-box {
-            margin-bottom: 16px;
+        .city-name { font-weight: 700; font-size: 14px; }
+        .city-stadium { font-size: 11px; color: var(--slate-gray); margin-top: 4px; }
+
+        /* Ticket Categories */
+        .tickets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
-        .search-box input {
-            width: 100%;
-            padding: 14px 20px;
-            border: 1px solid var(--subtle-border);
-            border-radius: 50px;
-            font-size: 14px;
-            outline: none;
-        }
-        .search-box input:focus {
-            border-color: var(--rich-gold);
-        }
-        .filter-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-        .filter-select {
-            flex: 1;
-            min-width: 120px;
-            padding: 10px 16px;
-            border: 1px solid var(--subtle-border);
-            border-radius: 40px;
+        .ticket-card {
             background: var(--pure-white);
-            font-size: 13px;
-            cursor: pointer;
+            border-radius: 20px;
+            padding: 28px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
         }
-        .apply-filters {
-            background: var(--rich-gold);
-            color: var(--deep-navy);
-            border: none;
-            padding: 10px 24px;
-            border-radius: 40px;
-            font-weight: 600;
-            cursor: pointer;
+        .ticket-card:hover { transform: translateY(-5px); }
+        .ticket-category { font-size: 20px; font-weight: 800; color: var(--rich-gold); margin-bottom: 8px; }
+        .ticket-price { font-size: 32px; font-weight: 800; margin-bottom: 16px; }
+        .ticket-features { list-style: none; margin: 20px 0; }
+        .ticket-features li { padding: 6px 0; font-size: 13px; color: var(--slate-gray); }
+        .ticket-btn { background: var(--deep-navy); color: white; border: none; padding: 12px 24px; border-radius: 40px; font-weight: 600; cursor: pointer; width: 100%; }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
-        .view-toggle {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            border-top: 1px solid var(--subtle-border);
-            padding-top: 16px;
-            margin-top: 8px;
+        .testimonial-card {
+            background: var(--pure-white);
+            border-radius: 20px;
+            padding: 28px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
-        .view-btn {
-            background: transparent;
-            border: 1px solid var(--subtle-border);
-            padding: 8px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 13px;
-        }
-        .view-btn.active {
-            background: var(--rich-gold);
-            border-color: var(--rich-gold);
-            color: var(--deep-navy);
+        .testimonial-quote { font-size: 40px; color: var(--rich-gold); margin-bottom: 12px; }
+        .testimonial-text { font-size: 15px; line-height: 1.5; color: var(--slate-gray); margin-bottom: 16px; }
+
+        /* Newsletter */
+        .newsletter {
+            position: relative;
+            background-image: url('https://images.unsplash.com/photo-1625635166625-4145adc710e5?q=80&w=870&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            border-radius: 24px;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        /* Matches Grid */
-        .matches-section {
-            padding: 30px 20px;
+        .newsletter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 19, 43, 0.5);
+            z-index: 1;
         }
-        .matches-grid {
+
+        .newsletter-content {
+            position: relative;
+            z-index: 2;
+            padding: 48px 24px;
+            text-align: center;
+        }
+
+        .newsletter-content h3 {
+            color: var(--pure-white);
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .newsletter-content p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 24px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-input {
+            padding: 14px 20px;
+            border-radius: 50px;
+            border: none;
+            width: 280px;
+            font-size: 14px;
+        }
+
+        .newsletter-btn {
+            background: var(--rich-gold);
+            color: var(--deep-navy);
+            padding: 14px 28px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* FAQ */
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: var(--pure-white);
+            border-radius: 16px;
+            margin-bottom: 16px;
+            padding: 20px;
+        }
+        .faq-question { font-weight: 700; font-size: 16px; margin-bottom: 8px; color: var(--deep-navy); }
+        .faq-answer { font-size: 14px; color: var(--slate-gray); line-height: 1.5; }
+
+        /* Match Cards (for homepage preview) */
+        .matches-container {
             display: grid;
             grid-template-columns: 1fr;
             gap: 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
-        .matches-grid.list-view {
-            grid-template-columns: 1fr;
-        }
         .match-card {
             background: var(--pure-white);
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
-        }
-        .match-card:hover {
-            transform: translateY(-3px);
         }
         .match-date {
             background: var(--deep-navy);
@@ -277,134 +441,21 @@
             font-size: 10px;
             font-weight: 700;
         }
-        .match-teams {
-            padding: 24px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .match-team {
-            text-align: center;
-            flex: 1;
-        }
-        .match-flag {
-            font-size: 42px;
-            margin-bottom: 8px;
-        }
-        .match-team-name {
-            font-weight: 700;
-            font-size: 15px;
-        }
-        .match-vs {
-            width: 36px;
-            height: 36px;
-            background: var(--light-bg);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 800;
-        }
-        .match-info-row {
-            padding: 0 20px 12px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            color: var(--slate-gray);
-        }
-        .match-price-row {
-            padding: 12px 20px;
-            border-top: 1px solid var(--subtle-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .match-price {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--rich-gold);
-        }
-        .buy-ticket-btn {
-            background: var(--deep-navy);
-            color: var(--pure-white);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 40px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 13px;
-        }
-        .buy-ticket-btn:hover {
-            background: var(--rich-gold);
-            color: var(--deep-navy);
-        }
-
-        /* List View Style */
-        .matches-grid.list-view .match-card {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            padding: 16px;
-        }
-        .matches-grid.list-view .match-date {
-            background: transparent;
-            color: var(--deep-navy);
-            padding: 0;
-            min-width: 100px;
-        }
-        .matches-grid.list-view .match-teams {
-            padding: 0;
-            flex: 2;
-            min-width: 200px;
-        }
-        .matches-grid.list-view .match-flag {
-            font-size: 32px;
-        }
-        .matches-grid.list-view .match-info-row {
-            padding: 0;
-            flex-direction: column;
-            gap: 4px;
-            min-width: 150px;
-        }
-        .matches-grid.list-view .match-price-row {
-            padding: 0;
-            border: none;
-            flex-direction: column;
-            align-items: flex-end;
-            min-width: 120px;
-        }
-        .matches-grid.list-view .buy-ticket-btn {
-            margin-top: 8px;
-        }
-
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-        .page-btn {
-            background: var(--pure-white);
-            border: 1px solid var(--subtle-border);
-            padding: 8px 14px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .page-btn.active {
-            background: var(--rich-gold);
-            border-color: var(--rich-gold);
-            color: var(--deep-navy);
-        }
+        .match-teams { padding: 20px; display: flex; align-items: center; justify-content: space-between; }
+        .match-team { text-align: center; flex: 1; }
+        .match-flag { font-size: 36px; margin-bottom: 6px; }
+        .match-team-name { font-weight: 700; font-size: 14px; }
+        .match-vs { width: 32px; height: 32px; background: var(--light-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; }
+        .match-venue { padding: 0 20px 12px; display: flex; justify-content: space-between; font-size: 11px; color: var(--slate-gray); }
+        .match-price-row { padding: 12px 20px; border-top: 1px solid var(--subtle-border); display: flex; justify-content: space-between; align-items: center; }
+        .match-price { font-size: 20px; font-weight: 800; color: var(--rich-gold); }
+        .select-ticket-btn { background: var(--deep-navy); color: var(--pure-white); border: none; padding: 10px 16px; border-radius: 40px; font-weight: 600; cursor: pointer; font-size: 13px; width: calc(100% - 40px); margin: 0 20px 20px; }
 
         /* Footer */
         .footer {
             background: var(--deep-navy);
             color: var(--pure-white);
-            padding: 40px 20px 24px;
+            padding: 48px 20px 24px;
             margin-top: 40px;
         }
         .footer-container {
@@ -432,6 +483,51 @@
             color: rgba(255,255,255,0.4);
         }
 
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: var(--pure-white);
+            z-index: 300;
+            flex-direction: column;
+        }
+        .cart-modal.open { display: flex; }
+        .cart-header { padding: 20px; border-bottom: 1px solid var(--subtle-border); display: flex; justify-content: space-between; }
+        .cart-items { flex: 1; overflow-y: auto; padding: 16px; }
+        .cart-footer { padding: 20px; border-top: 1px solid var(--subtle-border); }
+
+        .seat-selector {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--pure-white);
+            border-radius: 20px;
+            padding: 24px;
+            width: 90%;
+            max-width: 320px;
+            z-index: 301;
+        }
+        .seat-selector.open { display: block; }
+        .seat-options { display: flex; gap: 10px; margin: 20px 0; }
+        .seat-option {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            border: 2px solid var(--subtle-border);
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+        }
+        .seat-option.selected { border-color: var(--rich-gold); background: rgba(197, 160, 40, 0.1); }
+
         .toast {
             position: fixed;
             bottom: 20px;
@@ -448,23 +544,19 @@
         }
 
         @media (min-width: 768px) {
-            .matches-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .page-header h1 { font-size: 40px; }
+            .matches-container { grid-template-columns: repeat(2, 1fr); }
+            .hero-title { font-size: 40px; }
         }
 
         @media (min-width: 1024px) {
-            .matches-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            .matches-container { grid-template-columns: repeat(3, 1fr); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Navigation Bar - NO BACK TO HOME BUTTON -->
-    <div class="top-bar">
+    <!-- Navigation -->
+    <div class="nav">
         <div class="nav-left">
             <div class="supersport-logo">
                 <img src="https://supersport.com/images/SuperSportsLogo.svg?width=96&quality=90" alt="SuperSport Logo">
@@ -476,7 +568,7 @@
         </button>
     </div>
 
-    <!-- Sidebar - Home link goes to index.html -->
+    <!-- Sidebar -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header"><h3>Menu</h3><button class="close-sidebar" onclick="closeSidebar()">✕</button></div>
@@ -493,56 +585,119 @@
         <div class="sidebar-footer"><p>© TicketRoyal 2020</p><p>Official FIFA Partner</p></div>
     </div>
 
-    <!-- Page Header -->
-    <div class="page-header">
-        <h1>FIFA World Cup 2026™ Matches</h1>
-        <p>Full schedule of all 104 matches across 16 host cities</p>
-    </div>
-
-    <!-- Filters Bar -->
-    <div class="filters-bar">
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="🔍 Search by team, stadium, or city...">
+    <!-- Hero Slideshow -->
+    <div class="hero">
+        <div class="slideshow-container">
+            <div class="slide slide-1 active"></div>
+            <div class="slide slide-2"></div>
+            <div class="slide slide-3"></div>
+            <div class="slide slide-4"></div>
         </div>
-        <div class="filter-group">
-            <select id="stageFilter" class="filter-select">
-                <option value="all">All Stages</option>
-                <option value="Group A">Group A</option>
-                <option value="Group B">Group B</option>
-                <option value="Group C">Group C</option>
-                <option value="Group D">Group D</option>
-                <option value="Group E">Group E</option>
-                <option value="Group F">Group F</option>
-                <option value="Round of 16">Round of 16</option>
-                <option value="Quarter Final">Quarter Final</option>
-                <option value="Semi Final">Semi Final</option>
-                <option value="Final">Final</option>
-            </select>
-            <select id="cityFilter" class="filter-select">
-                <option value="all">All Cities</option>
-                <option value="New Jersey">New Jersey</option>
-                <option value="Los Angeles">Los Angeles</option>
-                <option value="Dallas">Dallas</option>
-                <option value="Miami">Miami</option>
-                <option value="Atlanta">Atlanta</option>
-                <option value="Boston">Boston</option>
-                <option value="San Francisco">San Francisco</option>
-                <option value="Kansas City">Kansas City</option>
-                <option value="Houston">Houston</option>
-                <option value="Seattle">Seattle</option>
-            </select>
-            <button class="apply-filters" onclick="applyFilters()">Apply Filters</button>
-        </div>
-        <div class="view-toggle">
-            <button class="view-btn active" onclick="setView('grid')">Grid View</button>
-            <button class="view-btn" onclick="setView('list')">List View</button>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-subtitle">FIFA WORLD CUP 2026™</div>
+            <h1 class="hero-title">Secure Your Seat for <span>Football History</span></h1>
+            <p class="hero-text">Official tickets for all 104 matches across 16 iconic venues.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="goToMatches()">Buy Tickets →</button>
+                <button class="btn-outline" onclick="showToast('Schedule coming soon')">View Schedule</button>
+            </div>
         </div>
     </div>
 
-    <!-- Matches Section -->
-    <div class="matches-section">
-        <div class="matches-grid" id="matchesGrid"></div>
-        <div class="pagination" id="pagination"></div>
+    <!-- UPCOMING MATCHES (Preview) -->
+    <div class="section" id="matches">
+        <div class="section-header">
+            <h2 class="section-title"><span>Upcoming</span> Matches</h2>
+            <button onclick="goToMatches()" style="color:var(--rich-gold); background:none; border:none; font-size:13px; cursor:pointer;">View All →</button>
+        </div>
+        <div class="matches-container" id="matchesGrid"></div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">How It <span>Works</span></h2>
+            <p class="section-subtitle">Get your World Cup tickets in 3 simple steps</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card"><div class="step-number">1</div><div class="step-title">Browse Matches</div><div class="step-text">Explore all 104 matches and choose your favorite teams</div></div>
+            <div class="step-card"><div class="step-number">2</div><div class="step-title">Select Seats</div><div class="step-text">Choose Standard, Premium, or VIP seating categories</div></div>
+            <div class="step-card"><div class="step-number">3</div><div class="step-title">Get Tickets</div><div class="step-text">Receive instant e-tickets via email</div></div>
+        </div>
+    </div>
+
+    <!-- Why Choose Us -->
+    <div class="section" style="background: var(--pure-white);">
+        <div class="section-header">
+            <h2 class="section-title">Why Choose <span>TicketRoyal</span></h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card"><div class="feature-icon">🏆</div><div class="feature-title">Official FIFA Partner</div><div class="feature-text">Authorized ticket seller for World Cup 2026</div></div>
+            <div class="feature-card"><div class="feature-icon">🔒</div><div class="feature-title">Secure Payment</div><div class="feature-text">256-bit SSL encrypted transactions</div></div>
+            <div class="feature-card"><div class="feature-icon">💬</div><div class="feature-title">24/7 Fan Support</div><div class="feature-text">Dedicated support throughout your journey</div></div>
+            <div class="feature-card"><div class="feature-icon">📱</div><div class="feature-title">Instant E-Tickets</div><div class="feature-text">Mobile tickets delivered immediately</div></div>
+        </div>
+    </div>
+
+    <!-- Host Cities -->
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">Host <span>Cities</span></h2>
+            <p class="section-subtitle">16 iconic venues across North America</p>
+        </div>
+        <div class="cities-grid" id="citiesGrid"></div>
+    </div>
+
+    <!-- Ticket Categories -->
+    <div class="section" style="background: var(--pure-white);">
+        <div class="section-header">
+            <h2 class="section-title">Ticket <span>Categories</span></h2>
+        </div>
+        <div class="tickets-grid">
+            <div class="ticket-card"><div class="ticket-category">Standard</div><div class="ticket-price">$199</div><ul class="ticket-features"><li>✓ Upper Bowl Seating</li><li>✓ Match Program</li><li>✓ Standard Entry</li></ul><button class="ticket-btn" onclick="goToMatches()">Buy Now</button></div>
+            <div class="ticket-card"><div class="ticket-category">Premium</div><div class="ticket-price">$399</div><ul class="ticket-features"><li>✓ Mid-Level Seating</li><li>✓ Match Program + Scarf</li><li>✓ Fast Track Entry</li><li>✓ Free Drink</li></ul><button class="ticket-btn" onclick="goToMatches()">Buy Now</button></div>
+            <div class="ticket-card"><div class="ticket-category">VIP</div><div class="ticket-price">$699</div><ul class="ticket-features"><li>✓ Premium Lower Bowl</li><li>✓ VIP Lounge Access</li><li>✓ Complimentary Food & Drinks</li><li>✓ Meet & Greet Opportunity</li><li>✓ Exclusive Merchandise</li></ul><button class="ticket-btn" onclick="goToMatches()">Buy Now</button></div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">Fan <span>Experiences</span></h2>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card"><div class="testimonial-quote">"</div><div class="testimonial-text">The best experience of my life! Getting tickets was so easy through TicketRoyal.</div></div>
+            <div class="testimonial-card"><div class="testimonial-quote">"</div><div class="testimonial-text">Secure payment, instant tickets, and amazing seats. Will definitely use again!</div></div>
+            <div class="testimonial-card"><div class="testimonial-quote">"</div><div class="testimonial-text">VIP experience was worth every penny. The hospitality was world-class.</div></div>
+        </div>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="section">
+        <div class="newsletter">
+            <div class="newsletter-content">
+                <h3>Get Ticket Alerts</h3>
+                <p>Subscribe to receive the latest ticket releases and special offers</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" class="newsletter-input">
+                    <button class="newsletter-btn" onclick="showToast('Subscribed! Check your email')">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section" style="background: var(--pure-white);">
+        <div class="section-header">
+            <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+        </div>
+        <div class="faq-grid">
+            <div class="faq-item"><div class="faq-question">How do I buy tickets for World Cup 2026?</div><div class="faq-answer">Simply browse matches above, select your preferred seats, add to cart, and checkout securely.</div></div>
+            <div class="faq-item"><div class="faq-question">Are tickets refundable?</div><div class="faq-answer">Tickets are non-refundable but can be transferred to another fan up to 7 days before the match.</div></div>
+            <div class="faq-item"><div class="faq-question">When will I receive my tickets?</div><div class="faq-answer">E-tickets are delivered instantly to your email after purchase confirmation.</div></div>
+            <div class="faq-item"><div class="faq-question">Is TicketRoyal an official seller?</div><div class="faq-answer">Yes, TicketRoyal is an official FIFA World Cup 2026 ticketing partner.</div></div>
+        </div>
     </div>
 
     <!-- Footer -->
@@ -550,7 +705,7 @@
         <div class="footer-container">
             <div class="footer-links">
                 <div class="footer-col"><h4>TicketRoyal</h4><a onclick="showToast('About Us coming soon')">About Us</a><a onclick="showToast('Official Partner info coming soon')">Official Partner</a><a onclick="showToast('Contact page coming soon')">Contact</a></div>
-                <div class="footer-col"><h4>Tickets</h4><a onclick="showToast('Buy Tickets coming soon')">Buy Tickets</a><a onclick="showToast('Hospitality coming soon')">Hospitality</a><a onclick="showToast('Group Sales coming soon')">Group Sales</a></div>
+                <div class="footer-col"><h4>Tickets</h4><a onclick="goToMatches()">Buy Tickets</a><a onclick="showToast('Hospitality coming soon')">Hospitality</a><a onclick="showToast('Group Sales coming soon')">Group Sales</a></div>
                 <div class="footer-col"><h4>Info</h4><a onclick="showToast('FAQs coming soon')">FAQs</a><a onclick="showToast('Terms coming soon')">Terms & Conditions</a><a onclick="showToast('Privacy Policy coming soon')">Privacy Policy</a></div>
                 <div class="footer-col"><h4>Follow Us</h4><a onclick="showToast('Instagram coming soon')">Instagram</a><a onclick="showToast('Twitter coming soon')">Twitter</a><a onclick="showToast('Facebook coming soon')">Facebook</a></div>
             </div>
@@ -558,158 +713,142 @@
         <div class="footer-bottom">© 2020 TicketRoyal — Official FIFA World Cup 2026™ Ticket Marketplace</div>
     </footer>
 
-    <div class="toast" id="toast">✓ Ticket selected!</div>
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header"><h3>Your Tickets</h3><button onclick="closeCart()" style="background:none; border:none; font-size:22px;">✕</button></div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer"><div style="display:flex; justify-content:space-between; margin-bottom:16px;"><span>Total</span><span id="cartTotal" style="font-size:20px; font-weight:800;">$0</span></div><button class="select-ticket-btn" onclick="checkout()" style="margin:0; width:100%;">Proceed to Checkout</button></div>
+    </div>
+
+    <!-- Seat Selector -->
+    <div class="seat-selector" id="seatModal">
+        <h3>Select Seat Category</h3>
+        <div class="seat-options">
+            <div class="seat-option" data-price="199" data-category="Standard">Standard<br>$199</div>
+            <div class="seat-option" data-price="399" data-category="Premium">Premium<br>$399</div>
+            <div class="seat-option" data-price="699" data-category="VIP">VIP<br>$699</div>
+        </div>
+        <button class="select-ticket-btn" onclick="confirmAddToCart()" style="margin:0; width:100%;">Add to Cart</button>
+        <button onclick="closeSeatModal()" style="width:100%; margin-top:12px; padding:12px; background:var(--light-bg); border:none; border-radius:40px; cursor:pointer;">Cancel</button>
+    </div>
+
+    <div class="toast" id="toast">✓ Added to cart</div>
 
     <script>
-        // Complete Match Data - World Cup 2026
-        const allMatches = [
-            { id: 1, stage: "Group A", team1: "USA", team2: "Mexico", flag1: "🇺🇸", flag2: "🇲🇽", stadium: "MetLife Stadium", city: "New Jersey", date: "Thu, Jun 11", time: "8:00 PM", price: 199 },
-            { id: 2, stage: "Group A", team1: "Canada", team2: "Panama", flag1: "🇨🇦", flag2: "🇵🇦", stadium: "MetLife Stadium", city: "New Jersey", date: "Fri, Jun 12", time: "4:00 PM", price: 179 },
-            { id: 3, stage: "Group B", team1: "Brazil", team2: "Argentina", flag1: "🇧🇷", flag2: "🇦🇷", stadium: "SoFi Stadium", city: "Los Angeles", date: "Fri, Jun 12", time: "9:00 PM", price: 249 },
-            { id: 4, stage: "Group B", team1: "Uruguay", team2: "Colombia", flag1: "🇺🇾", flag2: "🇨🇴", stadium: "SoFi Stadium", city: "Los Angeles", date: "Sat, Jun 13", time: "6:00 PM", price: 219 },
-            { id: 5, stage: "Group C", team1: "England", team2: "Germany", flag1: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", flag2: "🇩🇪", stadium: "AT&T Stadium", city: "Dallas", date: "Sat, Jun 13", time: "7:00 PM", price: 229 },
-            { id: 6, stage: "Group C", team1: "Netherlands", team2: "Denmark", flag1: "🇳🇱", flag2: "🇩🇰", stadium: "AT&T Stadium", city: "Dallas", date: "Sun, Jun 14", time: "4:00 PM", price: 199 },
-            { id: 7, stage: "Group D", team1: "France", team2: "Spain", flag1: "🇫🇷", flag2: "🇪🇸", stadium: "Hard Rock Stadium", city: "Miami", date: "Sun, Jun 14", time: "10:00 PM", price: 239 },
-            { id: 8, stage: "Group D", team1: "Belgium", team2: "Croatia", flag1: "🇧🇪", flag2: "🇭🇷", stadium: "Hard Rock Stadium", city: "Miami", date: "Mon, Jun 15", time: "4:00 PM", price: 209 },
-            { id: 9, stage: "Group E", team1: "Portugal", team2: "Netherlands", flag1: "🇵🇹", flag2: "🇳🇱", stadium: "Mercedes-Benz Stadium", city: "Atlanta", date: "Mon, Jun 15", time: "6:00 PM", price: 219 },
-            { id: 10, stage: "Group E", team1: "Switzerland", team2: "Serbia", flag1: "🇨🇭", flag2: "🇷🇸", stadium: "Mercedes-Benz Stadium", city: "Atlanta", date: "Tue, Jun 16", time: "4:00 PM", price: 189 },
-            { id: 11, stage: "Group F", team1: "Italy", team2: "Belgium", flag1: "🇮🇹", flag2: "🇧🇪", stadium: "Gillette Stadium", city: "Boston", date: "Tue, Jun 16", time: "8:30 PM", price: 209 },
-            { id: 12, stage: "Group F", team1: "Poland", team2: "Sweden", flag1: "🇵🇱", flag2: "🇸🇪", stadium: "Gillette Stadium", city: "Boston", date: "Wed, Jun 17", time: "4:00 PM", price: 189 },
-            { id: 13, stage: "Round of 16", team1: "Winner A", team2: "Runner-up B", flag1: "🏆", flag2: "🏆", stadium: "Levi's Stadium", city: "San Francisco", date: "Sat, Jun 27", time: "4:00 PM", price: 299 },
-            { id: 14, stage: "Round of 16", team1: "Winner C", team2: "Runner-up D", flag1: "🏆", flag2: "🏆", stadium: "NRG Stadium", city: "Houston", date: "Sun, Jun 28", time: "8:00 PM", price: 299 },
-            { id: 15, stage: "Quarter Final", team1: "TBD", team2: "TBD", flag1: "🏆", flag2: "🏆", stadium: "Arrowhead Stadium", city: "Kansas City", date: "Thu, Jul 2", time: "8:00 PM", price: 399 },
-            { id: 16, stage: "Quarter Final", team1: "TBD", team2: "TBD", flag1: "🏆", flag2: "🏆", stadium: "Hard Rock Stadium", city: "Miami", date: "Fri, Jul 3", time: "9:00 PM", price: 399 },
-            { id: 17, stage: "Semi Final", team1: "TBD", team2: "TBD", flag1: "🏆", flag2: "🏆", stadium: "NRG Stadium", city: "Houston", date: "Tue, Jul 7", time: "9:00 PM", price: 499 },
-            { id: 18, stage: "Semi Final", team1: "TBD", team2: "TBD", flag1: "🏆", flag2: "🏆", stadium: "AT&T Stadium", city: "Dallas", date: "Wed, Jul 8", time: "8:00 PM", price: 499 },
-            { id: 19, stage: "Final", team1: "TBD", team2: "TBD", flag1: "🏆", flag2: "🏆", stadium: "MetLife Stadium", city: "New Jersey", date: "Sun, Jul 19", time: "7:00 PM", price: 999 }
+        // Homepage match preview data
+        const matches = [
+            { id:1, stage:"Group A", team1:"USA", team2:"Mexico", flag1:"🇺🇸", flag2:"🇲🇽", stadium:"MetLife Stadium", city:"New Jersey", date:"Thu, Jun 11", time:"8:00 PM", price:199 },
+            { id:2, stage:"Group B", team1:"Brazil", team2:"Argentina", flag1:"🇧🇷", flag2:"🇦🇷", stadium:"SoFi Stadium", city:"Los Angeles", date:"Fri, Jun 12", time:"9:00 PM", price:249 },
+            { id:3, stage:"Group C", team1:"England", team2:"Germany", flag1:"🏴󠁧󠁢󠁥󠁮󠁧󠁿", flag2:"🇩🇪", stadium:"AT&T Stadium", city:"Dallas", date:"Sat, Jun 13", time:"7:00 PM", price:229 }
         ];
 
-        let currentMatches = [...allMatches];
-        let currentView = 'grid';
-        let currentPage = 1;
-        const matchesPerPage = 12;
+        const cities = [
+            "New Jersey", "Los Angeles", "Dallas", "Miami", "Atlanta", "Boston", "San Francisco", "Kansas City",
+            "Houston", "Seattle", "Vancouver", "Mexico City", "Toronto", "Guadalajara", "Monterrey", "Philadelphia"
+        ];
+
+        document.getElementById('citiesGrid').innerHTML = cities.map(city => `<div class="city-card"><div class="city-name">${city}</div><div class="city-stadium">🏟️ World Cup Stadium</div></div>`).join('');
+
+        let cart = [], selectedMatch = null, selectedSeat = null;
 
         function renderMatches() {
-            const start = (currentPage - 1) * matchesPerPage;
-            const end = start + matchesPerPage;
-            const pageMatches = currentMatches.slice(start, end);
-            const container = document.getElementById('matchesGrid');
-            
-            if (currentView === 'grid') {
-                container.className = 'matches-grid';
-                container.innerHTML = pageMatches.map(m => `
-                    <div class="match-card">
-                        <div class="match-date"><span>${m.date}</span><span class="match-stage">${m.stage}</span></div>
-                        <div class="match-teams">
-                            <div class="match-team"><div class="match-flag">${m.flag1}</div><div class="match-team-name">${m.team1}</div></div>
-                            <div class="match-vs">VS</div>
-                            <div class="match-team"><div class="match-flag">${m.flag2}</div><div class="match-team-name">${m.team2}</div></div>
-                        </div>
-                        <div class="match-info-row"><span>🏟️ ${m.stadium}</span><span>📍 ${m.city}</span></div>
-                        <div class="match-info-row"><span>⏰ ${m.time}</span><span>📅 ${m.date}</span></div>
-                        <div class="match-price-row"><div><span class="match-price">$${m.price}</span><span style="font-size:11px;"> from</span></div><button class="buy-ticket-btn" onclick="selectTicket(${m.id})">Select Tickets →</button></div>
+            document.getElementById('matchesGrid').innerHTML = matches.map(m => `
+                <div class="match-card">
+                    <div class="match-date"><span>${m.date}</span><span class="match-stage">${m.stage}</span></div>
+                    <div class="match-teams">
+                        <div class="match-team"><div class="match-flag">${m.flag1}</div><div class="match-team-name">${m.team1}</div></div>
+                        <div class="match-vs">VS</div>
+                        <div class="match-team"><div class="match-flag">${m.flag2}</div><div class="match-team-name">${m.team2}</div></div>
                     </div>
-                `).join('');
-            } else {
-                container.className = 'matches-grid list-view';
-                container.innerHTML = pageMatches.map(m => `
-                    <div class="match-card">
-                        <div class="match-date"><strong>${m.date}</strong><br>${m.time}</div>
-                        <div class="match-teams">
-                            <div class="match-team"><div class="match-flag">${m.flag1}</div><div class="match-team-name">${m.team1}</div></div>
-                            <div class="match-vs">VS</div>
-                            <div class="match-team"><div class="match-flag">${m.flag2}</div><div class="match-team-name">${m.team2}</div></div>
-                        </div>
-                        <div class="match-info-row"><span>🏟️ ${m.stadium}</span><span>📍 ${m.city}</span><span>${m.stage}</span></div>
-                        <div class="match-price-row"><span class="match-price">$${m.price}</span><button class="buy-ticket-btn" onclick="selectTicket(${m.id})">Select Tickets →</button></div>
-                    </div>
-                `).join('');
-            }
-            renderPagination();
+                    <div class="match-venue"><span>🏟️ ${m.stadium}</span><span>📍 ${m.city}</span></div>
+                    <div class="match-price-row"><div><span class="match-price">$${m.price}</span><span style="font-size:11px;"> from</span></div><span>⏰ ${m.time}</span></div>
+                    <button class="select-ticket-btn" onclick="openSeatModal(${m.id})">Select Tickets →</button>
+                </div>
+            `).join('');
         }
 
-        function renderPagination() {
-            const totalPages = Math.ceil(currentMatches.length / matchesPerPage);
-            const paginationDiv = document.getElementById('pagination');
-            if (totalPages <= 1) {
-                paginationDiv.innerHTML = '';
-                return;
-            }
-            let html = '';
-            for (let i = 1; i <= totalPages; i++) {
-                html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
-            }
-            paginationDiv.innerHTML = html;
+        // Navigation Functions
+        function goToHome() {
+            window.location.href = 'index.html';
         }
 
-        function goToPage(page) {
-            currentPage = page;
-            renderMatches();
-            window.scrollTo({ top: 400, behavior: 'smooth' });
+        function goToMatches() {
+            window.location.href = 'matches.html';
         }
 
-        function applyFilters() {
-            const stage = document.getElementById('stageFilter').value;
-            const city = document.getElementById('cityFilter').value;
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            
-            currentMatches = allMatches.filter(match => {
-                if (stage !== 'all' && match.stage !== stage) return false;
-                if (city !== 'all' && match.city !== city) return false;
-                if (searchTerm) {
-                    return match.team1.toLowerCase().includes(searchTerm) ||
-                           match.team2.toLowerCase().includes(searchTerm) ||
-                           match.stadium.toLowerCase().includes(searchTerm) ||
-                           match.city.toLowerCase().includes(searchTerm);
-                }
-                return true;
-            });
-            currentPage = 1;
-            renderMatches();
-        }
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        let slideInterval;
+        function showSlide(index) { slides.forEach((s,i)=>s.classList.toggle('active',i===index)); currentSlide=index; }
+        function nextSlide() { showSlide((currentSlide+1)%slides.length); }
+        function startSlideshow() { slideInterval = setInterval(nextSlide,5000); }
+        startSlideshow();
 
-        function setView(view) {
-            currentView = view;
-            document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
-            if (view === 'grid') {
-                document.querySelectorAll('.view-btn')[0].classList.add('active');
-            } else {
-                document.querySelectorAll('.view-btn')[1].classList.add('active');
-            }
-            renderMatches();
+        function openSidebar() { document.getElementById('sidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; }
+        function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('open'); document.body.style.overflow = ''; }
+        
+        function updateSidebarCartCount() { const span = document.getElementById('sidebarCartCount'); if(span) span.textContent = `(${cart.length})`; }
+        
+        function updateCartUI() {
+            const items = document.getElementById('cartItems'); const totalSpan = document.getElementById('cartTotal');
+            if(cart.length===0) { items.innerHTML='<div style="text-align:center;padding:40px;color:var(--slate-gray)">Your cart is empty</div>'; totalSpan.textContent='$0'; updateSidebarCartCount(); return; }
+            items.innerHTML = cart.map(i => `<div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--subtle-border)"><div><strong>${i.match}</strong><br><small>${i.date} • ${i.stadium}</small><br><small style="color:var(--rich-gold)">${i.category}</small></div><div style="text-align:right"><strong>$${i.price}</strong><br><button onclick="removeFromCart(${i.id})" style="background:none;border:none;color:var(--danger-red);cursor:pointer;">Remove</button></div></div>`).join('');
+            totalSpan.textContent = `$${cart.reduce((s,i)=>s+i.price,0)}`; updateSidebarCartCount();
         }
-
-        function selectTicket(matchId) {
-            showToast('✓ Ticket selected! Redirecting to checkout...');
-            setTimeout(() => {
-                window.location.href = 'checkout.html';
-            }, 1500);
+        
+        function removeFromCart(id) { cart = cart.filter(i=>i.id!==id); updateCartUI(); showToast('Ticket removed'); }
+        function openCartFromSidebar() { closeSidebar(); document.getElementById('cartModal').classList.add('open'); updateCartUI(); }
+        function openCart() { document.getElementById('cartModal').classList.add('open'); updateCartUI(); }
+        function closeCart() { document.getElementById('cartModal').classList.remove('open'); }
+        
+        function openSeatModal(id) { 
+            selectedMatch = matches.find(m=>m.id===id); 
+            document.getElementById('seatModal').classList.add('open'); 
+            selectedSeat=null; 
+            document.querySelectorAll('.seat-option').forEach(o=>o.classList.remove('selected')); 
         }
-
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            toast.textContent = msg;
-            toast.style.display = 'block';
-            setTimeout(() => toast.style.display = 'none', 2500);
+        
+        function closeSeatModal() { document.getElementById('seatModal').classList.remove('open'); }
+        
+        function showToast(msg) { 
+            const t=document.getElementById('toast'); 
+            t.textContent=msg; 
+            t.style.display='block'; 
+            setTimeout(()=>t.style.display='none',2500); 
         }
-
-        function openSidebar() { 
-            document.getElementById('sidebar').classList.add('open'); 
-            document.getElementById('sidebarOverlay').classList.add('open'); 
-            document.body.style.overflow = 'hidden'; 
+        
+        function checkout() { 
+            if(cart.length===0) { showToast('Cart is empty'); return; } 
+            alert(`🎟️ TicketRoyal\n\nTotal: $${cart.reduce((s,i)=>s+i.price,0)}\nTickets: ${cart.length}\n\nThank you!`); 
+            cart=[]; 
+            updateCartUI(); 
+            closeCart(); 
+            showToast('Purchase successful!'); 
         }
-        function closeSidebar() { 
-            document.getElementById('sidebar').classList.remove('open'); 
-            document.getElementById('sidebarOverlay').classList.remove('open'); 
-            document.body.style.overflow = ''; 
-        }
-
-        let searchTimeout;
-        document.getElementById('searchInput').addEventListener('input', function() {
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => applyFilters(), 300);
+        
+        document.querySelectorAll('.seat-option').forEach(opt=>{ 
+            opt.addEventListener('click',function(){ 
+                document.querySelectorAll('.seat-option').forEach(o=>o.classList.remove('selected')); 
+                this.classList.add('selected'); 
+                selectedSeat={price:parseInt(this.dataset.price),category:this.dataset.category}; 
+            }); 
         });
-
+        
+        function confirmAddToCart() { 
+            if(!selectedSeat) { showToast('Select a seat category'); return; } 
+            cart.push({ 
+                id:Date.now(), 
+                match:`${selectedMatch.team1} vs ${selectedMatch.team2}`, 
+                date:selectedMatch.date, 
+                stadium:selectedMatch.stadium, 
+                category:selectedSeat.category, 
+                price:selectedSeat.price 
+            }); 
+            updateCartUI(); 
+            showToast(`✓ ${selectedMatch.team1} vs ${selectedMatch.team2} added`); 
+            closeSeatModal(); 
+        }
+        
         renderMatches();
     </script>
 </body>
