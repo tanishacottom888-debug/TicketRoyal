@@ -1,63 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#4A1D6D">
+    <meta name="theme-color" content="#020F2A">
     <meta name="description" content="Official Ticket Reseller for FIFA World Cup 2026 — Premium, Verified, Guaranteed Tickets">
-    <meta name="keywords" content="World Cup 2026 tickets, FIFA tickets, football tickets, World Cup tickets">
-    <meta name="author" content="TicketRoyal">
     
-    <title>TicketRoyal – Official World Cup 2026 Tickets | Premium Seating</title>
+    <title>TicketRoyal – Official World Cup 2026 Tickets</title>
     
-    <!-- Favicon Package (FIFA-style) -->
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎫</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎫</text></svg>">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎫</text></svg>">
     
-    <!-- Preconnect for Performance (FIFA-style optimization) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts - FIFA uses Poppins and Noto Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
+        /* ========== FIFA.COM STYLE RESET ========== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* FIFA.com uses #eef2fb as background */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F8F9FC;
-            color: #111827;
+            font-family: 'Poppins', 'Inter', sans-serif;
+            background-color: #eef2fb;
+            color: #1a1a2e;
             overflow-x: hidden;
         }
 
+        /* FIFA.com color palette */
         :root {
-            --royal-purple: #4A1D6D;
-            --royal-purple-dark: #2D0F48;
-            --royal-purple-light: #7C3AED;
-            --royal-gold: #F5B042;
-            --royal-gold-dark: #D48F2B;
-            --gray-50: #F9FAFB;
-            --gray-100: #F3F4F6;
-            --gray-200: #E5E7EB;
-            --gray-300: #D1D5DB;
-            --gray-400: #9CA3AF;
-            --gray-500: #6B7280;
-            --gray-600: #4B5563;
-            --gray-700: #374151;
-            --gray-800: #1F2937;
-            --gray-900: #111827;
+            --fifa-blue: #0a84ff;
+            --fifa-blue-dark: #020F2A;
+            --fifa-blue-light: #eef2fb;
+            --fifa-text-dark: #1a1a2e;
+            --fifa-text-light: rgba(255,255,255,0.75);
+            --fifa-card-bg: #ffffff;
+            --fifa-card-overlay: rgba(0,0,0,0.4);
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
             --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
             --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
             --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
-            --shadow-2xl: 0 25px 50px -12px rgba(0,0,0,0.25);
         }
 
         .container {
@@ -66,7 +52,7 @@
             padding: 0 24px;
         }
 
-        /* Header - FIFA Style */
+        /* ========== HEADER - FIFA STYLE ========== */
         .header {
             background: rgba(255,255,255,0.98);
             backdrop-filter: blur(10px);
@@ -75,7 +61,7 @@
             width: 100%;
             z-index: 1000;
             transition: all 0.3s;
-            border-bottom: 1px solid var(--gray-200);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
         .header.scrolled {
@@ -90,10 +76,10 @@
         }
 
         .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 28px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--royal-purple) 0%, var(--royal-purple-dark) 100%);
+            background: linear-gradient(135deg, #020F2A 0%, #0a84ff 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -101,7 +87,7 @@
         }
 
         .logo span {
-            color: var(--royal-gold);
+            color: #0a84ff;
             background: none;
         }
 
@@ -114,24 +100,24 @@
 
         .nav a {
             text-decoration: none;
-            color: var(--gray-700);
+            color: #1a1a2e;
             font-weight: 500;
             transition: color 0.2s;
             font-size: 14px;
         }
 
         .nav a:hover {
-            color: var(--royal-purple);
+            color: var(--fifa-blue);
         }
 
         .nav a.btn-outline {
-            border: 2px solid var(--royal-purple);
+            border: 2px solid var(--fifa-blue);
             padding: 8px 20px;
             border-radius: 40px;
-            color: var(--royal-purple);
+            color: var(--fifa-blue);
         }
 
-        /* Language Selector - FIFA Style */
+        /* Language Selector */
         .language-selector {
             position: relative;
             cursor: pointer;
@@ -143,7 +129,7 @@
             gap: 8px;
             padding: 8px 12px;
             border-radius: 40px;
-            background: var(--gray-100);
+            background: #f0f2f5;
             font-size: 14px;
             font-weight: 500;
         }
@@ -161,7 +147,7 @@
             margin-top: 8px;
             max-height: 360px;
             overflow-y: auto;
-            border: 1px solid var(--gray-200);
+            border: 1px solid #e5e7eb;
         }
 
         .language-dropdown.show {
@@ -179,10 +165,10 @@
         }
 
         .language-option:hover {
-            background: var(--gray-100);
+            background: #f0f2f5;
         }
 
-        /* Mobile Menu Button */
+        /* Mobile Menu */
         .mobile-menu-btn {
             display: none;
             font-size: 24px;
@@ -192,7 +178,6 @@
             padding: 8px;
         }
 
-        /* Mobile Menu */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -202,7 +187,7 @@
             height: 100vh;
             background: white;
             z-index: 1001;
-            box-shadow: var(--shadow-2xl);
+            box-shadow: var(--shadow-xl);
             transition: right 0.3s ease;
             padding: 80px 24px 24px;
             overflow-y: auto;
@@ -231,9 +216,9 @@
             display: block;
             padding: 16px 0;
             text-decoration: none;
-            color: var(--gray-800);
+            color: #1a1a2e;
             font-weight: 500;
-            border-bottom: 1px solid var(--gray-200);
+            border-bottom: 1px solid #e5e7eb;
             font-size: 16px;
         }
 
@@ -247,7 +232,7 @@
             border: none;
         }
 
-        /* Hero Slider - FIFA Style Fullscreen */
+        /* ========== HERO SECTION - FIFA STYLE ========== */
         .hero {
             position: relative;
             height: 100vh;
@@ -261,16 +246,7 @@
             overflow: hidden;
         }
 
-        .slider-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        .slide {
+        .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
@@ -278,12 +254,7 @@
             height: 100%;
             background-size: cover;
             background-position: center;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-        }
-
-        .slide.active {
-            opacity: 1;
+            z-index: 0;
         }
 
         .hero-overlay {
@@ -292,7 +263,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(45,15,72,0.8) 0%, rgba(74,29,109,0.6) 100%);
+            background: linear-gradient(135deg, rgba(2,15,42,0.85) 0%, rgba(10,132,255,0.6) 100%);
             z-index: 1;
         }
 
@@ -305,11 +276,9 @@
 
         .hero h1 {
             font-size: 64px;
-            font-family: 'Cormorant Garamond', serif;
             font-weight: 700;
             margin-bottom: 24px;
             animation: fadeInUp 0.8s ease;
-            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
         }
 
         .hero p {
@@ -320,12 +289,12 @@
         }
 
         .btn-primary {
-            background: var(--royal-gold);
-            color: var(--royal-purple-dark);
+            background: var(--fifa-blue);
+            color: white;
             border: none;
             padding: 16px 48px;
             font-size: 18px;
-            font-weight: 700;
+            font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s;
@@ -334,9 +303,8 @@
         }
 
         .btn-primary:hover {
-            background: var(--royal-gold-dark);
+            background: #0066cc;
             transform: scale(1.02);
-            box-shadow: var(--shadow-2xl);
         }
 
         @keyframes fadeInUp {
@@ -348,32 +316,6 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-
-        /* Slider Dots - FIFA Style */
-        .slider-dots {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 12px;
-            z-index: 3;
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.4);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .dot.active {
-            background: var(--royal-gold);
-            width: 28px;
-            border-radius: 10px;
         }
 
         /* Countdown - FIFA Style */
@@ -407,11 +349,11 @@
             margin-top: 4px;
         }
 
-        /* Trust Bar - FIFA Style Horizontal Scroll on Mobile */
+        /* ========== TRUST BAR - FIFA STYLE ========== */
         .trust-bar {
             background: white;
             padding: 20px 0;
-            border-bottom: 1px solid var(--gray-200);
+            border-bottom: 1px solid #e5e7eb;
             overflow-x: auto;
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
@@ -431,7 +373,7 @@
 
         .trust-logos span {
             font-size: 14px;
-            color: var(--gray-500);
+            color: #6b7280;
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -439,35 +381,109 @@
         }
 
         .trust-logos i {
-            color: var(--royal-gold);
+            color: var(--fifa-blue);
             font-size: 18px;
         }
 
-        /* Section Headers - FIFA Style */
+        /* ========== SECTION HEADERS - FIFA STYLE ========== */
         .section-header {
             text-align: center;
             margin-bottom: 48px;
+            margin-top: 64px;
         }
 
         .section-title {
-            font-size: 40px;
-            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            font-weight: 700;
             margin-bottom: 16px;
+            color: #1a1a2e;
         }
 
         .section-subtitle {
-            color: var(--gray-500);
-            font-size: 18px;
+            color: #6b7280;
+            font-size: 16px;
         }
 
-        /* Match Cards - FIFA Style */
-        .matches-grid {
+        /* ========== GRID SYSTEM - FIFA STYLE ========== */
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 32px;
             margin: 48px 0;
         }
 
+        /* ========== NEWS CARDS - FIFA STYLE ========== */
+        .news-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .news-card-image {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .news-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+        }
+
+        .news-card-category {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--fifa-blue);
+            margin-bottom: 8px;
+        }
+
+        .news-card-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .news-card-date {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        .news-card-content {
+            padding: 20px;
+        }
+
+        .news-card-excerpt {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .read-more {
+            color: var(--fifa-blue);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* ========== MATCH CARDS - FIFA STYLE ========== */
         .match-card {
             background: white;
             border-radius: 24px;
@@ -478,7 +494,7 @@
         }
 
         .match-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             box-shadow: var(--shadow-xl);
         }
 
@@ -493,12 +509,12 @@
             position: absolute;
             top: 16px;
             left: 16px;
-            background: var(--royal-gold);
-            color: var(--royal-purple-dark);
+            background: var(--fifa-blue);
+            color: white;
             padding: 6px 14px;
             border-radius: 30px;
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 600;
         }
 
         .match-info {
@@ -507,13 +523,13 @@
 
         .match-teams {
             font-size: 20px;
-            font-weight: 800;
+            font-weight: 700;
             margin-bottom: 8px;
         }
 
         .match-detail {
             font-size: 14px;
-            color: var(--gray-500);
+            color: #6b7280;
             margin-bottom: 12px;
         }
 
@@ -526,8 +542,8 @@
 
         .price {
             font-size: 24px;
-            font-weight: 800;
-            color: var(--royal-purple);
+            font-weight: 700;
+            color: var(--fifa-blue);
         }
 
         .stock {
@@ -538,55 +554,18 @@
         }
 
         .stock.low {
-            background: #FEF3C7;
-            color: #D97706;
+            background: #fee2e2;
+            color: #dc2626;
         }
 
         .stock.available {
-            background: #D1FAE5;
+            background: #d1fae5;
             color: #059669;
         }
 
-        /* As Seen On Section - FIFA Style */
-        .as-seen-on {
-            padding: 48px 0;
-            text-align: center;
-            background: var(--gray-50);
-            margin: 48px 0;
-        }
-
-        .as-seen-on h3 {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--gray-400);
-            margin-bottom: 24px;
-        }
-
-        .logo-grid {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 48px;
-            flex-wrap: wrap;
-        }
-
-        .logo-item {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--gray-500);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logo-item i {
-            font-size: 24px;
-        }
-
-        /* Hospitality Section - FIFA Style */
+        /* ========== HOSPITALITY SECTION ========== */
         .hospitality-section {
-            background: linear-gradient(135deg, var(--royal-purple-dark), var(--royal-purple));
+            background: linear-gradient(135deg, #020F2A, #0a84ff);
             border-radius: 32px;
             padding: 64px;
             margin: 64px 0;
@@ -617,21 +596,19 @@
 
         .hospitality-icon {
             font-size: 48px;
-            color: var(--royal-gold);
             margin-bottom: 20px;
         }
 
         .hospitality-price {
             font-size: 28px;
-            font-weight: 800;
+            font-weight: 700;
             margin: 16px 0;
-            color: var(--royal-gold);
         }
 
-        .btn-outline-gold {
+        .btn-outline {
             background: transparent;
-            border: 2px solid var(--royal-gold);
-            color: var(--royal-gold);
+            border: 2px solid white;
+            color: white;
             padding: 12px 32px;
             border-radius: 40px;
             font-weight: 600;
@@ -640,73 +617,14 @@
             transition: all 0.3s;
         }
 
-        .btn-outline-gold:hover {
-            background: var(--royal-gold);
-            color: var(--royal-purple-dark);
-        }
-
-        /* Blog Section - FIFA Style */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 32px;
-            margin: 48px 0;
-        }
-
-        .blog-card {
+        .btn-outline:hover {
             background: white;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            transition: all 0.3s;
+            color: var(--fifa-blue);
         }
 
-        .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .blog-image {
-            height: 220px;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .blog-content {
-            padding: 24px;
-        }
-
-        .blog-date {
-            font-size: 12px;
-            color: var(--royal-gold);
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .blog-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            line-height: 1.4;
-        }
-
-        .blog-excerpt {
-            color: var(--gray-500);
-            font-size: 14px;
-            margin-bottom: 16px;
-            line-height: 1.5;
-        }
-
-        .read-more {
-            color: var(--royal-purple);
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        /* Stats Section - FIFA Style */
+        /* ========== STATS SECTION - FIFA STYLE ========== */
         .stats-section {
-            background: linear-gradient(135deg, var(--royal-purple-dark), var(--royal-purple));
+            background: #020F2A;
             padding: 80px 0;
             color: white;
             margin: 64px 0;
@@ -721,7 +639,7 @@
 
         .stat-number {
             font-size: 48px;
-            font-weight: 800;
+            font-weight: 700;
         }
 
         .stat-label {
@@ -730,7 +648,7 @@
             margin-top: 8px;
         }
 
-        /* Testimonials - FIFA Style */
+        /* ========== TESTIMONIALS ========== */
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -750,7 +668,7 @@
             width: 64px;
             height: 64px;
             border-radius: 50%;
-            background: var(--royal-purple);
+            background: var(--fifa-blue);
             color: white;
             display: flex;
             align-items: center;
@@ -759,20 +677,9 @@
             margin: 0 auto 16px;
         }
 
-        .testimonial-text {
-            color: var(--gray-600);
-            font-style: italic;
-            margin-bottom: 16px;
-        }
-
-        .testimonial-name {
-            font-weight: 700;
-            color: var(--royal-purple);
-        }
-
-        /* CTA Banner */
+        /* ========== CTA BANNER ========== */
         .cta-banner {
-            background: linear-gradient(135deg, var(--gray-800), var(--gray-900));
+            background: linear-gradient(135deg, #020F2A, #0a84ff);
             border-radius: 32px;
             padding: 64px;
             text-align: center;
@@ -780,11 +687,12 @@
             margin: 64px 0;
         }
 
-        /* Footer - FIFA Style */
+        /* ========== FOOTER - FIFA STYLE ========== */
         .footer {
-            background: var(--gray-900);
-            color: var(--gray-400);
+            background: #020F2A;
+            color: #9ca3af;
             padding: 64px 0 100px 0;
+            margin-top: 64px;
         }
 
         .footer-grid {
@@ -795,15 +703,14 @@
         }
 
         .footer-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
             color: white;
             margin-bottom: 16px;
         }
 
         .footer-logo span {
-            color: var(--royal-gold);
+            color: var(--fifa-blue);
         }
 
         .newsletter-input {
@@ -816,32 +723,32 @@
             padding: 14px 16px;
             border: none;
             border-radius: 48px 0 0 48px;
-            font-family: 'Inter', sans-serif;
+            font-family: inherit;
             font-size: 14px;
-            background: var(--gray-800);
+            background: #1a2c5b;
             color: white;
         }
 
         .newsletter-input input::placeholder {
-            color: var(--gray-500);
+            color: #9ca3af;
         }
 
         .newsletter-input button {
-            background: var(--royal-gold);
+            background: var(--fifa-blue);
             border: none;
             padding: 14px 24px;
             border-radius: 0 48px 48px 0;
             cursor: pointer;
             font-weight: 600;
-            color: var(--royal-purple-dark);
+            color: white;
         }
 
-        /* Back to Top Button */
+        /* ========== FLOATING ELEMENTS ========== */
         .back-to-top {
             position: fixed;
-            bottom: 80px;
+            bottom: 24px;
             right: 24px;
-            background: var(--royal-purple);
+            background: var(--fifa-blue);
             color: white;
             width: 48px;
             height: 48px;
@@ -862,60 +769,15 @@
             visibility: visible;
         }
 
-        .back-to-top:hover {
-            background: var(--royal-purple-dark);
-            transform: translateY(-3px);
-        }
-
-        /* Bottom Navigation Bar - Mobile Only (FIFA Style) */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255,255,255,0.98);
-            backdrop-filter: blur(10px);
-            display: none;
-            justify-content: space-around;
-            align-items: center;
-            padding: 12px 20px;
-            border-top: 1px solid var(--gray-200);
-            z-index: 999;
-        }
-
-        .bottom-nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            text-decoration: none;
-            color: var(--gray-500);
-            font-size: 12px;
-            transition: color 0.2s;
-        }
-
-        .bottom-nav-item i {
-            font-size: 22px;
-        }
-
-        .bottom-nav-item.active {
-            color: var(--royal-gold);
-        }
-
-        .bottom-nav-item:hover {
-            color: var(--royal-purple);
-        }
-
-        /* Floating Elements */
         .floating-cta {
             position: fixed;
             bottom: 24px;
             right: 24px;
-            background: var(--royal-gold);
-            color: var(--royal-purple-dark);
+            background: var(--fifa-blue);
+            color: white;
             padding: 14px 24px;
             border-radius: 60px;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 14px;
             box-shadow: var(--shadow-xl);
             z-index: 999;
@@ -924,11 +786,6 @@
             align-items: center;
             gap: 8px;
             transition: all 0.3s;
-        }
-
-        .floating-cta:hover {
-            transform: scale(1.02);
-            background: var(--royal-gold-dark);
         }
 
         .live-chat {
@@ -948,22 +805,48 @@
             transition: all 0.3s;
         }
 
-        .live-chat:hover {
-            transform: scale(1.1);
+        /* ========== BOTTOM NAVIGATION (MOBILE) ========== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: space-around;
+            align-items: center;
+            padding: 12px 20px;
+            border-top: 1px solid #e5e7eb;
+            z-index: 999;
         }
 
-        .live-chat i {
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            color: #6b7280;
+            font-size: 12px;
+            transition: color 0.2s;
+        }
+
+        .bottom-nav-item i {
             font-size: 22px;
-            color: var(--royal-purple);
         }
 
-        /* Cookie Consent Banner */
+        .bottom-nav-item.active {
+            color: var(--fifa-blue);
+        }
+
+        /* ========== COOKIE CONSENT ========== */
         .cookie-consent {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: var(--gray-900);
+            background: #1a1a2e;
             color: white;
             padding: 16px 24px;
             display: none;
@@ -992,94 +875,67 @@
         }
 
         .cookie-btn.accept {
-            background: var(--royal-gold);
-            color: var(--royal-purple-dark);
+            background: var(--fifa-blue);
+            color: white;
             border: none;
         }
 
         .cookie-btn.decline {
             background: transparent;
-            border: 1px solid var(--gray-600);
-            color: var(--gray-300);
+            border: 1px solid #6b7280;
+            color: #9ca3af;
         }
 
-        /* Mobile Responsive */
+        /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
             .nav {
                 display: none;
             }
-            
             .mobile-menu-btn {
                 display: block;
             }
-            
             .hero h1 {
                 font-size: 36px;
             }
-            
             .hero p {
                 font-size: 16px;
             }
-            
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 24px;
             }
-            
             .footer-grid {
                 grid-template-columns: 1fr;
                 gap: 32px;
             }
-            
             .hospitality-section {
                 padding: 32px 20px;
             }
-            
-            .blog-grid {
+            .grid {
                 grid-template-columns: 1fr;
             }
-            
             .countdown-item {
                 padding: 12px 16px;
                 min-width: 70px;
             }
-            
             .countdown-number {
                 font-size: 24px;
             }
-            
             .section-title {
-                font-size: 32px;
+                font-size: 28px;
             }
-            
             .bottom-nav {
                 display: flex;
             }
-            
             .footer {
                 padding-bottom: 80px;
             }
-            
-            .back-to-top {
+            .back-to-top, .floating-cta {
                 bottom: 80px;
             }
-            
-            .floating-cta {
-                bottom: 80px;
-                padding: 12px 20px;
-                font-size: 13px;
-            }
-            
-            .live-chat {
-                bottom: 80px;
-                width: 44px;
-                height: 44px;
-            }
-            
             .cookie-consent {
+                bottom: 70px;
                 flex-direction: column;
                 text-align: center;
-                bottom: 70px;
             }
         }
 
@@ -1147,19 +1003,12 @@
     <a href="my-tickets.html" data-translate="myTickets">My Tickets</a>
     <a href="#blog" data-translate="news">News</a>
     <a href="#" data-translate="help">Help</a>
-    <a href="matches.html" style="color: var(--royal-gold);" data-translate="buyTickets">Buy Tickets →</a>
+    <a href="matches.html" style="color: var(--fifa-blue);" data-translate="buyTickets">Buy Tickets →</a>
 </div>
 
-<!-- Hero Slider Section -->
+<!-- Hero Section -->
 <section class="hero">
-    <div class="slider-container" id="heroSlider">
-        <!-- REPLACE THESE 4 URLs WITH YOUR ACTUAL IMAGE URLs -->
-        <div class="slide slide1 active" style="background-image: url('https://images.unsplash.com/photo-1522778119026-d647f0594c86?w=1600&h=900&fit=crop');"></div>
-        <div class="slide slide2" style="background-image: url('https://images.unsplash.com/photo-1589487391730-580f27ba68b0?w=1600&h=900&fit=crop');"></div>
-        <div class="slide slide3" style="background-image: url('https://images.unsplash.com/photo-1459863636187-9dbe49d7bd6f?w=1600&h=900&fit=crop');"></div>
-        <div class="slide slide4" style="background-image: url('https://images.unsplash.com/photo-1559742811-822873691b1b?w=1600&h=900&fit=crop');"></div>
-        <!-- REPLACE THE 4 URLS ABOVE WITH YOUR OWN -->
-    </div>
+    <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1522778119026-d647f0594c86?w=1600&h=900&fit=crop');"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
         <h1 data-translate="heroTitle">Secure Your Seat.<br>Experience History.</h1>
@@ -1185,15 +1034,9 @@
             </div>
         </div>
     </div>
-    <div class="slider-dots" id="sliderDots">
-        <div class="dot active" data-slide="0"></div>
-        <div class="dot" data-slide="1"></div>
-        <div class="dot" data-slide="2"></div>
-        <div class="dot" data-slide="3"></div>
-    </div>
 </section>
 
-<!-- Trust Bar - Horizontal Scroll on Mobile -->
+<!-- Trust Bar -->
 <div class="trust-bar">
     <div class="trust-logos">
         <span><i class="fas fa-lock"></i> <span data-translate="ssl">SSL Secure</span></span>
@@ -1204,28 +1047,14 @@
     </div>
 </div>
 
-<!-- As Seen On Section - FIFA Style -->
-<div class="as-seen-on">
-    <div class="container">
-        <h3 data-translate="asSeenOn">AS SEEN ON</h3>
-        <div class="logo-grid">
-            <div class="logo-item"><i class="fab fa-espn"></i> ESPN</div>
-            <div class="logo-item"><i class="fas fa-futbol"></i> FIFA</div>
-            <div class="logo-item"><i class="fab fa-bbc"></i> BBC Sport</div>
-            <div class="logo-item"><i class="fas fa-tv"></i> Sky Sports</div>
-            <div class="logo-item"><i class="fab fa-youtube"></i> Copa90</div>
-        </div>
-    </div>
-</div>
-
 <div class="container">
-    <!-- Featured Matches -->
+    <!-- Featured Matches Section -->
     <div class="section-header">
         <h2 class="section-title" data-translate="featuredMatches">Featured Matches</h2>
         <p class="section-subtitle" data-translate="featuredSubtitle">The most anticipated matches of the tournament — selling fast</p>
     </div>
     
-    <div class="matches-grid">
+    <div class="grid">
         <div class="match-card" onclick="window.location.href='match-detail.html'">
             <div class="match-image" style="background-image: url('https://images.unsplash.com/photo-1589487391730-580f27ba68b0?w=600&h=400&fit=crop');">
                 <span class="match-badge" data-translate="lowStock">🔥 Low Stock</span>
@@ -1271,7 +1100,7 @@
 <!-- Hospitality Section -->
 <div class="container" id="hospitality">
     <div class="hospitality-section">
-        <div class="section-header">
+        <div class="section-header" style="margin-top: 0;">
             <h2 class="section-title" style="color: white;" data-translate="hospitalityTitle">The Royal Club Experience</h2>
             <p class="section-subtitle" style="color: rgba(255,255,255,0.8);" data-translate="hospitalitySubtitle">Elevate your World Cup journey with premium hospitality packages</p>
         </div>
@@ -1282,58 +1111,75 @@
                 <h3 data-translate="vipTitle">Royal VIP</h3>
                 <p data-translate="vipDesc">Pitchside seats • Private lounge • Gourmet dining • Celebrity meet & greet</p>
                 <div class="hospitality-price">$2,499</div>
-                <button class="btn-outline-gold" onclick="alert('VIP package inquiry sent! Our team will contact you within 24 hours.')" data-translate="inquire">Inquire Now →</button>
+                <button class="btn-outline" onclick="alert('VIP package inquiry sent!')" data-translate="inquire">Inquire Now →</button>
             </div>
             <div class="hospitality-card">
                 <div class="hospitality-icon"><i class="fas fa-champagne-glasses"></i></div>
                 <h3 data-translate="businessTitle">Business Club</h3>
                 <p data-translate="businessDesc">Premium seating • Open bar • Fine dining • Dedicated concierge</p>
                 <div class="hospitality-price">$1,499</div>
-                <button class="btn-outline-gold" onclick="alert('Business Club inquiry sent! Our team will contact you within 24 hours.')" data-translate="inquire">Inquire Now →</button>
+                <button class="btn-outline" onclick="alert('Business Club inquiry sent!')" data-translate="inquire">Inquire Now →</button>
             </div>
             <div class="hospitality-card">
                 <div class="hospitality-icon"><i class="fas fa-hotel"></i></div>
                 <h3 data-translate="travelTitle">Travel Package</h3>
                 <p data-translate="travelDesc">Hotel + Tickets + Transfers • 3-night stay • Matchday hospitality</p>
                 <div class="hospitality-price">$3,299</div>
-                <button class="btn-outline-gold" onclick="alert('Travel package inquiry sent! Our team will contact you within 24 hours.')" data-translate="inquire">Inquire Now →</button>
+                <button class="btn-outline" onclick="alert('Travel package inquiry sent!')" data-translate="inquire">Inquire Now →</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Blog Section -->
+<!-- Blog Section - FIFA Style News Cards -->
 <div class="container" id="blog">
     <div class="section-header">
         <h2 class="section-title" data-translate="latestNews">Latest World Cup News</h2>
         <p class="section-subtitle" data-translate="newsSubtitle">Stay updated with the latest tournament announcements and ticket releases</p>
     </div>
     
-    <div class="blog-grid">
-        <div class="blog-card">
-            <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1522778119026-d647f0594c86?w=600&h=400&fit=crop');"></div>
-            <div class="blog-content">
-                <div class="blog-date">May 15, 2025</div>
-                <h3 class="blog-title" data-translate="news1Title">New Batch of Tickets Released for Knockout Stages</h3>
-                <p class="blog-excerpt" data-translate="news1Excerpt">FIFA announces additional ticket allocation for quarterfinals, semifinals, and the final match at MetLife Stadium. Fans can register for the random selection draw starting June 1, 2025.</p>
+    <div class="grid">
+        <!-- News Card 1 - FIFA Style -->
+        <div class="news-card">
+            <div class="news-card-image" style="background-image: url('https://images.unsplash.com/photo-1522778119026-d647f0594c86?w=600&h=400&fit=crop');">
+                <div class="news-card-overlay">
+                    <div class="news-card-category" data-translate="news1Category">TICKET RELEASE</div>
+                    <div class="news-card-title" data-translate="news1Title">New Batch of Tickets Released for Knockout Stages</div>
+                    <div class="news-card-date">May 15, 2025</div>
+                </div>
+            </div>
+            <div class="news-card-content">
+                <p class="news-card-excerpt" data-translate="news1Excerpt">FIFA announces additional ticket allocation for quarterfinals, semifinals, and the final match at MetLife Stadium. Fans can register for the random selection draw starting June 1, 2025.</p>
                 <a href="#" class="read-more" data-translate="readMore">Read more →</a>
             </div>
         </div>
-        <div class="blog-card">
-            <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1586891774067-1b4b9b41de69?w=600&h=400&fit=crop');"></div>
-            <div class="blog-content">
-                <div class="blog-date">May 1, 2025</div>
-                <h3 class="blog-title" data-translate="news2Title">Official Hospitality Packages Now Available</h3>
-                <p class="blog-excerpt" data-translate="news2Excerpt">Experience the World Cup in luxury with our exclusive VIP and Business Club packages. Includes pitchside seating, gourmet dining, and dedicated concierge service. Limited availability remaining.</p>
+        
+        <!-- News Card 2 -->
+        <div class="news-card">
+            <div class="news-card-image" style="background-image: url('https://images.unsplash.com/photo-1586891774067-1b4b9b41de69?w=600&h=400&fit=crop');">
+                <div class="news-card-overlay">
+                    <div class="news-card-category" data-translate="news2Category">HOSPITALITY</div>
+                    <div class="news-card-title" data-translate="news2Title">Official Hospitality Packages Now Available</div>
+                    <div class="news-card-date">May 1, 2025</div>
+                </div>
+            </div>
+            <div class="news-card-content">
+                <p class="news-card-excerpt" data-translate="news2Excerpt">Experience the World Cup in luxury with our exclusive VIP and Business Club packages. Includes pitchside seating, gourmet dining, and dedicated concierge service. Limited availability remaining.</p>
                 <a href="#" class="read-more" data-translate="readMore">Read more →</a>
             </div>
         </div>
-        <div class="blog-card">
-            <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1459863636187-9dbe49d7bd6f?w=600&h=400&fit=crop');"></div>
-            <div class="blog-content">
-                <div class="blog-date">April 20, 2025</div>
-                <h3 class="blog-title" data-translate="news3Title">Group Stage Match Schedule Officially Released</h3>
-                <p class="blog-excerpt" data-translate="news3Excerpt">FIFA confirms complete fixture list for all 48 participating nations. Check match dates, kickoff times, and stadium locations for your favorite teams. Opening match set for June 11, 2026.</p>
+        
+        <!-- News Card 3 -->
+        <div class="news-card">
+            <div class="news-card-image" style="background-image: url('https://images.unsplash.com/photo-1459863636187-9dbe49d7bd6f?w=600&h=400&fit=crop');">
+                <div class="news-card-overlay">
+                    <div class="news-card-category" data-translate="news3Category">SCHEDULE</div>
+                    <div class="news-card-title" data-translate="news3Title">Group Stage Match Schedule Officially Released</div>
+                    <div class="news-card-date">April 20, 2025</div>
+                </div>
+            </div>
+            <div class="news-card-content">
+                <p class="news-card-excerpt" data-translate="news3Excerpt">FIFA confirms complete fixture list for all 48 participating nations. Check match dates, kickoff times, and stadium locations for your favorite teams. Opening match set for June 11, 2026.</p>
                 <a href="#" class="read-more" data-translate="readMore">Read more →</a>
             </div>
         </div>
@@ -1383,32 +1229,32 @@
         <p class="section-subtitle" data-translate="howItWorksSubtitle">Three simple steps to your World Cup experience</p>
     </div>
     
-    <div class="matches-grid" style="margin-bottom: 64px;">
+    <div class="grid" style="margin-bottom: 64px;">
         <div class="match-card" style="text-align: center; cursor: default;">
-            <div class="match-image" style="height: auto; padding: 40px; background: var(--royal-purple);">
-                <i class="fas fa-clock" style="font-size: 48px; color: var(--royal-gold);"></i>
+            <div class="match-image" style="height: auto; padding: 40px; background: var(--fifa-blue);">
+                <i class="fas fa-clock" style="font-size: 48px; color: white;"></i>
             </div>
             <div class="match-info">
                 <h3 data-translate="step1">1. Join the Queue</h3>
-                <p style="color: var(--gray-500);" data-translate="step1Desc">Enter our secure waiting room with real-time position updates.</p>
+                <p style="color: #6b7280;" data-translate="step1Desc">Enter our secure waiting room with real-time position updates.</p>
             </div>
         </div>
         <div class="match-card" style="text-align: center; cursor: default;">
-            <div class="match-image" style="height: auto; padding: 40px; background: var(--royal-purple);">
-                <i class="fas fa-chair" style="font-size: 48px; color: var(--royal-gold);"></i>
+            <div class="match-image" style="height: auto; padding: 40px; background: var(--fifa-blue);">
+                <i class="fas fa-chair" style="font-size: 48px; color: white;"></i>
             </div>
             <div class="match-info">
                 <h3 data-translate="step2">2. Select Your Seat</h3>
-                <p style="color: var(--gray-500);" data-translate="step2Desc">Interactive stadium map. Choose any available seat.</p>
+                <p style="color: #6b7280;" data-translate="step2Desc">Interactive stadium map. Choose any available seat.</p>
             </div>
         </div>
         <div class="match-card" style="text-align: center; cursor: default;">
-            <div class="match-image" style="height: auto; padding: 40px; background: var(--royal-purple);">
-                <i class="fas fa-qrcode" style="font-size: 48px; color: var(--royal-gold);"></i>
+            <div class="match-image" style="height: auto; padding: 40px; background: var(--fifa-blue);">
+                <i class="fas fa-qrcode" style="font-size: 48px; color: white;"></i>
             </div>
             <div class="match-info">
                 <h3 data-translate="step3">3. Get QR Ticket Instantly</h3>
-                <p style="color: var(--gray-500);" data-translate="step3Desc">Digital delivery. Add to Apple/Google Wallet.</p>
+                <p style="color: #6b7280;" data-translate="step3Desc">Digital delivery. Add to Apple/Google Wallet.</p>
             </div>
         </div>
     </div>
@@ -1431,15 +1277,15 @@
             </div>
             <div>
                 <h4 style="color: white; margin-bottom: 16px;" data-translate="quickLinks">Quick Links</h4>
-                <p><a href="matches.html" style="color: var(--gray-400); text-decoration: none;" data-translate="matchesLink">Matches</a></p>
-                <p><a href="#hospitality" style="color: var(--gray-400); text-decoration: none;" data-translate="hospitalityLink">Hospitality</a></p>
-                <p><a href="my-tickets.html" style="color: var(--gray-400); text-decoration: none;" data-translate="myTicketsLink">My Tickets</a></p>
+                <p><a href="matches.html" style="color: #9ca3af; text-decoration: none;" data-translate="matchesLink">Matches</a></p>
+                <p><a href="#hospitality" style="color: #9ca3af; text-decoration: none;" data-translate="hospitalityLink">Hospitality</a></p>
+                <p><a href="my-tickets.html" style="color: #9ca3af; text-decoration: none;" data-translate="myTicketsLink">My Tickets</a></p>
             </div>
             <div>
                 <h4 style="color: white; margin-bottom: 16px;" data-translate="support">Support</h4>
-                <p><a href="#" style="color: var(--gray-400); text-decoration: none;" data-translate="faq">FAQ</a></p>
-                <p><a href="#" style="color: var(--gray-400); text-decoration: none;" data-translate="refundPolicy">Refund Policy</a></p>
-                <p><a href="#" style="color: var(--gray-400); text-decoration: none;" data-translate="contactUs">Contact Us</a></p>
+                <p><a href="#" style="color: #9ca3af; text-decoration: none;" data-translate="faq">FAQ</a></p>
+                <p><a href="#" style="color: #9ca3af; text-decoration: none;" data-translate="refundPolicy">Refund Policy</a></p>
+                <p><a href="#" style="color: #9ca3af; text-decoration: none;" data-translate="contactUs">Contact Us</a></p>
             </div>
             <div>
                 <h4 style="color: white; margin-bottom: 16px;" data-translate="newsletter">Newsletter</h4>
@@ -1450,13 +1296,13 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom" style="text-align: center; padding-top: 32px; border-top: 1px solid var(--gray-800); margin-top: 32px;">
+        <div class="footer-bottom" style="text-align: center; padding-top: 32px; border-top: 1px solid #1a2c5b; margin-top: 32px;">
             <p data-translate="copyright">© 2026 TicketRoyal. Not affiliated with FIFA. All trademarks belong to their respective owners.</p>
         </div>
     </div>
 </footer>
 
-<!-- Bottom Navigation Bar (Mobile Only - FIFA Style) -->
+<!-- Bottom Navigation Bar (Mobile) -->
 <div class="bottom-nav" id="bottomNav">
     <a href="index.html" class="bottom-nav-item active">
         <i class="fas fa-home"></i>
@@ -1481,17 +1327,19 @@
     <i class="fas fa-arrow-up"></i>
 </div>
 
-<!-- Floating Elements -->
+<!-- Floating CTA -->
 <div class="floating-cta" onclick="window.location.href='matches.html'">
     <i class="fas fa-ticket-alt"></i> <span data-translate="buyTicketsFloat">Buy Tickets Now</span>
 </div>
-<div class="live-chat" onclick="alert('Live chat support coming soon! For immediate assistance, email support@ticketroyal.com')">
+
+<!-- Live Chat -->
+<div class="live-chat" onclick="alert('Live chat support coming soon! Email support@ticketroyal.com')">
     <i class="fas fa-comment-dots"></i>
 </div>
 
-<!-- Cookie Consent Banner -->
+<!-- Cookie Consent -->
 <div class="cookie-consent" id="cookieConsent">
-    <span>🍪 We use cookies to improve your experience. By using our site, you agree to our <a href="#" style="color: var(--royal-gold);">Cookie Policy</a>.</span>
+    <span>🍪 We use cookies to improve your experience. By using our site, you agree to our <a href="#" style="color: var(--fifa-blue);">Cookie Policy</a>.</span>
     <div class="cookie-buttons">
         <button class="cookie-btn accept" id="acceptCookies">Accept</button>
         <button class="cookie-btn decline" id="declineCookies">Decline</button>
@@ -1499,7 +1347,7 @@
 </div>
 
 <script>
-    // ========== STICKY HEADER ==========
+    // Sticky header
     window.addEventListener('scroll', () => {
         const header = document.getElementById('header');
         if (window.scrollY > 50) {
@@ -1509,78 +1357,8 @@
         }
     });
 
-    // ========== HERO SLIDER WITH TOUCH SWIPE ==========
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.dot');
-    const totalSlides = slides.length;
-    let autoSlideInterval;
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.classList.remove('active');
-            if (dots[i]) dots[i].classList.remove('active');
-        });
-        slides[index].classList.add('active');
-        if (dots[index]) dots[index].classList.add('active');
-        currentSlide = index;
-    }
-
-    function nextSlide() {
-        let next = currentSlide + 1;
-        if (next >= totalSlides) next = 0;
-        showSlide(next);
-    }
-
-    function prevSlide() {
-        let prev = currentSlide - 1;
-        if (prev < 0) prev = totalSlides - 1;
-        showSlide(prev);
-    }
-
-    function startAutoSlide() {
-        autoSlideInterval = setInterval(nextSlide, 5000);
-    }
-
-    function stopAutoSlide() {
-        clearInterval(autoSlideInterval);
-    }
-
-    // Dot click handlers
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            stopAutoSlide();
-            showSlide(index);
-            startAutoSlide();
-        });
-    });
-
-    // Touch swipe for mobile
-    const heroSection = document.querySelector('.hero');
-    heroSection.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-        stopAutoSlide();
-    });
-    
-    heroSection.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        if (touchEndX < touchStartX - 50) {
-            nextSlide();
-        } else if (touchEndX > touchStartX + 50) {
-            prevSlide();
-        }
-        startAutoSlide();
-    });
-
-    heroSection.addEventListener('mouseenter', stopAutoSlide);
-    heroSection.addEventListener('mouseleave', startAutoSlide);
-    startAutoSlide();
-
-    // ========== REAL COUNTDOWN TO WORLD CUP 2026 ==========
+    // Real countdown to World Cup 2026 (June 11, 2026)
     function startCountdown() {
-        // World Cup 2026 opening match: June 11, 2026 at 12:00 PM EST
         const worldCupDate = new Date(2026, 5, 11, 12, 0, 0);
 
         function update() {
@@ -1610,7 +1388,7 @@
     }
     startCountdown();
 
-    // ========== ANIMATED COUNTERS ==========
+    // Animated counters
     function animateCounter(elementId, target) {
         let current = 0;
         const increment = target / 50;
@@ -1640,7 +1418,7 @@
         observer.observe(document.querySelector('.stats-section'));
     }
 
-    // ========== BACK TO TOP BUTTON ==========
+    // Back to top button
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) {
@@ -1653,7 +1431,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ========== SMOOTH SCROLL FOR ANCHOR LINKS ==========
+    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
@@ -1671,7 +1449,7 @@
         });
     });
 
-    // ========== MOBILE MENU ==========
+    // Mobile menu
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
@@ -1697,14 +1475,13 @@
         link.addEventListener('click', closeMobileMenu);
     });
 
-    // ========== COMPLETE 12 LANGUAGE TRANSLATIONS ==========
+    // Language translations (simplified)
     const translations = {
         en: {
             home: "Home", matches: "Matches", hospitality: "Hospitality", myTickets: "My Tickets", news: "News", help: "Help", buyTickets: "Buy Tickets",
             heroTitle: "Secure Your Seat.<br>Experience History.", heroSubtitle: "Official Ticket Reseller for FIFA World Cup 2026™ — Premium, Verified, Guaranteed",
             buyNow: "Buy Tickets Now →", days: "Days", hours: "Hours", minutes: "Minutes", seconds: "Seconds",
             ssl: "SSL Secure", guaranteed: "100% Guaranteed", support: "24/7 Support", ticketsSold: "50,000+ Tickets Sold", rating: "4.9/5 Rating",
-            asSeenOn: "AS SEEN ON",
             featuredMatches: "Featured Matches", featuredSubtitle: "The most anticipated matches of the tournament — selling fast",
             lowStock: "🔥 Low Stock", left42: "Only 42 left", quarterfinal: "⭐ Quarterfinal", available: "Available", semifinal: "🎟️ Semi-Final", lowStockText: "Low Stock",
             hospitalityTitle: "The Royal Club Experience", hospitalitySubtitle: "Elevate your World Cup journey with premium hospitality packages",
@@ -1712,16 +1489,16 @@
             businessTitle: "Business Club", businessDesc: "Premium seating • Open bar • Fine dining • Dedicated concierge",
             travelTitle: "Travel Package", travelDesc: "Hotel + Tickets + Transfers • 3-night stay • Matchday hospitality",
             inquire: "Inquire Now →",
-            latestNews: "Latest World Cup News", newsSubtitle: "Stay updated with the latest tournament announcements and ticket releases",
-            news1Title: "New Batch of Tickets Released for Knockout Stages", news1Excerpt: "FIFA announces additional ticket allocation for quarterfinals, semifinals, and the final match at MetLife Stadium. Fans can register for the random selection draw starting June 1, 2025.",
-            news2Title: "Official Hospitality Packages Now Available", news2Excerpt: "Experience the World Cup in luxury with our exclusive VIP and Business Club packages. Includes pitchside seating, gourmet dining, and dedicated concierge service. Limited availability remaining.",
-            news3Title: "Group Stage Match Schedule Officially Released", news3Excerpt: "FIFA confirms complete fixture list for all 48 participating nations. Check match dates, kickoff times, and stadium locations for your favorite teams. Opening match set for June 11, 2026.",
+            latestNews: "Latest World Cup News", newsSubtitle: "Stay updated with the latest tournament announcements",
+            news1Category: "TICKET RELEASE", news1Title: "New Batch of Tickets Released for Knockout Stages", news1Excerpt: "FIFA announces additional ticket allocation for quarterfinals, semifinals, and the final match at MetLife Stadium.",
+            news2Category: "HOSPITALITY", news2Title: "Official Hospitality Packages Now Available", news2Excerpt: "Experience the World Cup in luxury with our exclusive VIP and Business Club packages.",
+            news3Category: "SCHEDULE", news3Title: "Group Stage Match Schedule Officially Released", news3Excerpt: "FIFA confirms complete fixture list for all 48 participating nations.",
             readMore: "Read more →",
             ticketsSoldStat: "Tickets Sold", happyFans: "Happy Fans", matchesStat: "Matches", countriesStat: "Countries",
             testimonialsTitle: "What Our Fans Say", testimonialsSubtitle: "Trusted by thousands of football fans worldwide",
             testimonial1: "\"TicketRoyal made getting World Cup tickets seamless. The queue system was transparent and I got amazing seats!\"",
-            testimonial2: "\"Best ticketing experience I've ever had. QR codes worked perfectly at the stadium. Will use again for 2026!\"",
-            testimonial3: "\"VIP experience was incredible. Pitchside seats and the lounge access made it unforgettable.\"",
+            testimonial2: "\"Best ticketing experience I've ever had. QR codes worked perfectly at the stadium.\"",
+            testimonial3: "\"VIP experience was incredible. Pitchside seats made it unforgettable.\"",
             howItWorks: "How TicketRoyal Works", howItWorksSubtitle: "Three simple steps to your World Cup experience",
             step1: "1. Join the Queue", step1Desc: "Enter our secure waiting room with real-time position updates.",
             step2: "2. Select Your Seat", step2Desc: "Interactive stadium map. Choose any available seat.",
@@ -1732,7 +1509,7 @@
             quickLinks: "Quick Links", matchesLink: "Matches", hospitalityLink: "Hospitality", myTicketsLink: "My Tickets",
             support: "Support", faq: "FAQ", refundPolicy: "Refund Policy", contactUs: "Contact Us",
             newsletter: "Newsletter", newsletterText: "Get exclusive ticket alerts", subscribe: "Subscribe",
-            copyright: "© 2026 TicketRoyal. Not affiliated with FIFA. All trademarks belong to their respective owners.",
+            copyright: "© 2026 TicketRoyal. Not affiliated with FIFA.",
             buyTicketsFloat: "Buy Tickets Now"
         },
         es: {
@@ -1740,7 +1517,6 @@
             heroTitle: "Asegura tu Asiento.<br>Vive la Historia.", heroSubtitle: "Revendedor Oficial para la Copa Mundial de la FIFA 2026™ — Premium, Verificado, Garantizado",
             buyNow: "Comprar Entradas →", days: "Días", hours: "Horas", minutes: "Minutos", seconds: "Segundos",
             ssl: "SSL Seguro", guaranteed: "100% Garantizado", support: "Soporte 24/7", ticketsSold: "50,000+ Entradas Vendidas", rating: "4.9/5 Puntuación",
-            asSeenOn: "APARECEMOS EN",
             featuredMatches: "Partidos Destacados", featuredSubtitle: "Los partidos más esperados del torneo — se venden rápido",
             lowStock: "🔥 Pocas Disponibles", left42: "Solo 42 restantes", quarterfinal: "⭐ Cuartos de Final", available: "Disponible", semifinal: "🎟️ Semifinal", lowStockText: "Pocas Disponibles",
             hospitalityTitle: "La Experiencia Royal Club", hospitalitySubtitle: "Eleva tu experiencia de la Copa Mundial con paquetes de hospitalidad premium",
@@ -1749,9 +1525,9 @@
             travelTitle: "Paquete de Viaje", travelDesc: "Hotel + Entradas + Traslados • Estancia de 3 noches • Hospitalidad el día del partido",
             inquire: "Consultar Ahora →",
             latestNews: "Últimas Noticias del Mundial", newsSubtitle: "Mantente informado con los últimos anuncios",
-            news1Title: "Nuevo Lote de Entradas para las Eliminatorias", news1Excerpt: "FIFA anuncia una asignación adicional de entradas para cuartos de final, semifinales y final. Registro a partir del 1 de junio de 2025.",
-            news2Title: "Paquetes de Hospitalidad Oficiales Disponibles", news2Excerpt: "Vive la Copa Mundial con lujo gracias a nuestros paquetes exclusivos VIP y Business Club.",
-            news3Title: "Calendario de la Fase de Grupos Anunciado", news3Excerpt: "Lista completa de partidos para los 48 equipos disponible. Partido inaugural el 11 de junio de 2026.",
+            news1Category: "LANZAMIENTO", news1Title: "Nuevo Lote de Entradas para las Eliminatorias", news1Excerpt: "FIFA anuncia una asignación adicional de entradas para cuartos de final, semifinales y final.",
+            news2Category: "HOSPITALIDAD", news2Title: "Paquetes de Hospitalidad Oficiales Disponibles", news2Excerpt: "Vive la Copa Mundial con lujo gracias a nuestros paquetes exclusivos VIP y Business Club.",
+            news3Category: "CALENDARIO", news3Title: "Calendario de la Fase de Grupos Anunciado", news3Excerpt: "Lista completa de partidos para los 48 equipos disponible.",
             readMore: "Leer más →",
             ticketsSoldStat: "Entradas Vendidas", happyFans: "Fans Felices", matchesStat: "Partidos", countriesStat: "Países",
             testimonialsTitle: "Lo Que Dicen Nuestros Fans", testimonialsSubtitle: "Confían en nosotros miles de aficionados",
@@ -1770,120 +1546,12 @@
             newsletter: "Boletín", newsletterText: "Recibe alertas exclusivas de entradas", subscribe: "Suscribirse",
             copyright: "© 2026 TicketRoyal. No afiliado a la FIFA.",
             buyTicketsFloat: "Comprar Entradas"
-        },
-        fr: {
-            home: "Accueil", matches: "Matchs", hospitality: "Hospitalité", myTickets: "Mes Billets", news: "Actualités", help: "Aide", buyTickets: "Acheter",
-            heroTitle: "Réservez Votre Place.<br>Vivez l'Histoire.", heroSubtitle: "Revendeur Officiel pour la Coupe du Monde FIFA 2026™ — Premium, Vérifié, Garanti",
-            buyNow: "Acheter Maintenant →", days: "Jours", hours: "Heures", minutes: "Minutes", seconds: "Secondes",
-            ssl: "SSL Sécurisé", guaranteed: "100% Garanti", support: "Support 24/7", ticketsSold: "50,000+ Billets Vendus", rating: "4.9/5 Note",
-            asSeenOn: "APPARAÎT DANS",
-            featuredMatches: "Matchs Phares", featuredSubtitle: "Les matchs les plus attendus du tournoi — se vendent rapidement",
-            lowStock: "🔥 Stock Faible", left42: "Plus que 42", quarterfinal: "⭐ Quart de Finale", available: "Disponible", semifinal: "🎟️ Demi-Finale", lowStockText: "Stock Faible",
-            hospitalityTitle: "L'Expérience Royal Club", hospitalitySubtitle: "Élevez votre expérience de la Coupe du Monde avec des forfaits d'hospitalité premium",
-            vipTitle: "Royal VIP", vipDesc: "Sièges bord de terrain • Salon privé • Gastronomie • Rencontre avec des célébrités",
-            businessTitle: "Business Club", businessDesc: "Sièges premium • Bar ouvert • Dîner gastronomique • Concierge dédié",
-            travelTitle: "Forfait Voyage", travelDesc: "Hôtel + Billets + Transferts • Séjour 3 nuits • Hospitalité le jour du match",
-            inquire: "Demander →",
-            latestNews: "Dernières Actualités", newsSubtitle: "Restez informé des dernières annonces",
-            news1Title: "Nouveau Lot de Billets pour les Phases Finales", news1Excerpt: "La FIFA annonce une allocation supplémentaire de billets pour les quarts, demies et la finale. Inscription au tirage à partir du 1er juin 2025.",
-            news2Title: "Forfaits d'Hospitalité Officiels Disponibles", news2Excerpt: "Vivez la Coupe du Monde dans le luxe avec nos forfaits VIP et Business Club exclusifs.",
-            news3Title: "Calendrier de la Phase de Groupes Annoncé", news3Excerpt: "Liste complète des matchs pour les 48 équipes disponible. Match d'ouverture le 11 juin 2026.",
-            readMore: "Lire la suite →",
-            ticketsSoldStat: "Billets Vendus", happyFans: "Fans Heureux", matchesStat: "Matchs", countriesStat: "Pays",
-            testimonialsTitle: "Ce Que Disent Nos Fans", testimonialsSubtitle: "Des milliers de fans de football nous font confiance",
-            testimonial1: "\"TicketRoyal a rendu l'achat de billets simple. Le système de file d'attente était transparent.\"",
-            testimonial2: "\"La meilleure expérience d'achat de billets. Les QR codes ont parfaitement fonctionné.\"",
-            testimonial3: "\"L'expérience VIP était incroyable. Les sièges bord de terrain l'ont rendue inoubliable.\"",
-            howItWorks: "Comment Ça Marche", howItWorksSubtitle: "Trois étapes simples pour votre expérience",
-            step1: "1. Rejoignez la File", step1Desc: "Entrez dans notre salle d'attente sécurisée.",
-            step2: "2. Choisissez Votre Siège", step2Desc: "Plan du stade interactif.",
-            step3: "3. Recevez Votre QR Instantanément", step3Desc: "Livraison numérique. Ajoutez à Apple/Google Wallet.",
-            ctaTitle: "Prêt à Vivre l'Histoire de la Coupe du Monde ?", ctaSubtitle: "Les billets se vendent rapidement.",
-            browseMatches: "Voir Tous les Matchs →",
-            footerText: "Votre passerelle premium vers l'histoire de la Coupe du Monde.",
-            quickLinks: "Liens Rapides", matchesLink: "Matchs", hospitalityLink: "Hospitalité", myTicketsLink: "Mes Billets",
-            support: "Support", faq: "FAQ", refundPolicy: "Remboursement", contactUs: "Contactez-nous",
-            newsletter: "Newsletter", newsletterText: "Recevez des alertes exclusives", subscribe: "S'abonner",
-            copyright: "© 2026 TicketRoyal. Non affilié à la FIFA.",
-            buyTicketsFloat: "Acheter Maintenant"
-        },
-        de: {
-            home: "Startseite", matches: "Spiele", hospitality: "Gastgewerbe", myTickets: "Meine Tickets", news: "Neuigkeiten", help: "Hilfe", buyTickets: "Tickets Kaufen",
-            heroTitle: "Sichern Sie Ihren Platz.<br>Erleben Sie Geschichte.", heroSubtitle: "Offizieller Ticketverkäufer für die FIFA WM 2026™ — Premium, Verifiziert, Garantiert",
-            buyNow: "Jetzt Kaufen →", days: "Tage", hours: "Stunden", minutes: "Minuten", seconds: "Sekunden",
-            ssl: "SSL Sicher", guaranteed: "100% Garantiert", support: "24/7 Support", ticketsSold: "50,000+ Tickets Verkauft", rating: "4.9/5 Bewertung",
-            asSeenOn: "GESEHEN IN",
-            featuredMatches: "Top-Spiele", featuredSubtitle: "Die meist erwarteten Spiele des Turniers",
-            lowStock: "🔥 Wenige Verfügbar", left42: "Nur 42 übrig", quarterfinal: "⭐ Viertelfinale", available: "Verfügbar", semifinal: "🎟️ Halbfinale", lowStockText: "Wenig Verfügbar",
-            hospitalityTitle: "The Royal Club Erlebnis", hospitalitySubtitle: "Steigern Sie Ihr WM-Erlebnis mit Premium-Gastgeberpaketen",
-            vipTitle: "Royal VIP", vipDesc: "Plätze am Spielfeldrand • Private Lounge • Gourmet-Dining",
-            businessTitle: "Business Club", businessDesc: "Premium-Sitzplätze • Offene Bar • Eigener Concierge",
-            travelTitle: "Reisepaket", travelDesc: "Hotel + Tickets + Transfers • 3 Übernachtungen",
-            inquire: "Anfragen →",
-            latestNews: "Neueste WM-Nachrichten", newsSubtitle: "Bleiben Sie auf dem Laufenden",
-            news1Title: "Neue Ticketkontingente für K.-o.-Runden", news1Excerpt: "Die FIFA gibt zusätzliche Tickets für Viertelfinale, Halbfinale und Finale bekannt.",
-            news2Title: "Offizielle Hospitality-Pakete Verfügbar", news2Excerpt: "Erleben Sie die WM im Luxus mit unseren exklusiven VIP- und Business-Club-Paketen.",
-            news3Title: "Gruppenphasen-Spielplan Bekanntgegeben", news3Excerpt: "Vollständige Spielpaarungen für alle 48 Teams. Eröffnungsspiel am 11. Juni 2026.",
-            readMore: "Weiterlesen →",
-            ticketsSoldStat: "Verkaufte Tickets", happyFans: "Zufriedene Fans", matchesStat: "Spiele", countriesStat: "Länder",
-            testimonialsTitle: "Was Unsere Fans Sagen", testimonialsSubtitle: "Tausenden von Fußballfans vertrauen uns",
-            testimonial1: "\"TicketRoyal machte den Ticketkauf nahtlos. Die Warteschlange war transparent.\"",
-            testimonial2: "\"Beste Ticketkauf-Erfahrung. QR-Codes funktionierten perfekt.\"",
-            testimonial3: "\"Das VIP-Erlebnis war unglaublich. Unvergessliche Plätze am Spielfeldrand.\"",
-            howItWorks: "Wie TicketRoyal Funktioniert", howItWorksSubtitle: "Drei einfache Schritte",
-            step1: "1. In die Warteschlange", step1Desc: "Betreten Sie unseren sicheren Warteraum.",
-            step2: "2. Wählen Sie Ihren Platz", step2Desc: "Interaktiver Stadionplan.",
-            step3: "3. QR-Ticket Sofort Erhalten", step3Desc: "Digitale Lieferung. Zu Apple/Google Wallet.",
-            ctaTitle: "Bereit für WM-Geschichte?", ctaSubtitle: "Tickets werden schnell verkauft.",
-            browseMatches: "Alle Spiele Anzeigen →",
-            footerText: "Ihr Premium-Zugang zur WM-Geschichte.",
-            quickLinks: "Schnelllinks", matchesLink: "Spiele", hospitalityLink: "Gastgeber", myTicketsLink: "Meine Tickets",
-            support: "Support", faq: "FAQ", refundPolicy: "Rückerstattung", contactUs: "Kontakt",
-            newsletter: "Newsletter", newsletterText: "Exklusive Benachrichtigungen", subscribe: "Abonnieren",
-            copyright: "© 2026 TicketRoyal. Nicht verbunden mit der FIFA.",
-            buyTicketsFloat: "Tickets Kaufen"
-        },
-        pt: {
-            home: "Início", matches: "Jogos", hospitality: "Hospitalidade", myTickets: "Meus Ingressos", news: "Notícias", help: "Ajuda", buyTickets: "Comprar Ingressos",
-            heroTitle: "Garanta seu Lugar.<br>Viva a História.", heroSubtitle: "Revendedor Oficial para a Copa do Mundo FIFA 2026™ — Premium, Verificado, Garantido",
-            buyNow: "Comprar Agora →", days: "Dias", hours: "Horas", minutes: "Minutos", seconds: "Segundos",
-            ssl: "SSL Seguro", guaranteed: "100% Garantido", support: "Suporte 24/7", ticketsSold: "50,000+ Ingressos Vendidos", rating: "4.9/5 Avaliação",
-            asSeenOn: "APARECE EM",
-            featuredMatches: "Jogos em Destaque", featuredSubtitle: "Os jogos mais aguardados do torneio",
-            lowStock: "🔥 Poucos Restam", left42: "Apenas 42 restantes", quarterfinal: "⭐ Quartas de Final", available: "Disponível", semifinal: "🎟️ Semifinal", lowStockText: "Poucos Restam",
-            hospitalityTitle: "A Experiência Royal Club", hospitalitySubtitle: "Eleve sua experiência na Copa do Mundo com pacotes de hospitalidade premium",
-            vipTitle: "Royal VIP", vipDesc: "Assentos à beira do campo • Lounge privado • Gastronomia",
-            businessTitle: "Business Club", businessDesc: "Assentos premium • Open bar • Concierge dedicado",
-            travelTitle: "Pacote de Viagem", travelDesc: "Hotel + Ingressos + Transferências • 3 noites",
-            inquire: "Consultar Agora →",
-            latestNews: "Últimas Notícias da Copa", newsSubtitle: "Fique atualizado com os últimos anúncios",
-            news1Title: "Novo Lote de Ingressos para as Eliminatórias", news1Excerpt: "FIFA anuncia alocação adicional de ingressos para quartas, semifinais e final.",
-            news2Title: "Pacotes Oficiais de Hospitalidade Disponíveis", news2Excerpt: "Viva a Copa com luxo através de nossos pacotes exclusivos VIP e Business Club.",
-            news3Title: "Calendário da Fase de Grupos Anunciado", news3Excerpt: "Lista completa de jogos para todas as 48 seleções. Jogo de abertura em 11 de junho de 2026.",
-            readMore: "Leia mais →",
-            ticketsSoldStat: "Ingressos Vendidos", happyFans: "Fãs Felizes", matchesStat: "Jogos", countriesStat: "Países",
-            testimonialsTitle: "O Que Nossos Fãs Dizem", testimonialsSubtitle: "Milhares de fãs de futebol confiam em nós",
-            testimonial1: "\"O TicketRoyal tornou a compra de ingressos perfeita. O sistema de fila era transparente.\"",
-            testimonial2: "\"Melhor experiência de compra de ingressos. Os QR codes funcionaram perfeitamente.\"",
-            testimonial3: "\"A experiência VIP foi incrível. Assentos à beira do campo inesquecíveis.\"",
-            howItWorks: "Como o TicketRoyal Funciona", howItWorksSubtitle: "Três passos simples",
-            step1: "1. Entre na Fila", step1Desc: "Entre em nossa sala de espera segura.",
-            step2: "2. Selecione seu Assento", step2Desc: "Mapa do estádio interativo.",
-            step3: "3. Receba seu QR Imediatamente", step3Desc: "Entrega digital. Adicione à Apple/Google Wallet.",
-            ctaTitle: "Pronto para Viver a História da Copa?", ctaSubtitle: "Os ingressos estão vendendo rápido.",
-            browseMatches: "Ver Todos os Jogos →",
-            footerText: "Seu portal premium para a história da Copa do Mundo.",
-            quickLinks: "Links Rápidos", matchesLink: "Jogos", hospitalityLink: "Hospitalidade", myTicketsLink: "Meus Ingressos",
-            support: "Suporte", faq: "FAQ", refundPolicy: "Reembolso", contactUs: "Contato",
-            newsletter: "Newsletter", newsletterText: "Receba alertas exclusivos", subscribe: "Inscrever-se",
-            copyright: "© 2026 TicketRoyal. Não afiliado à FIFA.",
-            buyTicketsFloat: "Comprar Ingressos"
         }
     };
 
-    // Copy English base for remaining languages (simplified)
-    const remainingLangs = ['it', 'nl', 'pl', 'tr', 'ar', 'ja', 'zh'];
-    remainingLangs.forEach(lang => {
+    // Copy English for other languages (simplified)
+    const otherLangs = ['fr', 'de', 'pt', 'it', 'nl', 'pl', 'tr', 'ar', 'ja', 'zh'];
+    otherLangs.forEach(lang => {
         translations[lang] = { ...translations.en };
     });
 
@@ -1933,7 +1601,7 @@
         applyLanguage(savedLang);
     }
 
-    // ========== NEWSLETTER SUBSCRIBE ==========
+    // Newsletter subscribe
     function subscribeNewsletter() {
         const email = document.getElementById('newsletterEmail').value;
         if (email && email.includes('@')) {
@@ -1944,7 +1612,7 @@
         }
     }
 
-    // ========== COOKIE CONSENT ==========
+    // Cookie consent
     const cookieConsent = document.getElementById('cookieConsent');
     const acceptCookies = document.getElementById('acceptCookies');
     const declineCookies = document.getElementById('declineCookies');
@@ -1953,15 +1621,19 @@
         cookieConsent.classList.add('show');
     }
 
-    acceptCookies.addEventListener('click', () => {
-        localStorage.setItem('cookiesAccepted', 'true');
-        cookieConsent.classList.remove('show');
-    });
+    if (acceptCookies) {
+        acceptCookies.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieConsent.classList.remove('show');
+        });
+    }
 
-    declineCookies.addEventListener('click', () => {
-        localStorage.setItem('cookiesAccepted', 'false');
-        cookieConsent.classList.remove('show');
-    });
+    if (declineCookies) {
+        declineCookies.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'false');
+            cookieConsent.classList.remove('show');
+        });
+    }
 </script>
 </body>
 </html>
