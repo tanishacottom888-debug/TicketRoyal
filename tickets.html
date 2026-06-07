@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
     <meta name="description" content="TicketRoyal - FIFA World Cup 2026 Ticket Selection">
     <title>TicketRoyal | Select Your Seats</title>
+    
+    <!-- svg-pan-zoom library for professional zoom/pan -->
+    <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
         }
 
         :root {
@@ -31,7 +34,7 @@
             overflow-x: hidden;
         }
 
-        /* HEADER - eTicketing Style */
+        /* HEADER - Professional eTicketing Style */
         .ticket-header-wrapper {
             background: linear-gradient(135deg, #0B132B 0%, #1a2a4a 100%);
             padding: 20px 16px;
@@ -149,104 +152,114 @@
             color: var(--deep-navy);
         }
 
-        /* MAIN LAYOUT - Mobile First */
-        .main-container {
-            padding: 0 16px 16px;
-        }
-
-        /* SEAT MAP SECTION - Scrollable for mobile */
-        .seat-map-section {
-            background: white;
+        /* SEAT MAP CONTAINER - With zoom/pan support */
+        .seat-map-container {
+            background: #1a1a2e;
+            margin: 16px;
             border-radius: 20px;
-            margin-bottom: 20px;
             overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
 
-        .section-header {
+        .map-header {
             padding: 14px 16px;
-            border-bottom: 1px solid var(--subtle-border);
+            background: var(--deep-navy);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        .section-header h3 {
+        .map-header h3 {
+            color: white;
             font-size: 16px;
-            font-weight: 700;
+            font-weight: 600;
         }
 
-        .map-filters {
+        .zoom-controls {
             display: flex;
             gap: 8px;
         }
 
-        .map-filter-btn {
-            padding: 5px 12px;
-            border-radius: 30px;
-            border: 1px solid var(--subtle-border);
-            background: white;
-            font-size: 11px;
+        .zoom-btn {
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
             cursor: pointer;
-        }
-
-        .map-filter-btn.active {
-            background: var(--rich-gold);
-            border-color: var(--rich-gold);
-        }
-
-        .svg-scroll-container {
-            overflow-x: auto;
-            overflow-y: hidden;
-            -webkit-overflow-scrolling: touch;
-            background: #f0efea;
-            padding: 16px;
-        }
-
-        #seatMapSvg {
-            width: auto;
-            min-width: 650px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            background: #e8e5dd;
-            border-radius: 12px;
-            cursor: pointer;
-        }
-
-        /* SVG Elements */
-        .seat-section {
-            cursor: pointer;
+            font-size: 18px;
             transition: all 0.2s;
         }
 
-        .seat-section.selected {
-            stroke: var(--rich-gold);
-            stroke-width: 3;
-            filter: drop-shadow(0 0 6px var(--rich-gold));
+        .zoom-btn:hover {
+            background: var(--rich-gold);
+            color: var(--deep-navy);
         }
 
+        #seatMapContainerDiv {
+            background: #0f0f1a;
+            overflow: hidden;
+            position: relative;
+            touch-action: none;
+        }
+
+        #seatMap {
+            width: 100%;
+            height: auto;
+            background: #0f0f1a;
+            cursor: grab;
+        }
+
+        #seatMap:active {
+            cursor: grabbing;
+        }
+
+        /* Seat Section Styles */
+        .seat-section {
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .seat-section path {
+            transition: opacity 0.2s, stroke 0.2s;
+        }
+
+        .seat-section.selected path {
+            opacity: 0.6 !important;
+            stroke: var(--rich-gold) !important;
+            stroke-width: 2;
+        }
+
+        .seat-section:hover path {
+            opacity: 0.7;
+        }
+
+        /* Legend */
         .legend {
             padding: 12px 16px;
-            border-top: 1px solid var(--subtle-border);
+            border-top: 1px solid rgba(255,255,255,0.1);
             display: flex;
             justify-content: center;
-            gap: 16px;
+            gap: 20px;
             flex-wrap: wrap;
-            font-size: 11px;
+            background: var(--deep-navy);
         }
 
         .legend-item {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            color: rgba(255,255,255,0.7);
+            font-size: 11px;
         }
 
         .legend-color {
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             border-radius: 3px;
         }
 
@@ -254,9 +267,9 @@
         .ticket-list-section {
             background: white;
             border-radius: 20px;
+            margin: 16px;
             overflow: hidden;
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            margin-bottom: 20px;
         }
 
         .ticket-header {
@@ -271,7 +284,7 @@
         }
 
         .ticket-list {
-            max-height: 400px;
+            max-height: 350px;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
         }
@@ -353,15 +366,15 @@
             min-width: 75px;
         }
 
-        /* CART SUMMARY - Sticky on mobile */
+        /* CART SUMMARY */
         .cart-summary {
             background: white;
             border-radius: 20px;
+            margin: 16px;
             padding: 16px;
             position: sticky;
             bottom: 0;
             box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
-            z-index: 10;
         }
 
         .summary-row {
@@ -396,8 +409,8 @@
         .event-desc {
             background: white;
             border-radius: 20px;
+            margin: 16px;
             padding: 20px;
-            margin-bottom: 20px;
         }
 
         .event-desc h3 {
@@ -427,6 +440,7 @@
             background: var(--deep-navy);
             color: white;
             padding: 30px 16px 20px;
+            margin-top: 20px;
         }
 
         .footer-links {
@@ -464,7 +478,7 @@
             font-size: 13px;
         }
 
-        /* Desktop improvements */
+        /* Desktop Layout */
         @media (min-width: 768px) {
             .ticket-header-wrapper {
                 padding: 25px 40px;
@@ -474,30 +488,19 @@
                 font-size: 28px;
             }
             
-            .main-container {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 0 20px 20px;
-            }
-            
-            .seat-map-section {
-                margin-bottom: 30px;
-            }
-            
-            .ticket-list-section {
-                margin-bottom: 30px;
-            }
-            
-            .cart-summary {
-                position: sticky;
-                top: 20px;
-                margin-top: 0;
-            }
-            
             .two-columns {
-                display: grid;
-                grid-template-columns: 1fr 360px;
-                gap: 24px;
+                display: flex;
+                gap: 20px;
+                padding: 0 16px;
+            }
+            
+            .two-columns .seat-map-container {
+                flex: 1;
+                margin: 0;
+            }
+            
+            .two-columns .right-panel {
+                flex: 0 0 380px;
             }
             
             .cart-summary {
@@ -509,7 +512,7 @@
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- HEADER -->
     <div class="ticket-header-wrapper">
         <div class="ticket-header-info-wrapper">
             <h1 class="event-title" id="eventTitle">South Korea vs Czechia Tickets</h1>
@@ -530,167 +533,149 @@
         </div>
     </div>
 
-    <div class="main-container">
-        <!-- Filter Bar -->
-        <div class="filter-bar">
-            <select id="tixQty" class="filter-select">
-                <option value="0">Any tickets</option>
-                <option value="1">1 ticket</option>
-                <option value="2">2 tickets</option>
-                <option value="3">3 tickets</option>
-                <option value="4">4 tickets</option>
-            </select>
-            <select id="tixCategory" class="filter-select">
-                <option value="all">»» All Categories</option>
-                <option value="standard">Standard</option>
-                <option value="premium">Premium</option>
-                <option value="vip">VIP / Hospitality</option>
-            </select>
-            <button class="reset-btn" onclick="resetFilters()">Clear</button>
-            <button class="sell-btn" onclick="showToast('Sell tickets feature coming soon')">Sell</button>
-        </div>
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+        <select id="tixQty" class="filter-select">
+            <option value="0">Any tickets</option>
+            <option value="1">1 ticket</option>
+            <option value="2">2 tickets</option>
+            <option value="3">3 tickets</option>
+            <option value="4">4 tickets</option>
+        </select>
+        <select id="tixCategory" class="filter-select">
+            <option value="all">»» All Categories</option>
+            <option value="standard">Standard</option>
+            <option value="premium">Premium</option>
+            <option value="vip">VIP / Hospitality</option>
+        </select>
+        <button class="reset-btn" onclick="resetFilters()">Clear</button>
+        <button class="sell-btn" onclick="showToast('Sell tickets feature coming soon')">Sell</button>
+    </div>
 
-        <!-- Two columns on desktop -->
-        <div class="two-columns">
-            <!-- LEFT: Seat Map -->
-            <div class="seat-map-section">
-                <div class="section-header">
-                    <h3>Interactive Seat Map</h3>
-                    <div class="map-filters">
-                        <button class="map-filter-btn active" data-filter="all" onclick="filterMap('all')">All</button>
-                        <button class="map-filter-btn" data-filter="sideline" onclick="filterMap('sideline')">Sideline</button>
-                        <button class="map-filter-btn" data-filter="corner" onclick="filterMap('corner')">Corners</button>
-                        <button class="map-filter-btn" data-filter="endzone" onclick="filterMap('endzone')">End Zone</button>
-                    </div>
-                </div>
-                <div class="svg-scroll-container">
-                    <svg id="seatMapSvg" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Pitch -->
-                        <rect x="200" y="180" width="500" height="240" rx="10" fill="#2d5a27" stroke="#4a8c3f" stroke-width="2"/>
-                        <circle cx="450" cy="300" r="28" fill="none" stroke="#4a8c3f" stroke-width="2"/>
-                        <line x1="450" y1="180" x2="450" y2="420" stroke="#4a8c3f" stroke-width="2"/>
-                        <rect x="360" y="400" width="180" height="20" rx="5" fill="none" stroke="#4a8c3f" stroke-width="2"/>
-                        <text x="450" y="310" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="14">⚽</text>
-                        
-                        <!-- Sideline Premium Sections -->
-                        <g data-section="101" data-type="sideline" data-category="premium" class="seat-section" transform="translate(80, 50)">
-                            <rect x="0" y="0" width="85" height="75" rx="8" fill="#2a9d8f" stroke="#1f6e63" stroke-width="1.5"/>
-                            <text x="42" y="42" text-anchor="middle" fill="white" font-size="13" font-weight="bold">101</text>
-                            <text x="42" y="58" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9">Premium</text>
-                        </g>
-                        <g data-section="102" data-type="sideline" data-category="premium" class="seat-section" transform="translate(185, 50)">
-                            <rect x="0" y="0" width="85" height="75" rx="8" fill="#2a9d8f" stroke="#1f6e63" stroke-width="1.5"/>
-                            <text x="42" y="42" text-anchor="middle" fill="white" font-size="13" font-weight="bold">102</text>
-                            <text x="42" y="58" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9">Premium</text>
-                        </g>
-                        <g data-section="103" data-type="sideline" data-category="premium" class="seat-section" transform="translate(290, 50)">
-                            <rect x="0" y="0" width="85" height="75" rx="8" fill="#2a9d8f" stroke="#1f6e63" stroke-width="1.5"/>
-                            <text x="42" y="42" text-anchor="middle" fill="white" font-size="13" font-weight="bold">103</text>
-                            <text x="42" y="58" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9">Premium</text>
-                        </g>
-                        <g data-section="104" data-type="sideline" data-category="premium" class="seat-section" transform="translate(525, 50)">
-                            <rect x="0" y="0" width="85" height="75" rx="8" fill="#2a9d8f" stroke="#1f6e63" stroke-width="1.5"/>
-                            <text x="42" y="42" text-anchor="middle" fill="white" font-size="13" font-weight="bold">104</text>
-                            <text x="42" y="58" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9">Premium</text>
-                        </g>
-                        <g data-section="105" data-type="sideline" data-category="premium" class="seat-section" transform="translate(630, 50)">
-                            <rect x="0" y="0" width="85" height="75" rx="8" fill="#2a9d8f" stroke="#1f6e63" stroke-width="1.5"/>
-                            <text x="42" y="42" text-anchor="middle" fill="white" font-size="13" font-weight="bold">105</text>
-                            <text x="42" y="58" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9">Premium</text>
-                        </g>
-                        
-                        <!-- Corner Standard Sections -->
-                        <g data-section="106" data-type="corner" data-category="standard" class="seat-section" transform="translate(85, 160)">
-                            <rect x="0" y="0" width="75" height="65" rx="8" fill="#2c7da0" stroke="#1f5a7a" stroke-width="1.5"/>
-                            <text x="37" y="38" text-anchor="middle" fill="white" font-size="12" font-weight="bold">106</text>
-                            <text x="37" y="52" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">Standard</text>
-                        </g>
-                        <g data-section="107" data-type="corner" data-category="standard" class="seat-section" transform="translate(740, 160)">
-                            <rect x="0" y="0" width="75" height="65" rx="8" fill="#2c7da0" stroke="#1f5a7a" stroke-width="1.5"/>
-                            <text x="37" y="38" text-anchor="middle" fill="white" font-size="12" font-weight="bold">107</text>
-                            <text x="37" y="52" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">Standard</text>
-                        </g>
-                        
-                        <!-- End Zone Standard Sections -->
-                        <g data-section="108" data-type="endzone" data-category="standard" class="seat-section" transform="translate(220, 470)">
-                            <rect x="0" y="0" width="80" height="55" rx="8" fill="#2c7da0" stroke="#1f5a7a" stroke-width="1.5"/>
-                            <text x="40" y="32" text-anchor="middle" fill="white" font-size="12" font-weight="bold">108</text>
-                            <text x="40" y="46" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">Standard</text>
-                        </g>
-                        <g data-section="109" data-type="endzone" data-category="standard" class="seat-section" transform="translate(320, 470)">
-                            <rect x="0" y="0" width="80" height="55" rx="8" fill="#2c7da0" stroke="#1f5a7a" stroke-width="1.5"/>
-                            <text x="40" y="32" text-anchor="middle" fill="white" font-size="12" font-weight="bold">109</text>
-                            <text x="40" y="46" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">Standard</text>
-                        </g>
-                        <g data-section="110" data-type="endzone" data-category="standard" class="seat-section" transform="translate(500, 470)">
-                            <rect x="0" y="0" width="80" height="55" rx="8" fill="#2c7da0" stroke="#1f5a7a" stroke-width="1.5"/>
-                            <text x="40" y="32" text-anchor="middle" fill="white" font-size="12" font-weight="bold">110</text>
-                            <text x="40" y="46" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">Standard</text>
-                        </g>
-                        <g data-section="111" data-type="endzone" data-category="standard" class="seat-section" transform="translate(600, 470)">
-                            <rect x="0" y="0" width="80" height="55" rx="8" fill="#2c7da0" stroke="#1f5a7a" stroke-width="1.5"/>
-                            <text x="40" y="32" text-anchor="middle" fill="white" font-size="12" font-weight="bold">111</text>
-                            <text x="40" y="46" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">Standard</text>
-                        </g>
-                        
-                        <!-- VIP Section -->
-                        <g data-section="VIP" data-type="sideline" data-category="vip" class="seat-section" transform="translate(350, 100)">
-                            <rect x="0" y="0" width="200" height="45" rx="10" fill="#e9c46a" stroke="#d4a832" stroke-width="2"/>
-                            <text x="100" y="28" text-anchor="middle" fill="#0B132B" font-size="13" font-weight="bold">VIP LOUNGE</text>
-                        </g>
-                    </svg>
-                </div>
-                <div class="legend">
-                    <div class="legend-item"><div class="legend-color" style="background: #2c7da0;"></div> Standard</div>
-                    <div class="legend-item"><div class="legend-color" style="background: #2a9d8f;"></div> Premium</div>
-                    <div class="legend-item"><div class="legend-color" style="background: #e9c46a;"></div> VIP</div>
-                    <div class="legend-item"><div class="legend-color" style="background: var(--rich-gold);"></div> Selected</div>
+    <!-- MAIN CONTENT - 2 Columns on Desktop -->
+    <div class="two-columns">
+        <!-- LEFT: Seat Map with Zoom/Pan -->
+        <div class="seat-map-container">
+            <div class="map-header">
+                <h3>Interactive Seat Map</h3>
+                <div class="zoom-controls">
+                    <button class="zoom-btn" id="zoomInBtn" title="Zoom In">+</button>
+                    <button class="zoom-btn" id="zoomOutBtn" title="Zoom Out">−</button>
+                    <button class="zoom-btn" id="resetViewBtn" title="Reset View">⟳</button>
                 </div>
             </div>
-
-            <!-- RIGHT: Ticket List + Cart -->
-            <div>
-                <div class="ticket-list-section">
-                    <div class="ticket-header">
-                        <h3>Available Tickets</h3>
-                    </div>
-                    <div class="ticket-list" id="ticketsList"></div>
-                </div>
-
-                <div class="cart-summary">
-                    <div class="summary-row">
-                        <span>Subtotal</span>
-                        <span id="subtotal">$0</span>
-                    </div>
-                    <div class="summary-row">
-                        <span>Service Fee (10%)</span>
-                        <span id="serviceFee">$0</span>
-                    </div>
-                    <div class="summary-row total">
-                        <span>Total Due</span>
-                        <span id="total">$0</span>
-                    </div>
-                    <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout →</button>
-                </div>
+            <div id="seatMapContainerDiv">
+                <svg id="seatMap" viewBox="5.39 316.40 967.68 372.75" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Pitch Center -->
+                    <rect x="300" y="330" width="380" height="200" rx="8" fill="#1a3d1a" stroke="#2d5a27" stroke-width="2"/>
+                    <circle cx="490" cy="430" r="30" fill="none" stroke="#2d5a27" stroke-width="2"/>
+                    <line x1="490" y1="330" x2="490" y2="530" stroke="#2d5a27" stroke-width="2"/>
+                    
+                    <!-- Upper Level Seats (Premium) -->
+                    <g data-section="101" data-type="premium" class="seat-section">
+                        <path d="M485.7,194.8h36.9c6.4,0,12.7,0,18.8,0.1l2.3-82.8c-3.6,0-7.2,0-10.8,0h-86c-4.7,0-9.4,0-13.9,0.1l2.4,83.1C451,195,467.8,194.8,485.7,194.8z" fill="#2a9d8f" stroke="#1f6e63" stroke-width="1.5" opacity="0.85"/>
+                        <text transform="matrix(1 0 0 1 479.76 158.7)" font-family="proxima-nova, sans-serif" font-size="14" fill="white" font-weight="bold">101</text>
+                    </g>
+                    
+                    <g data-section="102" data-type="premium" class="seat-section">
+                        <path d="M602.1,196.6l5.5-82.5c-18.6-1.1-38.5-1.7-59.9-1.9l-2.3,82.8C566,195.1,584.9,195.6,602.1,196.6z" fill="#2a9d8f" stroke="#1f6e63" stroke-width="1.5" opacity="0.85"/>
+                        <text transform="matrix(1 0 0 1 565.68 159.4)" font-family="proxima-nova, sans-serif" font-size="14" fill="white" font-weight="bold">102</text>
+                    </g>
+                    
+                    <g data-section="103" data-type="premium" class="seat-section">
+                        <path d="M658.8,202.1l11-82c-17.7-2.6-37-4.5-58.2-5.8l-5.5,82.5C625.7,197.9,643.2,199.6,658.8,202.1z" fill="#2a9d8f" stroke="#1f6e63" stroke-width="1.5" opacity="0.85"/>
+                        <text transform="matrix(1 0 0 1 627.42 163.22)" font-family="proxima-nova, sans-serif" font-size="14" fill="white" font-weight="bold">103</text>
+                    </g>
+                    
+                    <g data-section="104" data-type="premium" class="seat-section">
+                        <path d="M704,213.4l20.9-81.9c-15.3-4.4-32.3-8-51.2-10.9l-11,82.1C678.5,205.4,692.2,208.9,704,213.4z" fill="#2a9d8f" stroke="#1f6e63" stroke-width="1.5" opacity="0.85"/>
+                        <text transform="matrix(1 0 0 1 683.3 172.06)" font-family="proxima-nova, sans-serif" font-size="14" fill="white" font-weight="bold">104</text>
+                    </g>
+                    
+                    <!-- Lower Level Seats (Standard) -->
+                    <g data-section="106" data-type="standard" class="seat-section">
+                        <path d="M315.1,204l-13-82.3c-18.2,3-34.7,6.7-49.7,11.2l19.1,82.4C283.8,210.7,298.2,206.9,315.1,204z" fill="#2c7da0" stroke="#1f5a7a" stroke-width="1.5" opacity="0.85"/>
+                        <text transform="matrix(1 0 0 1 273.38 173.63)" font-family="proxima-nova, sans-serif" font-size="14" fill="white" font-weight="bold">106</text>
+                    </g>
+                    
+                    <g data-section="107" data-type="standard" class="seat-section">
+                        <path d="M371.4,197.8l-8.2-83c-20.7,1.5-39.7,3.6-57.2,6.4l13,82.2C334.4,200.9,351.8,199.1,371.4,197.8z" fill="#2c7da0" stroke="#1f5a7a" stroke-width="1.5" opacity="0.85"/>
+                        <text transform="matrix(1 0 0 1 329.08 164.14)" font-family="proxima-nova, sans-serif" font-size="14" fill="white" font-weight="bold">107</text>
+                    </g>
+                    
+                    <g data-section="108" data-type="standard" class="seat-section">
+                        <path d="M431.3,195.3l-2.4-83.1c-22,0.3-42.6,1-61.7,2.3l8.2,83C392.4,196.4,411,195.7,431.3,195.3z" fill="#2c7da0" stroke="#1f5a7a" stroke-width="1.5" opacity="0.85"/>
+                        <text transform="matrix(1 0 0 1 389.03 159.89)" font-family="proxima-nova, sans-serif" font-size="14" fill="white" font-weight="bold">108</text>
+                    </g>
+                    
+                    <!-- VIP Section -->
+                    <g data-section="VIP" data-type="vip" class="seat-section">
+                        <rect x="380" y="100" width="220" height="55" rx="10" fill="#e9c46a" stroke="#d4a832" stroke-width="2" opacity="0.9"/>
+                        <text x="490" y="133" text-anchor="middle" font-family="proxima-nova, sans-serif" font-size="16" fill="#0B132B" font-weight="bold">VIP LOUNGE</text>
+                    </g>
+                    
+                    <!-- Lower Bowl End Zone -->
+                    <g data-section="120" data-type="standard" class="seat-section">
+                        <path d="M504.6,584.7h-24.3c-15.5,0-30.2-0.1-44.2-0.2l-4,81.1c14,0.3,28.6,0.4,44,0.4H514c10.1,0.1,20,0.1,29.5,0l-2.1-81.5C529.7,584.7,517.4,584.8,504.6,584.7z" fill="#2c7da0" stroke="#1f5a7a" stroke-width="1.5" opacity="0.85"/>
+                        <text transform="matrix(1 0 0 1 476.94 630.35)" font-family="proxima-nova, sans-serif" font-size="14" fill="white" font-weight="bold">120</text>
+                    </g>
+                    
+                    <g data-section="121" data-type="standard" class="seat-section">
+                        <path d="M373.9,582.8l-6.8,80c18.8,1.3,39,2.2,60.9,2.7l4-81C410.9,584.2,391.5,583.7,373.9,582.8z" fill="#2c7da0" stroke="#1f5a7a" stroke-width="1.5" opacity="0.85"/>
+                        <text transform="matrix(1 0 0 1 391.27 629.19)" font-family="proxima-nova, sans-serif" font-size="14" fill="white" font-weight="bold">121</text>
+                    </g>
+                </svg>
+            </div>
+            <div class="legend">
+                <div class="legend-item"><div class="legend-color" style="background: #2c7da0;"></div> Standard</div>
+                <div class="legend-item"><div class="legend-color" style="background: #2a9d8f;"></div> Premium</div>
+                <div class="legend-item"><div class="legend-color" style="background: #e9c46a;"></div> VIP</div>
+                <div class="legend-item"><div class="legend-color" style="background: #C5A028;"></div> Selected</div>
             </div>
         </div>
 
-        <!-- Match Description -->
-        <div class="event-desc">
-            <h3>About This Match</h3>
-            <p>The FIFA World Cup 2026 brings together South Korea and Czechia in an exciting group stage encounter at Estadio Akron in Guadalajara. This match promises fast-paced action as Asian speed meets European tactical discipline.</p>
-            <h3>Why Buy from TicketRoyal?</h3>
-            <ul>
-                <li>✅ 100% Verified Tickets</li>
-                <li>✅ Secure Checkout</li>
-                <li>✅ Instant Delivery</li>
-                <li>✅ 24/7 Support</li>
-                <li>✅ <strong>150% Money Back Guarantee</strong></li>
-            </ul>
+        <!-- RIGHT PANEL: Tickets + Cart -->
+        <div class="right-panel">
+            <div class="ticket-list-section">
+                <div class="ticket-header">
+                    <h3>Available Tickets</h3>
+                </div>
+                <div class="ticket-list" id="ticketsList"></div>
+            </div>
+
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">$0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Service Fee (10%)</span>
+                    <span id="serviceFee">$0</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total Due</span>
+                    <span id="total">$0</span>
+                </div>
+                <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout →</button>
+            </div>
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- MATCH DESCRIPTION -->
+    <div class="event-desc">
+        <h3>About This Match</h3>
+        <p>The FIFA World Cup 2026 brings together South Korea and Czechia in an exciting group stage encounter. This match promises fast-paced action as Asian speed meets European tactical discipline.</p>
+        <h3>Why Buy from TicketRoyal?</h3>
+        <ul>
+            <li>✅ 100% Verified Tickets</li>
+            <li>✅ Secure Checkout</li>
+            <li>✅ Instant Delivery</li>
+            <li>✅ 24/7 Support</li>
+            <li>✅ <strong>150% Money Back Guarantee</strong></li>
+        </ul>
+    </div>
+
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-links">
             <a href="#">Home</a> | <a href="#">My Account</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms</a> | <a href="#">Contact</a>
@@ -731,13 +716,37 @@
             { name: "Category 2", desc: "(Max 4 Seats Together)", price: 1100, category: "premium", maxQty: 4, section: "101" },
             { name: "Cat 2", desc: "", price: 1340, category: "premium", maxQty: 4, section: "102" },
             { name: "Category 1", desc: "(Max 4 Seats Together)", price: 1750, category: "premium", maxQty: 4, section: "103" },
-            { name: "Lower Tier", desc: "", price: 2500, category: "premium", maxQty: 4, section: "104" },
             { name: "VIP Lounge", desc: "(Hospitality Included)", price: 5250, category: "vip", maxQty: 10, section: "VIP" }
         ];
 
         let currentFilterQty = 0;
         let currentFilterCategory = 'all';
+        let panZoomInstance = null;
 
+        // Initialize svg-pan-zoom
+        function initPanZoom() {
+            const svgElement = document.getElementById('seatMap');
+            if (svgElement && typeof svgPanZoom !== 'undefined') {
+                panZoomInstance = svgPanZoom(svgElement, {
+                    zoomEnabled: true,
+                    controlIconsEnabled: false,
+                    fit: true,
+                    center: true,
+                    minZoom: 0.5,
+                    maxZoom: 5,
+                    zoomScaleSensitivity: 0.2,
+                    beforeZoom: function() { return true; },
+                    beforePan: function() { return true; }
+                });
+                
+                // Connect buttons
+                document.getElementById('zoomInBtn').addEventListener('click', () => panZoomInstance.zoomIn());
+                document.getElementById('zoomOutBtn').addEventListener('click', () => panZoomInstance.zoomOut());
+                document.getElementById('resetViewBtn').addEventListener('click', () => panZoomInstance.reset());
+            }
+        }
+
+        // Render tickets
         function renderTickets() {
             const container = document.getElementById('ticketsList');
             let filtered = [...ticketCategories];
@@ -834,39 +843,31 @@
             renderTickets();
         }
 
-        function filterMap(type) {
-            const sections = document.querySelectorAll('.seat-section');
-            sections.forEach(section => {
-                const sectionType = section.getAttribute('data-type');
-                if (type === 'all' || sectionType === type) {
-                    section.style.display = '';
-                } else {
-                    section.style.display = 'none';
-                }
-            });
-            document.querySelectorAll('.map-filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.getAttribute('data-filter') === type) btn.classList.add('active');
-            });
-        }
-
-        function selectSection(el) {
-            document.querySelectorAll('.seat-section').forEach(s => s.classList.remove('selected'));
-            el.classList.add('selected');
-            const category = el.getAttribute('data-category');
-            if (category) {
-                document.getElementById('tixCategory').value = category;
-                currentFilterCategory = category;
-                renderTickets();
-                document.querySelector(`.ticket-item[data-category="${category}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        }
-
         function showToast(msg) {
             const toast = document.getElementById('toast');
             toast.textContent = msg;
             toast.style.display = 'block';
             setTimeout(() => toast.style.display = 'none', 2000);
+        }
+
+        // Select section on map
+        function selectSection(el) {
+            document.querySelectorAll('.seat-section').forEach(s => s.classList.remove('selected'));
+            el.classList.add('selected');
+            const category = el.getAttribute('data-type');
+            if (category) {
+                let catValue = 'all';
+                if (category === 'premium') catValue = 'premium';
+                else if (category === 'vip') catValue = 'vip';
+                else if (category === 'standard') catValue = 'standard';
+                
+                document.getElementById('tixCategory').value = catValue;
+                currentFilterCategory = catValue;
+                renderTickets();
+                
+                const ticketEl = document.querySelector(`.ticket-item[data-category="${catValue}"]`);
+                if (ticketEl) ticketEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         }
 
         // Event listeners
@@ -878,7 +879,7 @@
 
         // Initialize
         renderTickets();
-        filterMap('all');
+        setTimeout(initPanZoom, 100);
     </script>
 </body>
 </html>
