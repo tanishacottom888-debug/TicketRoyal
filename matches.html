@@ -215,29 +215,14 @@
             font-weight: 600;
             cursor: pointer;
         }
-        .view-toggle {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            border-top: 1px solid var(--subtle-border);
-            padding-top: 16px;
-            margin-top: 8px;
-        }
-        .view-btn {
-            background: transparent;
-            border: 1px solid var(--subtle-border);
-            padding: 8px 20px;
-            border-radius: 30px;
-            cursor: pointer;
+        .results-count {
+            margin-top: 12px;
             font-size: 13px;
-        }
-        .view-btn.active {
-            background: var(--rich-gold);
-            border-color: var(--rich-gold);
-            color: var(--deep-navy);
+            color: var(--slate-gray);
+            text-align: center;
         }
 
-        /* MATCH CARD - NEW eTICKETING STYLE LAYOUT */
+        /* MATCH CARD STYLES */
         .matches-section {
             padding: 30px 20px;
         }
@@ -262,7 +247,6 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
         
-        /* Main row layout - flex on desktop */
         .match-row {
             display: flex;
             flex-wrap: wrap;
@@ -270,7 +254,6 @@
             padding: 16px 20px;
         }
         
-        /* Column 1: Date Box (Left) */
         .match-date-box {
             min-width: 100px;
             text-align: center;
@@ -284,7 +267,6 @@
             font-weight: 600;
             color: var(--rich-gold);
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
         
         .match-date-number {
@@ -299,7 +281,6 @@
             color: var(--slate-gray);
         }
         
-        /* Column 2: Teams & Match Info (Middle) */
         .match-teams-box {
             flex: 2;
             padding-right: 20px;
@@ -358,7 +339,6 @@
             gap: 6px;
         }
         
-        /* Column 3: Venue (Right) */
         .match-venue-box {
             min-width: 180px;
             text-align: left;
@@ -384,7 +364,6 @@
             gap: 4px;
         }
         
-        /* Price & Button Row */
         .match-action-row {
             display: flex;
             justify-content: flex-end;
@@ -406,7 +385,7 @@
             color: var(--slate-gray);
         }
         
-        .buy-ticket-btn {
+        .view-ticket-btn {
             background: var(--deep-navy);
             color: var(--pure-white);
             border: none;
@@ -416,9 +395,12 @@
             cursor: pointer;
             font-size: 13px;
             transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
-        .buy-ticket-btn:hover {
+        .view-ticket-btn:hover {
             background: var(--rich-gold);
             color: var(--deep-navy);
         }
@@ -470,7 +452,6 @@
             font-size: 14px;
         }
 
-        /* Pagination */
         .pagination {
             display: flex;
             justify-content: center;
@@ -522,18 +503,6 @@
                 margin-bottom: 12px;
             }
             
-            .match-teams-row {
-                gap: 12px;
-            }
-            
-            .match-team-flag {
-                font-size: 28px;
-            }
-            
-            .match-team-name {
-                font-size: 14px;
-            }
-            
             .match-venue-box {
                 border-left: none;
                 border-top: 1px solid var(--subtle-border);
@@ -544,12 +513,6 @@
             
             .match-action-row {
                 justify-content: space-between;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .matches-grid {
-                max-width: 1200px;
             }
         }
     </style>
@@ -626,9 +589,7 @@
             </select>
             <button class="apply-filters" onclick="applyFilters()">Apply Filters</button>
         </div>
-        <div class="view-toggle">
-            <button class="view-btn active" onclick="setView('grid')">Card View</button>
-        </div>
+        <div class="results-count" id="resultsCount"></div>
     </div>
 
     <!-- Matches Section -->
@@ -650,7 +611,7 @@
         <div class="footer-bottom">© 2020 TicketRoyal — Official FIFA World Cup 2026™ Ticket Marketplace</div>
     </footer>
 
-    <div class="toast" id="toast">✓ Ticket selected!</div>
+    <div class="toast" id="toast">✓ Loading ticket page...</div>
 
     <script>
         // Complete Match Data - World Cup 2026 (48 teams, 12 groups format)
@@ -684,7 +645,6 @@
         ];
 
         let currentMatches = [...allMatches];
-        let currentView = 'grid';
         let currentPage = 1;
         const matchesPerPage = 10;
 
@@ -694,17 +654,24 @@
             const pageMatches = currentMatches.slice(start, end);
             const container = document.getElementById('matchesGrid');
             
+            if (pageMatches.length === 0) {
+                container.innerHTML = '<div style="text-align:center; padding:40px; color:var(--slate-gray);">No matches found. Try different filters.</div>';
+                document.getElementById('pagination').innerHTML = '';
+                document.getElementById('resultsCount').innerHTML = '0 matches found';
+                return;
+            }
+            
+            document.getElementById('resultsCount').innerHTML = `${currentMatches.length} matches found`;
+            
             container.innerHTML = pageMatches.map(m => `
                 <div class="match-card">
                     <div class="match-row">
-                        <!-- Column 1: Date Box -->
                         <div class="match-date-box">
                             <div class="match-day">${m.day}</div>
                             <div class="match-date-number">${m.dayNum}</div>
                             <div class="match-month">${m.month}</div>
                         </div>
                         
-                        <!-- Column 2: Teams & Match Info -->
                         <div class="match-teams-box">
                             <div class="match-teams-row">
                                 <div class="match-team-item">
@@ -721,20 +688,20 @@
                             <div class="match-time"><span>⏰</span> ${m.time}</div>
                         </div>
                         
-                        <!-- Column 3: Venue -->
                         <div class="match-venue-box">
                             <div class="venue-name"><span>🏟️</span> ${m.stadium}</div>
                             <div class="venue-city"><span>📍</span> ${m.city}</div>
                         </div>
                     </div>
                     
-                    <!-- Action Row: Price + Button -->
                     <div class="match-action-row">
                         <div>
                             <span class="match-price-large">$${m.price}</span>
                             <span class="match-price-label"> starting from</span>
                         </div>
-                        <button class="buy-ticket-btn" onclick="selectTicket(${m.id})">Select Tickets →</button>
+                        <button class="view-ticket-btn" onclick="viewTicket(${m.id})">
+                            🎫 View Tickets →
+                        </button>
                     </div>
                 </div>
             `).join('');
@@ -782,20 +749,31 @@
             renderMatches();
         }
 
-        function setView(view) {
-            currentView = view;
-            document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
-            if (view === 'grid') {
-                document.querySelectorAll('.view-btn')[0].classList.add('active');
-            }
-            renderMatches();
-        }
-
-        function selectTicket(matchId) {
-            showToast('✓ Ticket selected! Redirecting to checkout...');
+        // NEW: View Ticket function - redirects to ticket.html with match data
+        function viewTicket(matchId) {
+            const match = allMatches.find(m => m.id === matchId);
+            if (!match) return;
+            
+            // Build URL parameters to pass to ticket page
+            const params = new URLSearchParams({
+                id: match.id,
+                team1: match.team1,
+                team2: match.team2,
+                flag1: match.flag1,
+                flag2: match.flag2,
+                stadium: match.stadium,
+                city: match.city,
+                date: match.date,
+                time: match.time,
+                stage: match.stage,
+                price: match.price
+            });
+            
+            showToast(`Loading ${match.team1} vs ${match.team2} tickets...`);
+            
             setTimeout(() => {
-                window.location.href = 'checkout.html';
-            }, 1500);
+                window.location.href = `ticket.html?${params.toString()}`;
+            }, 800);
         }
 
         function showToast(msg) {
