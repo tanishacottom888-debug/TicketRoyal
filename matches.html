@@ -33,7 +33,7 @@
 
         @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
 
-        /* Top Navigation Bar - NO BACK BUTTON */
+        /* Top Navigation Bar */
         .top-bar {
             background: var(--pure-white);
             padding: 12px 20px;
@@ -237,166 +237,189 @@
             color: var(--deep-navy);
         }
 
-        /* Matches Grid */
+        /* MATCH CARD - NEW eTICKETING STYLE LAYOUT */
         .matches-section {
             padding: 30px 20px;
         }
         .matches-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
             max-width: 1200px;
             margin: 0 auto;
         }
-        .matches-grid.list-view {
-            grid-template-columns: 1fr;
-        }
+        
         .match-card {
             background: var(--pure-white);
-            border-radius: 20px;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
+        
         .match-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
-        .match-date {
-            background: var(--deep-navy);
-            color: var(--pure-white);
-            padding: 10px 16px;
-            font-size: 12px;
+        
+        /* Main row layout - flex on desktop */
+        .match-row {
             display: flex;
-            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 16px 20px;
         }
-        .match-stage {
-            background: rgba(197, 160, 40, 0.15);
+        
+        /* Column 1: Date Box (Left) */
+        .match-date-box {
+            min-width: 100px;
+            text-align: center;
+            border-right: 1px solid var(--subtle-border);
+            padding-right: 20px;
+            margin-right: 20px;
+        }
+        
+        .match-day {
+            font-size: 13px;
+            font-weight: 600;
             color: var(--rich-gold);
-            padding: 3px 8px;
-            border-radius: 20px;
-            font-size: 10px;
-            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .match-teams {
-            padding: 24px 20px;
+        
+        .match-date-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--deep-navy);
+            line-height: 1;
+        }
+        
+        .match-month {
+            font-size: 13px;
+            color: var(--slate-gray);
+        }
+        
+        /* Column 2: Teams & Match Info (Middle) */
+        .match-teams-box {
+            flex: 2;
+            padding-right: 20px;
+        }
+        
+        .match-teams-row {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-start;
+            gap: 20px;
+            flex-wrap: wrap;
         }
-        .match-team {
-            text-align: center;
-            flex: 1;
+        
+        .match-team-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .match-flag {
-            font-size: 42px;
-            margin-bottom: 8px;
+        
+        .match-team-flag {
+            font-size: 32px;
         }
+        
         .match-team-name {
             font-weight: 700;
-            font-size: 15px;
+            font-size: 16px;
+            color: var(--deep-navy);
         }
-        .match-vs {
-            width: 36px;
-            height: 36px;
+        
+        .match-vs-badge {
+            width: 32px;
+            height: 32px;
             background: var(--light-bg);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 800;
-        }
-        .match-info-row {
-            padding: 0 20px 12px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
             color: var(--slate-gray);
         }
-        .match-price-row {
+        
+        .match-stage-name {
+            font-size: 12px;
+            color: var(--rich-gold);
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        
+        .match-time {
+            font-size: 13px;
+            color: var(--slate-gray);
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        /* Column 3: Venue (Right) */
+        .match-venue-box {
+            min-width: 180px;
+            text-align: left;
+            border-left: 1px solid var(--subtle-border);
+            padding-left: 20px;
+        }
+        
+        .venue-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--deep-navy);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .venue-city {
+            font-size: 12px;
+            color: var(--slate-gray);
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        /* Price & Button Row */
+        .match-action-row {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 20px;
             padding: 12px 20px;
             border-top: 1px solid var(--subtle-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: var(--light-bg);
         }
-        .match-price {
-            font-size: 20px;
+        
+        .match-price-large {
+            font-size: 22px;
             font-weight: 800;
             color: var(--rich-gold);
         }
+        
+        .match-price-label {
+            font-size: 11px;
+            color: var(--slate-gray);
+        }
+        
         .buy-ticket-btn {
             background: var(--deep-navy);
             color: var(--pure-white);
             border: none;
-            padding: 10px 20px;
+            padding: 10px 24px;
             border-radius: 40px;
             font-weight: 600;
             cursor: pointer;
             font-size: 13px;
+            transition: all 0.2s;
         }
+        
         .buy-ticket-btn:hover {
             background: var(--rich-gold);
-            color: var(--deep-navy);
-        }
-
-        /* List View Style */
-        .matches-grid.list-view .match-card {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            padding: 16px;
-        }
-        .matches-grid.list-view .match-date {
-            background: transparent;
-            color: var(--deep-navy);
-            padding: 0;
-            min-width: 100px;
-        }
-        .matches-grid.list-view .match-teams {
-            padding: 0;
-            flex: 2;
-            min-width: 200px;
-        }
-        .matches-grid.list-view .match-flag {
-            font-size: 32px;
-        }
-        .matches-grid.list-view .match-info-row {
-            padding: 0;
-            flex-direction: column;
-            gap: 4px;
-            min-width: 150px;
-        }
-        .matches-grid.list-view .match-price-row {
-            padding: 0;
-            border: none;
-            flex-direction: column;
-            align-items: flex-end;
-            min-width: 120px;
-        }
-        .matches-grid.list-view .buy-ticket-btn {
-            margin-top: 8px;
-        }
-
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-        .page-btn {
-            background: var(--pure-white);
-            border: 1px solid var(--subtle-border);
-            padding: 8px 14px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .page-btn.active {
-            background: var(--rich-gold);
-            border-color: var(--rich-gold);
             color: var(--deep-navy);
         }
 
@@ -447,16 +470,86 @@
             font-size: 14px;
         }
 
-        @media (min-width: 768px) {
-            .matches-grid {
-                grid-template-columns: repeat(2, 1fr);
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .page-btn {
+            background: var(--pure-white);
+            border: 1px solid var(--subtle-border);
+            padding: 8px 14px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .page-btn.active {
+            background: var(--rich-gold);
+            border-color: var(--rich-gold);
+            color: var(--deep-navy);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .match-row {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 16px;
             }
-            .page-header h1 { font-size: 40px; }
+            
+            .match-date-box {
+                border-right: none;
+                border-bottom: 1px solid var(--subtle-border);
+                padding-right: 0;
+                padding-bottom: 12px;
+                margin-right: 0;
+                margin-bottom: 12px;
+                text-align: left;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+            
+            .match-date-number {
+                font-size: 24px;
+            }
+            
+            .match-teams-box {
+                padding-right: 0;
+                margin-bottom: 12px;
+            }
+            
+            .match-teams-row {
+                gap: 12px;
+            }
+            
+            .match-team-flag {
+                font-size: 28px;
+            }
+            
+            .match-team-name {
+                font-size: 14px;
+            }
+            
+            .match-venue-box {
+                border-left: none;
+                border-top: 1px solid var(--subtle-border);
+                padding-left: 0;
+                padding-top: 12px;
+                margin-top: 4px;
+            }
+            
+            .match-action-row {
+                justify-content: space-between;
+            }
         }
 
         @media (min-width: 1024px) {
             .matches-grid {
-                grid-template-columns: repeat(3, 1fr);
+                max-width: 1200px;
             }
         }
     </style>
@@ -476,7 +569,7 @@
         </button>
     </div>
 
-    <!-- Sidebar - FIXED: Home link now works -->
+    <!-- Sidebar -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header"><h3>Menu</h3><button class="close-sidebar" onclick="closeSidebar()">✕</button></div>
@@ -534,8 +627,7 @@
             <button class="apply-filters" onclick="applyFilters()">Apply Filters</button>
         </div>
         <div class="view-toggle">
-            <button class="view-btn active" onclick="setView('grid')">Grid View</button>
-            <button class="view-btn" onclick="setView('list')">List View</button>
+            <button class="view-btn active" onclick="setView('grid')">Card View</button>
         </div>
     </div>
 
@@ -561,33 +653,40 @@
     <div class="toast" id="toast">✓ Ticket selected!</div>
 
     <script>
-        // Complete Match Data - World Cup 2026
+        // Complete Match Data - World Cup 2026 (48 teams, 12 groups format)
         const allMatches = [
-            { id: 1, stage: "Group A", team1: "USA", team2: "Mexico", flag1: "🇺🇸", flag2: "🇲🇽", stadium: "MetLife Stadium", city: "New Jersey", date: "Thu, Jun 11", time: "8:00 PM", price: 199 },
-            { id: 2, stage: "Group A", team1: "Canada", team2: "Panama", flag1: "🇨🇦", flag2: "🇵🇦", stadium: "MetLife Stadium", city: "New Jersey", date: "Fri, Jun 12", time: "4:00 PM", price: 179 },
-            { id: 3, stage: "Group B", team1: "Brazil", team2: "Argentina", flag1: "🇧🇷", flag2: "🇦🇷", stadium: "SoFi Stadium", city: "Los Angeles", date: "Fri, Jun 12", time: "9:00 PM", price: 249 },
-            { id: 4, stage: "Group B", team1: "Uruguay", team2: "Colombia", flag1: "🇺🇾", flag2: "🇨🇴", stadium: "SoFi Stadium", city: "Los Angeles", date: "Sat, Jun 13", time: "6:00 PM", price: 219 },
-            { id: 5, stage: "Group C", team1: "England", team2: "Germany", flag1: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", flag2: "🇩🇪", stadium: "AT&T Stadium", city: "Dallas", date: "Sat, Jun 13", time: "7:00 PM", price: 229 },
-            { id: 6, stage: "Group C", team1: "Netherlands", team2: "Denmark", flag1: "🇳🇱", flag2: "🇩🇰", stadium: "AT&T Stadium", city: "Dallas", date: "Sun, Jun 14", time: "4:00 PM", price: 199 },
-            { id: 7, stage: "Group D", team1: "France", team2: "Spain", flag1: "🇫🇷", flag2: "🇪🇸", stadium: "Hard Rock Stadium", city: "Miami", date: "Sun, Jun 14", time: "10:00 PM", price: 239 },
-            { id: 8, stage: "Group D", team1: "Belgium", team2: "Croatia", flag1: "🇧🇪", flag2: "🇭🇷", stadium: "Hard Rock Stadium", city: "Miami", date: "Mon, Jun 15", time: "4:00 PM", price: 209 },
-            { id: 9, stage: "Group E", team1: "Portugal", team2: "Netherlands", flag1: "🇵🇹", flag2: "🇳🇱", stadium: "Mercedes-Benz Stadium", city: "Atlanta", date: "Mon, Jun 15", time: "6:00 PM", price: 219 },
-            { id: 10, stage: "Group E", team1: "Switzerland", team2: "Serbia", flag1: "🇨🇭", flag2: "🇷🇸", stadium: "Mercedes-Benz Stadium", city: "Atlanta", date: "Tue, Jun 16", time: "4:00 PM", price: 189 },
-            { id: 11, stage: "Group F", team1: "Italy", team2: "Belgium", flag1: "🇮🇹", flag2: "🇧🇪", stadium: "Gillette Stadium", city: "Boston", date: "Tue, Jun 16", time: "8:30 PM", price: 209 },
-            { id: 12, stage: "Group F", team1: "Poland", team2: "Sweden", flag1: "🇵🇱", flag2: "🇸🇪", stadium: "Gillette Stadium", city: "Boston", date: "Wed, Jun 17", time: "4:00 PM", price: 189 },
-            { id: 13, stage: "Round of 16", team1: "Winner A", team2: "Runner-up B", flag1: "🏆", flag2: "🏆", stadium: "Levi's Stadium", city: "San Francisco", date: "Sat, Jun 27", time: "4:00 PM", price: 299 },
-            { id: 14, stage: "Round of 16", team1: "Winner C", team2: "Runner-up D", flag1: "🏆", flag2: "🏆", stadium: "NRG Stadium", city: "Houston", date: "Sun, Jun 28", time: "8:00 PM", price: 299 },
-            { id: 15, stage: "Quarter Final", team1: "TBD", team2: "TBD", flag1: "🏆", flag2: "🏆", stadium: "Arrowhead Stadium", city: "Kansas City", date: "Thu, Jul 2", time: "8:00 PM", price: 399 },
-            { id: 16, stage: "Quarter Final", team1: "TBD", team2: "TBD", flag1: "🏆", flag2: "🏆", stadium: "Hard Rock Stadium", city: "Miami", date: "Fri, Jul 3", time: "9:00 PM", price: 399 },
-            { id: 17, stage: "Semi Final", team1: "TBD", team2: "TBD", flag1: "🏆", flag2: "🏆", stadium: "NRG Stadium", city: "Houston", date: "Tue, Jul 7", time: "9:00 PM", price: 499 },
-            { id: 18, stage: "Semi Final", team1: "TBD", team2: "TBD", flag1: "🏆", flag2: "🏆", stadium: "AT&T Stadium", city: "Dallas", date: "Wed, Jul 8", time: "8:00 PM", price: 499 },
-            { id: 19, stage: "Final", team1: "TBD", team2: "TBD", flag1: "🏆", flag2: "🏆", stadium: "MetLife Stadium", city: "New Jersey", date: "Sun, Jul 19", time: "7:00 PM", price: 999 }
+            // Group A
+            { id: 1, stage: "Group A", team1: "USA", team2: "Mexico", flag1: "🇺🇸", flag2: "🇲🇽", stadium: "MetLife Stadium", city: "New Jersey", date: "Thu, Jun 11", day: "Thu", dayNum: "11", month: "Jun", time: "8:00 PM", price: 199 },
+            { id: 2, stage: "Group A", team1: "Canada", team2: "Panama", flag1: "🇨🇦", flag2: "🇵🇦", stadium: "MetLife Stadium", city: "New Jersey", date: "Fri, Jun 12", day: "Fri", dayNum: "12", month: "Jun", time: "4:00 PM", price: 179 },
+            // Group B
+            { id: 3, stage: "Group B", team1: "Brazil", team2: "Argentina", flag1: "🇧🇷", flag2: "🇦🇷", stadium: "SoFi Stadium", city: "Los Angeles", date: "Fri, Jun 12", day: "Fri", dayNum: "12", month: "Jun", time: "9:00 PM", price: 249 },
+            { id: 4, stage: "Group B", team1: "Uruguay", team2: "Colombia", flag1: "🇺🇾", flag2: "🇨🇴", stadium: "SoFi Stadium", city: "Los Angeles", date: "Sat, Jun 13", day: "Sat", dayNum: "13", month: "Jun", time: "6:00 PM", price: 219 },
+            // Group C
+            { id: 5, stage: "Group C", team1: "England", team2: "Germany", flag1: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", flag2: "🇩🇪", stadium: "AT&T Stadium", city: "Dallas", date: "Sat, Jun 13", day: "Sat", dayNum: "13", month: "Jun", time: "7:00 PM", price: 229 },
+            { id: 6, stage: "Group C", team1: "Netherlands", team2: "Denmark", flag1: "🇳🇱", flag2: "🇩🇰", stadium: "AT&T Stadium", city: "Dallas", date: "Sun, Jun 14", day: "Sun", dayNum: "14", month: "Jun", time: "4:00 PM", price: 199 },
+            // Group D
+            { id: 7, stage: "Group D", team1: "France", team2: "Spain", flag1: "🇫🇷", flag2: "🇪🇸", stadium: "Hard Rock Stadium", city: "Miami", date: "Sun, Jun 14", day: "Sun", dayNum: "14", month: "Jun", time: "10:00 PM", price: 239 },
+            { id: 8, stage: "Group D", team1: "Belgium", team2: "Croatia", flag1: "🇧🇪", flag2: "🇭🇷", stadium: "Hard Rock Stadium", city: "Miami", date: "Mon, Jun 15", day: "Mon", dayNum: "15", month: "Jun", time: "4:00 PM", price: 209 },
+            // Group E
+            { id: 9, stage: "Group E", team1: "Portugal", team2: "Netherlands", flag1: "🇵🇹", flag2: "🇳🇱", stadium: "Mercedes-Benz Stadium", city: "Atlanta", date: "Mon, Jun 15", day: "Mon", dayNum: "15", month: "Jun", time: "6:00 PM", price: 219 },
+            { id: 10, stage: "Group E", team1: "Switzerland", team2: "Serbia", flag1: "🇨🇭", flag2: "🇷🇸", stadium: "Mercedes-Benz Stadium", city: "Atlanta", date: "Tue, Jun 16", day: "Tue", dayNum: "16", month: "Jun", time: "4:00 PM", price: 189 },
+            // Group F
+            { id: 11, stage: "Group F", team1: "Italy", team2: "Belgium", flag1: "🇮🇹", flag2: "🇧🇪", stadium: "Gillette Stadium", city: "Boston", date: "Tue, Jun 16", day: "Tue", dayNum: "16", month: "Jun", time: "8:30 PM", price: 209 },
+            { id: 12, stage: "Group F", team1: "Poland", team2: "Sweden", flag1: "🇵🇱", flag2: "🇸🇪", stadium: "Gillette Stadium", city: "Boston", date: "Wed, Jun 17", day: "Wed", dayNum: "17", month: "Jun", time: "4:00 PM", price: 189 },
+            // Knockout
+            { id: 13, stage: "Round of 16", team1: "Winner A", team2: "Runner-up B", flag1: "🏆", flag2: "🏆", stadium: "Levi's Stadium", city: "San Francisco", date: "Sat, Jun 27", day: "Sat", dayNum: "27", month: "Jun", time: "4:00 PM", price: 299 },
+            { id: 14, stage: "Round of 16", team1: "Winner C", team2: "Runner-up D", flag1: "🏆", flag2: "🏆", stadium: "NRG Stadium", city: "Houston", date: "Sun, Jun 28", day: "Sun", dayNum: "28", month: "Jun", time: "8:00 PM", price: 299 },
+            { id: 15, stage: "Quarter Final", team1: "TBD", team2: "TBD", flag1: "🏆", flag2: "🏆", stadium: "Arrowhead Stadium", city: "Kansas City", date: "Thu, Jul 2", day: "Thu", dayNum: "02", month: "Jul", time: "8:00 PM", price: 399 },
+            { id: 16, stage: "Quarter Final", team1: "TBD", team2: "TBD", flag1: "🏆", flag2: "🏆", stadium: "Hard Rock Stadium", city: "Miami", date: "Fri, Jul 3", day: "Fri", dayNum: "03", month: "Jul", time: "9:00 PM", price: 399 },
+            { id: 17, stage: "Semi Final", team1: "TBD", team2: "TBD", flag1: "🏆", flag2: "🏆", stadium: "NRG Stadium", city: "Houston", date: "Tue, Jul 7", day: "Tue", dayNum: "07", month: "Jul", time: "9:00 PM", price: 499 },
+            { id: 18, stage: "Semi Final", team1: "TBD", team2: "TBD", flag1: "🏆", flag2: "🏆", stadium: "AT&T Stadium", city: "Dallas", date: "Wed, Jul 8", day: "Wed", dayNum: "08", month: "Jul", time: "8:00 PM", price: 499 },
+            { id: 19, stage: "Final", team1: "TBD", team2: "TBD", flag1: "🏆", flag2: "🏆", stadium: "MetLife Stadium", city: "New Jersey", date: "Sun, Jul 19", day: "Sun", dayNum: "19", month: "Jul", time: "7:00 PM", price: 999 }
         ];
 
         let currentMatches = [...allMatches];
         let currentView = 'grid';
         let currentPage = 1;
-        const matchesPerPage = 12;
+        const matchesPerPage = 10;
 
         function renderMatches() {
             const start = (currentPage - 1) * matchesPerPage;
@@ -595,36 +694,51 @@
             const pageMatches = currentMatches.slice(start, end);
             const container = document.getElementById('matchesGrid');
             
-            if (currentView === 'grid') {
-                container.className = 'matches-grid';
-                container.innerHTML = pageMatches.map(m => `
-                    <div class="match-card">
-                        <div class="match-date"><span>${m.date}</span><span class="match-stage">${m.stage}</span></div>
-                        <div class="match-teams">
-                            <div class="match-team"><div class="match-flag">${m.flag1}</div><div class="match-team-name">${m.team1}</div></div>
-                            <div class="match-vs">VS</div>
-                            <div class="match-team"><div class="match-flag">${m.flag2}</div><div class="match-team-name">${m.team2}</div></div>
+            container.innerHTML = pageMatches.map(m => `
+                <div class="match-card">
+                    <div class="match-row">
+                        <!-- Column 1: Date Box -->
+                        <div class="match-date-box">
+                            <div class="match-day">${m.day}</div>
+                            <div class="match-date-number">${m.dayNum}</div>
+                            <div class="match-month">${m.month}</div>
                         </div>
-                        <div class="match-info-row"><span>🏟️ ${m.stadium}</span><span>📍 ${m.city}</span></div>
-                        <div class="match-info-row"><span>⏰ ${m.time}</span><span>📅 ${m.date}</span></div>
-                        <div class="match-price-row"><div><span class="match-price">$${m.price}</span><span style="font-size:11px;"> from</span></div><button class="buy-ticket-btn" onclick="selectTicket(${m.id})">Select Tickets →</button></div>
-                    </div>
-                `).join('');
-            } else {
-                container.className = 'matches-grid list-view';
-                container.innerHTML = pageMatches.map(m => `
-                    <div class="match-card">
-                        <div class="match-date"><strong>${m.date}</strong><br>${m.time}</div>
-                        <div class="match-teams">
-                            <div class="match-team"><div class="match-flag">${m.flag1}</div><div class="match-team-name">${m.team1}</div></div>
-                            <div class="match-vs">VS</div>
-                            <div class="match-team"><div class="match-flag">${m.flag2}</div><div class="match-team-name">${m.team2}</div></div>
+                        
+                        <!-- Column 2: Teams & Match Info -->
+                        <div class="match-teams-box">
+                            <div class="match-teams-row">
+                                <div class="match-team-item">
+                                    <span class="match-team-flag">${m.flag1}</span>
+                                    <span class="match-team-name">${m.team1}</span>
+                                </div>
+                                <div class="match-vs-badge">VS</div>
+                                <div class="match-team-item">
+                                    <span class="match-team-flag">${m.flag2}</span>
+                                    <span class="match-team-name">${m.team2}</span>
+                                </div>
+                            </div>
+                            <div class="match-stage-name">${m.stage}</div>
+                            <div class="match-time"><span>⏰</span> ${m.time}</div>
                         </div>
-                        <div class="match-info-row"><span>🏟️ ${m.stadium}</span><span>📍 ${m.city}</span><span>${m.stage}</span></div>
-                        <div class="match-price-row"><span class="match-price">$${m.price}</span><button class="buy-ticket-btn" onclick="selectTicket(${m.id})">Select Tickets →</button></div>
+                        
+                        <!-- Column 3: Venue -->
+                        <div class="match-venue-box">
+                            <div class="venue-name"><span>🏟️</span> ${m.stadium}</div>
+                            <div class="venue-city"><span>📍</span> ${m.city}</div>
+                        </div>
                     </div>
-                `).join('');
-            }
+                    
+                    <!-- Action Row: Price + Button -->
+                    <div class="match-action-row">
+                        <div>
+                            <span class="match-price-large">$${m.price}</span>
+                            <span class="match-price-label"> starting from</span>
+                        </div>
+                        <button class="buy-ticket-btn" onclick="selectTicket(${m.id})">Select Tickets →</button>
+                    </div>
+                </div>
+            `).join('');
+            
             renderPagination();
         }
 
@@ -673,8 +787,6 @@
             document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
             if (view === 'grid') {
                 document.querySelectorAll('.view-btn')[0].classList.add('active');
-            } else {
-                document.querySelectorAll('.view-btn')[1].classList.add('active');
             }
             renderMatches();
         }
