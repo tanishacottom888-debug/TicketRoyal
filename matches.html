@@ -749,12 +749,12 @@
             renderMatches();
         }
 
-        // NEW: View Ticket function - redirects to ticket.html with match data
+        // UPDATED: View Ticket function - redirects to tickets.html (plural) with match data
         function viewTicket(matchId) {
             const match = allMatches.find(m => m.id === matchId);
             if (!match) return;
             
-            // Build URL parameters to pass to ticket page
+            // Build URL parameters to pass to tickets page
             const params = new URLSearchParams({
                 id: match.id,
                 team1: match.team1,
@@ -772,7 +772,8 @@
             showToast(`Loading ${match.team1} vs ${match.team2} tickets...`);
             
             setTimeout(() => {
-                window.location.href = `ticket.html?${params.toString()}`;
+                // CORRECTED: redirects to tickets.html (not ticket.html)
+                window.location.href = `tickets.html?${params.toString()}`;
             }, 800);
         }
 
