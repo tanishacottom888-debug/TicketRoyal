@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="TicketRoyal - FIFA World Cup 2026 Ticket Selection">
-    <title>TicketRoyal | Select Your Tickets</title>
+    <meta name="description" content="TicketRoyal - FIFA World Cup 2026 Interactive Seat Selection">
+    <title>TicketRoyal | Select Your Seats</title>
     <style>
         * {
             margin: 0;
@@ -21,9 +21,10 @@
             --slate-gray: #4A5568;
             --subtle-border: #E2E8F0;
             --success-green: #059669;
-            --category-standard: #2c7da0;
-            --category-premium: #2a9d8f;
-            --category-vip: #e9c46a;
+            --danger-red: #DC2626;
+            --available: #10B981;
+            --selected: #C5A028;
+            --unavailable: #9CA3AF;
         }
 
         body {
@@ -35,7 +36,7 @@
 
         @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
 
-        /* Top Navigation Bar */
+        /* Top Navigation */
         .top-bar {
             background: var(--pure-white);
             padding: 12px 20px;
@@ -46,11 +47,7 @@
             top: 0;
             z-index: 100;
             border-bottom: 1px solid var(--subtle-border);
-        }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
+            flex-wrap: wrap;
             gap: 12px;
         }
 
@@ -68,7 +65,7 @@
         .back-btn {
             background: transparent;
             border: 1px solid var(--subtle-border);
-            padding: 8px 16px;
+            padding: 8px 20px;
             border-radius: 40px;
             cursor: pointer;
             font-size: 14px;
@@ -82,14 +79,14 @@
             border-color: var(--deep-navy);
         }
 
-        /* Page Header */
+        /* Match Header */
         .page-header {
             background: linear-gradient(135deg, var(--deep-navy), #1a2a4a);
             padding: 30px 20px;
         }
 
         .match-info-card {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             background: rgba(255,255,255,0.1);
             border-radius: 20px;
@@ -139,7 +136,7 @@
         .match-details {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 30px;
             flex-wrap: wrap;
             color: rgba(255,255,255,0.8);
             font-size: 14px;
@@ -151,26 +148,27 @@
             gap: 8px;
         }
 
-        /* Main Content */
+        /* Main Layout - 2 Columns */
         .main-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 40px 20px;
             display: grid;
-            grid-template-columns: 1fr 380px;
+            grid-template-columns: 1fr 360px;
             gap: 30px;
         }
 
-        /* Seat Map Section */
-        .seat-map-section {
+        /* Seat Map Container */
+        .seat-map-container {
             background: var(--pure-white);
             border-radius: 20px;
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
             overflow: hidden;
+            position: relative;
         }
 
-        .map-header {
-            padding: 20px;
+        .map-toolbar {
+            padding: 16px 20px;
             border-bottom: 1px solid var(--subtle-border);
             display: flex;
             justify-content: space-between;
@@ -179,94 +177,103 @@
             gap: 12px;
         }
 
-        .map-header h3 {
+        .map-title {
             font-size: 18px;
+            font-weight: 600;
         }
 
-        .filter-controls {
+        .filter-buttons {
             display: flex;
-            gap: 12px;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
-        .filter-select {
-            padding: 8px 16px;
+        .filter-btn {
+            padding: 6px 14px;
+            border-radius: 30px;
             border: 1px solid var(--subtle-border);
-            border-radius: 40px;
-            background: var(--pure-white);
-            font-size: 13px;
+            background: white;
             cursor: pointer;
-        }
-
-        .seat-map-container {
-            padding: 20px;
-            background: #f5f5f0;
-            min-height: 500px;
-            position: relative;
-        }
-
-        /* SVG Seat Map Placeholder */
-        .stadium-map {
-            width: 100%;
-            background: #e8e5dd;
-            border-radius: 16px;
-            position: relative;
-        }
-
-        .pitch {
-            background: #2d5a27;
-            height: 200px;
-            margin: 20px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255,255,255,0.5);
-            font-size: 14px;
-        }
-
-        .stands {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            margin: 20px;
-        }
-
-        .stand-section {
-            background: var(--pure-white);
-            border-radius: 12px;
-            padding: 16px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: 2px solid transparent;
-        }
-
-        .stand-section:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .stand-section.selected {
-            border-color: var(--rich-gold);
-            background: #FFF8E7;
-        }
-
-        .stand-name {
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .stand-availability {
             font-size: 12px;
-            color: var(--success-green);
+            transition: all 0.2s;
         }
 
-        .legend {
+        .filter-btn.active {
+            background: var(--rich-gold);
+            border-color: var(--rich-gold);
+            color: var(--deep-navy);
+            font-weight: 600;
+        }
+
+        /* SVG Seat Map */
+        .svg-wrapper {
+            padding: 20px;
+            background: #f0efea;
+            overflow-x: auto;
+            min-height: 500px;
+        }
+
+        #seatMapSvg {
+            width: 100%;
+            min-width: 800px;
+            background: #e8e5dd;
+            border-radius: 12px;
+            cursor: grab;
+            transition: transform 0.1s ease;
+        }
+
+        #seatMapSvg:active {
+            cursor: grabbing;
+        }
+
+        /* SVG Styles for sections */
+        .seat-section {
+            cursor: pointer;
+            transition: filter 0.2s, stroke-width 0.2s;
+        }
+
+        .seat-section:hover {
+            filter: brightness(0.95);
+            stroke-width: 3;
+        }
+
+        .seat-section.available {
+            fill: #10B981;
+            stroke: #059669;
+        }
+
+        .seat-section.selected {
+            fill: var(--rich-gold);
+            stroke: #b8860b;
+            stroke-width: 3;
+        }
+
+        .seat-section.unavailable {
+            fill: #9CA3AF;
+            stroke: #6B7280;
+            cursor: not-allowed;
+        }
+
+        .seat-section.vip {
+            fill: #e9c46a;
+        }
+
+        .seat-section.premium {
+            fill: #2a9d8f;
+        }
+
+        .seat-section.standard {
+            fill: #2c7da0;
+        }
+
+        /* Legend */
+        .map-legend {
+            padding: 16px 20px;
+            border-top: 1px solid var(--subtle-border);
             display: flex;
             justify-content: center;
             gap: 24px;
-            padding: 16px;
-            border-top: 1px solid var(--subtle-border);
+            flex-wrap: wrap;
             font-size: 12px;
         }
 
@@ -282,7 +289,7 @@
             border-radius: 4px;
         }
 
-        /* Ticket Selection Panel */
+        /* Ticket Panel */
         .ticket-panel {
             background: var(--pure-white);
             border-radius: 20px;
@@ -294,6 +301,7 @@
         .panel-header {
             padding: 20px;
             border-bottom: 1px solid var(--subtle-border);
+            text-align: center;
         }
 
         .panel-header h3 {
@@ -301,34 +309,50 @@
             margin-bottom: 4px;
         }
 
-        .panel-header p {
+        .selected-section {
+            background: #FFF8E7;
+            padding: 12px;
+            border-radius: 12px;
+            margin: 16px;
+            text-align: center;
             font-size: 13px;
-            color: var(--slate-gray);
         }
 
-        /* Ticket Categories */
+        .selected-section strong {
+            color: var(--rich-gold);
+        }
+
+        /* Categories */
         .ticket-categories {
-            padding: 0 20px;
+            padding: 0 16px;
         }
 
-        .category-item {
-            padding: 16px 0;
-            border-bottom: 1px solid var(--subtle-border);
+        .category-card {
+            background: var(--light-bg);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .category-card.selected-category {
+            border-color: var(--rich-gold);
+            background: #FFF8E7;
+        }
+
+        .category-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 8px;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 8px;
         }
 
-        .category-info h4 {
+        .category-name {
+            font-weight: 700;
             font-size: 16px;
-            margin-bottom: 4px;
-        }
-
-        .category-info p {
-            font-size: 12px;
-            color: var(--slate-gray);
         }
 
         .category-price {
@@ -337,10 +361,17 @@
             color: var(--rich-gold);
         }
 
+        .category-desc {
+            font-size: 12px;
+            color: var(--slate-gray);
+            margin-bottom: 12px;
+        }
+
         .quantity-control {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
+            justify-content: flex-end;
         }
 
         .qty-btn {
@@ -348,21 +379,26 @@
             height: 32px;
             border-radius: 50%;
             border: 1px solid var(--subtle-border);
-            background: var(--pure-white);
+            background: white;
             cursor: pointer;
             font-size: 16px;
             font-weight: 600;
             transition: all 0.2s;
         }
 
-        .qty-btn:hover {
+        .qty-btn:hover:not(:disabled) {
             background: var(--deep-navy);
-            color: var(--pure-white);
-            border-color: var(--deep-navy);
+            color: white;
+        }
+
+        .qty-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
         }
 
         .qty-value {
             font-weight: 600;
+            font-size: 16px;
             min-width: 30px;
             text-align: center;
         }
@@ -424,25 +460,12 @@
             margin-top: 40px;
         }
 
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            justify-content: space-between;
-        }
-
         .footer-bottom {
             text-align: center;
-            padding-top: 32px;
-            margin-top: 32px;
-            border-top: 1px solid rgba(255,255,255,0.1);
             font-size: 12px;
             color: rgba(255,255,255,0.4);
         }
 
-        /* Toast */
         .toast {
             position: fixed;
             bottom: 20px;
@@ -458,47 +481,34 @@
             font-size: 14px;
         }
 
-        /* Mobile */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .main-content {
                 grid-template-columns: 1fr;
             }
-            
+            .ticket-panel {
+                position: static;
+            }
             .team-name-large {
                 font-size: 20px;
             }
-            
             .team-flag-large {
                 font-size: 48px;
             }
-            
             .match-vs-large {
                 width: 40px;
                 height: 40px;
                 font-size: 18px;
-            }
-            
-            .stands {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .ticket-panel {
-                position: static;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Navigation Bar -->
     <div class="top-bar">
-        <div class="nav-left">
-            <div class="logo">Ticket<span>Royal</span></div>
-        </div>
+        <div class="logo">Ticket<span>Royal</span></div>
         <button class="back-btn" onclick="window.location.href='matches.html'">← Back to Matches</button>
     </div>
 
-    <!-- Page Header with Match Info (loaded from URL params) -->
     <div class="page-header">
         <div class="match-info-card" id="matchInfoCard">
             <div class="match-teams-large">
@@ -522,54 +532,138 @@
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
-        <!-- Seat Map Section -->
-        <div class="seat-map-section">
-            <div class="map-header">
-                <h3>Select Your Seats</h3>
-                <div class="filter-controls">
-                    <select id="sectionFilter" class="filter-select">
-                        <option value="all">All Sections</option>
-                        <option value="sideline">Sideline</option>
-                        <option value="corner">Corners</option>
-                        <option value="endzone">End Zone</option>
-                    </select>
+        <!-- Seat Map Column -->
+        <div class="seat-map-container">
+            <div class="map-toolbar">
+                <span class="map-title">Interactive Seat Map</span>
+                <div class="filter-buttons" id="filterButtons">
+                    <button class="filter-btn active" data-filter="all">All Sections</button>
+                    <button class="filter-btn" data-filter="sideline">Sideline</button>
+                    <button class="filter-btn" data-filter="corner">Corners</button>
+                    <button class="filter-btn" data-filter="endzone">End Zone</button>
                 </div>
             </div>
-            <div class="seat-map-container">
-                <div class="stadium-map">
-                    <div class="pitch">
-                        ⚽ PITCH ⚽
-                    </div>
-                    <div class="stands" id="standsContainer">
-                        <!-- Dynamic stands loaded via JS -->
-                    </div>
-                </div>
-                <div class="legend">
-                    <div class="legend-item"><div class="legend-color" style="background: #e8e5dd;"></div> Available</div>
-                    <div class="legend-item"><div class="legend-color" style="background: #C5A028;"></div> Selected</div>
-                    <div class="legend-item"><div class="legend-color" style="background: #2c7da0;"></div> Standard</div>
-                    <div class="legend-item"><div class="legend-color" style="background: #2a9d8f;"></div> Premium</div>
-                    <div class="legend-item"><div class="legend-color" style="background: #e9c46a;"></div> VIP</div>
-                </div>
+            <div class="svg-wrapper" id="svgWrapper">
+                <svg id="seatMapSvg" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Stadium Outline -->
+                    <rect x="50" y="50" width="900" height="600" rx="30" fill="#1a1a2e" stroke="#333" stroke-width="2"/>
+                    
+                    <!-- Pitch -->
+                    <rect x="200" y="200" width="600" height="300" rx="10" fill="#2d5a27" stroke="#4a8c3f" stroke-width="2"/>
+                    <circle cx="500" cy="350" r="30" fill="none" stroke="#4a8c3f" stroke-width="2"/>
+                    <line x1="500" y1="200" x2="500" y2="500" stroke="#4a8c3f" stroke-width="2"/>
+                    <rect x="350" y="470" width="300" height="30" rx="5" fill="none" stroke="#4a8c3f" stroke-width="2"/>
+                    
+                    <!-- Sideline Sections - Left -->
+                    <g id="section-101" data-section="101" data-type="sideline" data-category="premium" data-available="42" class="seat-section premium available" transform="translate(100, 80)">
+                        <rect x="0" y="0" width="80" height="80" rx="8" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
+                        <text x="40" y="45" text-anchor="middle" fill="white" font-size="12" font-weight="bold">101</text>
+                        <text x="40" y="62" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">42 seats</text>
+                    </g>
+                    
+                    <g id="section-102" data-section="102" data-type="sideline" data-category="premium" data-available="38" class="seat-section premium available" transform="translate(200, 80)">
+                        <rect x="0" y="0" width="80" height="80" rx="8" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
+                        <text x="40" y="45" text-anchor="middle" fill="white" font-size="12" font-weight="bold">102</text>
+                        <text x="40" y="62" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">38 seats</text>
+                    </g>
+                    
+                    <g id="section-103" data-section="103" data-type="sideline" data-category="premium" data-available="56" class="seat-section premium available" transform="translate(300, 80)">
+                        <rect x="0" y="0" width="80" height="80" rx="8" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
+                        <text x="40" y="45" text-anchor="middle" fill="white" font-size="12" font-weight="bold">103</text>
+                        <text x="40" y="62" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">56 seats</text>
+                    </g>
+                    
+                    <!-- Sideline Sections - Right -->
+                    <g id="section-104" data-section="104" data-type="sideline" data-category="premium" data-available="48" class="seat-section premium available" transform="translate(620, 80)">
+                        <rect x="0" y="0" width="80" height="80" rx="8" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
+                        <text x="40" y="45" text-anchor="middle" fill="white" font-size="12" font-weight="bold">104</text>
+                        <text x="40" y="62" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">48 seats</text>
+                    </g>
+                    
+                    <g id="section-105" data-section="105" data-type="sideline" data-category="premium" data-available="44" class="seat-section premium available" transform="translate(720, 80)">
+                        <rect x="0" y="0" width="80" height="80" rx="8" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
+                        <text x="40" y="45" text-anchor="middle" fill="white" font-size="12" font-weight="bold">105</text>
+                        <text x="40" y="62" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">44 seats</text>
+                    </g>
+                    
+                    <!-- Corner Sections -->
+                    <g id="section-106" data-section="106" data-type="corner" data-category="standard" data-available="64" class="seat-section standard available" transform="translate(100, 180)">
+                        <rect x="0" y="0" width="70" height="70" rx="8" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
+                        <text x="35" y="40" text-anchor="middle" fill="white" font-size="11" font-weight="bold">106</text>
+                        <text x="35" y="55" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8">64 seats</text>
+                    </g>
+                    
+                    <g id="section-107" data-section="107" data-type="corner" data-category="standard" data-available="52" class="seat-section standard available" transform="translate(830, 180)">
+                        <rect x="0" y="0" width="70" height="70" rx="8" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
+                        <text x="35" y="40" text-anchor="middle" fill="white" font-size="11" font-weight="bold">107</text>
+                        <text x="35" y="55" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8">52 seats</text>
+                    </g>
+                    
+                    <!-- End Zone Sections -->
+                    <g id="section-108" data-section="108" data-type="endzone" data-category="standard" data-available="78" class="seat-section standard available" transform="translate(250, 540)">
+                        <rect x="0" y="0" width="80" height="60" rx="8" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
+                        <text x="40" y="35" text-anchor="middle" fill="white" font-size="12" font-weight="bold">108</text>
+                        <text x="40" y="50" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">78 seats</text>
+                    </g>
+                    
+                    <g id="section-109" data-section="109" data-type="endzone" data-category="standard" data-available="72" class="seat-section standard available" transform="translate(350, 540)">
+                        <rect x="0" y="0" width="80" height="60" rx="8" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
+                        <text x="40" y="35" text-anchor="middle" fill="white" font-size="12" font-weight="bold">109</text>
+                        <text x="40" y="50" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">72 seats</text>
+                    </g>
+                    
+                    <g id="section-110" data-section="110" data-type="endzone" data-category="standard" data-available="68" class="seat-section standard available" transform="translate(450, 540)">
+                        <rect x="0" y="0" width="80" height="60" rx="8" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
+                        <text x="40" y="35" text-anchor="middle" fill="white" font-size="12" font-weight="bold">110</text>
+                        <text x="40" y="50" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">68 seats</text>
+                    </g>
+                    
+                    <g id="section-111" data-section="111" data-type="endzone" data-category="standard" data-available="74" class="seat-section standard available" transform="translate(550, 540)">
+                        <rect x="0" y="0" width="80" height="60" rx="8" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
+                        <text x="40" y="35" text-anchor="middle" fill="white" font-size="12" font-weight="bold">111</text>
+                        <text x="40" y="50" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">74 seats</text>
+                    </g>
+                    
+                    <g id="section-112" data-section="112" data-type="endzone" data-category="standard" data-available="66" class="seat-section standard available" transform="translate(650, 540)">
+                        <rect x="0" y="0" width="80" height="60" rx="8" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
+                        <text x="40" y="35" text-anchor="middle" fill="white" font-size="12" font-weight="bold">112</text>
+                        <text x="40" y="50" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">66 seats</text>
+                    </g>
+                    
+                    <!-- VIP Sections -->
+                    <g id="section-VIP1" data-section="VIP1" data-type="sideline" data-category="vip" data-available="24" class="seat-section vip available" transform="translate(420, 130)">
+                        <rect x="0" y="0" width="160" height="50" rx="10" fill="currentColor" stroke="currentColor" stroke-width="2"/>
+                        <text x="80" y="30" text-anchor="middle" fill="white" font-size="14" font-weight="bold">VIP LOUNGE</text>
+                        <text x="80" y="45" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="10">24 seats available</text>
+                    </g>
+                </svg>
+            </div>
+            <div class="map-legend">
+                <div class="legend-item"><div class="legend-color" style="background: #2c7da0;"></div> Standard</div>
+                <div class="legend-item"><div class="legend-color" style="background: #2a9d8f;"></div> Premium</div>
+                <div class="legend-item"><div class="legend-color" style="background: #e9c46a;"></div> VIP</div>
+                <div class="legend-item"><div class="legend-color" style="background: #C5A028;"></div> Selected</div>
+                <div class="legend-item"><div class="legend-color" style="background: #9CA3AF;"></div> Sold Out</div>
             </div>
         </div>
 
-        <!-- Ticket Selection Panel -->
+        <!-- Ticket Panel -->
         <div class="ticket-panel">
             <div class="panel-header">
-                <h3>Select Tickets</h3>
-                <p>Choose your category and quantity</p>
+                <h3>Select Your Tickets</h3>
+                <p>Click on any section to select seats</p>
+            </div>
+            
+            <div class="selected-section" id="selectedSectionDisplay">
+                Click a section on the map to begin
             </div>
 
-            <div class="ticket-categories" id="ticketCategories">
-                <!-- Categories loaded dynamically -->
-            </div>
+            <div class="ticket-categories" id="ticketCategories"></div>
 
             <div class="cart-summary">
                 <div class="summary-row">
-                    <span>Tickets Subtotal</span>
+                    <span>Subtotal</span>
                     <span id="subtotal">$0</span>
                 </div>
                 <div class="summary-row">
@@ -581,27 +675,21 @@
                     <span id="total">$0</span>
                 </div>
                 <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout →</button>
-                <div class="guarantee">
-                    🔒 150% Money Back Guarantee • Secure Checkout
-                </div>
+                <div class="guarantee">🔒 150% Money Back Guarantee • Secure Checkout</div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-bottom">© 2026 TicketRoyal — Official FIFA World Cup 2026™ Ticket Marketplace</div>
-        </div>
+        <div class="footer-bottom">© 2026 TicketRoyal — Official FIFA World Cup 2026™ Ticket Marketplace</div>
     </footer>
 
-    <div class="toast" id="toast">✓ Ticket added to cart!</div>
+    <div class="toast" id="toast">✓ Ticket updated!</div>
 
     <script>
-        // Get match data from URL parameters
+        // Get match data from URL
         const urlParams = new URLSearchParams(window.location.search);
         
-        // Default match data (can be overridden by URL params)
         let matchData = {
             id: parseInt(urlParams.get('id')) || 1,
             team1: urlParams.get('team1') || 'USA',
@@ -616,7 +704,7 @@
             basePrice: parseInt(urlParams.get('price')) || 199
         };
 
-        // Display match info
+        // Update match info
         document.getElementById('team1Flag').textContent = matchData.flag1;
         document.getElementById('team1Name').textContent = matchData.team1;
         document.getElementById('team2Flag').textContent = matchData.flag2;
@@ -627,32 +715,6 @@
         document.getElementById('matchCity').textContent = matchData.city;
         document.getElementById('matchStage').textContent = matchData.stage;
 
-        // Ticket categories with pricing
-        const categories = [
-            { id: 'standard', name: 'Standard', description: 'Great view, excellent value', price: matchData.basePrice, color: '#2c7da0', sections: ['sideline'] },
-            { id: 'premium', name: 'Premium', description: 'Prime seating, best views', price: Math.round(matchData.basePrice * 1.8), color: '#2a9d8f', sections: ['sideline', 'corner'] },
-            { id: 'vip', name: 'VIP', description: 'Luxury experience + hospitality', price: Math.round(matchData.basePrice * 3.2), color: '#e9c46a', sections: ['sideline'] }
-        ];
-
-        // Stand sections data
-        const sections = [
-            { id: '101', name: 'Section 101', type: 'sideline', category: 'premium', available: 42 },
-            { id: '102', name: 'Section 102', type: 'sideline', category: 'premium', available: 38 },
-            { id: '103', name: 'Section 103', type: 'corner', category: 'standard', available: 56 },
-            { id: '104', name: 'Section 104', type: 'corner', category: 'standard', available: 48 },
-            { id: '105', name: 'Section 105', type: 'endzone', category: 'standard', available: 64 },
-            { id: '106', name: 'Section 106', type: 'endzone', category: 'standard', available: 52 },
-            { id: 'VIP1', name: 'VIP Lounge', type: 'sideline', category: 'vip', available: 24 },
-            { id: 'VIP2', name: 'VIP West', type: 'sideline', category: 'vip', available: 20 }
-        ];
-
-        // Cart state
-        let cart = {
-            standard: 0,
-            premium: 0,
-            vip: 0
-        };
-
         // Category prices
         const categoryPrices = {
             standard: matchData.basePrice,
@@ -660,49 +722,113 @@
             vip: Math.round(matchData.basePrice * 3.2)
         };
 
-        // Render stands
-        function renderStands() {
-            const filter = document.getElementById('sectionFilter').value;
-            const container = document.getElementById('standsContainer');
-            const filteredSections = filter === 'all' ? sections : sections.filter(s => s.type === filter);
+        // Cart state
+        let cart = { standard: 0, premium: 0, vip: 0 };
+        let selectedSection = null;
+        let currentFilter = 'all';
+
+        // Section to category mapping
+        const sectionCategoryMap = {
+            '106': 'standard', '107': 'standard', '108': 'standard', '109': 'standard',
+            '110': 'standard', '111': 'standard', '112': 'standard',
+            '101': 'premium', '102': 'premium', '103': 'premium', '104': 'premium', '105': 'premium',
+            'VIP1': 'vip'
+        };
+
+        const sectionTypeMap = {
+            '101': 'sideline', '102': 'sideline', '103': 'sideline', '104': 'sideline', '105': 'sideline',
+            '106': 'corner', '107': 'corner',
+            '108': 'endzone', '109': 'endzone', '110': 'endzone', '111': 'endzone', '112': 'endzone',
+            'VIP1': 'sideline'
+        };
+
+        // Section data
+        const sections = {
+            '101': { name: 'Section 101', type: 'sideline', category: 'premium', available: 42 },
+            '102': { name: 'Section 102', type: 'sideline', category: 'premium', available: 38 },
+            '103': { name: 'Section 103', type: 'sideline', category: 'premium', available: 56 },
+            '104': { name: 'Section 104', type: 'sideline', category: 'premium', available: 48 },
+            '105': { name: 'Section 105', type: 'sideline', category: 'premium', available: 44 },
+            '106': { name: 'Section 106', type: 'corner', category: 'standard', available: 64 },
+            '107': { name: 'Section 107', type: 'corner', category: 'standard', available: 52 },
+            '108': { name: 'Section 108', type: 'endzone', category: 'standard', available: 78 },
+            '109': { name: 'Section 109', type: 'endzone', category: 'standard', available: 72 },
+            '110': { name: 'Section 110', type: 'endzone', category: 'standard', available: 68 },
+            '111': { name: 'Section 111', type: 'endzone', category: 'standard', available: 74 },
+            '112': { name: 'Section 112', type: 'endzone', category: 'standard', available: 66 },
+            'VIP1': { name: 'VIP Lounge', type: 'sideline', category: 'vip', available: 24 }
+        };
+
+        // Initialize SVG interactions
+        function initSvgInteractions() {
+            const sections = document.querySelectorAll('.seat-section');
             
-            container.innerHTML = filteredSections.map(section => `
-                <div class="stand-section ${getSelectedSectionClass(section.id)}" data-section-id="${section.id}" onclick="selectSection('${section.id}')">
-                    <div class="stand-name">${section.name}</div>
-                    <div class="stand-availability">${section.available} seats left</div>
-                </div>
-            `).join('');
+            sections.forEach(section => {
+                section.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const sectionId = section.id.replace('section-', '');
+                    selectSection(sectionId);
+                });
+            });
         }
 
-        function getSelectedSectionClass(sectionId) {
-            // Check if this section's category is selected
-            const section = sections.find(s => s.id === sectionId);
-            if (section && cart[section.category] > 0) {
-                return 'selected';
-            }
-            return '';
-        }
-
+        // Select a section
         function selectSection(sectionId) {
-            const section = sections.find(s => s.id === sectionId);
-            if (section) {
-                // Highlight the category
-                showToast(`${section.name} - ${section.category.toUpperCase()} seats selected`);
-                // Scroll to category
-                document.getElementById(`cat-${section.category}`).scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if (selectedSection === sectionId) {
+                // Deselect
+                selectedSection = null;
+                document.querySelectorAll('.seat-section').forEach(s => s.classList.remove('selected'));
+                document.getElementById('selectedSectionDisplay').innerHTML = 'Click a section on the map to begin';
+            } else {
+                // Clear previous selection
+                document.querySelectorAll('.seat-section').forEach(s => s.classList.remove('selected'));
+                selectedSection = sectionId;
+                const section = document.getElementById(`section-${sectionId}`);
+                if (section) section.classList.add('selected');
+                
+                const sectionData = sections[sectionId];
+                if (sectionData) {
+                    const categoryName = sectionData.category === 'standard' ? 'Standard' : (sectionData.category === 'premium' ? 'Premium' : 'VIP');
+                    const categoryPrice = categoryPrices[sectionData.category];
+                    document.getElementById('selectedSectionDisplay').innerHTML = `
+                        <strong>${sectionData.name}</strong> selected<br>
+                        ${categoryName} • Starting from $${categoryPrice.toLocaleString()}
+                    `;
+                }
+            }
+            updateCategoryHighlight();
+        }
+
+        // Update which category is highlighted based on selected section
+        function updateCategoryHighlight() {
+            const cards = document.querySelectorAll('.category-card');
+            cards.forEach(card => card.classList.remove('selected-category'));
+            
+            if (selectedSection) {
+                const category = sectionCategoryMap[selectedSection];
+                if (category) {
+                    const targetCard = document.getElementById(`cat-${category}`);
+                    if (targetCard) targetCard.classList.add('selected-category');
+                }
             }
         }
 
-        // Render ticket categories
+        // Render categories
         function renderCategories() {
             const container = document.getElementById('ticketCategories');
+            const categories = [
+                { id: 'standard', name: 'Standard', desc: 'Great views, excellent value', price: categoryPrices.standard },
+                { id: 'premium', name: 'Premium', desc: 'Prime seating, best views', price: categoryPrices.premium },
+                { id: 'vip', name: 'VIP', desc: 'Luxury experience + hospitality', price: categoryPrices.vip }
+            ];
+            
             container.innerHTML = categories.map(cat => `
-                <div class="category-item" id="cat-${cat.id}">
-                    <div class="category-info">
-                        <h4>${cat.name}</h4>
-                        <p>${cat.description}</p>
+                <div class="category-card" id="cat-${cat.id}">
+                    <div class="category-header">
+                        <span class="category-name">${cat.name}</span>
+                        <span class="category-price">$${cat.price.toLocaleString()}</span>
                     </div>
-                    <div class="category-price">$${categoryPrices[cat.id]}</div>
+                    <div class="category-desc">${cat.desc}</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="updateQuantity('${cat.id}', -1)">−</button>
                         <span class="qty-value" id="qty-${cat.id}">${cart[cat.id]}</span>
@@ -719,24 +845,8 @@
                 cart[category] = newValue;
                 document.getElementById(`qty-${category}`).textContent = cart[category];
                 updateCartSummary();
-                updateStandHighlights();
                 showToast(`${delta > 0 ? 'Added' : 'Removed'} ${category} ticket`);
             }
-        }
-
-        // Update stand highlights based on selected categories
-        function updateStandHighlights() {
-            const selectedCategories = Object.keys(cart).filter(cat => cart[cat] > 0);
-            const standElements = document.querySelectorAll('.stand-section');
-            standElements.forEach(el => {
-                const sectionId = el.dataset.sectionId;
-                const section = sections.find(s => s.id === sectionId);
-                if (section && selectedCategories.includes(section.category)) {
-                    el.classList.add('selected');
-                } else {
-                    el.classList.remove('selected');
-                }
-            });
         }
 
         // Update cart summary
@@ -751,7 +861,6 @@
             document.getElementById('serviceFee').textContent = `$${serviceFee.toLocaleString()}`;
             document.getElementById('total').textContent = `$${total.toLocaleString()}`;
             
-            // Store in localStorage for checkout
             localStorage.setItem('ticketCart', JSON.stringify({
                 match: matchData,
                 cart: cart,
@@ -759,6 +868,32 @@
                 serviceFee: serviceFee,
                 total: total
             }));
+        }
+
+        // Filter sections by type
+        function filterSections(filterType) {
+            currentFilter = filterType;
+            const sections = document.querySelectorAll('.seat-section');
+            
+            sections.forEach(section => {
+                const sectionId = section.id.replace('section-', '');
+                const sectionType = sectionTypeMap[sectionId];
+                
+                if (filterType === 'all' || sectionType === filterType) {
+                    section.style.display = '';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+            
+            // Update active button state
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.filter === filterType) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
         }
 
         // Proceed to checkout
@@ -774,24 +909,24 @@
             }, 1000);
         }
 
-        // Show toast message
         function showToast(message) {
             const toast = document.getElementById('toast');
             toast.textContent = message;
             toast.style.display = 'block';
-            setTimeout(() => {
-                toast.style.display = 'none';
-            }, 2000);
+            setTimeout(() => toast.style.display = 'none', 2000);
         }
 
-        // Filter sections
-        document.getElementById('sectionFilter').addEventListener('change', renderStands);
+        // Setup filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => filterSections(btn.dataset.filter));
+        });
 
-        // Initialize page
+        // Initialize
         function init() {
             renderCategories();
-            renderStands();
+            initSvgInteractions();
             updateCartSummary();
+            filterSections('all');
         }
 
         init();
