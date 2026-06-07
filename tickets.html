@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <meta name="description" content="TicketRoyal - FIFA World Cup 2026 Ticket Selection">
+    <title>TicketRoyal | Select Your Seats</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --deep-navy: #0B132B;
+            --rich-gold: #C5A028;
+            --soft-gold: #D4AF37;
+            --pure-white: #FFFFFF;
+            --light-bg: #F8F9FC;
+            --slate-gray: #4A5568;
+            --subtle-border: #E2E8F0;
+            --success-green: #059669;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--light-bg);
+            color: var(--deep-navy);
+            overflow-x: hidden;
+        }
+
+        /* HEADER - eTicketing Style */
+        .ticket-header-wrapper {
+            background: linear-gradient(135deg, #0B132B 0%, #1a2a4a 100%);
+            padding: 20px 16px;
+        }
+
+        .ticket-header-info-wrapper {
+            max-width: 100%;
+        }
+
+        .event-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .edv-sub {
+            color: rgba(255,255,255,0.7);
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .edv-date {
+            color: rgba(255,255,255,0.8);
+            font-size: 11px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .edv-date span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .contact-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .quick-contact-info {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .quick-contact-info span {
+            color: white;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .guarantee-block {
+            background: rgba(197, 160, 40, 0.15);
+            padding: 6px 12px;
+            border-radius: 30px;
+            color: var(--rich-gold);
+            font-weight: 600;
+            font-size: 11px;
+            border: 1px solid var(--rich-gold);
+            white-space: nowrap;
+        }
+
+        /* FILTER BAR */
+        .filter-bar {
+            background: white;
+            padding: 12px 16px;
+            margin: 16px;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .filter-select {
+            flex: 1;
+            min-width: 110px;
+            padding: 10px 12px;
+            border: 1px solid var(--subtle-border);
+            border-radius: 30px;
+            background: white;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .reset-btn, .sell-btn {
+            padding: 10px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+        }
+
+        .reset-btn {
+            background: var(--deep-navy);
+            color: white;
+        }
+
+        .sell-btn {
+            background: var(--rich-gold);
+            color: var(--deep-navy);
+        }
+
+        /* MAIN LAYOUT - Mobile First */
+        .main-container {
+            padding: 0 16px 16px;
+        }
+
+        /* SEAT MAP SECTION - Scrollable for mobile */
+        .seat-map-section {
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        .section-header {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--subtle-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .section-header h3 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .map-filters {
+            display: flex;
+            gap: 8px;
+        }
+
+        .map-filter-btn {
+            padding: 5px 12px;
+            border-radius: 30px;
+            border: 1px solid var(--subtle-border);
+            background: white;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .map-filter-btn.active {
+            background: var(--rich-gold);
+            border-color: var(--rich-gold);
+        }
+
+        .svg-scroll-container {
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            background: #f0efea;
+            padding: 16px;
+        }
+
+        #seatMapSvg {
+            width: auto;
+            min-width: 650px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            background: #e8e5dd;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        /* SVG Elements */
+        .seat-section {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .seat-section.selected {
+            stroke: var(--rich-gold);
+            stroke-width: 3;
+            filter: drop-shadow(0 0 6px var(--rich-gold));
+        }
+
+        .legend {
+            padding: 12px 16px;
+            border-top: 1px solid var(--subtle-border);
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-size: 11px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        /* TICKET LIST SECTION */
+        .ticket-list-section {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+        .ticket-header {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--subtle-border);
+            background: white;
+        }
+
+        .ticket-header h3 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .ticket-list {
+            max-height: 400px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .ticket-item {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--subtle-border);
+            transition: background 0.2s;
+        }
+
+        .ticket-item.highlight {
+            background: #FFF8E7;
+        }
+
+        .ticket-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .ticket-info {
+            flex: 2;
+            min-width: 120px;
+        }
+
+        .ticket-name {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+
+        .ticket-desc {
+            font-size: 10px;
+            color: var(--slate-gray);
+        }
+
+        .ticket-price {
+            text-align: center;
+            min-width: 70px;
+        }
+
+        .price-amount {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--rich-gold);
+        }
+
+        .price-each {
+            font-size: 9px;
+            color: var(--slate-gray);
+        }
+
+        .ticket-qty {
+            min-width: 85px;
+        }
+
+        .qty-select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid var(--subtle-border);
+            border-radius: 30px;
+            background: white;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .book-btn {
+            background: var(--deep-navy);
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            width: 100%;
+            min-width: 75px;
+        }
+
+        /* CART SUMMARY - Sticky on mobile */
+        .cart-summary {
+            background: white;
+            border-radius: 20px;
+            padding: 16px;
+            position: sticky;
+            bottom: 0;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .summary-row.total {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid var(--subtle-border);
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: var(--rich-gold);
+            color: var(--deep-navy);
+            border: none;
+            padding: 14px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+
+        /* MATCH DESCRIPTION */
+        .event-desc {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .event-desc h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .event-desc p {
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--slate-gray);
+            margin-bottom: 12px;
+        }
+
+        .event-desc ul {
+            margin-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        .event-desc li {
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--deep-navy);
+            color: white;
+            padding: 30px 16px 20px;
+        }
+
+        .footer-links {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            margin: 0 8px;
+            font-size: 11px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 10px;
+            color: rgba(255,255,255,0.4);
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 16px;
+            right: 16px;
+            background: var(--success-green);
+            color: white;
+            padding: 12px;
+            border-radius: 40px;
+            text-align: center;
+            z-index: 1000;
+            display: none;
+            font-size: 13px;
+        }
+
+        /* Desktop improvements */
+        @media (min-width: 768px) {
+            .ticket-header-wrapper {
+                padding: 25px 40px;
+            }
+            
+            .event-title {
+                font-size: 28px;
+            }
+            
+            .main-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px 20px;
+            }
+            
+            .seat-map-section {
+                margin-bottom: 30px;
+            }
+            
+            .ticket-list-section {
+                margin-bottom: 30px;
+            }
+            
+            .cart-summary {
+                position: sticky;
+                top: 20px;
+                margin-top: 0;
+            }
+            
+            .two-columns {
+                display: grid;
+                grid-template-columns: 1fr 360px;
+                gap: 24px;
+            }
+            
+            .cart-summary {
+                position: sticky;
+                top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="ticket-header-wrapper">
+        <div class="ticket-header-info-wrapper">
+            <h1 class="event-title" id="eventTitle">South Korea vs Czechia Tickets</h1>
+            <div class="edv-sub" id="matchSubtitle">Match 02 - Football World Cup 2026</div>
+            <div class="edv-date" id="matchDetails">
+                <span>📅 <span id="matchDate">Thu 11 Jun 2026</span></span>
+                <span>⏰ <span id="matchTime">20:00</span></span>
+                <span>🏟️ <span id="matchVenue">Estadio Akron</span></span>
+                <span>📍 <span id="matchCity">Guadalajara, Mexico</span></span>
+            </div>
+            <div class="contact-bar">
+                <div class="quick-contact-info">
+                    <span>📞 +1 (347) 391-0177</span>
+                    <span>📞 +44 (0) 207 6648-627</span>
+                </div>
+                <div class="guarantee-block">🛡️ 150% Money Back Guarantee</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <select id="tixQty" class="filter-select">
+                <option value="0">Any tickets</option>
+                <option value="1">1 ticket</option>
+                <option value="2">2 tickets</option>
+                <option value="3">3 tickets</option>
+                <option value="4">4 tickets</option>
+            </select>
+            <select id="tixCategory" class="filter-select">
+                <option value="all">»» All Categories</option>
+                <option value="standard">Standard</option>
+                <option value="premium">Premium</option>
+                <option value="vip">VIP / Hospitality</option>
+            </select>
+            <button class="reset-btn" onclick="resetFilters()">Clear</button>
+            <button class="sell-btn" onclick="showToast('Sell tickets feature coming soon')">Sell</button>
+        </div>
+
+        <!-- Two columns on desktop -->
+        <div class="two-columns">
+            <!-- LEFT: Seat Map -->
+            <div class="seat-map-section">
+                <div class="section-header">
+                    <h3>Interactive Seat Map</h3>
+                    <div class="map-filters">
+                        <button class="map-filter-btn active" data-filter="all" onclick="filterMap('all')">All</button>
+                        <button class="map-filter-btn" data-filter="sideline" onclick="filterMap('sideline')">Sideline</button>
+                        <button class="map-filter-btn" data-filter="corner" onclick="filterMap('corner')">Corners</button>
+                        <button class="map-filter-btn" data-filter="endzone" onclick="filterMap('endzone')">End Zone</button>
+                    </div>
+                </div>
+                <div class="svg-scroll-container">
+                    <svg id="seatMapSvg" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Pitch -->
+                        <rect x="200" y="180" width="500" height="240" rx="10" fill="#2d5a27" stroke="#4a8c3f" stroke-width="2"/>
+                        <circle cx="450" cy="300" r="28" fill="none" stroke="#4a8c3f" stroke-width="2"/>
+                        <line x1="450" y1="180" x2="450" y2="420" stroke="#4a8c3f" stroke-width="2"/>
+                        <rect x="360" y="400" width="180" height="20" rx="5" fill="none" stroke="#4a8c3f" stroke-width="2"/>
+                        <text x="450" y="310" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="14">⚽</text>
+                        
+                        <!-- Sideline Premium Sections -->
+                        <g data-section="101" data-type="sideline" data-category="premium" class="seat-section" transform="translate(80, 50)">
+                            <rect x="0" y="0" width="85" height="75" rx="8" fill="#2a9d8f" stroke="#1f6e63" stroke-width="1.5"/>
+                            <text x="42" y="42" text-anchor="middle" fill="white" font-size="13" font-weight="bold">101</text>
+                            <text x="42" y="58" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9">Premium</text>
+                        </g>
+                        <g data-section="102" data-type="sideline" data-category="premium" class="seat-section" transform="translate(185, 50)">
+                            <rect x="0" y="0" width="85" height="75" rx="8" fill="#2a9d8f" stroke="#1f6e63" stroke-width="1.5"/>
+                            <text x="42" y="42" text-anchor="middle" fill="white" font-size="13" font-weight="bold">102</text>
+                            <text x="42" y="58" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9">Premium</text>
+                        </g>
+                        <g data-section="103" data-type="sideline" data-category="premium" class="seat-section" transform="translate(290, 50)">
+                            <rect x="0" y="0" width="85" height="75" rx="8" fill="#2a9d8f" stroke="#1f6e63" stroke-width="1.5"/>
+                            <text x="42" y="42" text-anchor="middle" fill="white" font-size="13" font-weight="bold">103</text>
+                            <text x="42" y="58" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9">Premium</text>
+                        </g>
+                        <g data-section="104" data-type="sideline" data-category="premium" class="seat-section" transform="translate(525, 50)">
+                            <rect x="0" y="0" width="85" height="75" rx="8" fill="#2a9d8f" stroke="#1f6e63" stroke-width="1.5"/>
+                            <text x="42" y="42" text-anchor="middle" fill="white" font-size="13" font-weight="bold">104</text>
+                            <text x="42" y="58" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9">Premium</text>
+                        </g>
+                        <g data-section="105" data-type="sideline" data-category="premium" class="seat-section" transform="translate(630, 50)">
+                            <rect x="0" y="0" width="85" height="75" rx="8" fill="#2a9d8f" stroke="#1f6e63" stroke-width="1.5"/>
+                            <text x="42" y="42" text-anchor="middle" fill="white" font-size="13" font-weight="bold">105</text>
+                            <text x="42" y="58" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9">Premium</text>
+                        </g>
+                        
+                        <!-- Corner Standard Sections -->
+                        <g data-section="106" data-type="corner" data-category="standard" class="seat-section" transform="translate(85, 160)">
+                            <rect x="0" y="0" width="75" height="65" rx="8" fill="#2c7da0" stroke="#1f5a7a" stroke-width="1.5"/>
+                            <text x="37" y="38" text-anchor="middle" fill="white" font-size="12" font-weight="bold">106</text>
+                            <text x="37" y="52" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">Standard</text>
+                        </g>
+                        <g data-section="107" data-type="corner" data-category="standard" class="seat-section" transform="translate(740, 160)">
+                            <rect x="0" y="0" width="75" height="65" rx="8" fill="#2c7da0" stroke="#1f5a7a" stroke-width="1.5"/>
+                            <text x="37" y="38" text-anchor="middle" fill="white" font-size="12" font-weight="bold">107</text>
+                            <text x="37" y="52" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">Standard</text>
+                        </g>
+                        
+                        <!-- End Zone Standard Sections -->
+                        <g data-section="108" data-type="endzone" data-category="standard" class="seat-section" transform="translate(220, 470)">
+                            <rect x="0" y="0" width="80" height="55" rx="8" fill="#2c7da0" stroke="#1f5a7a" stroke-width="1.5"/>
+                            <text x="40" y="32" text-anchor="middle" fill="white" font-size="12" font-weight="bold">108</text>
+                            <text x="40" y="46" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">Standard</text>
+                        </g>
+                        <g data-section="109" data-type="endzone" data-category="standard" class="seat-section" transform="translate(320, 470)">
+                            <rect x="0" y="0" width="80" height="55" rx="8" fill="#2c7da0" stroke="#1f5a7a" stroke-width="1.5"/>
+                            <text x="40" y="32" text-anchor="middle" fill="white" font-size="12" font-weight="bold">109</text>
+                            <text x="40" y="46" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">Standard</text>
+                        </g>
+                        <g data-section="110" data-type="endzone" data-category="standard" class="seat-section" transform="translate(500, 470)">
+                            <rect x="0" y="0" width="80" height="55" rx="8" fill="#2c7da0" stroke="#1f5a7a" stroke-width="1.5"/>
+                            <text x="40" y="32" text-anchor="middle" fill="white" font-size="12" font-weight="bold">110</text>
+                            <text x="40" y="46" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">Standard</text>
+                        </g>
+                        <g data-section="111" data-type="endzone" data-category="standard" class="seat-section" transform="translate(600, 470)">
+                            <rect x="0" y="0" width="80" height="55" rx="8" fill="#2c7da0" stroke="#1f5a7a" stroke-width="1.5"/>
+                            <text x="40" y="32" text-anchor="middle" fill="white" font-size="12" font-weight="bold">111</text>
+                            <text x="40" y="46" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">Standard</text>
+                        </g>
+                        
+                        <!-- VIP Section -->
+                        <g data-section="VIP" data-type="sideline" data-category="vip" class="seat-section" transform="translate(350, 100)">
+                            <rect x="0" y="0" width="200" height="45" rx="10" fill="#e9c46a" stroke="#d4a832" stroke-width="2"/>
+                            <text x="100" y="28" text-anchor="middle" fill="#0B132B" font-size="13" font-weight="bold">VIP LOUNGE</text>
+                        </g>
+                    </svg>
+                </div>
+                <div class="legend">
+                    <div class="legend-item"><div class="legend-color" style="background: #2c7da0;"></div> Standard</div>
+                    <div class="legend-item"><div class="legend-color" style="background: #2a9d8f;"></div> Premium</div>
+                    <div class="legend-item"><div class="legend-color" style="background: #e9c46a;"></div> VIP</div>
+                    <div class="legend-item"><div class="legend-color" style="background: var(--rich-gold);"></div> Selected</div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Ticket List + Cart -->
+            <div>
+                <div class="ticket-list-section">
+                    <div class="ticket-header">
+                        <h3>Available Tickets</h3>
+                    </div>
+                    <div class="ticket-list" id="ticketsList"></div>
+                </div>
+
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">$0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Service Fee (10%)</span>
+                        <span id="serviceFee">$0</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total Due</span>
+                        <span id="total">$0</span>
+                    </div>
+                    <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Match Description -->
+        <div class="event-desc">
+            <h3>About This Match</h3>
+            <p>The FIFA World Cup 2026 brings together South Korea and Czechia in an exciting group stage encounter at Estadio Akron in Guadalajara. This match promises fast-paced action as Asian speed meets European tactical discipline.</p>
+            <h3>Why Buy from TicketRoyal?</h3>
+            <ul>
+                <li>✅ 100% Verified Tickets</li>
+                <li>✅ Secure Checkout</li>
+                <li>✅ Instant Delivery</li>
+                <li>✅ 24/7 Support</li>
+                <li>✅ <strong>150% Money Back Guarantee</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">Home</a> | <a href="#">My Account</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms</a> | <a href="#">Contact</a>
+        </div>
+        <div class="footer-bottom">© 2026 TicketRoyal — Official FIFA World Cup 2026™ Ticket Marketplace</div>
+    </footer>
+
+    <div class="toast" id="toast">✓ Added to cart!</div>
+
+    <script>
+        // Get match data from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        let matchData = {
+            id: parseInt(urlParams.get('id')) || 2,
+            team1: urlParams.get('team1') || 'South Korea',
+            team2: urlParams.get('team2') || 'Czechia',
+            matchNumber: urlParams.get('match') || '02',
+            date: urlParams.get('date') || 'Thu 11 Jun 2026',
+            time: urlParams.get('time') || '20:00',
+            venue: urlParams.get('stadium') || urlParams.get('venue') || 'Estadio Akron',
+            city: urlParams.get('city') || 'Guadalajara, Mexico',
+            basePrice: parseInt(urlParams.get('price')) || 600
+        };
+
+        // Update header
+        document.getElementById('eventTitle').textContent = `${matchData.team1} vs ${matchData.team2} Tickets`;
+        document.getElementById('matchSubtitle').textContent = `Match ${matchData.matchNumber} - Football World Cup 2026`;
+        document.getElementById('matchDate').textContent = matchData.date;
+        document.getElementById('matchTime').textContent = matchData.time;
+        document.getElementById('matchVenue').textContent = matchData.venue;
+        document.getElementById('matchCity').textContent = matchData.city;
+
+        // Ticket categories
+        const ticketCategories = [
+            { name: "Category 3", desc: "(Max 4 Seats Together)", price: 600, category: "standard", maxQty: 4, section: "106" },
+            { name: "Cat 3", desc: "", price: 750, category: "standard", maxQty: 4, section: "107" },
+            { name: "Category 2", desc: "(Max 4 Seats Together)", price: 1100, category: "premium", maxQty: 4, section: "101" },
+            { name: "Cat 2", desc: "", price: 1340, category: "premium", maxQty: 4, section: "102" },
+            { name: "Category 1", desc: "(Max 4 Seats Together)", price: 1750, category: "premium", maxQty: 4, section: "103" },
+            { name: "Lower Tier", desc: "", price: 2500, category: "premium", maxQty: 4, section: "104" },
+            { name: "VIP Lounge", desc: "(Hospitality Included)", price: 5250, category: "vip", maxQty: 10, section: "VIP" }
+        ];
+
+        let currentFilterQty = 0;
+        let currentFilterCategory = 'all';
+
+        function renderTickets() {
+            const container = document.getElementById('ticketsList');
+            let filtered = [...ticketCategories];
+            
+            if (currentFilterQty > 0) {
+                filtered = filtered.filter(t => t.maxQty >= currentFilterQty);
+            }
+            if (currentFilterCategory !== 'all') {
+                filtered = filtered.filter(t => t.category === currentFilterCategory);
+            }
+            
+            container.innerHTML = filtered.map((ticket, idx) => `
+                <div class="ticket-item" data-category="${ticket.category}" data-section="${ticket.section}" id="ticket-${ticket.section}">
+                    <div class="ticket-row">
+                        <div class="ticket-info">
+                            <div class="ticket-name">${ticket.name} ${ticket.desc}</div>
+                        </div>
+                        <div class="ticket-price">
+                            <div class="price-amount">$${ticket.price.toLocaleString()}</div>
+                            <div class="price-each">each</div>
+                        </div>
+                        <div class="ticket-qty">
+                            <select class="qty-select" id="qty_${idx}" data-price="${ticket.price}" data-category="${ticket.category}" data-name="${ticket.name}">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                        <button class="book-btn" onclick="bookTicket(${idx})">Book</button>
+                    </div>
+                </div>
+            `).join('');
+            
+            document.querySelectorAll('.qty-select').forEach(select => {
+                select.addEventListener('change', updateCartSummary);
+            });
+            updateCartSummary();
+        }
+
+        function updateCartSummary() {
+            let subtotal = 0;
+            document.querySelectorAll('.qty-select').forEach(select => {
+                const qty = parseInt(select.value);
+                const price = parseInt(select.dataset.price);
+                subtotal += qty * price;
+            });
+            const serviceFee = Math.round(subtotal * 0.1);
+            const total = subtotal + serviceFee;
+            
+            document.getElementById('subtotal').textContent = `$${subtotal.toLocaleString()}`;
+            document.getElementById('serviceFee').textContent = `$${serviceFee.toLocaleString()}`;
+            document.getElementById('total').textContent = `$${total.toLocaleString()}`;
+        }
+
+        function bookTicket(idx) {
+            const ticket = ticketCategories[idx];
+            const qtySelect = document.getElementById(`qty_${idx}`);
+            const qty = parseInt(qtySelect.value);
+            if (qty === 0) {
+                showToast('Please select quantity first');
+                return;
+            }
+            const total = ticket.price * qty;
+            showToast(`Added ${qty} × ${ticket.name} - $${total.toLocaleString()}`);
+            updateCartSummary();
+        }
+
+        function proceedToCheckout() {
+            let hasTickets = false;
+            document.querySelectorAll('.qty-select').forEach(select => {
+                if (parseInt(select.value) > 0) hasTickets = true;
+            });
+            if (!hasTickets) {
+                showToast('Please select at least one ticket');
+                return;
+            }
+            showToast('Redirecting to checkout...');
+            setTimeout(() => window.location.href = 'checkout.html', 1000);
+        }
+
+        function resetFilters() {
+            document.getElementById('tixQty').value = '0';
+            document.getElementById('tixCategory').value = 'all';
+            currentFilterQty = 0;
+            currentFilterCategory = 'all';
+            renderTickets();
+        }
+
+        function applyFilters() {
+            currentFilterQty = parseInt(document.getElementById('tixQty').value);
+            currentFilterCategory = document.getElementById('tixCategory').value;
+            renderTickets();
+        }
+
+        function filterMap(type) {
+            const sections = document.querySelectorAll('.seat-section');
+            sections.forEach(section => {
+                const sectionType = section.getAttribute('data-type');
+                if (type === 'all' || sectionType === type) {
+                    section.style.display = '';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+            document.querySelectorAll('.map-filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-filter') === type) btn.classList.add('active');
+            });
+        }
+
+        function selectSection(el) {
+            document.querySelectorAll('.seat-section').forEach(s => s.classList.remove('selected'));
+            el.classList.add('selected');
+            const category = el.getAttribute('data-category');
+            if (category) {
+                document.getElementById('tixCategory').value = category;
+                currentFilterCategory = category;
+                renderTickets();
+                document.querySelector(`.ticket-item[data-category="${category}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.style.display = 'block';
+            setTimeout(() => toast.style.display = 'none', 2000);
+        }
+
+        // Event listeners
+        document.getElementById('tixQty').addEventListener('change', applyFilters);
+        document.getElementById('tixCategory').addEventListener('change', applyFilters);
+        document.querySelectorAll('.seat-section').forEach(section => {
+            section.addEventListener('click', () => selectSection(section));
+        });
+
+        // Initialize
+        renderTickets();
+        filterMap('all');
+    </script>
+</body>
+</html>
