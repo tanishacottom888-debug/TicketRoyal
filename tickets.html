@@ -159,6 +159,8 @@
             border-radius: 24px;
             overflow: hidden;
             box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
         }
 
         .map-header {
@@ -199,19 +201,23 @@
             border-color: #C5A028;
         }
 
+        /* FIXED: Clean background color + proper height */
         .svg-wrapper {
-            background: #F0F2F5;
+            background: #F0F4F8;
             padding: 24px;
             overflow: auto;
-            min-height: 560px;
+            min-height: 620px;
+            height: auto;
+            flex: 1;
         }
 
         #seatMap {
             display: block;
             margin: 0 auto;
-            background: #F0F2F5;
+            background: #F0F4F8;
             width: 100%;
             height: auto;
+            min-height: 580px;
             cursor: grab;
             border-radius: 16px;
         }
@@ -315,7 +321,7 @@
 
         /* Ticket List */
         .ticket-list-full {
-            max-height: 460px;
+            max-height: 420px;
             overflow-y: auto;
             padding: 0 20px;
         }
@@ -545,6 +551,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
+        /* FIXED: Mobile responsive heights */
         @media (max-width: 900px) {
             .main-container {
                 flex-direction: column;
@@ -553,7 +560,10 @@
                 position: static;
             }
             .svg-wrapper {
-                min-height: 420px;
+                min-height: 480px;
+            }
+            #seatMap {
+                min-height: 450px;
             }
             .filter-bar {
                 border-radius: 20px;
@@ -580,6 +590,12 @@
             }
             .ticket-info {
                 text-align: center;
+            }
+            .svg-wrapper {
+                min-height: 380px;
+            }
+            #seatMap {
+                min-height: 360px;
             }
         }
     </style>
@@ -642,7 +658,7 @@
             </div>
             <div class="svg-wrapper" id="svgWrapper">
                 <svg id="seatMap" viewBox="0 0 1000 650" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="1000" height="650" fill="#F0F2F5"/>
+                    <rect width="1000" height="650" fill="#F0F4F8"/>
                     
                     <!-- Football Pitch -->
                     <rect x="280" y="230" width="440" height="190" rx="8" fill="#2d5a27" stroke="#4a8c3f" stroke-width="1.5"/>
@@ -657,7 +673,7 @@
                     <rect x="720" y="318" width="4" height="14" fill="rgba(255,255,255,0.8)"/>
                     <text x="500" y="335" fill="rgba(255,255,255,0.2)" font-size="20" text-anchor="middle">⚽</text>
                     
-                    <!-- Premium Sections - Top -->
+                    <!-- Premium Sections -->
                     <g data-section="101" data-price="350" data-category="premium" class="seat-section">
                         <path d="M280,65 Q350,50 420,50 L418,85 Q348,85 278,98 Z" fill="#1e3a5f" stroke="#3b5d8f" stroke-width="1.5"/>
                         <text x="350" y="80" fill="white" font-size="11" font-weight="bold" text-anchor="middle">101</text>
@@ -670,8 +686,6 @@
                         <path d="M560,52 Q630,58 690,70 L686,102 Q626,90 558,86 Z" fill="#1e3a5f" stroke="#3b5d8f" stroke-width="1.5"/>
                         <text x="625" y="86" fill="white" font-size="11" font-weight="bold" text-anchor="middle">103</text>
                     </g>
-                    
-                    <!-- Premium - Right -->
                     <g data-section="104" data-price="360" data-category="premium" class="seat-section">
                         <path d="M850,180 Q880,220 890,275 L862,278 Q852,223 820,182 Z" fill="#1e3a5f" stroke="#3b5d8f" stroke-width="1.5"/>
                         <text x="856" y="238" fill="white" font-size="11" font-weight="bold" text-anchor="middle">104</text>
@@ -680,8 +694,6 @@
                         <path d="M890,275 Q898,330 892,385 L864,382 Q870,327 862,278 Z" fill="#1e3a5f" stroke="#3b5d8f" stroke-width="1.5"/>
                         <text x="878" y="338" fill="white" font-size="11" font-weight="bold" text-anchor="middle">105</text>
                     </g>
-                    
-                    <!-- Premium - Bottom -->
                     <g data-section="106" data-price="350" data-category="premium" class="seat-section">
                         <path d="M690,580 Q630,592 560,595 L558,562 Q628,559 686,548 Z" fill="#1e3a5f" stroke="#3b5d8f" stroke-width="1.5"/>
                         <text x="625" y="572" fill="white" font-size="11" font-weight="bold" text-anchor="middle">106</text>
@@ -694,8 +706,6 @@
                         <path d="M420,598 Q350,595 280,585 L278,552 Q348,562 418,565 Z" fill="#1e3a5f" stroke="#3b5d8f" stroke-width="1.5"/>
                         <text x="350" y="570" fill="white" font-size="11" font-weight="bold" text-anchor="middle">108</text>
                     </g>
-                    
-                    <!-- Premium - Left -->
                     <g data-section="109" data-price="360" data-category="premium" class="seat-section">
                         <path d="M150,180 Q120,220 110,275 L138,278 Q148,223 180,182 Z" fill="#1e3a5f" stroke="#3b5d8f" stroke-width="1.5"/>
                         <text x="144" y="238" fill="white" font-size="11" font-weight="bold" text-anchor="middle">109</text>
