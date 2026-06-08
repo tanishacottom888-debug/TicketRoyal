@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
-    <meta name="description" content="TicketRoyal - FIFA World Cup 2026 Interactive Stadium Seat Map">
-    <title>TicketRoyal | Interactive Stadium Seat Map</title>
-    
+    <title>TicketRoyal | Estadio Akron - Interactive Seat Map</title>
     <style>
         * {
             margin: 0;
@@ -16,13 +14,12 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
             background: #f0f2f5;
-            color: #1a1a2e;
         }
 
-        /* HEADER */
+        /* Header */
         .header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 20px 24px;
+            background: linear-gradient(135deg, #0a0a2a 0%, #1a1a4a 100%);
+            padding: 16px 24px;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -44,44 +41,46 @@
             color: white;
         }
 
-        .logo span {
-            color: #FFE66D;
+        .logo span { color: #FFD700; }
+
+        .match-info {
+            text-align: center;
         }
 
         .match-title {
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 700;
             color: white;
         }
 
-        .match-details {
-            display: flex;
-            gap: 20px;
-            font-size: 13px;
+        .match-date {
+            font-size: 12px;
             color: rgba(255,255,255,0.7);
         }
 
         .guarantee {
-            background: rgba(255,230,109,0.2);
-            padding: 6px 14px;
+            background: rgba(255,215,0,0.2);
+            padding: 6px 16px;
             border-radius: 30px;
-            color: #FFE66D;
+            color: #FFD700;
             font-size: 12px;
             font-weight: 600;
         }
 
-        /* MAIN LAYOUT */
+        /* Main Layout */
         .main-container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 24px;
             display: flex;
             gap: 30px;
+            flex-wrap: wrap;
         }
 
-        /* SEAT MAP CONTAINER */
-        .seatmap-container {
+        /* Seat Map Container */
+        .seatmap-wrapper {
             flex: 2;
+            min-width: 280px;
             background: white;
             border-radius: 24px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.1);
@@ -104,7 +103,31 @@
             font-weight: 700;
         }
 
-        /* ZOOM CONTROLS - Floating on right */
+        /* SVG Container */
+        .svg-container {
+            background: #e8ecef;
+            padding: 20px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            position: relative;
+        }
+
+        .stadium-svg {
+            display: block;
+            margin: 0 auto;
+            background: #e8ecef;
+            border-radius: 16px;
+            cursor: grab;
+            width: 100%;
+            height: auto;
+            min-width: 900px;
+        }
+
+        .stadium-svg:active {
+            cursor: grabbing;
+        }
+
+        /* Zoom Controls */
         .zoom-controls {
             position: fixed;
             right: 30px;
@@ -129,45 +152,16 @@
             border-bottom: 1px solid #eee;
         }
 
-        .zoom-btn:last-child {
-            border-bottom: none;
-        }
+        .zoom-btn:last-child { border-bottom: none; }
+        .zoom-btn:hover { background: #667eea; color: white; }
 
-        .zoom-btn:hover {
-            background: #667eea;
-            color: white;
-        }
-
-        /* CANVAS/SEAT MAP AREA */
-        .canvas-wrapper {
-            background: #f5f7fa;
-            padding: 20px;
-            position: relative;
-            overflow: auto;
-            min-height: 600px;
-        }
-
-        canvas {
-            display: block;
-            margin: 0 auto;
-            background: #f5f7fa;
-            border-radius: 16px;
-            cursor: grab;
-            width: 100%;
-            height: auto;
-        }
-
-        canvas:active {
-            cursor: grabbing;
-        }
-
-        /* TICKET PANEL - Right Side */
+        /* Ticket Panel */
         .ticket-panel {
             flex: 1;
+            min-width: 280px;
             background: white;
             border-radius: 24px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-            overflow: hidden;
             position: sticky;
             top: 100px;
             height: fit-content;
@@ -179,11 +173,7 @@
             border-bottom: 1px solid #eef2f6;
         }
 
-        .panel-header h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
+        .panel-header h3 { font-size: 20px; font-weight: 700; }
 
         .selected-info {
             background: #e8f0fe;
@@ -208,37 +198,12 @@
         .ticket-item {
             padding: 16px;
             border-bottom: 1px solid #f0f0f0;
-            cursor: pointer;
-            transition: all 0.2s;
             border-radius: 12px;
         }
 
-        .ticket-item:hover {
-            background: #f8f9fa;
-        }
-
-        .ticket-item.selected {
-            background: #FFF8E7;
-            border-left: 3px solid #FFE66D;
-        }
-
-        .ticket-name {
-            font-weight: 700;
-            font-size: 16px;
-            margin-bottom: 4px;
-        }
-
-        .ticket-price {
-            color: #667eea;
-            font-weight: 700;
-            font-size: 18px;
-            margin: 8px 0;
-        }
-
-        .ticket-availability {
-            font-size: 12px;
-            color: #888;
-        }
+        .ticket-name { font-weight: 700; font-size: 16px; }
+        .ticket-price { color: #667eea; font-weight: 700; font-size: 18px; margin: 8px 0; }
+        .ticket-availability { font-size: 12px; color: #888; }
 
         .qty-selector {
             display: flex;
@@ -276,11 +241,8 @@
             width: 100%;
         }
 
-        .book-btn:hover {
-            background: #667eea;
-        }
+        .book-btn:hover { background: #667eea; }
 
-        /* CART SUMMARY */
         .cart-summary {
             background: #f8f9fa;
             padding: 20px;
@@ -315,11 +277,10 @@
             margin-top: 16px;
         }
 
-        /* FOOTER */
         .footer {
             background: #1a1a2e;
             color: white;
-            padding: 30px 24px;
+            padding: 30px;
             margin-top: 40px;
             text-align: center;
         }
@@ -339,447 +300,488 @@
         }
 
         @media (max-width: 900px) {
-            .main-container {
-                flex-direction: column;
-            }
-            .zoom-controls {
-                right: 20px;
-                bottom: 20px;
-            }
-            .zoom-btn {
-                width: 40px;
-                height: 40px;
-            }
+            .main-container { flex-direction: column; }
+            .zoom-controls { right: 20px; bottom: 20px; }
+            .zoom-btn { width: 40px; height: 40px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <div class="header-content">
-            <div class="logo">Ticket<span>Royal</span></div>
-            <div>
-                <div class="match-title" id="matchTitle">South Korea vs Czechia</div>
-                <div class="match-details" id="matchDetails">
-                    <span>📅 Thu 11 Jun 2026</span>
-                    <span>⏰ 20:00</span>
-                    <span>🏟️ Estadio Akron</span>
-                </div>
-            </div>
-            <div class="guarantee">🛡️ 150% MONEY BACK GUARANTEE</div>
+<div class="header">
+    <div class="header-content">
+        <div class="logo">Ticket<span>Royal</span></div>
+        <div class="match-info">
+            <div class="match-title" id="matchTitle">South Korea vs Czechia</div>
+            <div class="match-date">Thu 11 Jun 2026 • 20:00 • Estadio Akron, Guadalajara</div>
+        </div>
+        <div class="guarantee">🛡️ 150% MONEY BACK GUARANTEE</div>
+    </div>
+</div>
+
+<div class="main-container">
+    <div class="seatmap-wrapper">
+        <div class="seatmap-header">
+            <h3>🏟️ Estadio Akron - Seat Map</h3>
+            <div style="font-size: 12px; color: #666;">Click any section to select seats</div>
+        </div>
+        <div class="svg-container" id="svgContainer">
+            <svg id="stadiumSvg" class="stadium-svg" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+                <!-- Stadium background shape -->
+                <defs>
+                    <radialGradient id="pitchGradient" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" style="stop-color:#3a8c3a"/>
+                        <stop offset="100%" style="stop-color:#2d5a27"/>
+                    </radialGradient>
+                    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+                        <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+                    </filter>
+                </defs>
+
+                <!-- OUTER PREMIUM RING (Dark Blue) - Sections around the stadium -->
+                <!-- TOP ROW - Premium Sections 01-10 -->
+                <g class="seat-section" data-section="01" data-price="350" data-available="42" data-ring="premium">
+                    <path d="M300,80 L350,75 L380,145 L320,155 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5" rx="4"/>
+                    <text x="340" y="115" text-anchor="middle" fill="white" font-size="11" font-weight="bold">01</text>
+                </g>
+                <g class="seat-section" data-section="02" data-price="350" data-available="38" data-ring="premium">
+                    <path d="M360,74 L420,72 L440,142 L385,148 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="400" y="110" text-anchor="middle" fill="white" font-size="11" font-weight="bold">02</text>
+                </g>
+                <g class="seat-section" data-section="03" data-price="340" data-available="45" data-ring="premium">
+                    <path d="M430,72 L490,75 L505,145 L448,143 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="468" y="110" text-anchor="middle" fill="white" font-size="11" font-weight="bold">03</text>
+                </g>
+                <g class="seat-section" data-section="04" data-price="340" data-available="40" data-ring="premium">
+                    <path d="M500,76 L560,82 L565,152 L508,148 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="532" y="115" text-anchor="middle" fill="white" font-size="11" font-weight="bold">04</text>
+                </g>
+                <g class="seat-section" data-section="05" data-price="330" data-available="48" data-ring="premium">
+                    <path d="M570,83 L630,92 L625,162 L562,155 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="596" y="120" text-anchor="middle" fill="white" font-size="11" font-weight="bold">05</text>
+                </g>
+                <g class="seat-section" data-section="06" data-price="330" data-available="44" data-ring="premium">
+                    <path d="M640,93 L700,106 L685,175 L625,165 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="662" y="130" text-anchor="middle" fill="white" font-size="11" font-weight="bold">06</text>
+                </g>
+                <g class="seat-section" data-section="07" data-price="320" data-available="36" data-ring="premium">
+                    <path d="M710,108 L765,125 L740,192 L685,178 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="726" y="148" text-anchor="middle" fill="white" font-size="11" font-weight="bold">07</text>
+                </g>
+                <g class="seat-section" data-section="08" data-price="320" data-available="39" data-ring="premium">
+                    <path d="M775,128 L825,150 L790,215 L740,195 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="784" y="168" text-anchor="middle" fill="white" font-size="11" font-weight="bold">08</text>
+                </g>
+                <g class="seat-section" data-section="09" data-price="310" data-available="42" data-ring="premium">
+                    <path d="M835,155 L875,182 L832,242 L790,218 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="834" y="196" text-anchor="middle" fill="white" font-size="11" font-weight="bold">09</text>
+                </g>
+                <g class="seat-section" data-section="10" data-price="310" data-available="38" data-ring="premium">
+                    <path d="M885,188 L915,220 L865,275 L832,245 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="876" y="228" text-anchor="middle" fill="white" font-size="11" font-weight="bold">10</text>
+                </g>
+
+                <!-- RIGHT SIDE - Premium Sections 11-16 -->
+                <g class="seat-section" data-section="11" data-price="300" data-available="35" data-ring="premium">
+                    <path d="M925,230 L945,268 L888,315 L865,278 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="910" y="272" text-anchor="middle" fill="white" font-size="11" font-weight="bold">11</text>
+                </g>
+                <g class="seat-section" data-section="12" data-price="300" data-available="32" data-ring="premium">
+                    <path d="M950,275 L962,318 L900,358 L888,318 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="928" y="320" text-anchor="middle" fill="white" font-size="11" font-weight="bold">12</text>
+                </g>
+                <g class="seat-section" data-section="13" data-price="300" data-available="34" data-ring="premium">
+                    <path d="M965,325 L968,370 L905,405 L898,362 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="938" y="368" text-anchor="middle" fill="white" font-size="11" font-weight="bold">13</text>
+                </g>
+                <g class="seat-section" data-section="14" data-price="310" data-available="36" data-ring="premium">
+                    <path d="M962,378 L955,422 L892,450 L900,408 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="930" y="420" text-anchor="middle" fill="white" font-size="11" font-weight="bold">14</text>
+                </g>
+                <g class="seat-section" data-section="15" data-price="310" data-available="33" data-ring="premium">
+                    <path d="M945,430 L928,470 L868,490 L885,452 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="908" y="462" text-anchor="middle" fill="white" font-size="11" font-weight="bold">15</text>
+                </g>
+                <g class="seat-section" data-section="16" data-price="320" data-available="31" data-ring="premium">
+                    <path d="M918,478 L892,515 L835,525 L862,490 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="878" y="506" text-anchor="middle" fill="white" font-size="11" font-weight="bold">16</text>
+                </g>
+
+                <!-- BOTTOM ROW - Premium Sections 17-26 -->
+                <g class="seat-section" data-section="17" data-price="330" data-available="40" data-ring="premium">
+                    <path d="M880,525 L840,540 L800,595 L850,585 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="828" y="568" text-anchor="middle" fill="white" font-size="11" font-weight="bold">17</text>
+                </g>
+                <g class="seat-section" data-section="18" data-price="330" data-available="42" data-ring="premium">
+                    <path d="M825,542 L775,550 L740,605 L795,598 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="786" y="580" text-anchor="middle" fill="white" font-size="11" font-weight="bold">18</text>
+                </g>
+                <g class="seat-section" data-section="19" data-price="340" data-available="44" data-ring="premium">
+                    <path d="M760,552 L705,555 L680,608 L735,605 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="722" y="588" text-anchor="middle" fill="white" font-size="11" font-weight="bold">19</text>
+                </g>
+                <g class="seat-section" data-section="20" data-price="340" data-available="46" data-ring="premium">
+                    <path d="M690,556 L635,553 L618,605 L672,608 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="656" y="588" text-anchor="middle" fill="white" font-size="11" font-weight="bold">20</text>
+                </g>
+                <g class="seat-section" data-section="21" data-price="350" data-available="41" data-ring="premium">
+                    <path d="M620,552 L565,548 L555,598 L608,603 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="588" y="582" text-anchor="middle" fill="white" font-size="11" font-weight="bold">21</text>
+                </g>
+                <g class="seat-section" data-section="22" data-price="350" data-available="38" data-ring="premium">
+                    <path d="M550,546 L495,540 L495,588 L545,595 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="522" y="576" text-anchor="middle" fill="white" font-size="11" font-weight="bold">22</text>
+                </g>
+                <g class="seat-section" data-section="23" data-price="340" data-available="43" data-ring="premium">
+                    <path d="M480,538 L425,532 L435,580 L485,585 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="458" y="568" text-anchor="middle" fill="white" font-size="11" font-weight="bold">23</text>
+                </g>
+                <g class="seat-section" data-section="24" data-price="340" data-available="39" data-ring="premium">
+                    <path d="M410,530 L360,525 L380,570 L430,575 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="396" y="556" text-anchor="middle" fill="white" font-size="11" font-weight="bold">24</text>
+                </g>
+                <g class="seat-section" data-section="25" data-price="330" data-available="45" data-ring="premium">
+                    <path d="M345,522 L300,520 L325,562 L372,565 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="338" y="548" text-anchor="middle" fill="white" font-size="11" font-weight="bold">25</text>
+                </g>
+                <g class="seat-section" data-section="26" data-price="330" data-available="42" data-ring="premium">
+                    <path d="M285,518 L250,520 L278,558 L315,555 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="282" y="542" text-anchor="middle" fill="white" font-size="11" font-weight="bold">26</text>
+                </g>
+
+                <!-- LEFT SIDE - Premium Sections 27-32 -->
+                <g class="seat-section" data-section="27" data-price="320" data-available="36" data-ring="premium">
+                    <path d="M235,520 L205,512 L230,478 L265,488 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="235" y="504" text-anchor="middle" fill="white" font-size="11" font-weight="bold">27</text>
+                </g>
+                <g class="seat-section" data-section="28" data-price="310" data-available="34" data-ring="premium">
+                    <path d="M192,502 L168,485 L198,448 L228,468 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="200" y="478" text-anchor="middle" fill="white" font-size="11" font-weight="bold">28</text>
+                </g>
+                <g class="seat-section" data-section="29" data-price="310" data-available="38" data-ring="premium">
+                    <path d="M158,472 L140,450 L172,415 L198,442 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="166" y="442" text-anchor="middle" fill="white" font-size="11" font-weight="bold">29</text>
+                </g>
+                <g class="seat-section" data-section="30" data-price="300" data-available="35" data-ring="premium">
+                    <path d="M132,438 L120,412 L155,380 L175,408 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="146" y="408" text-anchor="middle" fill="white" font-size="11" font-weight="bold">30</text>
+                </g>
+                <g class="seat-section" data-section="31" data-price="300" data-available="32" data-ring="premium">
+                    <path d="M112,398 L108,368 L148,342 L160,370 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="132" y="370" text-anchor="middle" fill="white" font-size="11" font-weight="bold">31</text>
+                </g>
+                <g class="seat-section" data-section="32" data-price="300" data-available="33" data-ring="premium">
+                    <path d="M105,355 L112,322 L155,305 L142,335 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                    <text x="130" y="328" text-anchor="middle" fill="white" font-size="11" font-weight="bold">32</text>
+                </g>
+
+                <!-- INNER STANDARD RING (Light Grey/White) - Sections 101-132 -->
+                <!-- TOP INNER -->
+                <g class="seat-section inner" data-section="101" data-price="180" data-available="65" data-ring="standard">
+                    <path d="M310,145 L350,140 L370,195 L325,198 Z" fill="#f5f5f5" stroke="#9fa8da" stroke-width="1.2"/>
+                    <text x="340" y="170" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">101</text>
+                </g>
+                <g class="seat-section inner" data-section="102" data-price="175" data-available="68" data-ring="standard">
+                    <path d="M360,139 L410,137 L425,192 L375,194 Z" fill="#f5f5f5" stroke="#9fa8da" stroke-width="1.2"/>
+                    <text x="392" y="166" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">102</text>
+                </g>
+                <g class="seat-section inner" data-section="103" data-price="170" data-available="72" data-ring="standard">
+                    <path d="M420,136 L470,138 L480,192 L430,190 Z" fill="#f5f5f5" stroke="#9fa8da" stroke-width="1.2"/>
+                    <text x="450" y="166" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">103</text>
+                </g>
+                <g class="seat-section inner" data-section="104" data-price="170" data-available="70" data-ring="standard">
+                    <path d="M480,139 L530,143 L535,196 L485,192 Z" fill="#f5f5f5" stroke="#9fa8da" stroke-width="1.2"/>
+                    <text x="508" y="168" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">104</text>
+                </g>
+                <g class="seat-section inner" data-section="105" data-price="175" data-available="66" data-ring="standard">
+                    <path d="M540,144 L588,150 L588,202 L535,197 Z" fill="#f5f5f5" stroke="#9fa8da" stroke-width="1.2"/>
+                    <text x="564" y="174" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">105</text>
+                </g>
+                <g class="seat-section inner" data-section="106" data-price="180" data-available="62" data-ring="standard">
+                    <path d="M598,152 L640,162 L632,212 L588,204 Z" fill="#f5f5f5" stroke="#9fa8da" stroke-width="1.2"/>
+                    <text x="616" y="184" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">106</text>
+                </g>
+
+                <!-- INNER STANDARD - RIGHT SIDE -->
+                <g class="seat-section inner" data-section="107" data-price="160" data-available="55" data-ring="standard">
+                    <path d="M650,165 L685,180 L670,222 L632,214 Z" fill="#f5f5f5" stroke="#9fa8da" stroke-width="1.2"/>
+                    <text x="662" y="196" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">107</text>
+                </g>
+                <g class="seat-section inner" data-section="108" data-price="155" data-available="58" data-ring="standard">
+                    <path d="M695,185 L725,205 L702,242 L670,225 Z" fill="#f5f5f5" stroke="#9fa8da" stroke-width="1.2"/>
+                    <text x="700" y="216" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">108</text>
+                </g>
+                <g class="seat-section inner" data-section="109" data-price="155" data-available="60" data-ring="standard">
+                    <path d="M735,212 L758,235 L730,268 L702,245 Z" fill="#f5f5f5" stroke="#9fa8da" stroke-width="1.2"/>
+                    <text x="732" y="242" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">109</text>
+                </g>
+                <g class="seat-section inner" data-section="110" data-price="160" data-available="54" data-ring="standard">
+                    <path d="M768,242 L785,268 L752,298 L730,272 Z" fill="#f5f5f5" stroke="#9fa8da" stroke-width="1.2"/>
+                    <text x="760" y="272" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">110</text>
+                </g>
+
+                <!-- INNER STANDARD - BOTTOM -->
+                <g class="seat-section inner" data-section="111" data-price="170" data-available="68" data-ring="standard">
+                    <path d="M790,278 L800,308 L760,332 L748,302 Z" fill="#f5f5f5" stroke="#9fa8da" stroke-width="1.2"/>
+                    <text x="776" y="310" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">111</text>
+                </g>
+                <g class="seat-section inner" data-section="112" data-price="170" data-available="65" data-ring="standard">
+                    <path d="M805,315 L805,348 L762,368 L758,335 Z" fill="#f5f5f5" stroke="#9fa8da" stroke-width="1.2"/>
+                    <text x="784" y="345" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">112</text>
+                </g>
+                <g class="seat-section inner" data-section="113" data-price="175" data-available="62" data-ring="standard">
+                    <path d="M800,355 L790,388 L748,402 L755,372 Z" fill="#f5f5f5" stroke="#9fa8da" stroke-width="1.2"/>
+                    <text x="775" y="382" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">113</text>
+                </g>
+
+                <!-- INNER STANDARD - BOTTOM ROW -->
+                <g class="seat-section inner" data-section="114" data-price="165" data-available="70" data-ring="standard">
+                    <path d="M780,395 L762,425 L720,432 L735,402 Z" fill="#f5f5f5" stroke="#9fa8da" stroke-width="1.2"/>
+                    <text x="750" y="418" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">114</text>
+                </g>
+                <g class="seat-section inner" data-section="115" data-price="160" data-available="72" data-ring="standard">
+                    <path d="M750,432 L725,458 L685,460 L700,432 Z" fill="#f5f5f5" stroke="#9fa8da" stroke-width="1.2"/>
+                    <text x="718" y="450" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">115</text>
+                </g>
+                <g class="seat-section inner" data-section="116" data-price="160" data-available="68" data-ring="standard">
+                    <path d="M712,462 L685,482 L648,478 L668,455 Z" fill="#f5f5f5" stroke="#9fa8da" stroke-width="1.2"/>
+                    <text x="680" y="474" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">116</text>
+                </g>
+
+                <!-- CENTER FOOTBALL PITCH -->
+                <rect x="350" y="250" width="500" height="300" rx="8" fill="url(#pitchGradient)" stroke="#4a8c3f" stroke-width="2" filter="url(#shadow)"/>
+                
+                <!-- Pitch Lines -->
+                <line x1="350" y1="400" x2="850" y2="400" stroke="white" stroke-width="2" opacity="0.9"/>
+                <circle cx="600" cy="400" r="25" fill="none" stroke="white" stroke-width="2" opacity="0.9"/>
+                <circle cx="600" cy="400" r="3" fill="white"/>
+                
+                <!-- Penalty Areas -->
+                <rect x="350" y="340" width="80" height="120" fill="none" stroke="white" stroke-width="1.5" opacity="0.9"/>
+                <rect x="770" y="340" width="80" height="120" fill="none" stroke="white" stroke-width="1.5" opacity="0.9"/>
+                
+                <!-- Goal Areas -->
+                <rect x="350" y="375" width="30" height="50" fill="none" stroke="white" stroke-width="1" opacity="0.8"/>
+                <rect x="820" y="375" width="30" height="50" fill="none" stroke="white" stroke-width="1" opacity="0.8"/>
+                
+                <!-- Goals -->
+                <rect x="340" y="385" width="15" height="30" fill="rgba(255,255,255,0.6)" rx="2"/>
+                <rect x="845" y="385" width="15" height="30" fill="rgba(255,255,255,0.6)" rx="2"/>
+                
+                <!-- Corner Arcs -->
+                <path d="M350,250 Q360,255 355,265" fill="none" stroke="white" stroke-width="1.5" opacity="0.8"/>
+                <path d="M850,250 Q840,255 845,265" fill="none" stroke="white" stroke-width="1.5" opacity="0.8"/>
+                <path d="M350,550 Q360,545 355,535" fill="none" stroke="white" stroke-width="1.5" opacity="0.8"/>
+                <path d="M850,550 Q840,545 845,535" fill="none" stroke="white" stroke-width="1.5" opacity="0.8"/>
+                
+                <!-- Center Circle Label -->
+                <text x="600" y="415" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="10">⚽</text>
+            </svg>
         </div>
     </div>
 
-    <div class="main-container">
-        <div class="seatmap-container">
-            <div class="seatmap-header">
-                <h3>🏟️ Interactive Stadium Seat Map</h3>
-                <div style="font-size: 13px; color: #666;">Click any section to select seats</div>
-            </div>
-            <div class="canvas-wrapper">
-                <canvas id="stadiumCanvas" width="1000" height="700" style="width:100%; height:auto; max-width:1000px; cursor:grab"></canvas>
-            </div>
+    <div class="ticket-panel">
+        <div class="panel-header">
+            <h3>🎟️ Select Your Seats</h3>
+            <p style="font-size: 13px; color: #666;">Click a section on the map</p>
+        </div>
+        
+        <div class="selected-info" id="selectedInfo">
+            <div style="font-size: 12px; color: #888;">Selected Section</div>
+            <div class="selected-section-name" id="selectedSection">None</div>
         </div>
 
-        <div class="ticket-panel">
-            <div class="panel-header">
-                <h3>🎟️ Select Your Seats</h3>
-                <p>Click on a section to see available tickets</p>
-            </div>
-            
-            <div class="selected-info" id="selectedInfo">
-                <div style="font-size: 13px; color: #888;">Selected Section</div>
-                <div class="selected-section-name" id="selectedSection">None</div>
-            </div>
+        <div class="ticket-list" id="ticketList">
+            <div style="padding: 20px; text-align: center; color: #888;">Click on a section to see tickets</div>
+        </div>
 
-            <div class="ticket-list" id="ticketList"></div>
-
-            <div class="cart-summary">
-                <div class="summary-row">
-                    <span>Subtotal</span>
-                    <span id="subtotal">$0</span>
-                </div>
-                <div class="summary-row">
-                    <span>Service Fee (10%)</span>
-                    <span id="serviceFee">$0</span>
-                </div>
-                <div class="summary-row total">
-                    <span>Total Due</span>
-                    <span id="total">$0</span>
-                </div>
-                <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout →</button>
-                <div style="text-align: center; font-size: 11px; color: #999; margin-top: 12px;">🔒 Secure SSL Encrypted</div>
-            </div>
+        <div class="cart-summary">
+            <div class="summary-row"><span>Subtotal</span><span id="subtotal">$0</span></div>
+            <div class="summary-row"><span>Service Fee (10%)</span><span id="serviceFee">$0</span></div>
+            <div class="summary-row total"><span>Total Due</span><span id="total">$0</span></div>
+            <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout →</button>
+            <div style="text-align: center; font-size: 11px; color: #999; margin-top: 12px;">🔒 Secure SSL Encrypted</div>
         </div>
     </div>
+</div>
 
-    <!-- Floating Zoom Controls -->
-    <div class="zoom-controls">
-        <button class="zoom-btn" id="zoomInBtn" title="Zoom In">+</button>
-        <button class="zoom-btn" id="zoomOutBtn" title="Zoom Out">−</button>
-        <button class="zoom-btn" id="resetViewBtn" title="Reset View">⟳</button>
-    </div>
+<footer class="footer">
+    <p>© 2026 TicketRoyal — Official FIFA World Cup 2026™ Ticket Marketplace</p>
+</footer>
 
-    <footer class="footer">
-        <p>© 2026 TicketRoyal — Official FIFA World Cup 2026™ Ticket Marketplace</p>
-    </footer>
+<div class="toast" id="toast">✓ Added to cart!</div>
 
-    <div class="toast" id="toast">✓ Added to cart!</div>
+<div class="zoom-controls">
+    <button class="zoom-btn" id="zoomInBtn">+</button>
+    <button class="zoom-btn" id="zoomOutBtn">−</button>
+    <button class="zoom-btn" id="resetViewBtn">⟳</button>
+</div>
 
-    <script>
-        // Get URL params
-        const urlParams = new URLSearchParams(window.location.search);
-        const team1 = urlParams.get('team1') || 'South Korea';
-        const team2 = urlParams.get('team2') || 'Czechia';
+<script>
+    // Get URL params
+    const urlParams = new URLSearchParams(window.location.search);
+    const team1 = urlParams.get('team1') || 'South Korea';
+    const team2 = urlParams.get('team2') || 'Czechia';
+    document.querySelector('.match-title').textContent = `${team1} vs ${team2}`;
+
+    // Section data
+    const sections = Array.from(document.querySelectorAll('.seat-section'));
+    let selectedSection = null;
+    let quantities = {};
+
+    sections.forEach(s => { quantities[s.getAttribute('data-section')] = 0; });
+
+    // Highlight section
+    function highlightSection(section) {
+        sections.forEach(s => {
+            const path = s.querySelector('path');
+            if (path) path.setAttribute('stroke-width', '1.5');
+            s.classList.remove('selected');
+        });
+        const path = section.querySelector('path');
+        if (path) path.setAttribute('stroke-width', '4');
+        section.classList.add('selected');
+    }
+
+    // Render ticket panel
+    function renderTicketPanel(sectionData) {
+        const container = document.getElementById('ticketList');
+        const sectionId = sectionData.getAttribute('data-section');
+        const price = parseInt(sectionData.getAttribute('data-price'));
+        const available = parseInt(sectionData.getAttribute('data-available'));
+        const ring = sectionData.getAttribute('data-ring');
+        const sectionName = ring === 'premium' ? `Premium Section ${sectionId}` : `Standard Section ${sectionId}`;
         
-        document.getElementById('matchTitle').textContent = `${team1} vs ${team2}`;
+        document.getElementById('selectedSection').textContent = sectionName;
         
-        // Section data
-        const sections = [
-            // Outer Ring - Premium (Dark Blue)
-            { id: 101, name: "Premium 101", ring: "outer", angleStart: -20, angleEnd: 20, radiusOuter: 320, radiusInner: 280, price: 350, available: 42, color: "#1a237e", textColor: "white", sectionColor: "#283593" },
-            { id: 102, name: "Premium 102", ring: "outer", angleStart: 20, angleEnd: 60, radiusOuter: 320, radiusInner: 280, price: 320, available: 38, color: "#1a237e", textColor: "white", sectionColor: "#283593" },
-            { id: 103, name: "Premium 103", ring: "outer", angleStart: 60, angleEnd: 100, radiusOuter: 320, radiusInner: 280, price: 300, available: 45, color: "#1a237e", textColor: "white", sectionColor: "#283593" },
-            { id: 104, name: "Premium 104", ring: "outer", angleStart: 100, angleEnd: 140, radiusOuter: 320, radiusInner: 280, price: 300, available: 40, color: "#1a237e", textColor: "white", sectionColor: "#283593" },
-            { id: 105, name: "Premium 105", ring: "outer", angleStart: 140, angleEnd: 180, radiusOuter: 320, radiusInner: 280, price: 320, available: 35, color: "#1a237e", textColor: "white", sectionColor: "#283593" },
-            { id: 106, name: "Premium 106", ring: "outer", angleStart: 180, angleEnd: 220, radiusOuter: 320, radiusInner: 280, price: 350, available: 32, color: "#1a237e", textColor: "white", sectionColor: "#283593" },
-            { id: 107, name: "Premium 107", ring: "outer", angleStart: 220, angleEnd: 260, radiusOuter: 320, radiusInner: 280, price: 320, available: 38, color: "#1a237e", textColor: "white", sectionColor: "#283593" },
-            { id: 108, name: "Premium 108", ring: "outer", angleStart: 260, angleEnd: 300, radiusOuter: 320, radiusInner: 280, price: 300, available: 44, color: "#1a237e", textColor: "white", sectionColor: "#283593" },
-            { id: 109, name: "Premium 109", ring: "outer", angleStart: 300, angleEnd: 340, radiusOuter: 320, radiusInner: 280, price: 300, available: 41, color: "#1a237e", textColor: "white", sectionColor: "#283593" },
-            { id: 110, name: "Premium 110", ring: "outer", angleStart: 340, angleEnd: 380, radiusOuter: 320, radiusInner: 280, price: 320, available: 36, color: "#1a237e", textColor: "white", sectionColor: "#283593" },
-            
-            // Inner Ring - Standard (Light)
-            { id: 201, name: "Standard 01", ring: "inner", angleStart: -15, angleEnd: 25, radiusOuter: 260, radiusInner: 230, price: 180, available: 65, color: "#f5f5f5", textColor: "#333", sectionColor: "#fafafa" },
-            { id: 202, name: "Standard 02", ring: "inner", angleStart: 25, angleEnd: 65, radiusOuter: 260, radiusInner: 230, price: 160, available: 72, color: "#f5f5f5", textColor: "#333", sectionColor: "#fafafa" },
-            { id: 203, name: "Standard 03", ring: "inner", angleStart: 65, angleEnd: 105, radiusOuter: 260, radiusInner: 230, price: 150, available: 68, color: "#f5f5f5", textColor: "#333", sectionColor: "#fafafa" },
-            { id: 204, name: "Standard 04", ring: "inner", angleStart: 105, angleEnd: 145, radiusOuter: 260, radiusInner: 230, price: 150, available: 70, color: "#f5f5f5", textColor: "#333", sectionColor: "#fafafa" },
-            { id: 205, name: "Standard 05", ring: "inner", angleStart: 145, angleEnd: 185, radiusOuter: 260, radiusInner: 230, price: 160, available: 64, color: "#f5f5f5", textColor: "#333", sectionColor: "#fafafa" },
-            { id: 206, name: "Standard 06", ring: "inner", angleStart: 185, angleEnd: 225, radiusOuter: 260, radiusInner: 230, price: 180, available: 58, color: "#f5f5f5", textColor: "#333", sectionColor: "#fafafa" },
-            { id: 207, name: "Standard 07", ring: "inner", angleStart: 225, angleEnd: 265, radiusOuter: 260, radiusInner: 230, price: 160, available: 66, color: "#f5f5f5", textColor: "#333", sectionColor: "#fafafa" },
-            { id: 208, name: "Standard 08", ring: "inner", angleStart: 265, angleEnd: 305, radiusOuter: 260, radiusInner: 230, price: 150, available: 72, color: "#f5f5f5", textColor: "#333", sectionColor: "#fafafa" },
-            { id: 209, name: "Standard 09", ring: "inner", angleStart: 305, angleEnd: 345, radiusOuter: 260, radiusInner: 230, price: 150, available: 69, color: "#f5f5f5", textColor: "#333", sectionColor: "#fafafa" },
-            { id: 210, name: "Standard 10", ring: "inner", angleStart: 345, angleEnd: 385, radiusOuter: 260, radiusInner: 230, price: 160, available: 62, color: "#f5f5f5", textColor: "#333", sectionColor: "#fafafa" },
-            
-            // VIP Center Sections
-            { id: 301, name: "VIP Center", ring: "vip", angleStart: -10, angleEnd: 10, radiusOuter: 220, radiusInner: 200, price: 550, available: 24, color: "#e1bee7", textColor: "#6a1b9a", sectionColor: "#f3e5f5" },
-            { id: 302, name: "VIP Lounge", ring: "vip", angleStart: 170, angleEnd: 190, radiusOuter: 220, radiusInner: 200, price: 550, available: 20, color: "#e1bee7", textColor: "#6a1b9a", sectionColor: "#f3e5f5" }
-        ];
-
-        let selectedSectionId = null;
-        let quantities = {};
-        let scale = 1;
-        let offsetX = 0, offsetY = 0;
-        let isDragging = false;
-        let dragStartX, dragStartY;
-
-        // Initialize quantities
-        sections.forEach(s => { quantities[s.id] = 0; });
-
-        const canvas = document.getElementById('stadiumCanvas');
-        const ctx = canvas.getContext('2d');
-        
-        // Set canvas size
-        canvas.width = 1000;
-        canvas.height = 700;
-
-        // Draw stadium
-        function drawStadium() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.save();
-            ctx.translate(canvas.width/2 + offsetX, canvas.height/2 + offsetY);
-            ctx.scale(scale, scale);
-            
-            // Draw pitch background
-            ctx.fillStyle = "#2d5a27";
-            ctx.beginPath();
-            ctx.ellipse(0, 0, 200, 130, 0, 0, Math.PI * 2);
-            ctx.fill();
-            
-            // Pitch markings
-            ctx.strokeStyle = "white";
-            ctx.lineWidth = 1.5;
-            
-            // Center circle
-            ctx.beginPath();
-            ctx.arc(0, 0, 20, 0, Math.PI * 2);
-            ctx.stroke();
-            
-            // Center spot
-            ctx.beginPath();
-            ctx.arc(0, 0, 2, 0, Math.PI * 2);
-            ctx.fillStyle = "white";
-            ctx.fill();
-            
-            // Halfway line
-            ctx.beginPath();
-            ctx.moveTo(0, -130);
-            ctx.lineTo(0, 130);
-            ctx.stroke();
-            
-            // Penalty areas
-            ctx.strokeRect(-70, -100, 140, 50);
-            ctx.strokeRect(-70, 50, 140, 50);
-            
-            // Goals
-            ctx.fillStyle = "rgba(255,255,255,0.8)";
-            ctx.fillRect(-8, -132, 16, 8);
-            ctx.fillRect(-8, 124, 16, 8);
-            
-            // Corner arcs
-            ctx.beginPath();
-            ctx.arc(-195, -125, 8, 0, Math.PI/2);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.arc(195, -125, 8, Math.PI/2, Math.PI);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.arc(-195, 125, 8, -Math.PI/2, 0);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.arc(195, 125, 8, Math.PI, Math.PI*1.5);
-            ctx.stroke();
-            
-            // Draw sections
-            sections.forEach(section => {
-                const startRad = (section.angleStart - 90) * Math.PI / 180;
-                const endRad = (section.angleEnd - 90) * Math.PI / 180;
-                const outerR = section.radiusOuter;
-                const innerR = section.radiusInner;
-                
-                ctx.beginPath();
-                
-                // Outer arc
-                const outerStartX = outerR * Math.cos(startRad);
-                const outerStartY = outerR * Math.sin(startRad);
-                const outerEndX = outerR * Math.cos(endRad);
-                const outerEndY = outerR * Math.sin(endRad);
-                
-                ctx.moveTo(outerStartX, outerStartY);
-                
-                // Draw outer arc
-                for (let ang = startRad; ang <= endRad; ang += 0.05) {
-                    const x = outerR * Math.cos(ang);
-                    const y = outerR * Math.sin(ang);
-                    ctx.lineTo(x, y);
-                }
-                
-                // Inner arc (reverse)
-                for (let ang = endRad; ang >= startRad; ang -= 0.05) {
-                    const x = innerR * Math.cos(ang);
-                    const y = innerR * Math.sin(ang);
-                    ctx.lineTo(x, y);
-                }
-                
-                ctx.closePath();
-                
-                // Fill section
-                ctx.fillStyle = section.sectionColor;
-                ctx.fill();
-                ctx.strokeStyle = section.id === selectedSectionId ? "#FF6B6B" : (section.ring === "outer" ? "#3f51b5" : "#ccc");
-                ctx.lineWidth = section.id === selectedSectionId ? 3 : 1.5;
-                ctx.stroke();
-                
-                // Draw section number
-                const midAngle = (startRad + endRad) / 2;
-                const textR = (outerR + innerR) / 2;
-                const textX = textR * Math.cos(midAngle);
-                const textY = textR * Math.sin(midAngle);
-                
-                ctx.font = "bold 14px 'Inter', sans-serif";
-                ctx.fillStyle = section.textColor;
-                ctx.shadowBlur = 0;
-                ctx.fillText(section.id.toString(), textX - 8, textY + 5);
-                
-                // Small font for price on outer ring
-                if (section.ring === "outer") {
-                    ctx.font = "10px 'Inter', sans-serif";
-                    ctx.fillStyle = "rgba(255,255,255,0.7)";
-                    ctx.fillText(`$${section.price}`, textX - 12, textY + 22);
-                }
-            });
-            
-            // Draw VIP label
-            ctx.font = "bold 16px 'Inter', sans-serif";
-            ctx.fillStyle = "#6a1b9a";
-            ctx.shadowBlur = 0;
-            ctx.fillText("⭐ VIP", -25, -15);
-            
-            ctx.restore();
-        }
-
-        // Hit test - find which section was clicked
-        function hitTest(mouseX, mouseY) {
-            const canvasRect = canvas.getBoundingClientRect();
-            const canvasX = (mouseX - canvasRect.left) * (canvas.width / canvasRect.width);
-            const canvasY = (mouseY - canvasRect.top) * (canvas.height / canvasRect.height);
-            
-            const centerX = canvas.width/2 + offsetX;
-            const centerY = canvas.height/2 + offsetY;
-            
-            const dx = canvasX - centerX;
-            const dy = canvasY - centerY;
-            const distance = Math.sqrt(dx*dx + dy*dy);
-            
-            for (const section of sections) {
-                if (distance >= section.radiusInner && distance <= section.radiusOuter) {
-                    let angle = Math.atan2(dy, dx) * 180 / Math.PI + 90;
-                    if (angle < 0) angle += 360;
-                    
-                    if (angle >= section.angleStart && angle <= section.angleEnd) {
-                        return section;
-                    }
-                }
-            }
-            return null;
-        }
-
-        // Render ticket list
-        function renderTicketList() {
-            const container = document.getElementById('ticketList');
-            const selectedSection = sections.find(s => s.id === selectedSectionId);
-            
-            if (!selectedSection) {
-                container.innerHTML = '<div style="padding: 20px; text-align: center; color: #888;">Click on a section to see available tickets</div>';
-                document.getElementById('selectedSection').textContent = 'None';
-                return;
-            }
-            
-            document.getElementById('selectedSection').textContent = selectedSection.name;
-            
-            container.innerHTML = `
-                <div class="ticket-item selected" data-id="${selectedSection.id}">
-                    <div class="ticket-name">${selectedSection.name}</div>
-                    <div class="ticket-price">$${selectedSection.price} per ticket</div>
-                    <div class="ticket-availability">${selectedSection.available} seats available</div>
-                    <div class="qty-selector">
-                        <button class="qty-btn" onclick="changeQuantity(${selectedSection.id}, -1)">−</button>
-                        <span class="qty-value" id="qty_${selectedSection.id}">${quantities[selectedSection.id] || 0}</span>
-                        <button class="qty-btn" onclick="changeQuantity(${selectedSection.id}, 1)">+</button>
-                    </div>
-                    <button class="book-btn" onclick="bookTicket(${selectedSection.id})">Add to Cart →</button>
+        container.innerHTML = `
+            <div class="ticket-item">
+                <div class="ticket-name">${sectionName}</div>
+                <div class="ticket-price">$${price} per ticket</div>
+                <div class="ticket-availability">${available} seats available</div>
+                <div class="qty-selector">
+                    <button class="qty-btn" onclick="changeQuantity('${sectionId}', -1)">−</button>
+                    <span class="qty-value" id="qty_${sectionId}">${quantities[sectionId] || 0}</span>
+                    <button class="qty-btn" onclick="changeQuantity('${sectionId}', 1)">+</button>
                 </div>
-            `;
-        }
+                <button class="book-btn" onclick="bookTicket('${sectionId}')">Add to Cart →</button>
+            </div>
+        `;
+    }
 
-        function changeQuantity(sectionId, delta) {
-            const section = sections.find(s => s.id === sectionId);
-            const newQty = (quantities[sectionId] || 0) + delta;
-            if (newQty >= 0 && newQty <= 10 && newQty <= section.available) {
-                quantities[sectionId] = newQty;
-                document.getElementById(`qty_${sectionId}`).textContent = newQty;
-                updateCartSummary();
-            }
+    function changeQuantity(sectionId, delta) {
+        const section = sections.find(s => s.getAttribute('data-section') === sectionId);
+        const available = parseInt(section.getAttribute('data-available'));
+        const newQty = (quantities[sectionId] || 0) + delta;
+        if (newQty >= 0 && newQty <= 10 && newQty <= available) {
+            quantities[sectionId] = newQty;
+            const qtySpan = document.getElementById(`qty_${sectionId}`);
+            if (qtySpan) qtySpan.textContent = newQty;
+            updateCartSummary();
         }
+    }
 
-        function updateCartSummary() {
-            let subtotal = 0;
-            sections.forEach(section => {
-                subtotal += (quantities[section.id] || 0) * section.price;
-            });
-            const serviceFee = Math.round(subtotal * 0.1);
-            document.getElementById('subtotal').textContent = `$${subtotal.toLocaleString()}`;
-            document.getElementById('serviceFee').textContent = `$${serviceFee.toLocaleString()}`;
-            document.getElementById('total').textContent = `$${(subtotal + serviceFee).toLocaleString()}`;
-        }
+    function bookTicket(sectionId) {
+        const qty = quantities[sectionId] || 0;
+        if (qty === 0) { showToast('Please select quantity first'); return; }
+        const section = sections.find(s => s.getAttribute('data-section') === sectionId);
+        const price = parseInt(section.getAttribute('data-price'));
+        showToast(`✓ Added ${qty} × Section ${sectionId} - $${(price * qty).toLocaleString()}`);
+    }
 
-        function bookTicket(sectionId) {
-            const section = sections.find(s => s.id === sectionId);
-            const qty = quantities[sectionId] || 0;
-            if (qty === 0) {
-                showToast('Please select quantity first');
-                return;
-            }
-            showToast(`✓ Added ${qty} × ${section.name} - $${(section.price * qty).toLocaleString()}`);
-        }
+    function updateCartSummary() {
+        let subtotal = 0;
+        sections.forEach(section => {
+            const id = section.getAttribute('data-section');
+            const price = parseInt(section.getAttribute('data-price'));
+            subtotal += (quantities[id] || 0) * price;
+        });
+        const serviceFee = Math.round(subtotal * 0.1);
+        document.getElementById('subtotal').textContent = `$${subtotal.toLocaleString()}`;
+        document.getElementById('serviceFee').textContent = `$${serviceFee.toLocaleString()}`;
+        document.getElementById('total').textContent = `$${(subtotal + serviceFee).toLocaleString()}`;
+    }
 
-        function proceedToCheckout() {
-            let hasTickets = false;
-            for (const s of sections) {
-                if (quantities[s.id] > 0) hasTickets = true;
-            }
-            if (!hasTickets) {
-                showToast('Please select at least one ticket');
-                return;
-            }
-            showToast('Redirecting to secure checkout...');
-            setTimeout(() => window.location.href = 'checkout.html', 1000);
+    function proceedToCheckout() {
+        let hasTickets = false;
+        for (const id in quantities) {
+            if (quantities[id] > 0) hasTickets = true;
         }
+        if (!hasTickets) { showToast('Please select at least one ticket'); return; }
+        showToast('Redirecting to secure checkout...');
+        setTimeout(() => window.location.href = 'checkout.html', 1000);
+    }
 
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            toast.textContent = msg;
-            toast.style.display = 'block';
-            setTimeout(() => toast.style.display = 'none', 2000);
-        }
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.textContent = msg;
+        toast.style.display = 'block';
+        setTimeout(() => toast.style.display = 'none', 2000);
+    }
 
-        // Canvas event handlers
-        function handleCanvasClick(e) {
-            const rect = canvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const section = hitTest(x, y);
-            
-            if (section) {
-                selectedSectionId = section.id;
-                drawStadium();
-                renderTicketList();
-                showToast(`${section.name} selected - $${section.price} per ticket`);
-            }
-        }
+    // SVG Zoom/Pan
+    const svg = document.getElementById('stadiumSvg');
+    const container = document.getElementById('svgContainer');
+    let scale = 1;
+    let panning = false;
+    let startX, startY, translateX = 0, translateY = 0;
 
-        // Zoom functions
-        function zoomIn() {
-            scale = Math.min(scale + 0.1, 2.5);
-            drawStadium();
-        }
-        
-        function zoomOut() {
-            scale = Math.max(scale - 0.1, 0.5);
-            drawStadium();
-        }
-        
-        function resetView() {
-            scale = 1;
-            offsetX = 0;
-            offsetY = 0;
-            drawStadium();
-        }
+    svg.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? -0.1 : 0.1;
+        scale = Math.min(Math.max(0.5, scale + delta), 2.5);
+        svg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+        svg.style.transformOrigin = '0 0';
+    });
 
-        // Pan functionality
-        function onMouseDown(e) {
-            isDragging = true;
-            dragStartX = e.clientX - offsetX;
-            dragStartY = e.clientY - offsetY;
-            canvas.style.cursor = 'grabbing';
-        }
-        
-        function onMouseMove(e) {
-            if (!isDragging) return;
-            offsetX = e.clientX - dragStartX;
-            offsetY = e.clientY - dragStartY;
-            drawStadium();
-        }
-        
-        function onMouseUp() {
-            isDragging = false;
-            canvas.style.cursor = 'grab';
-        }
+    svg.addEventListener('mousedown', (e) => {
+        panning = true;
+        startX = e.clientX - translateX;
+        startY = e.clientY - translateY;
+        svg.style.cursor = 'grabbing';
+    });
 
-        // Event listeners
-        canvas.addEventListener('click', handleCanvasClick);
-        canvas.addEventListener('mousedown', onMouseDown);
-        window.addEventListener('mousemove', onMouseMove);
-        window.addEventListener('mouseup', onMouseUp);
-        canvas.style.cursor = 'grab';
-        
-        document.getElementById('zoomInBtn').addEventListener('click', zoomIn);
-        document.getElementById('zoomOutBtn').addEventListener('click', zoomOut);
-        document.getElementById('resetViewBtn').addEventListener('click', resetView);
+    window.addEventListener('mousemove', (e) => {
+        if (!panning) return;
+        translateX = e.clientX - startX;
+        translateY = e.clientY - startY;
+        svg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    });
 
-        // Initial draw
-        drawStadium();
-        renderTicketList();
-        updateCartSummary();
-    </script>
+    window.addEventListener('mouseup', () => {
+        panning = false;
+        svg.style.cursor = 'grab';
+    });
+
+    document.getElementById('zoomInBtn').addEventListener('click', () => {
+        scale = Math.min(scale + 0.2, 2.5);
+        svg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    });
+
+    document.getElementById('zoomOutBtn').addEventListener('click', () => {
+        scale = Math.max(scale - 0.2, 0.5);
+        svg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    });
+
+    document.getElementById('resetViewBtn').addEventListener('click', () => {
+        scale = 1;
+        translateX = 0;
+        translateY = 0;
+        svg.style.transform = `translate(0, 0) scale(1)`;
+    });
+
+    svg.style.cursor = 'grab';
+
+    // Section click handler
+    sections.forEach(section => {
+        section.addEventListener('click', (e) => {
+            e.stopPropagation();
+            highlightSection(section);
+            renderTicketPanel(section);
+        });
+    });
+
+    updateCartSummary();
+</script>
 </body>
 </html>
