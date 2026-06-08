@@ -2,50 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Secure Checkout | eTicketing</title>
-  <!-- Google Fonts & Simple Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>TicketRoyal • Secure Checkout</title>
+  <!-- Google Fonts & Font Awesome 6 -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
     }
 
     body {
-      background: #f6f8fc;
-      color: #1a2c3e;
-      padding: 0 0 40px 0;
+      background: #f4f7fc;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #121826;
+      padding-bottom: 60px;
     }
 
-    /* cart timer bar */
-    .cart-timer-bar {
-      background: #fff3e0;
-      border-bottom: 1px solid #ffe0b5;
-      padding: 12px 24px;
+    /* timer ribbon */
+    .timer-ribbon {
+      background: #1e293b;
+      color: #ffde9c;
       text-align: center;
+      padding: 12px 20px;
       font-size: 0.9rem;
-      font-weight: 500;
-      color: #c25b00;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      border-bottom: 1px solid #334155;
     }
-    .timer-icon {
-      margin-right: 8px;
+    .timer-ribbon i {
+      margin-right: 10px;
+      color: #facc15;
     }
-    .time-val {
-      font-weight: 800;
-      background: #1e2a3a;
-      color: #ffd966;
-      padding: 2px 10px;
+    .timer-value {
+      background: #0f172a;
+      padding: 4px 12px;
       border-radius: 40px;
-      margin-left: 6px;
+      margin-left: 8px;
+      font-family: monospace;
+      font-size: 1rem;
+      font-weight: 800;
     }
 
-    .container-checkout {
-      max-width: 1300px;
-      margin: 30px auto 0;
+    /* container */
+    .checkout-container {
+      max-width: 1320px;
+      margin: 32px auto 0;
       padding: 0 24px;
     }
 
@@ -55,136 +59,138 @@
       gap: 32px;
     }
 
-    /* main left column */
-    .order-summary {
-      flex: 1.2;
-      min-width: 280px;
-    }
-    .billing-details {
-      flex: 1.8;
-      min-width: 320px;
-    }
-
     /* cards */
     .card {
       background: #ffffff;
       border-radius: 28px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.02);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.2s;
       margin-bottom: 28px;
-      overflow: hidden;
-      transition: all 0.2s ease;
+      border: 1px solid #eef2f8;
     }
 
     .card-header {
       padding: 20px 28px;
-      border-bottom: 1px solid #edf2f7;
-      background: #fff;
+      border-bottom: 1px solid #eef2f8;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     .card-header h2, .card-header h3 {
       font-size: 1.35rem;
       font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 10px;
       margin: 0;
     }
     .card-body {
       padding: 24px 28px;
     }
 
-    /* ticket item row */
+    /* order summary column */
+    .order-col {
+      flex: 1.2;
+      min-width: 300px;
+    }
+    .form-col {
+      flex: 1.8;
+      min-width: 340px;
+    }
+
+    /* ticket row */
     .ticket-item {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 16px;
-      border-bottom: 1px solid #eff3f8;
-      padding-bottom: 20px;
+      border-bottom: 1px solid #edf2f7;
+      padding-bottom: 22px;
       margin-bottom: 20px;
     }
-    .event-info h4 {
-      font-size: 1.2rem;
+    .event-title {
+      font-size: 1.3rem;
       font-weight: 800;
-      margin-bottom: 6px;
+      background: linear-gradient(135deg, #1f2b48, #152032);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
     }
-    .event-meta {
-      color: #4a627a;
-      font-size: 0.85rem;
+    .match-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 16px;
       margin-top: 8px;
+      font-size: 0.8rem;
+      color: #4b5565;
     }
-    .event-meta i {
+    .match-meta i {
       width: 18px;
-      margin-right: 5px;
     }
-    .ticket-price {
+    .price-block {
       text-align: right;
     }
-    .price-main {
-      font-size: 1.7rem;
+    .price-number {
+      font-size: 1.8rem;
       font-weight: 800;
-      color: #1e3a5f;
+      color: #0f2b3d;
     }
-    .price-label {
-      font-size: 0.75rem;
-      color: #6c86a3;
+    .price-note {
+      font-size: 0.7rem;
+      color: #6c7a91;
     }
     .remove-link {
-      display: inline-block;
-      margin-top: 8px;
-      color: #b91c1c;
-      font-size: 0.8rem;
+      color: #c2410c;
+      font-size: 0.75rem;
+      font-weight: 600;
       text-decoration: none;
-      font-weight: 500;
+      display: inline-block;
+      margin-top: 6px;
     }
 
-    /* fee rows */
-    .fee-row, .total-row {
+    .fee-row {
       display: flex;
       justify-content: space-between;
       padding: 12px 0;
-      border-bottom: 1px solid #edf2f7;
-      font-size: 1rem;
+      border-bottom: 1px solid #ecf3fa;
+      font-weight: 500;
     }
     .total-row {
-      border-bottom: none;
+      display: flex;
+      justify-content: space-between;
+      padding: 18px 0 6px;
       font-weight: 800;
-      font-size: 1.3rem;
-      margin-top: 8px;
-      color: #0f2b3d;
+      font-size: 1.2rem;
     }
-    .grand-total {
+    .grand-price {
       font-size: 1.6rem;
       font-weight: 800;
-      color: #136b2f;
-    }
-    .delivery-method {
-      background: #f9fafc;
-      border-radius: 20px;
-      padding: 14px 18px;
-      margin: 12px 0;
-      font-size: 0.85rem;
+      color: #0d6e2e;
     }
 
-    /* forms */
+    .delivery-badge {
+      background: #f8fafd;
+      padding: 12px 16px;
+      border-radius: 24px;
+      margin: 16px 0;
+      font-size: 0.8rem;
+      border: 1px dashed #cbd5e1;
+    }
+
+    /* form styling */
     .form-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
-      margin-bottom: 20px;
+      gap: 18px;
+      margin-bottom: 18px;
     }
     .form-group {
       flex: 1;
-      min-width: 180px;
+      min-width: 170px;
     }
     label {
-      font-size: 0.75rem;
-      font-weight: 600;
+      font-size: 0.7rem;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      color: #59748f;
+      color: #4a627a;
       display: block;
       margin-bottom: 6px;
     }
@@ -193,81 +199,85 @@
       padding: 12px 16px;
       border: 1.5px solid #e2e8f0;
       border-radius: 20px;
+      font-family: inherit;
       font-size: 0.9rem;
       transition: 0.2s;
       background: white;
-      outline: none;
     }
     input:focus, select:focus, textarea:focus {
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+      border-color: #3b6eff;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(59,110,255,0.1);
     }
-    .checkbox-group {
+
+    .checkbox-wrap {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin: 24px 0 20px;
+      margin: 22px 0 18px;
     }
-    .checkbox-group input {
+    .checkbox-wrap input {
       width: 20px;
       height: 20px;
       margin: 0;
     }
-    .terms-text {
-      font-size: 0.85rem;
-    }
+
     .btn-pay {
-      background: #0a2540;
-      color: white;
-      border: none;
+      background: #0b2b40;
       width: 100%;
       padding: 16px;
-      font-size: 1.1rem;
-      font-weight: 700;
+      border: none;
       border-radius: 60px;
-      cursor: pointer;
-      transition: 0.2s;
+      font-weight: 800;
+      font-size: 1rem;
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 12px;
-      margin-top: 12px;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 10px;
     }
     .btn-pay:hover {
-      background: #1e3f5f;
-      transform: scale(0.99);
+      background: #134b66;
+      transform: scale(0.98);
     }
+
     .payment-icons {
       display: flex;
-      gap: 18px;
+      gap: 20px;
       justify-content: flex-end;
-      margin-top: 15px;
+      margin-top: 18px;
       flex-wrap: wrap;
     }
-    .payment-icons i, .payment-icons img {
+    .payment-icons i, .payment-icons span {
       font-size: 32px;
       color: #2c3e66;
     }
-    .badge-guarantee {
-      background: #eef2ff;
-      padding: 12px;
+
+    .guarantee-box {
+      background: #eef6ff;
       border-radius: 24px;
+      padding: 12px;
       text-align: center;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 600;
+      margin-top: 16px;
     }
-    .contact-side {
-      background: #fef9e6;
-      border-left: 4px solid #ffb347;
+    .contact-card {
+      background: #fff9ef;
+      border-left: 5px solid #f5a623;
     }
     footer {
       text-align: center;
-      margin-top: 50px;
+      margin-top: 55px;
       font-size: 0.7rem;
-      color: #7e8b9c;
+      color: #5b6e8c;
     }
-    @media (max-width: 800px) {
-      .container-checkout {
+
+    @media (max-width: 780px) {
+      .checkout-container {
         padding: 0 16px;
       }
       .card-body {
@@ -278,58 +288,58 @@
 </head>
 <body>
 
-<div class="cart-timer-bar" id="timerBar">
-  <i class="fas fa-hourglass-half timer-icon"></i> 
-  Cart will expire in <span id="timer" class="time-val">10:00</span> — complete your booking!
+<div class="timer-ribbon">
+  <i class="fas fa-clock"></i> Your cart is reserved for <span id="timerDisplay" class="timer-value">10:00</span> — complete checkout to secure tickets.
 </div>
 
-<div class="container-checkout">
+<div class="checkout-container">
   <div class="checkout-grid">
     
-    <!-- LEFT COLUMN: ORDER SUMMARY (ticket info, fees, total) -->
-    <div class="order-summary">
+    <!-- LEFT COLUMN: ORDER SUMMARY (TicketRoyal style) -->
+    <div class="order-col">
       <div class="card">
         <div class="card-header">
-          <h2><i class="fas fa-ticket-alt"></i> Your order</h2>
+          <i class="fas fa-ticket-alt fa-lg" style="color:#2c5f8a;"></i>
+          <h2>Your Royal Order</h2>
         </div>
         <div class="card-body">
-          <!-- Ticket block -->
-          <div class="ticket-item">
-            <div class="event-info">
-              <h4>1 x Block 639 · Premium Zone</h4>
-              <div style="font-weight: 700; font-size: 1rem;">Mexico Vs South Africa</div>
-              <div style="color:#2563eb; font-weight: 500;">Match 01 - FIFA World Cup 2026™</div>
-              <div class="event-meta">
+          <!-- ticket block (inspired by original) -->
+          <div class="ticket-item" id="ticketBlockWrapper">
+            <div class="event-details">
+              <div class="event-title">1 X Block 639 (Premium)</div>
+              <div style="font-weight: 800; font-size: 1.1rem;">Mexico Vs South Africa</div>
+              <div style="color:#2563eb; font-weight: 600;">Match 01 • FIFA World Cup 2026™</div>
+              <div class="match-meta">
                 <span><i class="far fa-calendar-alt"></i> Thu, Jun 11, 2026 · 20:00</span>
-                <span><i class="fas fa-map-marker-alt"></i> Estadio Banorte (Estadio Azteca), Mexico City</span>
+                <span><i class="fas fa-map-marker-alt"></i> Estadio Banorte, Mexico City</span>
               </div>
             </div>
-            <div class="ticket-price">
-              <div class="price-main">$5,500.00</div>
-              <div class="price-label">per ticket</div>
-              <a href="#" class="remove-link" id="removeTicketBtn"><i class="fas fa-trash-alt"></i> Remove</a>
+            <div class="price-block">
+              <div class="price-number">$5,500.00</div>
+              <div class="price-note">per ticket</div>
+              <a href="#" id="removeTicketBtn" class="remove-link"><i class="fas fa-trash-alt"></i> Remove</a>
             </div>
           </div>
 
-          <!-- fees & handling -->
+          <!-- fee breakdown -->
           <div class="fee-row">
             <span>Booking & Handling Fees</span>
-            <span class="fee-amount" id="handlingFee">$1,650.00</span>
+            <span id="handlingFeeText">$1,650.00</span>
           </div>
           <div class="fee-row">
-            <span>Delivery (E-Tickets / Mobile transfer)</span>
+            <span>Delivery (E-ticket / Mobile transfer)</span>
             <span>$0.00</span>
           </div>
-          <div class="delivery-method">
-            <i class="fas fa-envelope-open-text"></i> <strong>Delivery method:</strong> Mobile Tickets / E-Tickets via Email (24-72 hours before event)
+          <div class="delivery-badge">
+            <i class="fas fa-envelope-open-text"></i> <strong>Delivery method:</strong> Mobile Tickets / E-Tickets via Email (72h before event)
           </div>
           <div class="total-row">
-            <span>Booking Total :</span>
-            <span class="grand-total" id="grandTotalSpan">$7,150.00</span>
+            <span>Booking Total (USD)</span>
+            <span class="grand-price" id="grandTotalSpan">$7,150.00</span>
           </div>
           
-          <div class="badge-guarantee" style="margin-top: 16px;">
-            <i class="fas fa-shield-alt"></i> 150% Money Back Guarantee • Tickets guaranteed or your money back
+          <div class="guarantee-box">
+            <i class="fas fa-shield-heart"></i> <strong>TicketRoyal 150% Guarantee</strong> — Full refund + 50% credit if tickets not delivered on time.
           </div>
           <div class="payment-icons">
             <i class="fab fa-cc-visa"></i>
@@ -337,55 +347,57 @@
             <i class="fab fa-cc-amex"></i>
             <i class="fab fa-apple-pay"></i>
             <i class="fab fa-google-pay"></i>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/PayPal_logo_icon.png" style="height: 28px;" alt="paypal">
+            <i class="fab fa-cc-paypal"></i>
           </div>
         </div>
       </div>
 
-      <!-- contact info card -->
-      <div class="card contact-side">
+      <!-- contact & help card -->
+      <div class="card contact-card">
         <div class="card-header">
-          <h3><i class="fas fa-headset"></i> Need help?</h3>
+          <i class="fas fa-concierge-bell"></i>
+          <h3>Royal Support</h3>
         </div>
-        <div class="card-body" style="padding-top: 0;">
-          <p><i class="fas fa-phone-alt"></i> +1 (347) 391-0177 &nbsp;|&nbsp; +44 (0) 207 6648-627</p>
-          <p><i class="fas fa-envelope"></i> sales@eticketing.co</p>
-          <p><i class="fab fa-whatsapp"></i> WhatsApp message support</p>
-          <p style="font-size: 12px;">GLOBAL CREATIVE SOLUTIONS LLC<br>Las Vegas, NV, USA</p>
+        <div class="card-body">
+          <p><i class="fas fa-phone-alt"></i> +1 (888) 901-1122 &nbsp;|&nbsp; +44 20 7946 0138</p>
+          <p><i class="fas fa-envelope"></i> help@ticketroyal.com</p>
+          <p><i class="fab fa-whatsapp"></i> WhatsApp (message only)</p>
+          <p style="font-size: 12px; margin-top: 8px;"><strong>TicketRoyal LLC</strong><br> 8 The Green, STE 4000, Dover, DE 19901</p>
         </div>
       </div>
     </div>
 
-    <!-- RIGHT COLUMN: BILLING FORM -->
-    <div class="billing-details">
+    <!-- RIGHT COLUMN: BILLING FORM (TicketRoyal checkout) -->
+    <div class="form-col">
       <div class="card">
         <div class="card-header">
-          <h2><i class="fas fa-file-invoice"></i> Billing Information</h2>
+          <i class="fas fa-user-edit"></i>
+          <h2>Billing Details</h2>
         </div>
         <div class="card-body">
-          <form id="checkoutForm">
+          <form id="checkoutRoyalForm">
             <div class="form-row">
               <div class="form-group">
                 <label>First Name *</label>
-                <input type="text" id="firstName" required placeholder="John">
+                <input type="text" id="firstName" required placeholder="James">
               </div>
               <div class="form-group">
                 <label>Last Name *</label>
-                <input type="text" id="lastName" required placeholder="Doe">
+                <input type="text" id="lastName" required placeholder="Wilson">
               </div>
             </div>
             <div class="form-group">
-              <label>Address *</label>
-              <input type="text" id="address" required placeholder="Street address">
+              <label>Billing Address *</label>
+              <input type="text" id="address" required placeholder="Street / P.O. Box">
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label>City / Town *</label>
-                <input type="text" id="city" required placeholder="Manchester">
+                <input type="text" id="city" required placeholder="London">
               </div>
               <div class="form-group">
-                <label>Postal Code</label>
-                <input type="text" id="postcode" placeholder="M1 1AE">
+                <label>Postcode / ZIP</label>
+                <input type="text" id="postcode" placeholder="E1 6AN">
               </div>
             </div>
             <div class="form-group">
@@ -393,44 +405,45 @@
               <select id="country" required>
                 <option value="">-- Select Country --</option>
                 <option value="US">United States</option>
-                <option value="UK" selected>United Kingdom</option>
+                <option value="GB" selected>United Kingdom</option>
                 <option value="CA">Canada</option>
                 <option value="AU">Australia</option>
                 <option value="IN">India</option>
                 <option value="DE">Germany</option>
                 <option value="FR">France</option>
+                <option value="MX">Mexico</option>
               </select>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label>Email Address *</label>
-                <input type="email" id="email" required placeholder="john.doe@example.com">
+                <input type="email" id="email" required placeholder="james@example.com">
               </div>
               <div class="form-group">
                 <label>Mobile Number *</label>
-                <input type="tel" id="phone" required placeholder="+44 7123 456789">
+                <input type="tel" id="phone" required placeholder="+44 7700 123456">
               </div>
             </div>
             <div class="form-group">
-              <label>Special instructions / comments (optional)</label>
-              <textarea rows="2" id="comments" placeholder="Any additional info for delivery?"></textarea>
+              <label>Order notes (optional)</label>
+              <textarea rows="2" id="notes" placeholder="Special requests or delivery instructions"></textarea>
             </div>
-            
-            <!-- Important payment note -->
-            <div id="iccmsg" style="background:#fffbeb; border-left: 4px solid #f59e0b; padding: 12px; border-radius: 16px; margin: 16px 0; font-size: 0.75rem;">
-              <i class="fas fa-exclamation-triangle"></i> <strong>Important:</strong> Before placing an order, please ensure your bank allows international online transactions. Some cards require 3D Secure.
+
+            <!-- dynamic country warning (like original) -->
+            <div id="countryWarningMsg" style="background:#fff2e0; border-radius: 20px; padding: 12px; margin: 16px 0; font-size: 0.75rem; border-left: 4px solid #f5a623;">
+              <i class="fas fa-university"></i> <strong>Payment tip:</strong> For international cards, enable global transactions. 3D Secure ready.
             </div>
-            
-            <div class="checkbox-group">
-              <input type="checkbox" id="agreeTerms" required>
-              <label for="agreeTerms" style="text-transform: none; font-weight: 500;">I have read & agreed to <a href="#" target="_blank" style="color:#2266cc;">Terms and Conditions</a> (All sales final, 150% guarantee, event postponement policy)</label>
+
+            <div class="checkbox-wrap">
+              <input type="checkbox" id="termsCheckbox" required>
+              <label for="termsCheckbox" style="text-transform: none; font-weight: 500;">I have read and agree to <a href="#" target="_blank" style="color:#1e4f8a;">TicketRoyal Terms & Conditions</a> (All sales final, 150% money-back guarantee, postponed event policy).</label>
             </div>
-            
-            <button type="submit" class="btn-pay" id="payButton">
-              <i class="fas fa-lock"></i> Book Tickets & Pay Now — $<span id="dynamicTotal">7,150.00</span>
+
+            <button type="submit" class="btn-pay" id="payNowBtn">
+              <i class="fas fa-crown"></i> Secure Booking — $<span id="checkoutTotal">7,150.00</span>
             </button>
             <p style="font-size: 0.7rem; text-align: center; margin-top: 14px;">
-              <i class="fas fa-shield-alt"></i> Secure transaction • 3D Secure verified
+              <i class="fas fa-lock"></i> PCI compliant • Encrypted payment
             </p>
           </form>
         </div>
@@ -438,38 +451,39 @@
     </div>
   </div>
   <footer>
-    <p>© 2017-2026 eTicketing.co — secondary ticket marketplace. Prices may be above face value. All sales final under our policy.</p>
+    <p>© 2026 TicketRoyal — Secondary ticket exchange. Prices may be above face value. All sales final under our buyer guarantee.</p>
   </footer>
 </div>
 
-<!-- hidden global values for dynamic update (remove ticket simulation) -->
 <script>
-  // --- Timer logic (10 minutes countdown) 
-  let countdownSeconds = 600; // 10 min
-  const timerElement = document.getElementById('timer');
-  const redirectUrl = "#";  // would be expiry page but we just simulate message
+  // ---------- TIMER (10 min countdown) ----------
+  let remainingSeconds = 600; // 10 minutes
+  const timerSpan = document.getElementById('timerDisplay');
   let timerInterval;
 
-  function updateTimerDisplay() {
-    let mins = Math.floor(countdownSeconds / 60);
-    let secs = countdownSeconds % 60;
-    timerElement.innerText = `${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
-    if(countdownSeconds <= 0) {
+  function formatTime(secs) {
+    let mins = Math.floor(secs / 60);
+    let seconds = secs % 60;
+    return `${mins.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+  }
+
+  function updateTimerUI() {
+    timerSpan.textContent = formatTime(remainingSeconds);
+    if (remainingSeconds <= 0) {
       clearInterval(timerInterval);
-      timerElement.innerText = "Expired!";
-      alert("Your cart has expired. Please refresh and try again.");
-      // In real scenario, redirect, but we disable booking
-      document.getElementById('payButton').disabled = true;
-      document.getElementById('payButton').style.opacity = "0.6";
+      timerSpan.textContent = "Expired";
+      alert("Your cart session has expired. Please refresh to restart booking.");
+      document.getElementById('payNowBtn').disabled = true;
+      document.getElementById('payNowBtn').style.opacity = "0.5";
     }
   }
 
   function startTimer() {
-    updateTimerDisplay();
+    updateTimerUI();
     timerInterval = setInterval(() => {
-      if(countdownSeconds > 0) {
-        countdownSeconds--;
-        updateTimerDisplay();
+      if (remainingSeconds > 0) {
+        remainingSeconds--;
+        updateTimerUI();
       } else {
         clearInterval(timerInterval);
       }
@@ -477,58 +491,80 @@
   }
   startTimer();
 
-  // order data variables: ticket price, handling fees
-  let ticketPrice = 5500.00;
+  // ---------- CART DATA (inspired by original ticket) ----------
+  let ticketQty = 1;
+  let ticketBasePrice = 5500.00;
   let handlingFee = 1650.00;
-  let deliveryFee = 0.00;
-  let quantity = 1;
+  let deliveryCost = 0.00;
   
   function computeGrandTotal() {
-    return (ticketPrice * quantity) + handlingFee + deliveryFee;
+    return (ticketBasePrice * ticketQty) + handlingFee + deliveryCost;
   }
-  
-  function updateTotalsUI() {
-    let grand = computeGrandTotal();
+
+  function refreshTotalsUI() {
+    const grand = computeGrandTotal();
     document.getElementById('grandTotalSpan').innerHTML = `$${grand.toFixed(2)}`;
-    document.getElementById('dynamicTotal').innerHTML = grand.toFixed(2);
-    // also reflect handling fee in case of removal
-    document.getElementById('handlingFee').innerHTML = `$${handlingFee.toFixed(2)}`;
+    document.getElementById('checkoutTotal').innerHTML = grand.toFixed(2);
+    document.getElementById('handlingFeeText').innerHTML = `$${handlingFee.toFixed(2)}`;
   }
-  
-  // Remove ticket functionality (soft remove — like in original snippet)
+
+  // Remove ticket function (simulate empty cart)
   const removeBtn = document.getElementById('removeTicketBtn');
-  if(removeBtn) {
+  if (removeBtn) {
     removeBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      // after removing, update the ticket block to show empty state or just reduce quantity to 0 
-      // but in original they remove item from cart -> show zero. We'll simulate as cart cleared.
-      if(quantity === 1) {
-        // empty the ticket section visually
-        const ticketBlock = document.querySelector('.ticket-item');
-        if(ticketBlock) {
-          ticketBlock.innerHTML = '<div style="padding:20px; text-align:center;"><i class="fas fa-shopping-cart"></i> Your cart is empty.<br><a href="#" style="color:#2266cc;">Browse events</a></div>';
+      if (ticketQty === 1) {
+        const wrapper = document.getElementById('ticketBlockWrapper');
+        if (wrapper) {
+          wrapper.innerHTML = `<div style="padding: 20px; text-align: center;">
+            <i class="fas fa-shopping-cart fa-2x" style="color:#b0c4de;"></i>
+            <p style="margin-top: 8px;">Your cart is empty.<br><a href="#" style="color:#2266cc;">Browse events</a></p>
+          </div>`;
         }
-        quantity = 0;
-        ticketPrice = 0;
+        ticketQty = 0;
+        ticketBasePrice = 0;
         handlingFee = 0;
-        updateTotalsUI();
-        // also show message that cart empty, disable pay button maybe
-        document.getElementById('payButton').disabled = true;
-        document.getElementById('payButton').style.opacity = 0.5;
-        alert("Ticket removed. Your cart is empty. Please refresh to add new tickets.");
+        refreshTotalsUI();
+        // disable payment button
+        const payBtn = document.getElementById('payNowBtn');
+        payBtn.disabled = true;
+        payBtn.style.opacity = "0.6";
+        payBtn.innerHTML = '<i class="fas fa-ban"></i> Cart empty';
+        alert("Ticket removed. Your cart is now empty.");
       } else {
-        // just decrement but in our scenario only 1 ticket, we handle above
-        quantity = 0;
-        updateTotalsUI();
+        // just in case quantity bigger but we stay with 1
+        ticketQty = 0;
+        refreshTotalsUI();
       }
     });
   }
-  
-  // ----- form validation & submit handler -----
-  const form = document.getElementById('checkoutForm');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
+
+  // country warning dynamic (like original `iccmsg`)
+  const countrySelect = document.getElementById('country');
+  const warningDiv = document.getElementById('countryWarningMsg');
+  function updateCountryWarning() {
+    const country = countrySelect.value;
+    if (country === 'IN' || country === 'PK' || country === 'BD' || country === 'LK') {
+      warningDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> <strong>IMPORTANT:</strong> Before placing an order, please call your bank to enable international online payments. Without permission, your transaction may be declined.`;
+      warningDiv.style.background = "#ffefdb";
+    } else if (country === 'MX') {
+      warningDiv.innerHTML = `<i class="fas fa-map-pin"></i> <strong>Local delivery note:</strong> Tickets will be delivered via mobile transfer. 150% guarantee applies.`;
+      warningDiv.style.background = "#e6f7f0";
+    } else {
+      warningDiv.innerHTML = `<i class="fas fa-globe"></i> <strong>International order:</strong> Ensure your card is enabled for cross-border transactions. 3D Secure verification may be required.`;
+      warningDiv.style.background = "#fff2e0";
+    }
+  }
+  countrySelect.addEventListener('change', updateCountryWarning);
+  updateCountryWarning();
+
+  // ---------- FORM SUBMIT HANDLER (booking simulation) ----------
+  const form = document.getElementById('checkoutRoyalForm');
+  const payButton = document.getElementById('payNowBtn');
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
     // validate required fields
     const firstName = document.getElementById('firstName').value.trim();
     const lastName = document.getElementById('lastName').value.trim();
@@ -537,81 +573,77 @@
     const country = document.getElementById('country').value;
     const email = document.getElementById('email').value.trim();
     const phone = document.getElementById('phone').value.trim();
-    const agree = document.getElementById('agreeTerms').checked;
-    
-    if(!firstName || !lastName || !address || !city || !country || !email || !phone) {
-      alert("Please fill all required billing fields (First Name, Last Name, Address, City, Country, Email, Phone).");
+    const termsAccepted = document.getElementById('termsCheckbox').checked;
+
+    if (!firstName || !lastName || !address || !city || !country || !email || !phone) {
+      alert("Please fill in all mandatory fields: First name, Last name, Address, City, Country, Email, and Phone number.");
       return;
     }
-    if(!email.includes('@') || !email.includes('.')) {
-      alert("Please enter a valid email address.");
+    if (!email.includes('@') || !email.includes('.')) {
+      alert("Please provide a valid email address.");
       return;
     }
-    if(!agree) {
-      alert("You must accept the Terms & Conditions to proceed.");
+    if (!termsAccepted) {
+      alert("You must agree to the Terms & Conditions to proceed with your booking.");
       return;
     }
-    if(quantity === 0) {
-      alert("Your cart is empty. Please add tickets to continue.");
+    if (ticketQty === 0) {
+      alert("Your cart is empty. Please add tickets to continue checkout.");
       return;
     }
-    
-    // simulate order processing with loading UI
-    const payBtn = document.getElementById('payButton');
-    const originalText = payBtn.innerHTML;
-    payBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Processing order...';
-    payBtn.disabled = true;
-    
-    // Build order summary object
-    const orderData = {
-      event: "Mexico Vs South Africa, FIFA World Cup 2026",
-      tickets: quantity,
-      subtotal: ticketPrice,
-      handling: handlingFee,
-      total: computeGrandTotal(),
-      customer: { firstName, lastName, address, city, country, email, phone, comments: document.getElementById('comments').value }
+
+    // simulate processing / payment redirection (like original but with ticket royal style)
+    const originalBtnHTML = payButton.innerHTML;
+    payButton.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Processing order ...';
+    payButton.disabled = true;
+
+    // Build order data
+    const orderTotal = computeGrandTotal();
+    const orderDetails = {
+      event: "Mexico vs South Africa - FIFA World Cup 2026",
+      quantity: ticketQty,
+      seat: "Block 639",
+      subtotal: ticketBasePrice,
+      fees: handlingFee,
+      total: orderTotal,
+      customer: {
+        firstName, lastName, address, city, country, email, phone,
+        notes: document.getElementById('notes').value
+      }
     };
-    console.log("Order placed:", orderData);
-    
-    // Simulate network delay & success
+    console.log("TicketRoyal order payload:", orderDetails);
+
+    // simulate network delay & confirmation
     setTimeout(() => {
-      alert(`✅ ORDER CONFIRMED!\n\nThank you ${firstName} ${lastName},\nYour booking total: $${orderData.total.toFixed(2)} USD.\nA confirmation email has been sent to ${email} with payment link & e-ticket details.\n\nTicket delivery: Mobile tickets 24-72h before event.`);
-      payBtn.innerHTML = originalText;
-      payBtn.disabled = false;
-      // Optional: reset form or redirect, but we just show success.
-      // In real scenario, redirect to payment gateway.
-      form.reset();
-      // keep timer but prevent double booking?
-      // we can also disable further booking because order placed.
-      document.getElementById('payButton').disabled = true;
-      document.getElementById('payButton').innerHTML = '<i class="fas fa-check-circle"></i> Order Placed — Check Email';
+      alert(`✨ ORDER CONFIRMED, ${firstName}! ✨\n\nBooking Reference: TR-${Math.floor(Math.random()*100000)}.\nTotal charged: $${orderTotal.toFixed(2)} USD.\nYou will receive an email at ${email} with payment link & e-ticket instructions.\n\nTicket delivery: Mobile entry 24-72h before event. Royal guarantee applies.`);
+      
+      payButton.innerHTML = '<i class="fas fa-check-circle"></i> Booking Completed!';
+      payButton.style.background = "#1f6e43";
+      // disable further submits
+      payButton.disabled = true;
+      
+      // optional: reset form fields? but keep receipt state.
+      // You can also redirect but we preserve UI
+      setTimeout(() => {
+        // subtle message
+        console.log("Order finalized");
+      }, 500);
     }, 1800);
   });
-  
-  // special country detection (show custom message based on country as in original)
-  const countrySelect = document.getElementById('country');
-  const iccMsgDiv = document.getElementById('iccmsg');
-  function checkCountryForWarning() {
-    const val = countrySelect.value;
-    // countries that might need extra bank notice: India, Pakistan, Bangladesh, Sri Lanka etc
-    if(val === 'IN' || val === 'PK' || val === 'BD' || val === 'LK') {
-      iccMsgDiv.style.display = 'block';
-      iccMsgDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> <strong>MOST IMPORTANT:</strong> Before ordering, please call your bank to enable international online payments. Without approval, the transaction may fail.';
-    } else {
-      iccMsgDiv.style.display = 'block';
-      iccMsgDiv.innerHTML = '<i class="fas fa-globe"></i> <strong>Note:</strong> For international orders, ensure your card is enabled for cross-border purchases. 3D Secure may apply.';
-    }
-  }
-  countrySelect.addEventListener('change', checkCountryForWarning);
-  checkCountryForWarning();
-  
-  // dynamic country code & phone optional but we just integrate as is.
-  // Additional: support to change quantity? but we match original style with 1 ticket item
-  // Also we reflect "Booking Total" dynamic via remove.
-  updateTotalsUI();
-  
-  // add demo hover for delivery method info
-  console.log("Checkout page ready — inspired by original eTicketing layout");
+
+  // initial total sync
+  refreshTotalsUI();
+
+  // extra: handle special instructions/comments tooltip
+  // mimic original page's styling and completeness
+  // also show small loading text if needed
+  const style = document.createElement('style');
+  style.textContent = `
+    .btn-pay:disabled { opacity: 0.7; cursor: not-allowed; }
+    input:invalid, select:invalid { border-color: #ffb3b3; }
+    .fa-crown { color: #ffcd7e; }
+  `;
+  document.head.appendChild(style);
 </script>
 </body>
 </html>
