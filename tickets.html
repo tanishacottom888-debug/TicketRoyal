@@ -1,471 +1,836 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>South Korea vs Czechia Tickets | FIFA World Cup 2026 | eTicketing.co</title>
-  <meta name="description" content="South Korea vs Czechia Tickets on Sale at Estadio Akron Guadalajara on 11 Jun 2026. Buy Match 02 - Football World Cup 2026 Tickets with 150% Money Back Guarantee.">
-  <meta name="keywords" content="South Korea vs Czechia Tickets, FIFA World Cup Group Stage Tickets, Estadio Akron Tickets, FIFA World Cup 2026, Match 02 Tickets">
-  
-  <!-- OG / Twitter -->
-  <meta property="og:title" content="South Korea vs Czechia Tickets | FIFA World Cup 2026">
-  <meta property="og:description" content="Match 02 - Group Stage. Secure your seats for Korea vs Czechia in Guadalajara. 150% Money Back Guarantee.">
-  <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630'%3E%3Crect width='1200' height='630' fill='%230f2b3d'/%3E%3Ctext x='600' y='315' font-size='36' fill='white' text-anchor='middle'%3ESouth Korea vs Czechia%3C/text%3E%3C/svg%3E">
-  <meta name="twitter:card" content="summary_large_image">
-  
-  <!-- Bootstrap 5, Icons, Fonts -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f5f9ff;
-      color: #0a2540;
-    }
-    /* Top bar */
-    .top-premium-bar {
-      background: #ffffff;
-      border-bottom: 1px solid #eef2f6;
-      font-size: 0.75rem;
-      padding: 8px 0;
-    }
-    .guarantee-chip {
-      background: #fff6e8;
-      border-left: 4px solid #f97316;
-      border-radius: 12px;
-    }
-    .btn-orange {
-      background: #f97316;
-      color: white;
-      font-weight: 600;
-      transition: all 0.2s;
-      border: none;
-    }
-    .btn-orange:hover {
-      background: #ea580c;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 18px rgba(249,115,22,0.25);
-    }
-    .card-modern {
-      border-radius: 28px;
-      border: 1px solid #eef2f8;
-      background: white;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .card-modern:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
-    }
-    .seat-map-wrapper {
-      background: white;
-      border-radius: 32px;
-      box-shadow: 0 18px 30px -12px rgba(0,0,0,0.08);
-      padding: 1.5rem;
-      position: sticky;
-      top: 20px;
-    }
-    .svg-pitch-bg {
-      background: #eef3fa;
-      border-radius: 28px;
-      transition: 0.2s;
-    }
-    .map-section {
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .map-section:hover {
-      filter: brightness(0.96);
-      stroke: #f97316 !important;
-      stroke-width: 3px;
-    }
-    .filter-bar-modern {
-      background: white;
-      border-radius: 60px;
-      padding: 5px;
-      border: 1px solid #e2edf2;
-    }
-    .price-badge {
-      font-size: 26px;
-      font-weight: 800;
-      color: #f97316;
-      letter-spacing: -0.3px;
-    }
-    .event-hero {
-      background: linear-gradient(115deg, #0a2b3f 0%, #164e6b 100%);
-      border-radius: 32px;
-    }
-    @media (max-width: 768px) {
-      .seat-map-wrapper { position: relative; top: 0; margin-bottom: 20px; padding: 1rem; }
-      .filter-bar-modern { border-radius: 30px; }
-    }
-    .footer-dark {
-      background: #0a1c2a;
-      color: #98a9bc;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <title>TicketRoyal | Select Your Seats</title>
+    
+    <!-- SVG Pan Zoom Library -->
+    <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            background: #f0f2f5;
+            color: #1a1a2e;
+        }
+
+        /* Header */
+        .main-header {
+            background: linear-gradient(135deg, #0B132B 0%, #1a2a4a 100%);
+            padding: 16px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: white;
+        }
+        .logo span { color: #C5A028; }
+
+        .match-info {
+            text-align: center;
+        }
+        .match-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+        }
+        .match-details {
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+            margin-top: 4px;
+        }
+
+        .guarantee-badge {
+            background: rgba(197,160,40,0.2);
+            padding: 6px 16px;
+            border-radius: 30px;
+            color: #C5A028;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Main Layout */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+            display: flex;
+            gap: 30px;
+        }
+
+        /* Seat Map Card */
+        .seatmap-card {
+            flex: 2;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-header {
+            padding: 16px 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eef2f6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .card-header h3 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        /* Zoom Controls */
+        .zoom-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .zoom-btn {
+            background: white;
+            border: 1px solid #ddd;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+
+        .zoom-btn:hover {
+            background: #C5A028;
+            color: white;
+            border-color: #C5A028;
+        }
+
+        /* SVG Container - PROPER HEIGHT */
+        .svg-wrapper {
+            background: #1a1a2e;
+            padding: 20px;
+            overflow: auto;
+            position: relative;
+            height: 550px;
+            min-height: 550px;
+        }
+
+        #stadiumSvg {
+            display: block;
+            margin: 0 auto;
+            background: #1a1a2e;
+            border-radius: 16px;
+            cursor: grab;
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+        }
+
+        #stadiumSvg:active {
+            cursor: grabbing;
+        }
+
+        /* Seat Section Styles */
+        .seat-section {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .seat-section:hover {
+            filter: brightness(0.9);
+        }
+
+        .seat-section.selected {
+            filter: drop-shadow(0 0 8px #C5A028);
+        }
+
+        .seat-section.selected rect,
+        .seat-section.selected path {
+            stroke: #C5A028 !important;
+            stroke-width: 3 !important;
+        }
+
+        /* Legend */
+        .legend {
+            padding: 14px 20px;
+            border-top: 1px solid #eef2f6;
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            background: white;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+
+        /* Ticket Panel */
+        .ticket-panel {
+            flex: 1;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: sticky;
+            top: 90px;
+            height: fit-content;
+        }
+
+        .panel-header {
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        .panel-header h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .selected-info {
+            background: #e8f0fe;
+            padding: 16px;
+            margin: 16px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .selected-section-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a2a4a;
+            margin-top: 4px;
+        }
+
+        .ticket-list {
+            max-height: 320px;
+            overflow-y: auto;
+            padding: 0 16px;
+        }
+
+        .ticket-item {
+            padding: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .ticket-name {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .ticket-price {
+            color: #C5A028;
+            font-weight: 700;
+            font-size: 22px;
+            margin: 8px 0;
+        }
+
+        .ticket-available {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 12px;
+        }
+
+        .qty-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        .qty-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .qty-value {
+            font-size: 16px;
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .book-btn {
+            background: #0B132B;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .book-btn:hover {
+            background: #C5A028;
+            color: #0B132B;
+        }
+
+        /* Cart Summary */
+        .cart-summary {
+            background: #f8f9fa;
+            padding: 20px;
+            margin-top: 16px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .summary-row.total {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e0e0e0;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: #C5A028;
+            color: #0B132B;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: all 0.2s;
+        }
+
+        .checkout-btn:hover {
+            background: #D4AF37;
+            transform: translateY(-2px);
+        }
+
+        /* Floating Zoom Controls */
+        .floating-zoom {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 50;
+        }
+
+        .floating-zoom button {
+            width: 48px;
+            height: 48px;
+            border: none;
+            background: white;
+            cursor: pointer;
+            font-size: 20px;
+            border-bottom: 1px solid #eee;
+            transition: all 0.2s;
+        }
+
+        .floating-zoom button:last-child {
+            border-bottom: none;
+        }
+
+        .floating-zoom button:hover {
+            background: #C5A028;
+            color: white;
+        }
+
+        /* Match Info */
+        .match-info-section {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            margin: 0 24px 24px 24px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .match-info-section h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .match-info-section p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 16px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0B132B;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #10B981;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            z-index: 1000;
+            display: none;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 900px) {
+            .main-container {
+                flex-direction: column;
+            }
+            .ticket-panel {
+                position: static;
+            }
+            .floating-zoom {
+                right: 20px;
+                bottom: 20px;
+            }
+            .floating-zoom button {
+                width: 40px;
+                height: 40px;
+            }
+            .svg-wrapper {
+                height: 450px;
+                min-height: 450px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .toast {
+                white-space: normal;
+                text-align: center;
+                font-size: 12px;
+            }
+            .svg-wrapper {
+                height: 380px;
+                min-height: 380px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<!-- ========== TOP BAR (exactly like eTicketing format) ========== -->
-<div class="top-premium-bar d-none d-md-block">
-  <div class="container">
-    <div class="d-flex justify-content-between align-items-center">
-      <div class="d-flex gap-4">
-        <span class="small"><i class="bi bi-shield-check text-success me-1"></i> <strong>150% Money Back Guarantee</strong> — Ticket prices set by sellers</span>
-      </div>
-      <div class="d-flex gap-3">
-        <a href="#" class="text-dark text-decoration-none small">Sign In</a>
-        <a href="#" class="text-dark text-decoration-none small">Contact Us</a>
-        <a href="#" class="text-dark text-decoration-none small"><i class="bi bi-whatsapp text-success"></i> WhatsApp</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ========== HEADER (main nav) ========== -->
-<header class="bg-white border-bottom sticky-top py-2" style="z-index: 1020;">
-  <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-between">
-      <a href="#" class="navbar-brand fw-bold fs-4 text-dark">
-        <span style="color:#f97316;">eTicketing</span><span class="fw-normal">.co</span>
-      </a>
-      <div class="d-flex gap-4 align-items-center">
-        <div class="d-none d-lg-flex gap-4 fw-semibold small">
-          <a href="#" class="text-dark text-decoration-none">FIFA World Cup</a>
-          <a href="#" class="text-dark text-decoration-none">RWC</a>
-          <a href="#" class="text-dark text-decoration-none">LA28</a>
-          <a href="#" class="text-dark text-decoration-none">Football</a>
+    <!-- HEADER -->
+    <div class="main-header">
+        <div class="header-container">
+            <div class="logo">Ticket<span>Royal</span></div>
+            <div class="match-info">
+                <div class="match-title" id="matchTitle">South Korea vs Czechia</div>
+                <div class="match-details" id="matchDetails">📅 Thu 11 Jun 2026 | ⏰ 20:00 | 🏟️ Estadio Akron, Guadalajara</div>
+            </div>
+            <div class="guarantee-badge">🛡️ 150% MONEY BACK GUARANTEE</div>
         </div>
-        <div class="d-flex gap-3">
-          <i class="bi bi-search fs-5 text-secondary"></i>
-          <i class="bi bi-chat-dots fs-5 text-secondary"></i>
-          <i class="bi bi-whatsapp fs-5 text-success"></i>
-          <i class="bi bi-person-circle fs-5 text-secondary"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-
-<!-- ========== MAIN CONTAINER ========== -->
-<div class="container py-4 py-lg-5">
-
-  <!-- EVENT HERO (exactly like original design) -->
-  <div class="event-hero p-4 p-lg-5 mb-5 text-white">
-    <div class="row align-items-center">
-      <div class="col-lg-8">
-        <div class="d-flex flex-wrap gap-2 mb-3">
-          <span class="bg-white bg-opacity-20 px-3 py-1 rounded-pill small fw-semibold"><i class="bi bi-trophy-fill me-1"></i> MATCH 02 • GROUP STAGE</span>
-          <span class="bg-white bg-opacity-20 px-3 py-1 rounded-pill small"><i class="bi bi-calendar-week"></i> THU 11 JUN 2026</span>
-        </div>
-        <h1 class="display-4 fw-bold mb-3">South Korea <span class="fw-light">vs</span> Czechia</h1>
-        <div class="d-flex flex-wrap gap-4 mb-3">
-          <div><i class="bi bi-clock-history me-2"></i> 20:00 (Local Time)</div>
-          <div><i class="bi bi-geo-alt-fill me-2"></i> Estadio Akron, Guadalajara, Mexico</div>
-        </div>
-        <p class="opacity-75 mb-0">Group stage showdown: Asian speed meets European precision. Secure your seat for this thrilling FIFA World Cup 2026 encounter.</p>
-      </div>
-      <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
-        <div class="bg-white bg-opacity-15 p-3 rounded-4 text-center backdrop-blur-sm">
-          <div class="small text-uppercase">tickets from</div>
-          <div class="display-5 fw-bold">$600</div>
-          <div class="small">+ fees</div>
-          <hr class="my-2 opacity-25">
-          <div><i class="bi bi-shield-check"></i> 150% guarantee</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TWO COLUMN LAYOUT: SEAT MAP (FULL SVG INTERACTIVE) + TICKETS -->
-  <div class="row g-4">
-    <!-- LEFT: INTERACTIVE SEAT MAP (fully duplicated from original pattern) -->
-    <div class="col-lg-7">
-      <div class="seat-map-wrapper">
-        <div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
-          <h5 class="fw-bold mb-0"><i class="bi bi-pin-map-fill text-warning me-2"></i> Interactive Estadio Akron Map</h5>
-          <div class="btn-group btn-group-sm">
-            <button class="btn btn-outline-secondary" id="resetMapViewBtn"><i class="bi bi-arrow-repeat"></i> Reset</button>
-            <button class="btn btn-outline-secondary" id="zoomInSeatBtn"><i class="bi bi-plus-lg"></i></button>
-            <button class="btn btn-outline-secondary" id="zoomOutSeatBtn"><i class="bi bi-dash-lg"></i></button>
-          </div>
-        </div>
-        <div class="svg-pitch-bg p-3 text-center">
-          <svg viewBox="0 0 880 560" style="width:100%; height:auto; border-radius: 20px; background: #ecf3f9;" id="stadiumSvgMain">
-            <!-- Pitch -->
-            <rect width="880" height="560" fill="#e1f0e6" rx="24" ry="24" />
-            <!-- Center circle -->
-            <ellipse cx="440" cy="280" rx="80" ry="80" fill="none" stroke="#2b6e3c" stroke-width="2.5" stroke-dasharray="10 6"/>
-            <circle cx="440" cy="280" r="5" fill="#2b6e3c"/>
-            <!-- CATEGORY 1 - SIDELINE PREMIUM (main grandstand) -->
-            <g class="map-section" data-category="1" data-cat-name="Category 1">
-              <rect x="130" y="45" width="620" height="85" fill="#FFB347" rx="16" stroke="white" stroke-width="2.5" />
-              <text x="440" y="88" text-anchor="middle" fill="#1e293b" font-weight="800" font-size="20">CATEGORY 1 • SIDELINE PREMIUM</text>
-              <text x="440" y="110" text-anchor="middle" fill="#334155" font-size="13">Sections 101–108 (Best sightlines & comfort)</text>
-            </g>
-            <!-- CATEGORY 2 - CORNERS (Left & Right) -->
-            <g class="map-section" data-category="2" data-cat-name="Category 2">
-              <rect x="60" y="160" width="90" height="150" fill="#6AB0DE" rx="14" stroke="white" stroke-width="2" />
-              <text x="105" y="245" text-anchor="middle" fill="#1f2937" font-weight="700" font-size="14" transform="rotate(-90,105,245)">CAT 2 CORNERS</text>
-              <rect x="730" y="160" width="90" height="150" fill="#6AB0DE" rx="14" stroke="white" stroke-width="2" />
-              <text x="775" y="245" text-anchor="middle" fill="#1f2937" font-weight="700" font-size="14" transform="rotate(90,775,245)">CAT 2 CORNERS</text>
-            </g>
-            <!-- CATEGORY 3 - END ZONE / BEHIND GOAL -->
-            <g class="map-section" data-category="3" data-cat-name="Category 3">
-              <rect x="150" y="430" width="580" height="85" fill="#A5B4FC" rx="16" stroke="white" stroke-width="2.5" />
-              <text x="440" y="475" text-anchor="middle" fill="#1e293b" font-weight="800" font-size="20">CATEGORY 3 • END ZONE</text>
-              <text x="440" y="497" text-anchor="middle" fill="#334155" font-size="13">Sections 111–122 (Electric atmosphere)</text>
-            </g>
-            <!-- Lower Tier detail -->
-            <g class="map-section" data-category="1">
-              <rect x="270" y="145" width="340" height="100" fill="#F9A03F" rx="12" fill-opacity="0.9" stroke="white" stroke-width="1.8"/>
-              <text x="440" y="200" text-anchor="middle" fill="#2d2d2d" font-weight="bold" font-size="15">LOWER TIER SIDELINE</text>
-            </g>
-            <text x="440" y="305" text-anchor="middle" fill="#1e4620" font-weight="bold" font-size="16">⚽ PITCH ⚽</text>
-          </svg>
-          <div class="mt-2 d-flex flex-wrap gap-2 justify-content-center">
-            <span class="badge bg-warning bg-opacity-25 text-dark px-3 py-2 rounded-pill"><i class="bi bi-square-fill text-warning me-1"></i> Cat 1 (Sideline)</span>
-            <span class="badge bg-info bg-opacity-25 text-dark px-3 py-2 rounded-pill"><i class="bi bi-square-fill text-info me-1"></i> Cat 2 (Corners)</span>
-            <span class="badge bg-secondary bg-opacity-25 text-dark px-3 py-2 rounded-pill"><i class="bi bi-square-fill text-secondary me-1"></i> Cat 3 (End Zone)</span>
-            <span class="badge bg-light border px-3 py-2 rounded-pill"><i class="bi bi-hand-index-fill"></i> Click any zone → filter tickets</span>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <!-- RIGHT: TICKET FILTERS + LISTINGS (exactly matching original structure) -->
-    <div class="col-lg-5">
-      <div class="card border-0 shadow rounded-4 mb-4">
-        <div class="card-body p-4">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h5 class="fw-bold mb-0"><i class="bi bi-ticket-perforated text-primary me-2"></i> Tickets on Sale</h5>
-            <span class="badge bg-success rounded-pill px-3 py-2" id="ticketCountDisplay">6 listings</span>
-          </div>
-          <!-- FILTER BAR (like premium platform) -->
-          <div class="filter-bar-modern d-flex flex-wrap justify-content-between gap-2 mb-4">
-            <select class="form-select form-select-sm w-auto border-0 bg-transparent fw-semibold" id="filterQtySelect">
-              <option value="0">Any quantity</option>
-              <option value="1">1 ticket</option>
-              <option value="2">2 tickets</option>
-              <option value="3">3 tickets</option>
-              <option value="4">4+ tickets</option>
-            </select>
-            <select class="form-select form-select-sm w-auto border-0 bg-transparent fw-semibold" id="filterCatSelect">
-              <option value="all">All Categories</option>
-              <option value="1">Category 1 (Sideline)</option>
-              <option value="2">Category 2 (Corners)</option>
-              <option value="3">Category 3 (End Zone)</option>
-            </select>
-            <button class="btn btn-sm btn-link text-danger text-decoration-none" id="clearFiltersBtn"><i class="bi bi-eraser"></i> Clear</button>
-          </div>
-          <!-- DYNAMIC TICKETS LIST -->
-          <div id="ticketsListContainer" style="max-height: 530px; overflow-y: auto; padding-right: 6px;">
-            <div class="text-center text-muted py-5"><i class="bi bi-hourglass-split"></i> Loading seats...</div>
-          </div>
-          <div class="mt-3 text-center small border-top pt-3">
-            <i class="bi bi-shield-check text-success"></i> 150% Money Back Guarantee • Instant e-tickets
-          </div>
+    <!-- MAIN CONTENT -->
+    <div class="main-container">
+        <!-- LEFT: Seat Map -->
+        <div class="seatmap-card">
+            <div class="card-header">
+                <h3>🏟️ Interactive Seat Map</h3>
+                <div class="zoom-controls">
+                    <button class="zoom-btn" id="desktopZoomIn">+</button>
+                    <button class="zoom-btn" id="desktopZoomOut">−</button>
+                    <button class="zoom-btn" id="desktopResetView">⟳</button>
+                </div>
+            </div>
+            <div class="svg-wrapper" id="svgWrapper">
+                <svg id="stadiumSvg" viewBox="0 0 1000 650" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="1000" height="650" fill="#1a1a2e"/>
+                    
+                    <!-- ===== OUTER RING - PREMIUM (Dark Blue) ===== -->
+                    <!-- Top Sections -->
+                    <g data-section="101" data-price="350" data-name="Premium 101" class="seat-section">
+                        <path d="M 280,65 Q 350,50 420,50 L 418,85 Q 348,85 278,98 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <text x="350" y="80" fill="white" font-size="11" font-weight="bold" text-anchor="middle">101</text>
+                    </g>
+                    <g data-section="102" data-price="340" data-name="Premium 102" class="seat-section">
+                        <path d="M 420,50 Q 490,48 560,52 L 558,86 Q 488,82 418,85 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <text x="490" y="78" fill="white" font-size="11" font-weight="bold" text-anchor="middle">102</text>
+                    </g>
+                    <g data-section="103" data-price="340" data-name="Premium 103" class="seat-section">
+                        <path d="M 560,52 Q 630,58 690,70 L 686,102 Q 626,90 558,86 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <text x="625" y="86" fill="white" font-size="11" font-weight="bold" text-anchor="middle">103</text>
+                    </g>
+                    
+                    <!-- Right Sections -->
+                    <g data-section="104" data-price="360" data-name="Premium 104" class="seat-section">
+                        <path d="M 850,180 Q 880,220 890,275 L 862,278 Q 852,223 820,182 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <text x="856" y="238" fill="white" font-size="11" font-weight="bold" text-anchor="middle">104</text>
+                    </g>
+                    <g data-section="105" data-price="370" data-name="Premium 105" class="seat-section">
+                        <path d="M 890,275 Q 898,330 892,385 L 864,382 Q 870,327 862,278 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <text x="878" y="338" fill="white" font-size="11" font-weight="bold" text-anchor="middle">105</text>
+                    </g>
+                    
+                    <!-- Bottom Sections -->
+                    <g data-section="106" data-price="350" data-name="Premium 106" class="seat-section">
+                        <path d="M 690,580 Q 630,592 560,595 L 558,562 Q 628,559 686,548 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <text x="625" y="572" fill="white" font-size="11" font-weight="bold" text-anchor="middle">106</text>
+                    </g>
+                    <g data-section="107" data-price="340" data-name="Premium 107" class="seat-section">
+                        <path d="M 560,595 Q 490,598 420,598 L 418,565 Q 488,565 558,562 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <text x="490" y="576" fill="white" font-size="11" font-weight="bold" text-anchor="middle">107</text>
+                    </g>
+                    <g data-section="108" data-price="340" data-name="Premium 108" class="seat-section">
+                        <path d="M 420,598 Q 350,595 280,585 L 278,552 Q 348,562 418,565 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <text x="350" y="570" fill="white" font-size="11" font-weight="bold" text-anchor="middle">108</text>
+                    </g>
+                    
+                    <!-- Left Sections -->
+                    <g data-section="109" data-price="360" data-name="Premium 109" class="seat-section">
+                        <path d="M 150,180 Q 120,220 110,275 L 138,278 Q 148,223 180,182 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <text x="144" y="238" fill="white" font-size="11" font-weight="bold" text-anchor="middle">109</text>
+                    </g>
+                    <g data-section="110" data-price="370" data-name="Premium 110" class="seat-section">
+                        <path d="M 110,275 Q 102,330 108,385 L 136,382 Q 130,327 138,278 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <text x="122" y="338" fill="white" font-size="11" font-weight="bold" text-anchor="middle">110</text>
+                    </g>
+
+                    <!-- ===== INNER RING - STANDARD (Light Grey) ===== -->
+                    <g data-section="201" data-price="180" data-name="Standard 01" class="seat-section">
+                        <path d="M 310,115 Q 370,105 430,105 L 428,135 Q 368,135 308,142 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
+                        <text x="370" y="130" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">01</text>
+                    </g>
+                    <g data-section="202" data-price="170" data-name="Standard 02" class="seat-section">
+                        <path d="M 430,105 Q 490,103 550,106 L 548,136 Q 488,133 428,135 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
+                        <text x="490" y="128" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">02</text>
+                    </g>
+                    <g data-section="203" data-price="170" data-name="Standard 03" class="seat-section">
+                        <path d="M 550,106 Q 610,112 660,122 L 656,150 Q 606,140 548,136 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
+                        <text x="605" y="136" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">03</text>
+                    </g>
+                    
+                    <g data-section="204" data-price="190" data-name="Standard 04" class="seat-section">
+                        <path d="M 810,215 Q 830,255 838,300 L 814,302 Q 806,257 788,218 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
+                        <text x="812" y="266" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">04</text>
+                    </g>
+                    <g data-section="205" data-price="200" data-name="Standard 05" class="seat-section">
+                        <path d="M 838,300 Q 842,345 838,390 L 814,388 Q 818,343 814,302 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
+                        <text x="826" y="353" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">05</text>
+                    </g>
+                    
+                    <g data-section="206" data-price="180" data-name="Standard 06" class="seat-section">
+                        <path d="M 660,528 Q 610,538 550,542 L 548,512 Q 608,508 656,500 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
+                        <text x="605" y="520" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">06</text>
+                    </g>
+                    <g data-section="207" data-price="170" data-name="Standard 07" class="seat-section">
+                        <path d="M 550,542 Q 490,545 430,545 L 428,515 Q 488,515 548,512 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
+                        <text x="490" y="528" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">07</text>
+                    </g>
+                    <g data-section="208" data-price="170" data-name="Standard 08" class="seat-section">
+                        <path d="M 430,545 Q 370,543 310,535 L 308,505 Q 368,513 428,515 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
+                        <text x="370" y="522" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">08</text>
+                    </g>
+                    
+                    <g data-section="209" data-price="190" data-name="Standard 09" class="seat-section">
+                        <path d="M 190,215 Q 170,255 162,300 L 186,302 Q 194,257 212,218 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
+                        <text x="188" y="266" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">09</text>
+                    </g>
+                    <g data-section="210" data-price="200" data-name="Standard 10" class="seat-section">
+                        <path d="M 162,300 Q 158,345 162,390 L 186,388 Q 182,343 186,302 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
+                        <text x="174" y="353" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">10</text>
+                    </g>
+
+                    <!-- ===== VIP SECTIONS ===== -->
+                    <g data-section="301" data-price="550" data-name="VIP Center" class="seat-section">
+                        <rect x="420" y="165" width="160" height="40" rx="8" fill="#e1bee7" stroke="#ce93d8" stroke-width="1.5"/>
+                        <text x="500" y="190" fill="#6a1b9a" font-size="12" font-weight="bold" text-anchor="middle">⭐ VIP CENTER</text>
+                    </g>
+                    <g data-section="302" data-price="550" data-name="VIP Lounge" class="seat-section">
+                        <rect x="420" y="445" width="160" height="40" rx="8" fill="#e1bee7" stroke="#ce93d8" stroke-width="1.5"/>
+                        <text x="500" y="470" fill="#6a1b9a" font-size="12" font-weight="bold" text-anchor="middle">⭐ VIP LOUNGE</text>
+                    </g>
+
+                    <!-- ===== FOOTBALL PITCH ===== -->
+                    <g id="pitch">
+                        <rect x="280" y="240" width="440" height="170" rx="6" fill="#2d5a27"/>
+                        <line x1="500" y1="240" x2="500" y2="410" stroke="white" stroke-width="1.5"/>
+                        <circle cx="500" cy="325" r="20" fill="none" stroke="white" stroke-width="1.5"/>
+                        <circle cx="500" cy="325" r="2" fill="white"/>
+                        <rect x="288" y="280" width="35" height="90" fill="none" stroke="white" stroke-width="1"/>
+                        <rect x="677" y="280" width="35" height="90" fill="none" stroke="white" stroke-width="1"/>
+                        <rect x="294" y="308" width="12" height="34" fill="none" stroke="white" stroke-width="0.8"/>
+                        <rect x="694" y="308" width="12" height="34" fill="none" stroke="white" stroke-width="0.8"/>
+                        <rect x="276" y="318" width="4" height="14" fill="rgba(255,255,255,0.8)"/>
+                        <rect x="720" y="318" width="4" height="14" fill="rgba(255,255,255,0.8)"/>
+                        <text x="500" y="335" fill="rgba(255,255,255,0.15)" font-size="18" text-anchor="middle">⚽</text>
+                    </g>
+                </svg>
+            </div>
+            <div class="legend">
+                <div class="legend-item"><div class="legend-color" style="background: #1a237e;"></div> Premium</div>
+                <div class="legend-item"><div class="legend-color" style="background: #f5f5f5; border: 1px solid #ccc;"></div> Standard</div>
+                <div class="legend-item"><div class="legend-color" style="background: #e1bee7;"></div> VIP</div>
+                <div class="legend-item"><div class="legend-color" style="background: #C5A028;"></div> Selected</div>
+            </div>
         </div>
-      </div>
-      <!-- SUPPORT BLOCK (exactly like original contact box) -->
-      <div class="bg-white rounded-4 p-3 shadow-sm d-flex align-items-center justify-content-between flex-wrap gap-2">
-        <div><i class="bi bi-headset fs-4 text-primary"></i> <strong>24/7 Support</strong><br><small>Call / WhatsApp</small></div>
-        <div><i class="bi bi-telephone-fill text-success"></i> +1 (347) 391-0177</div>
-        <div><i class="bi bi-chat-dots-fill text-info"></i> Live Chat</div>
-      </div>
+
+        <!-- RIGHT: Ticket Panel -->
+        <div class="ticket-panel">
+            <div class="panel-header">
+                <h3>🎟️ Select Your Seats</h3>
+                <p>Click any section on the map</p>
+            </div>
+            
+            <div class="selected-info">
+                <div style="font-size: 13px; color: #888;">Selected Section</div>
+                <div class="selected-section-name" id="selectedSectionName">None</div>
+            </div>
+
+            <div class="ticket-list" id="ticketList">
+                <div style="padding: 20px; text-align: center; color: #888;">Click a section to see tickets</div>
+            </div>
+
+            <div class="cart-summary">
+                <div class="summary-row"><span>Subtotal</span><span id="subtotal">$0</span></div>
+                <div class="summary-row"><span>Service Fee (10%)</span><span id="serviceFee">$0</span></div>
+                <div class="summary-row total"><span>Total Due</span><span id="total">$0</span></div>
+                <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout →</button>
+                <div style="text-align: center; font-size: 11px; margin-top: 12px;">🔒 Secure SSL Encrypted</div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- MATCH DETAILS & INFO SECTION (exactly like original) -->
-  <div class="row mt-5 g-4">
-    <div class="col-md-7">
-      <div class="card-modern p-4">
-        <h3 class="fw-bold"><i class="bi bi-newspaper"></i> South Korea vs Czechia: Complete Guide</h3>
-        <p>The FIFA World Cup 2026 group stage opens with an intense battle at Estadio Akron. South Korea's dynamic speed, led by captain Son Heung-min, will test Czechia's renowned defensive organization and set-piece prowess. Both sides are eyeing knockout qualification, making this an unmissable fixture.</p>
-        <h5 class="mt-3">🔥 Key Battles</h5>
-        <div class="row">
-          <div class="col-6"><i class="bi bi-arrow-right-circle-fill text-warning"></i> Son Heung-min vs Souček</div>
-          <div class="col-6"><i class="bi bi-arrow-right-circle-fill text-warning"></i> Kim Min-jae vs Schick</div>
-        </div>
-        <div class="guarantee-chip p-3 mt-3">
-          <i class="bi bi-patch-check-fill fs-3 float-start me-3 text-warning"></i> 
-          <strong class="fs-6">150% Money Back Guarantee</strong><br> 
-          <span class="small">If the event is canceled and not rescheduled, we refund 150% of your purchase.</span>
-        </div>
-      </div>
+    <!-- FLOATING ZOOM CONTROLS -->
+    <div class="floating-zoom">
+        <button id="floatingZoomIn">+</button>
+        <button id="floatingZoomOut">−</button>
+        <button id="floatingResetView">⟳</button>
     </div>
-    <div class="col-md-5">
-      <div class="card-modern p-4 bg-light">
-        <h5><i class="bi bi-envelope-paper-fill"></i> Ticket Alert</h5>
-        <p>Get notified when prices drop or new inventory appears for this match.</p>
-        <div class="input-group">
-          <input type="email" class="form-control" id="alertEmailField" placeholder="Your email address">
-          <button class="btn btn-orange" id="alertSubscribeBtn">Notify me</button>
-        </div>
-        <div class="mt-3 small text-muted"><i class="bi bi-shield-lock"></i> We respect your privacy.</div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- FOOTER (branded) -->
-<footer class="footer-dark py-4 mt-4 border-top">
-  <div class="container text-center">
-    <div class="d-flex flex-wrap justify-content-center gap-3 mb-2">
-      <a href="#" class="text-white-50 text-decoration-none small">Home</a>
-      <a href="#" class="text-white-50 text-decoration-none small">Privacy Policy</a>
-      <a href="#" class="text-white-50 text-decoration-none small">Terms & Conditions</a>
-      <a href="#" class="text-white-50 text-decoration-none small">Contact Us</a>
-      <a href="#" class="text-white-50 text-decoration-none small">Sell Tickets</a>
-    </div>
-    <p class="small mb-0">© 2026 eTicketing.co — Secondary ticket marketplace. Prices may be above face value.</p>
-  </div>
-</footer>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2026 TicketRoyal — Official FIFA World Cup 2026™ Ticket Marketplace</p>
+    </footer>
 
-<script>
-  // ========== TICKET DATABASE (MOCK, based on real category mapping) ==========
-  const ticketsDatabase = [
-    { id: 5001, category: "1", categoryName: "Category 1 - Sideline Premium (Longside)", price: 1850, currency: "USD", availableQty: 4, minOrder: 1, section: "Sections 101-105" },
-    { id: 5002, category: "1", categoryName: "Category 1 Central Lower (Best view)", price: 2200, currency: "USD", availableQty: 2, minOrder: 2, section: "Sections 106-108" },
-    { id: 5003, category: "2", categoryName: "Category 2 - Corner Sections (Great value)", price: 1120, currency: "USD", availableQty: 6, minOrder: 2, section: "Corners 201-204" },
-    { id: 5004, category: "2", categoryName: "Category 2 Upper Corners (Budget friendly)", price: 890, currency: "USD", availableQty: 8, minOrder: 2, section: "Upper Corner 210-213" },
-    { id: 5005, category: "3", categoryName: "Category 3 - End Zone / Behind Goal", price: 600, currency: "USD", availableQty: 12, minOrder: 1, section: "End Zone 301-312" },
-    { id: 5006, category: "3", categoryName: "Category 3 Lower End (Close to action)", price: 750, currency: "USD", availableQty: 5, minOrder: 2, section: "Lower End 315-318" },
-    { id: 5007, category: "1", categoryName: "Hospitality Lounge (VIP Access)", price: 3990, currency: "USD", availableQty: 2, minOrder: 2, section: "VIP Box 001" }
-  ];
+    <div class="toast" id="toast">✓ Added to cart!</div>
 
-  let activeCategory = "all";
-  let activeQty = 0;     // 0 means any
+    <script>
+        // Get match data from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        document.getElementById('matchTitle').textContent = `${urlParams.get('team1') || 'South Korea'} vs ${urlParams.get('team2') || 'Czechia'}`;
+        document.getElementById('matchDetails').innerHTML = `📅 ${urlParams.get('date') || 'Thu 11 Jun 2026'} | ⏰ ${urlParams.get('time') || '20:00'} | 🏟️ ${urlParams.get('stadium') || 'Estadio Akron'}, ${urlParams.get('city') || 'Guadalajara'}`;
 
-  function renderTicketList() {
-    let filtered = [...ticketsDatabase];
-    if (activeCategory !== "all") {
-      filtered = filtered.filter(t => t.category === activeCategory);
-    }
-    if (activeQty > 0) {
-      filtered = filtered.filter(t => t.availableQty >= activeQty);
-    }
-    const container = document.getElementById("ticketsListContainer");
-    const countSpan = document.getElementById("ticketCountDisplay");
-    countSpan.innerText = `${filtered.length} listing${filtered.length !== 1 ? 's' : ''}`;
-    
-    if (filtered.length === 0) {
-      container.innerHTML = `<div class="alert alert-warning text-center p-4">No tickets match your criteria. Try a different category or quantity.</div>`;
-      return;
-    }
-    
-    container.innerHTML = filtered.map(ticket => `
-      <div class="card-modern p-3 mb-3 d-flex flex-wrap justify-content-between align-items-center">
-        <div class="flex-grow-1">
-          <div class="fw-bold fs-6">${ticket.categoryName}</div>
-          <div class="small text-secondary"><i class="bi bi-pin-map-fill"></i> ${ticket.section}</div>
-          <div class="small mt-1"><i class="bi bi-ticket"></i> Available: ${ticket.availableQty} tickets (min ${ticket.minOrder})</div>
-        </div>
-        <div class="text-end">
-          <div class="price-badge">${ticket.currency} ${ticket.price.toLocaleString()}</div>
-          <div class="small text-secondary">per ticket</div>
-          <button class="btn btn-orange btn-sm mt-2 w-100 bookTicketBtn" data-id="${ticket.id}" data-name="${ticket.categoryName}">Select Tickets</button>
-        </div>
-      </div>
-    `).join('');
-    
-    document.querySelectorAll('.bookTicketBtn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const name = btn.getAttribute('data-name');
-        alert(`✅ "${name}" added to cart. (Demo) Proceed to secure checkout.`);
-      });
-    });
-  }
-  
-  function updateFiltersAndRender() {
-    renderTicketList();
-  }
-  
-  // MAP INTERACTION: perfectly duplicates seat-map click filtering
-  function initMapFiltering() {
-    const mapGroups = document.querySelectorAll('.map-section');
-    mapGroups.forEach(group => {
-      group.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const catValue = group.getAttribute('data-category');
-        if (catValue) {
-          if (activeCategory === catValue) {
-            activeCategory = "all";
-            document.getElementById('filterCatSelect').value = "all";
-          } else {
-            activeCategory = catValue;
-            document.getElementById('filterCatSelect').value = catValue;
-          }
-          activeQty = parseInt(document.getElementById('filterQtySelect').value) || 0;
-          renderTicketList();
-          // visual feedback
-          group.style.filter = "brightness(0.92)";
-          setTimeout(() => { group.style.filter = ""; }, 180);
+        // Section data
+        const sections = [
+            { id: 101, name: "Premium 101", price: 350, available: 42 },
+            { id: 102, name: "Premium 102", price: 340, available: 38 },
+            { id: 103, name: "Premium 103", price: 340, available: 45 },
+            { id: 104, name: "Premium 104", price: 360, available: 35 },
+            { id: 105, name: "Premium 105", price: 370, available: 32 },
+            { id: 106, name: "Premium 106", price: 350, available: 44 },
+            { id: 107, name: "Premium 107", price: 340, available: 41 },
+            { id: 108, name: "Premium 108", price: 340, available: 36 },
+            { id: 109, name: "Premium 109", price: 360, available: 34 },
+            { id: 110, name: "Premium 110", price: 370, available: 31 },
+            { id: 201, name: "Standard 01", price: 180, available: 65 },
+            { id: 202, name: "Standard 02", price: 170, available: 72 },
+            { id: 203, name: "Standard 03", price: 170, available: 68 },
+            { id: 204, name: "Standard 04", price: 190, available: 70 },
+            { id: 205, name: "Standard 05", price: 200, available: 64 },
+            { id: 206, name: "Standard 06", price: 180, available: 58 },
+            { id: 207, name: "Standard 07", price: 170, available: 66 },
+            { id: 208, name: "Standard 08", price: 170, available: 72 },
+            { id: 209, name: "Standard 09", price: 190, available: 69 },
+            { id: 210, name: "Standard 10", price: 200, available: 62 },
+            { id: 301, name: "VIP Center", price: 550, available: 24 },
+            { id: 302, name: "VIP Lounge", price: 550, available: 20 }
+        ];
+
+        let selectedSectionId = null;
+        let quantities = {};
+        sections.forEach(s => { quantities[s.id] = 0; });
+
+        // Zoom/Pan
+        let svgElement = document.getElementById('stadiumSvg');
+        let svgWrapper = document.getElementById('svgWrapper');
+        let scale = 1;
+        let panX = 0, panY = 0;
+        let isPanning = false;
+        let startX, startY;
+
+        function updateTransform() {
+            svgElement.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+            svgElement.style.transformOrigin = 'center center';
         }
-      });
-    });
-  }
-  
-  function resetAllFilters() {
-    activeCategory = "all";
-    activeQty = 0;
-    document.getElementById('filterCatSelect').value = "all";
-    document.getElementById('filterQtySelect').value = "0";
-    renderTicketList();
-    // reset map zoom visually
-    currentZoomLevel = 1;
-    if (svgMapElement) svgMapElement.style.transform = "scale(1)";
-  }
-  
-  // Zoom simulation for SVG map
-  let currentZoomLevel = 1;
-  const svgMapElement = document.getElementById('stadiumSvgMain');
-  function zoomMap(delta) {
-    let newZoom = currentZoomLevel + delta;
-    if (newZoom >= 0.8 && newZoom <= 2.2) {
-      currentZoomLevel = newZoom;
-      svgMapElement.style.transform = `scale(${currentZoomLevel})`;
-      svgMapElement.style.transformOrigin = "50% 50%";
-      svgMapElement.style.transition = "transform 0.2s";
-    }
-  }
-  
-  // ========== EVENT LISTENERS ==========
-  document.addEventListener('DOMContentLoaded', () => {
-    renderTicketList();
-    initMapFiltering();
-    
-    document.getElementById('filterCatSelect').addEventListener('change', (e) => {
-      activeCategory = e.target.value;
-      renderTicketList();
-    });
-    document.getElementById('filterQtySelect').addEventListener('change', (e) => {
-      activeQty = parseInt(e.target.value) || 0;
-      renderTicketList();
-    });
-    document.getElementById('clearFiltersBtn').addEventListener('click', resetAllFilters);
-    document.getElementById('resetMapViewBtn').addEventListener('click', () => {
-      resetAllFilters();
-      currentZoomLevel = 1;
-      if (svgMapElement) svgMapElement.style.transform = "scale(1)";
-    });
-    document.getElementById('zoomInSeatBtn').addEventListener('click', () => zoomMap(0.1));
-    document.getElementById('zoomOutSeatBtn').addEventListener('click', () => zoomMap(-0.1));
-    document.getElementById('alertSubscribeBtn').addEventListener('click', () => {
-      const emailInput = document.getElementById('alertEmailField');
-      if (emailInput.value && emailInput.value.includes('@')) {
-        alert(`✅ Price alert set for ${emailInput.value}. We'll notify you about South Korea vs Czechia tickets.`);
-        emailInput.value = '';
-      } else {
-        alert("Please provide a valid email address.");
-      }
-    });
-  });
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        function zoomIn() { scale = Math.min(scale + 0.1, 2.5); updateTransform(); }
+        function zoomOut() { scale = Math.max(scale - 0.1, 0.6); updateTransform(); }
+        function resetView() { scale = 1; panX = 0; panY = 0; updateTransform(); }
+
+        svgWrapper.addEventListener('mousedown', (e) => {
+            if (e.target === svgElement || svgElement.contains(e.target)) {
+                isPanning = true;
+                startX = e.clientX - panX;
+                startY = e.clientY - panY;
+                svgWrapper.style.cursor = 'grabbing';
+                e.preventDefault();
+            }
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isPanning) return;
+            panX = e.clientX - startX;
+            panY = e.clientY - startY;
+            updateTransform();
+        });
+
+        window.addEventListener('mouseup', () => { isPanning = false; svgWrapper.style.cursor = 'default'; });
+
+        document.getElementById('desktopZoomIn').addEventListener('click', zoomIn);
+        document.getElementById('desktopZoomOut').addEventListener('click', zoomOut);
+        document.getElementById('desktopResetView').addEventListener('click', resetView);
+        document.getElementById('floatingZoomIn').addEventListener('click', zoomIn);
+        document.getElementById('floatingZoomOut').addEventListener('click', zoomOut);
+        document.getElementById('floatingResetView').addEventListener('click', resetView);
+
+        // Section click handler
+        function handleSectionClick(sectionId) {
+            selectedSectionId = sectionId;
+            const section = sections.find(s => s.id === sectionId);
+            
+            document.querySelectorAll('.seat-section').forEach(el => el.classList.remove('selected'));
+            document.querySelector(`.seat-section[data-section="${sectionId}"]`).classList.add('selected');
+            document.getElementById('selectedSectionName').textContent = section.name;
+            
+            document.getElementById('ticketList').innerHTML = `
+                <div class="ticket-item">
+                    <div class="ticket-name">${section.name}</div>
+                    <div class="ticket-price">$${section.price.toLocaleString()}</div>
+                    <div class="ticket-available">${section.available} seats available</div>
+                    <div class="qty-selector">
+                        <button class="qty-btn" onclick="changeQuantity(${section.id}, -1)">−</button>
+                        <span class="qty-value" id="qty_${section.id}">${quantities[section.id] || 0}</span>
+                        <button class="qty-btn" onclick="changeQuantity(${section.id}, 1)">+</button>
+                    </div>
+                    <button class="book-btn" onclick="bookTicket(${section.id})">Add to Cart →</button>
+                </div>
+            `;
+        }
+
+        function changeQuantity(sectionId, delta) {
+            const section = sections.find(s => s.id === sectionId);
+            const newQty = (quantities[sectionId] || 0) + delta;
+            if (newQty >= 0 && newQty <= 10 && newQty <= section.available) {
+                quantities[sectionId] = newQty;
+                const qtySpan = document.getElementById(`qty_${sectionId}`);
+                if (qtySpan) qtySpan.textContent = newQty;
+                updateCartSummary();
+            }
+        }
+
+        function bookTicket(sectionId) {
+            const section = sections.find(s => s.id === sectionId);
+            const qty = quantities[sectionId] || 0;
+            if (qty === 0) { showToast('Please select quantity first'); return; }
+            showToast(`✓ Added ${qty} × ${section.name} - $${(section.price * qty).toLocaleString()}`);
+            updateCartSummary();
+        }
+
+        function updateCartSummary() {
+            let subtotal = 0;
+            sections.forEach(s => { subtotal += (quantities[s.id] || 0) * s.price; });
+            const serviceFee = Math.round(subtotal * 0.1);
+            document.getElementById('subtotal').textContent = `$${subtotal.toLocaleString()}`;
+            document.getElementById('serviceFee').textContent = `$${serviceFee.toLocaleString()}`;
+            document.getElementById('total').textContent = `$${(subtotal + serviceFee).toLocaleString()}`;
+        }
+
+        function proceedToCheckout() {
+            let hasTickets = false;
+            for (const s of sections) if (quantities[s.id] > 0) hasTickets = true;
+            if (!hasTickets) { showToast('Please select at least one ticket'); return; }
+            showToast('Redirecting to secure checkout...');
+            setTimeout(() => window.location.href = 'checkout.html', 1000);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.style.display = 'block';
+            setTimeout(() => toast.style.display = 'none', 2000);
+        }
+
+        document.querySelectorAll('.seat-section').forEach(el => {
+            const sectionId = parseInt(el.getAttribute('data-section'));
+            el.addEventListener('click', () => handleSectionClick(sectionId));
+        });
+
+        document.getElementById('checkoutBtn').addEventListener('click', proceedToCheckout);
+        updateCartSummary();
+    </script>
 </body>
 </html>
