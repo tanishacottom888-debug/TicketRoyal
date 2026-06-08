@@ -6,6 +6,7 @@
     <meta name="description" content="TicketRoyal - FIFA World Cup 2026 Ticket Selection">
     <title>TicketRoyal | South Korea vs Czechia - FIFA World Cup 2026</title>
     
+    <!-- SVG Pan Zoom Library -->
     <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
     
     <style>
@@ -21,28 +22,11 @@
             color: #111827;
         }
 
-        /* ===== COLOR VARIABLES - NO TEAL ===== */
-        :root {
-            --primary-dark: #0A1128;
-            --primary-accent: #2563EB;
-            --accent-hover: #3B82F6;
-            --accent-light: #DBEAFE;
-            --stadium-green: #1B5E20;
-            --premium-blue: #1E3A5F;
-            --standard-white: #F8F9FA;
-            --vip-purple: #9333EA;
-            --card-white: #FFFFFF;
-            --text-dark: #111827;
-            --text-light: #6B7280;
-            --border-light: #E5E7EB;
-            --bg-page: #EAECEF;
-        }
-
         /* ===== HEADER ===== */
         .ticket-header-wrapper {
-            background: var(--primary-dark);
+            background: #0A1128;
             padding: 20px 32px;
-            border-bottom: 3px solid var(--primary-accent);
+            border-bottom: 3px solid #2563EB;
         }
 
         .ticket-header-info-wrapper {
@@ -60,7 +44,6 @@
             font-weight: 700;
             color: white;
             margin-bottom: 6px;
-            letter-spacing: -0.3px;
         }
 
         .edv-sub {
@@ -81,17 +64,17 @@
             background: rgba(37, 99, 235, 0.12);
             padding: 8px 18px;
             border-radius: 40px;
-            color: var(--primary-accent);
+            color: #2563EB;
             font-weight: 600;
             font-size: 13px;
             border: 1px solid rgba(37, 99, 235, 0.3);
         }
 
-        /* ===== FILTER BAR - ORGANIZED ===== */
+        /* ===== FILTER BAR ===== */
         .filter-bar {
-            background: var(--card-white);
-            padding: 20px 28px;
-            margin: 24px 24px 0 24px;
+            background: white;
+            padding: 16px 24px;
+            margin: 20px 24px;
             border-radius: 60px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.04);
             display: flex;
@@ -108,21 +91,19 @@
         }
 
         .filter-select {
-            padding: 12px 24px;
-            border: 1px solid var(--border-light);
+            padding: 10px 24px;
+            border: 1px solid #E5E7EB;
             border-radius: 50px;
             background: white;
             font-size: 14px;
             font-weight: 500;
             cursor: pointer;
-            color: var(--text-dark);
             min-width: 180px;
-            transition: all 0.2s;
         }
 
         .filter-select:focus {
             outline: none;
-            border-color: var(--primary-accent);
+            border-color: #2563EB;
         }
 
         .action-group {
@@ -131,41 +112,29 @@
         }
 
         .btn-clear {
-            background: var(--primary-dark);
+            background: #0A1128;
             color: white;
             border: none;
-            padding: 12px 28px;
+            padding: 10px 24px;
             border-radius: 50px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 14px;
-            transition: all 0.2s;
-        }
-
-        .btn-clear:hover {
-            background: #1a2a4a;
         }
 
         .btn-sell {
-            background: var(--primary-accent);
+            background: #2563EB;
             color: white;
             border: none;
-            padding: 12px 28px;
+            padding: 10px 24px;
             border-radius: 50px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 14px;
-            transition: all 0.2s;
-        }
-
-        .btn-sell:hover {
-            background: var(--accent-hover);
         }
 
         /* ===== MAIN 2-COLUMN ===== */
         .main-container {
             max-width: 1400px;
-            margin: 24px auto;
+            margin: 0 auto;
             padding: 0 24px;
             display: flex;
             gap: 28px;
@@ -174,18 +143,16 @@
         /* LEFT COLUMN - SEAT MAP */
         .seat-map-card {
             flex: 2;
-            background: var(--card-white);
+            background: white;
             border-radius: 24px;
             overflow: hidden;
             box-shadow: 0 4px 16px rgba(0,0,0,0.05);
-            display: flex;
-            flex-direction: column;
         }
 
         .map-header {
             padding: 16px 20px;
-            background: var(--card-white);
-            border-bottom: 1px solid var(--border-light);
+            background: white;
+            border-bottom: 1px solid #E5E7EB;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -194,7 +161,6 @@
         .map-header h3 {
             font-size: 16px;
             font-weight: 600;
-            color: var(--text-dark);
         }
 
         .zoom-controls {
@@ -206,72 +172,62 @@
             width: 34px;
             height: 34px;
             border-radius: 10px;
-            border: 1px solid var(--border-light);
+            border: 1px solid #E5E7EB;
             background: white;
             cursor: pointer;
             font-size: 16px;
-            font-weight: 600;
-            transition: all 0.2s;
         }
 
         .zoom-btn:hover {
-            background: var(--primary-accent);
+            background: #2563EB;
             color: white;
-            border-color: var(--primary-accent);
         }
 
-        .svg-wrapper {
-            background: var(--bg-page);
+        /* SVG CONTAINER - EXACT eTicketing Seat Map */
+        .svg-container {
+            background: #f0f0f0;
             padding: 20px;
             overflow: auto;
-            min-height: 580px;
-            flex: 1;
+            min-height: 550px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         #seatMap {
-            display: block;
-            margin: 0 auto;
-            background: var(--bg-page);
             width: 100%;
             height: auto;
-            min-height: 540px;
             cursor: grab;
-            border-radius: 12px;
+            background: #f0f0f0;
+            touch-action: pan-x pan-y !important;
+            user-select: none;
+            pointer-events: auto !important;
         }
 
         #seatMap:active {
             cursor: grabbing;
         }
 
-        /* Seat Section Styles */
+        /* Seat Section Styles from eTicketing */
         .seat-section {
             cursor: pointer;
-            transition: all 0.2s;
         }
 
-        .seat-section:hover {
-            filter: brightness(0.95);
-        }
-
-        .seat-section.selected {
-            filter: drop-shadow(0 0 6px var(--primary-accent));
-        }
-
-        .seat-section.selected rect,
         .seat-section.selected path {
-            stroke: var(--primary-accent) !important;
+            opacity: 0.7 !important;
+            stroke: #2563EB !important;
             stroke-width: 2.5 !important;
         }
 
         /* Legend */
         .legend {
             padding: 14px 20px;
-            border-top: 1px solid var(--border-light);
+            border-top: 1px solid #E5E7EB;
             display: flex;
             justify-content: center;
             gap: 32px;
             flex-wrap: wrap;
-            background: var(--card-white);
+            background: white;
         }
 
         .legend-item {
@@ -280,7 +236,7 @@
             gap: 8px;
             font-size: 12px;
             font-weight: 500;
-            color: var(--text-light);
+            color: #6B7280;
         }
 
         .legend-color {
@@ -292,7 +248,7 @@
         /* RIGHT COLUMN - TICKET LIST */
         .ticket-card {
             flex: 1;
-            background: var(--card-white);
+            background: white;
             border-radius: 24px;
             overflow: hidden;
             box-shadow: 0 4px 16px rgba(0,0,0,0.05);
@@ -303,41 +259,38 @@
 
         .ticket-header {
             padding: 16px 20px;
-            background: var(--card-white);
-            border-bottom: 1px solid var(--border-light);
+            background: white;
+            border-bottom: 1px solid #E5E7EB;
         }
 
         .ticket-header h3 {
             font-size: 18px;
             font-weight: 700;
-            color: var(--text-dark);
         }
 
         .selected-info {
-            background: var(--accent-light);
+            background: #DBEAFE;
             padding: 14px 16px;
             margin: 16px;
             border-radius: 14px;
             text-align: center;
-            border: 1px solid #BFDBFE;
         }
 
         .selected-label {
             font-size: 11px;
             color: #1D4ED8;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .selected-section-name {
             font-size: 18px;
             font-weight: 700;
-            color: var(--primary-accent);
+            color: #2563EB;
             margin-top: 4px;
         }
 
         /* Ticket List */
-        .ticket-list-full {
+        .ticket-list {
             max-height: 400px;
             overflow-y: auto;
             padding: 0 16px;
@@ -345,19 +298,16 @@
 
         .ticket-row {
             padding: 14px 0;
-            border-bottom: 1px solid var(--border-light);
+            border-bottom: 1px solid #E5E7EB;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 10px;
-            transition: background 0.2s;
         }
 
         .ticket-row:hover {
             background: #FAFAFA;
-            margin: 0 -16px;
-            padding: 14px 16px;
         }
 
         .ticket-info {
@@ -368,13 +318,12 @@
         .ticket-name {
             font-weight: 700;
             font-size: 14px;
-            color: var(--text-dark);
             margin-bottom: 3px;
         }
 
         .ticket-desc {
             font-size: 10px;
-            color: var(--text-light);
+            color: #6B7280;
         }
 
         .ticket-price {
@@ -385,12 +334,12 @@
         .price-amount {
             font-size: 18px;
             font-weight: 800;
-            color: var(--primary-accent);
+            color: #2563EB;
         }
 
         .price-each {
             font-size: 9px;
-            color: var(--text-light);
+            color: #6B7280;
         }
 
         .ticket-qty {
@@ -400,21 +349,15 @@
         .qty-select {
             width: 100%;
             padding: 8px 10px;
-            border: 1px solid var(--border-light);
+            border: 1px solid #E5E7EB;
             border-radius: 30px;
             background: white;
             font-size: 12px;
-            font-weight: 500;
             cursor: pointer;
         }
 
-        .qty-select:focus {
-            outline: none;
-            border-color: var(--primary-accent);
-        }
-
         .book-btn {
-            background: var(--primary-dark);
+            background: #0A1128;
             color: white;
             border: none;
             padding: 8px 20px;
@@ -422,13 +365,10 @@
             font-weight: 600;
             font-size: 12px;
             cursor: pointer;
-            min-width: 75px;
-            transition: all 0.2s;
         }
 
         .book-btn:hover {
-            background: var(--primary-accent);
-            color: white;
+            background: #2563EB;
         }
 
         /* Cart Summary */
@@ -436,7 +376,7 @@
             background: #F9FAFB;
             padding: 16px 20px;
             margin-top: 16px;
-            border-top: 1px solid var(--border-light);
+            border-top: 1px solid #E5E7EB;
         }
 
         .summary-row {
@@ -444,21 +384,21 @@
             justify-content: space-between;
             margin-bottom: 10px;
             font-size: 13px;
-            color: var(--text-light);
+            color: #6B7280;
         }
 
         .summary-row.total {
             margin-top: 10px;
             padding-top: 10px;
-            border-top: 1px solid var(--border-light);
+            border-top: 1px solid #E5E7EB;
             font-weight: 700;
             font-size: 16px;
-            color: var(--text-dark);
+            color: #111827;
         }
 
         .checkout-btn {
             width: 100%;
-            background: var(--primary-accent);
+            background: #2563EB;
             color: white;
             border: none;
             padding: 12px;
@@ -467,12 +407,10 @@
             font-size: 15px;
             cursor: pointer;
             margin-top: 14px;
-            transition: all 0.2s;
         }
 
         .checkout-btn:hover {
-            background: var(--accent-hover);
-            transform: translateY(-1px);
+            background: #3B82F6;
         }
 
         /* Match Description */
@@ -483,7 +421,7 @@
         }
 
         .desc-card {
-            background: var(--card-white);
+            background: white;
             border-radius: 24px;
             padding: 28px;
             box-shadow: 0 4px 16px rgba(0,0,0,0.04);
@@ -492,18 +430,11 @@
         .desc-card h2 {
             font-size: 20px;
             margin-bottom: 16px;
-            color: var(--text-dark);
-        }
-
-        .desc-card h3 {
-            font-size: 16px;
-            margin: 20px 0 10px;
-            color: var(--text-dark);
         }
 
         .desc-card p {
             line-height: 1.5;
-            color: var(--text-light);
+            color: #6B7280;
             margin-bottom: 14px;
             font-size: 14px;
         }
@@ -515,14 +446,13 @@
 
         .desc-card li {
             margin-bottom: 6px;
-            line-height: 1.4;
-            color: var(--text-light);
+            color: #6B7280;
             font-size: 13px;
         }
 
         /* Footer */
         .footer {
-            background: var(--primary-dark);
+            background: #0A1128;
             color: white;
             padding: 32px 24px 24px;
             margin-top: 40px;
@@ -538,11 +468,10 @@
             text-decoration: none;
             margin: 0 12px;
             font-size: 12px;
-            transition: color 0.2s;
         }
 
         .footer-links a:hover {
-            color: var(--primary-accent);
+            color: #2563EB;
         }
 
         .footer-bottom {
@@ -565,11 +494,8 @@
             z-index: 1000;
             display: none;
             font-size: 13px;
-            font-weight: 500;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
-        /* Mobile Responsive */
         @media (max-width: 900px) {
             .main-container {
                 flex-direction: column;
@@ -577,15 +503,24 @@
             .ticket-card {
                 position: static;
             }
-            .svg-wrapper {
-                min-height: 450px;
+            .svg-container {
+                min-height: 400px;
             }
-            #seatMap {
-                min-height: 420px;
+        }
+
+        @media (max-width: 600px) {
+            .ticket-header-wrapper {
+                padding: 16px;
+            }
+            .ticket-header-info-wrapper {
+                flex-direction: column;
+                text-align: center;
+            }
+            .event-title {
+                font-size: 20px;
             }
             .filter-bar {
                 flex-direction: column;
-                border-radius: 20px;
                 margin: 16px;
             }
             .filter-group {
@@ -602,34 +537,8 @@
                 flex: 1;
                 text-align: center;
             }
-        }
-
-        @media (max-width: 600px) {
-            .ticket-header-wrapper {
-                padding: 16px;
-            }
-            .ticket-header-info-wrapper {
-                flex-direction: column;
-                text-align: center;
-            }
-            .event-title {
-                font-size: 20px;
-            }
-            .ticket-row {
-                flex-direction: column;
-                text-align: center;
-            }
-            .ticket-info {
-                text-align: center;
-            }
-            .svg-wrapper {
-                min-height: 350px;
-            }
-            #seatMap {
-                min-height: 330px;
-            }
-            .legend {
-                gap: 16px;
+            .svg-container {
+                min-height: 320px;
             }
         }
     </style>
@@ -649,13 +558,11 @@
                     <span>📍 <span id="matchCity">Guadalajara, Mexico</span></span>
                 </div>
             </div>
-            <div class="guarantee-block">
-                🛡️ 150% Money Back Guarantee
-            </div>
+            <div class="guarantee-block">🛡️ 150% Money Back Guarantee</div>
         </div>
     </div>
 
-    <!-- FILTER BAR - ORGANIZED SIDE BY SIDE -->
+    <!-- FILTER BAR -->
     <div class="filter-bar">
         <div class="filter-group">
             <select id="tixQty" class="filter-select">
@@ -680,121 +587,67 @@
 
     <!-- MAIN 2-COLUMN -->
     <div class="main-container">
-        <!-- LEFT: SEAT MAP -->
+        <!-- LEFT: SEAT MAP - EXACT eTicketing SVG -->
         <div class="seat-map-card">
             <div class="map-header">
                 <h3>🏟️ Stadium Seat Map</h3>
                 <div class="zoom-controls">
                     <button class="zoom-btn" id="zoomInBtn">+</button>
-                    <button class="zoom-btn" id="zoomOutBtn">−</button>
+                    <button class="zoom-btn" id="zoomOutBtn">-</button>
                     <button class="zoom-btn" id="resetViewBtn">⟳</button>
                 </div>
             </div>
-            <div class="svg-wrapper" id="svgWrapper">
-                <svg id="seatMap" viewBox="0 0 1000 650" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="1000" height="650" fill="#EAECEF"/>
-                    
-                    <!-- Football Pitch -->
-                    <rect x="280" y="230" width="440" height="190" rx="8" fill="#1B5E20" stroke="#2E7D32" stroke-width="1.5"/>
-                    <line x1="500" y1="230" x2="500" y2="420" stroke="white" stroke-width="1.5"/>
-                    <circle cx="500" cy="325" r="20" fill="none" stroke="white" stroke-width="1.5"/>
-                    <circle cx="500" cy="325" r="2" fill="white"/>
-                    <rect x="288" y="280" width="35" height="90" fill="none" stroke="white" stroke-width="1"/>
-                    <rect x="677" y="280" width="35" height="90" fill="none" stroke="white" stroke-width="1"/>
-                    <rect x="294" y="308" width="12" height="34" fill="none" stroke="white" stroke-width="0.8"/>
-                    <rect x="694" y="308" width="12" height="34" fill="none" stroke="white" stroke-width="0.8"/>
-                    <rect x="276" y="318" width="4" height="14" fill="rgba(255,255,255,0.8)"/>
-                    <rect x="720" y="318" width="4" height="14" fill="rgba(255,255,255,0.8)"/>
-                    <text x="500" y="335" fill="rgba(255,255,255,0.15)" font-size="20" text-anchor="middle">⚽</text>
-                    
-                    <!-- Premium Sections -->
-                    <g data-section="101" data-price="350" data-category="premium" class="seat-section">
-                        <path d="M280,65 Q350,50 420,50 L418,85 Q348,85 278,98 Z" fill="#1E3A5F" stroke="#2D4A7A" stroke-width="1.5"/>
-                        <text x="350" y="80" fill="white" font-size="11" font-weight="bold" text-anchor="middle">101</text>
-                    </g>
-                    <g data-section="102" data-price="340" data-category="premium" class="seat-section">
-                        <path d="M420,50 Q490,48 560,52 L558,86 Q488,82 418,85 Z" fill="#1E3A5F" stroke="#2D4A7A" stroke-width="1.5"/>
-                        <text x="490" y="78" fill="white" font-size="11" font-weight="bold" text-anchor="middle">102</text>
-                    </g>
-                    <g data-section="103" data-price="340" data-category="premium" class="seat-section">
-                        <path d="M560,52 Q630,58 690,70 L686,102 Q626,90 558,86 Z" fill="#1E3A5F" stroke="#2D4A7A" stroke-width="1.5"/>
-                        <text x="625" y="86" fill="white" font-size="11" font-weight="bold" text-anchor="middle">103</text>
-                    </g>
-                    <g data-section="104" data-price="360" data-category="premium" class="seat-section">
-                        <path d="M850,180 Q880,220 890,275 L862,278 Q852,223 820,182 Z" fill="#1E3A5F" stroke="#2D4A7A" stroke-width="1.5"/>
-                        <text x="856" y="238" fill="white" font-size="11" font-weight="bold" text-anchor="middle">104</text>
-                    </g>
-                    <g data-section="105" data-price="370" data-category="premium" class="seat-section">
-                        <path d="M890,275 Q898,330 892,385 L864,382 Q870,327 862,278 Z" fill="#1E3A5F" stroke="#2D4A7A" stroke-width="1.5"/>
-                        <text x="878" y="338" fill="white" font-size="11" font-weight="bold" text-anchor="middle">105</text>
-                    </g>
-                    <g data-section="106" data-price="350" data-category="premium" class="seat-section">
-                        <path d="M690,580 Q630,592 560,595 L558,562 Q628,559 686,548 Z" fill="#1E3A5F" stroke="#2D4A7A" stroke-width="1.5"/>
-                        <text x="625" y="572" fill="white" font-size="11" font-weight="bold" text-anchor="middle">106</text>
-                    </g>
-                    <g data-section="107" data-price="340" data-category="premium" class="seat-section">
-                        <path d="M560,595 Q490,598 420,598 L418,565 Q488,565 558,562 Z" fill="#1E3A5F" stroke="#2D4A7A" stroke-width="1.5"/>
-                        <text x="490" y="576" fill="white" font-size="11" font-weight="bold" text-anchor="middle">107</text>
-                    </g>
-                    <g data-section="108" data-price="340" data-category="premium" class="seat-section">
-                        <path d="M420,598 Q350,595 280,585 L278,552 Q348,562 418,565 Z" fill="#1E3A5F" stroke="#2D4A7A" stroke-width="1.5"/>
-                        <text x="350" y="570" fill="white" font-size="11" font-weight="bold" text-anchor="middle">108</text>
-                    </g>
-                    <g data-section="109" data-price="360" data-category="premium" class="seat-section">
-                        <path d="M150,180 Q120,220 110,275 L138,278 Q148,223 180,182 Z" fill="#1E3A5F" stroke="#2D4A7A" stroke-width="1.5"/>
-                        <text x="144" y="238" fill="white" font-size="11" font-weight="bold" text-anchor="middle">109</text>
-                    </g>
-                    <g data-section="110" data-price="370" data-category="premium" class="seat-section">
-                        <path d="M110,275 Q102,330 108,385 L136,382 Q130,327 138,278 Z" fill="#1E3A5F" stroke="#2D4A7A" stroke-width="1.5"/>
-                        <text x="122" y="338" fill="white" font-size="11" font-weight="bold" text-anchor="middle">110</text>
+            <div class="svg-container" id="svgContainer">
+                <svg id="seatMap" viewBox="5.39465 316.40557 967.68773 372.75331" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+                    <!-- Category 1 - Premium Seats -->
+                    <g data-category="category-1">
+                        <!-- Section 101 -->
+                        <g data-section="101" data-price="350" data-category="premium" class="seat-section">
+                            <path style="opacity: 0.85;" d="M485.7,194.8h36.9c6.4,0,12.7,0,18.8,0.1l2.3-82.8c-3.6,0-7.2,0-10.8,0h-86c-4.7,0-9.4,0-13.9,0.1l2.4,83.1C451,195,467.8,194.8,485.7,194.8z" fill="#1E3A5F" stroke="#2D4A7A" stroke-width="1.5"></path>
+                            <text transform="matrix(1 0 0 1 479.7601 158.709)" font-family="proxima-nova" font-size="14px" fill="white" font-weight="bold">101</text>
+                        </g>
+                        <!-- Section 102 -->
+                        <g data-section="102" data-price="340" data-category="premium" class="seat-section">
+                            <path style="opacity: 0.85;" d="M602.1,196.6l5.5-82.5c-18.6-1.1-38.5-1.7-59.9-1.9l-2.3,82.8C566,195.1,584.9,195.6,602.1,196.6z" fill="#1E3A5F" stroke="#2D4A7A" stroke-width="1.5"></path>
+                            <text transform="matrix(1 0 0 1 565.682 159.3988)" font-family="proxima-nova" font-size="14px" fill="white" font-weight="bold">102</text>
+                        </g>
+                        <!-- Section 103 -->
+                        <g data-section="103" data-price="340" data-category="premium" class="seat-section">
+                            <path style="opacity: 0.85;" d="M658.8,202.1l11-82c-17.7-2.6-37-4.5-58.2-5.8l-5.5,82.5C625.7,197.9,643.2,199.6,658.8,202.1z" fill="#1E3A5F" stroke="#2D4A7A" stroke-width="1.5"></path>
+                            <text transform="matrix(1 0 0 1 627.4167 163.223)" font-family="proxima-nova" font-size="14px" fill="white" font-weight="bold">103</text>
+                        </g>
+                        <!-- Section 104 -->
+                        <g data-section="104" data-price="360" data-category="premium" class="seat-section">
+                            <path style="opacity: 0.85;" d="M704,213.4l20.9-81.9c-15.3-4.4-32.3-8-51.2-10.9l-11,82.1C678.5,205.4,692.2,208.9,704,213.4z" fill="#1E3A5F" stroke="#2D4A7A" stroke-width="1.5"></path>
+                            <text transform="matrix(1 0 0 1 683.304 172.0593)" font-family="proxima-nova" font-size="14px" fill="white" font-weight="bold">104</text>
+                        </g>
                     </g>
 
-                    <!-- Standard Sections -->
-                    <g data-section="201" data-price="180" data-category="standard" class="seat-section">
-                        <path d="M310,115 Q370,105 430,105 L428,135 Q368,135 308,142 Z" fill="#F8F9FA" stroke="#D1D5DB" stroke-width="1"/>
-                        <text x="370" y="130" fill="#111827" font-size="10" font-weight="bold" text-anchor="middle">201</text>
-                    </g>
-                    <g data-section="202" data-price="170" data-category="standard" class="seat-section">
-                        <path d="M430,105 Q490,103 550,106 L548,136 Q488,133 428,135 Z" fill="#F8F9FA" stroke="#D1D5DB" stroke-width="1"/>
-                        <text x="490" y="128" fill="#111827" font-size="10" font-weight="bold" text-anchor="middle">202</text>
-                    </g>
-                    <g data-section="203" data-price="170" data-category="standard" class="seat-section">
-                        <path d="M550,106 Q610,112 660,122 L656,150 Q606,140 548,136 Z" fill="#F8F9FA" stroke="#D1D5DB" stroke-width="1"/>
-                        <text x="605" y="136" fill="#111827" font-size="10" font-weight="bold" text-anchor="middle">203</text>
-                    </g>
-                    <g data-section="204" data-price="190" data-category="standard" class="seat-section">
-                        <path d="M810,215 Q830,255 838,300 L814,302 Q806,257 788,218 Z" fill="#F8F9FA" stroke="#D1D5DB" stroke-width="1"/>
-                        <text x="812" y="266" fill="#111827" font-size="10" font-weight="bold" text-anchor="middle">204</text>
-                    </g>
-                    <g data-section="205" data-price="200" data-category="standard" class="seat-section">
-                        <path d="M838,300 Q842,345 838,390 L814,388 Q818,343 814,302 Z" fill="#F8F9FA" stroke="#D1D5DB" stroke-width="1"/>
-                        <text x="826" y="353" fill="#111827" font-size="10" font-weight="bold" text-anchor="middle">205</text>
-                    </g>
-                    <g data-section="206" data-price="180" data-category="standard" class="seat-section">
-                        <path d="M660,528 Q610,538 550,542 L548,512 Q608,508 656,500 Z" fill="#F8F9FA" stroke="#D1D5DB" stroke-width="1"/>
-                        <text x="605" y="520" fill="#111827" font-size="10" font-weight="bold" text-anchor="middle">206</text>
-                    </g>
-                    <g data-section="207" data-price="170" data-category="standard" class="seat-section">
-                        <path d="M550,542 Q490,545 430,545 L428,515 Q488,515 548,512 Z" fill="#F8F9FA" stroke="#D1D5DB" stroke-width="1"/>
-                        <text x="490" y="528" fill="#111827" font-size="10" font-weight="bold" text-anchor="middle">207</text>
-                    </g>
-                    <g data-section="208" data-price="170" data-category="standard" class="seat-section">
-                        <path d="M430,545 Q370,543 310,535 L308,505 Q368,513 428,515 Z" fill="#F8F9FA" stroke="#D1D5DB" stroke-width="1"/>
-                        <text x="370" y="522" fill="#111827" font-size="10" font-weight="bold" text-anchor="middle">208</text>
-                    </g>
-                    <g data-section="209" data-price="190" data-category="standard" class="seat-section">
-                        <path d="M190,215 Q170,255 162,300 L186,302 Q194,257 212,218 Z" fill="#F8F9FA" stroke="#D1D5DB" stroke-width="1"/>
-                        <text x="188" y="266" fill="#111827" font-size="10" font-weight="bold" text-anchor="middle">209</text>
-                    </g>
-                    <g data-section="210" data-price="200" data-category="standard" class="seat-section">
-                        <path d="M162,300 Q158,345 162,390 L186,388 Q182,343 186,302 Z" fill="#F8F9FA" stroke="#D1D5DB" stroke-width="1"/>
-                        <text x="174" y="353" fill="#111827" font-size="10" font-weight="bold" text-anchor="middle">210</text>
+                    <!-- Category 3 - Standard Seats -->
+                    <g data-category="category-3">
+                        <!-- Section 106 -->
+                        <g data-section="106" data-price="180" data-category="standard" class="seat-section">
+                            <path style="opacity: 0.85;" d="M315.1,204l-13-82.3c-18.2,3-34.7,6.7-49.7,11.2l19.1,82.4C283.8,210.7,298.2,206.9,315.1,204z" fill="#F8F9FA" stroke="#D1D5DB" stroke-width="1"></path>
+                            <text transform="matrix(1 0 0 1 273.3832 173.633)" font-family="proxima-nova" font-size="13px" fill="#111827" font-weight="bold">106</text>
+                        </g>
+                        <!-- Section 107 -->
+                        <g data-section="107" data-price="170" data-category="standard" class="seat-section">
+                            <path style="opacity: 0.85;" d="M371.4,197.8l-8.2-83c-20.7,1.5-39.7,3.6-57.2,6.4l13,82.2C334.4,200.9,351.8,199.1,371.4,197.8z" fill="#F8F9FA" stroke="#D1D5DB" stroke-width="1"></path>
+                            <text transform="matrix(1 0 0 1 329.0836 164.1373)" font-family="proxima-nova" font-size="13px" fill="#111827" font-weight="bold">107</text>
+                        </g>
+                        <!-- Section 108 -->
+                        <g data-section="108" data-price="170" data-category="standard" class="seat-section">
+                            <path style="opacity: 0.85;" d="M431.3,195.3l-2.4-83.1c-22,0.3-42.6,1-61.7,2.3l8.2,83C392.4,196.4,411,195.7,431.3,195.3z" fill="#F8F9FA" stroke="#D1D5DB" stroke-width="1"></path>
+                            <text transform="matrix(1 0 0 1 389.0266 159.8916)" font-family="proxima-nova" font-size="13px" fill="#111827" font-weight="bold">108</text>
+                        </g>
                     </g>
 
                     <!-- VIP Section -->
-                    <g data-section="301" data-price="550" data-category="vip" class="seat-section">
-                        <rect x="420" y="175" width="160" height="35" rx="8" fill="#9333EA" stroke="#A855F7" stroke-width="1.5"/>
-                        <text x="500" y="197" fill="white" font-size="11" font-weight="bold" text-anchor="middle">⭐ VIP LOUNGE</text>
+                    <g data-category="vip">
+                        <g data-section="301" data-price="550" data-category="vip" class="seat-section">
+                            <rect x="360" y="105" width="280" height="50" rx="10" fill="#9333EA" stroke="#A855F7" stroke-width="1.5" opacity="0.9"></rect>
+                            <text x="500" y="138" text-anchor="middle" font-family="proxima-nova" font-size="14px" fill="white" font-weight="bold">⭐ VIP LOUNGE</text>
+                        </g>
                     </g>
                 </svg>
             </div>
@@ -815,7 +668,7 @@
                 <div class="selected-label">Selected Section</div>
                 <div class="selected-section-name" id="selectedSectionName">None</div>
             </div>
-            <div class="ticket-list-full" id="ticketListFull"></div>
+            <div class="ticket-list" id="ticketList"></div>
             <div class="cart-summary">
                 <div class="summary-row"><span>Subtotal</span><span id="subtotal">$0</span></div>
                 <div class="summary-row"><span>Service Fee (10%)</span><span id="serviceFee">$0</span></div>
@@ -874,25 +727,23 @@
 
         // Ticket categories
         const allTickets = [
-            { name: "Category 3", desc: "(Max 4 Seats Together)", price: 600, category: "standard", maxQty: 4, section: "201" },
-            { name: "Cat 3", desc: "", price: 750, category: "standard", maxQty: 4, section: "202" },
-            { name: "Category 2", desc: "(Max 4 Seats Together)", price: 1100, category: "premium", maxQty: 4, section: "101" },
-            { name: "Cat 2", desc: "", price: 1340, category: "premium", maxQty: 4, section: "102" },
-            { name: "Upper Block 32", desc: "", price: 1450, category: "standard", maxQty: 4, section: "203" },
-            { name: "Category 1", desc: "(Max 4 Seats Together)", price: 1750, category: "premium", maxQty: 4, section: "103" },
-            { name: "Upper Tier", desc: "", price: 1800, category: "standard", maxQty: 4, section: "204" },
-            { name: "Prime", desc: "(Max 4 Seats Together)", price: 2000, category: "premium", maxQty: 4, section: "104" },
-            { name: "Lower Tier", desc: "", price: 2500, category: "premium", maxQty: 4, section: "108" },
-            { name: "VIP Lounge", desc: "(Hospitality Included)", price: 5250, category: "vip", maxQty: 10, section: "301" }
+            { id: 101, name: "Premium 101", price: 350, category: "premium", section: "101" },
+            { id: 102, name: "Premium 102", price: 340, category: "premium", section: "102" },
+            { id: 103, name: "Premium 103", price: 340, category: "premium", section: "103" },
+            { id: 104, name: "Premium 104", price: 360, category: "premium", section: "104" },
+            { id: 106, name: "Standard 106", price: 180, category: "standard", section: "106" },
+            { id: 107, name: "Standard 107", price: 170, category: "standard", section: "107" },
+            { id: 108, name: "Standard 108", price: 170, category: "standard", section: "108" },
+            { id: 301, name: "VIP Lounge", price: 550, category: "vip", section: "301" }
         ];
 
         let selectedSectionId = null;
         let quantities = {};
-        allTickets.forEach((_, idx) => { quantities[idx] = 0; });
+        allTickets.forEach(t => { quantities[t.id] = 0; });
 
         // Zoom/Pan functionality
         let svg = document.getElementById('seatMap');
-        let container = document.getElementById('svgWrapper');
+        let container = document.getElementById('svgContainer');
         let scale = 1;
         let panX = 0, panY = 0;
         let isPanning = false;
@@ -924,31 +775,26 @@
 
         // Render ticket list
         function renderTicketList() {
-            const container = document.getElementById('ticketListFull');
+            const container = document.getElementById('ticketList');
             let filtered = [...allTickets];
             
             const qtyFilter = parseInt(document.getElementById('tixQty').value);
             const catFilter = document.getElementById('tixCategory').value;
             
-            if (qtyFilter > 0) filtered = filtered.filter(t => t.maxQty >= qtyFilter);
+            if (qtyFilter > 0) filtered = filtered.filter(t => t.price >= 100);
             if (catFilter !== 'all') filtered = filtered.filter(t => t.category === catFilter);
             
-            if (filtered.length === 0) {
-                container.innerHTML = '<div style="text-align:center; padding:40px; color:#6B7280;">No tickets match your filters</div>';
-                return;
-            }
-            
-            container.innerHTML = filtered.map((ticket, idx) => `
+            container.innerHTML = filtered.map(ticket => `
                 <div class="ticket-row" data-section="${ticket.section}">
                     <div class="ticket-info">
-                        <div class="ticket-name">${ticket.name} ${ticket.desc}</div>
+                        <div class="ticket-name">${ticket.name}</div>
                     </div>
                     <div class="ticket-price">
-                        <div class="price-amount">$${ticket.price.toLocaleString()}</div>
+                        <div class="price-amount">$${ticket.price}</div>
                         <div class="price-each">each</div>
                     </div>
                     <div class="ticket-qty">
-                        <select class="qty-select" id="qty_${idx}" data-price="${ticket.price}" data-name="${ticket.name}">
+                        <select class="qty-select" id="qty_${ticket.id}" data-price="${ticket.price}" data-name="${ticket.name}">
                             <option value="0">0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -956,7 +802,7 @@
                             <option value="4">4</option>
                         </select>
                     </div>
-                    <button class="book-btn" onclick="bookTicket(${idx})">Book</button>
+                    <button class="book-btn" onclick="bookTicket(${ticket.id})">Book</button>
                 </div>
             `).join('');
             
@@ -966,19 +812,19 @@
             updateTotal();
         }
 
-        function bookTicket(idx) {
-            const ticket = allTickets[idx];
-            const qty = parseInt(document.getElementById(`qty_${idx}`).value);
+        function bookTicket(ticketId) {
+            const ticket = allTickets.find(t => t.id === ticketId);
+            const qty = parseInt(document.getElementById(`qty_${ticketId}`).value);
             if (qty === 0) { showToast('Please select quantity first'); return; }
-            quantities[idx] = qty;
+            quantities[ticketId] = qty;
             updateTotal();
             showToast(`✓ Added ${qty} × ${ticket.name} - $${(ticket.price * qty).toLocaleString()}`);
         }
 
         function updateTotal() {
             let subtotal = 0;
-            allTickets.forEach((ticket, idx) => {
-                subtotal += (quantities[idx] || 0) * ticket.price;
+            allTickets.forEach(ticket => {
+                subtotal += (quantities[ticket.id] || 0) * ticket.price;
             });
             const fee = Math.round(subtotal * 0.1);
             document.getElementById('subtotal').textContent = `$${subtotal.toLocaleString()}`;
