@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>TicketRoyal | South Korea vs Czechia Tickets - FIFA World Cup 2026</title>
+    <meta name="description" content="TicketRoyal - FIFA World Cup 2026 Ticket Selection">
+    <title>TicketRoyal | South Korea vs Czechia - FIFA World Cup 2026</title>
     
     <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
     
@@ -16,14 +17,15 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #F5F7FA;
-            color: #1a1a2e;
+            background: #EFF3F8;
+            color: #1A1F36;
         }
 
-        /* ===== HEADER - EXACT FROM YOUR SOURCE ===== */
+        /* ===== HEADER ===== */
         .ticket-header-wrapper {
             background: linear-gradient(135deg, #0B132B 0%, #1a2a4a 100%);
-            padding: 25px 35px;
+            padding: 28px 40px;
+            position: relative;
         }
 
         .ticket-header-info-wrapper {
@@ -41,6 +43,7 @@
             font-weight: 700;
             color: white;
             margin-bottom: 8px;
+            letter-spacing: -0.3px;
         }
 
         .edv-sub {
@@ -53,99 +56,115 @@
             color: rgba(255,255,255,0.8);
             font-size: 13px;
             display: flex;
-            gap: 20px;
+            gap: 24px;
             flex-wrap: wrap;
-        }
-
-        .edv-date i {
-            margin-right: 6px;
         }
 
         .quick-contact-info h4 {
             color: white;
-            font-size: 18px;
-            margin: 5px 0;
+            font-size: 16px;
+            margin: 6px 0;
+            font-weight: 500;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
         .guarantee-block {
-            background: rgba(197, 160, 40, 0.15);
-            padding: 12px 20px;
+            background: rgba(197, 160, 40, 0.12);
+            padding: 10px 20px;
             border-radius: 40px;
-            color: #C5A028;
+            color: #D4AF37;
             font-weight: 700;
-            font-size: 14px;
-            border: 1px solid #C5A028;
+            font-size: 13px;
+            border: 1px solid rgba(197, 160, 40, 0.3);
         }
 
         /* ===== FILTER BAR ===== */
         .filter-bar {
             background: white;
-            padding: 20px;
-            margin: 20px;
-            border-radius: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 18px 24px;
+            margin: 24px;
+            border-radius: 60px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 16px;
             align-items: center;
         }
 
         .filter-select {
             flex: 1;
             min-width: 160px;
-            padding: 10px 16px;
+            padding: 12px 20px;
             border: 1px solid #E2E8F0;
             border-radius: 40px;
             background: white;
             font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #C5A028;
         }
 
         .reset-btn {
-            background: #0B132B;
+            background: #1A1F36;
             color: white;
             border: none;
-            padding: 10px 24px;
+            padding: 12px 28px;
             border-radius: 40px;
             cursor: pointer;
             font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .reset-btn:hover {
+            background: #2d3748;
         }
 
         .sell-btn {
             background: #C5A028;
-            color: #0B132B;
+            color: #1A1F36;
             border: none;
-            padding: 10px 24px;
+            padding: 12px 28px;
             border-radius: 40px;
             cursor: pointer;
             font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
         }
 
-        /* ===== MAIN 2-COLUMN LAYOUT ===== */
+        .sell-btn:hover {
+            background: #D4AF37;
+        }
+
+        /* ===== MAIN 2-COLUMN ===== */
         .main-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
             display: flex;
-            gap: 24px;
+            gap: 28px;
         }
 
         /* LEFT COLUMN - SEAT MAP */
         .seat-map-card {
             flex: 2;
             background: white;
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
         }
 
         .map-header {
-            padding: 16px 20px;
-            background: #F8F9FA;
-            border-bottom: 1px solid #E2E8F0;
+            padding: 18px 24px;
+            background: white;
+            border-bottom: 1px solid #EDF2F7;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -154,51 +173,65 @@
         .map-header h3 {
             font-size: 18px;
             font-weight: 600;
+            color: #1A1F36;
         }
 
         .zoom-controls {
             display: flex;
-            gap: 8px;
+            gap: 10px;
         }
 
         .zoom-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
             border: 1px solid #E2E8F0;
             background: white;
             cursor: pointer;
             font-size: 18px;
+            font-weight: 600;
+            transition: all 0.2s;
         }
 
         .zoom-btn:hover {
             background: #C5A028;
             color: white;
+            border-color: #C5A028;
         }
 
         .svg-wrapper {
-            background: #f0efea;
-            padding: 20px;
+            background: #F0F2F5;
+            padding: 24px;
             overflow: auto;
-            min-height: 550px;
+            min-height: 560px;
         }
 
         #seatMap {
             display: block;
             margin: 0 auto;
-            background: #e8e5dd;
+            background: #F0F2F5;
             width: 100%;
             height: auto;
             cursor: grab;
+            border-radius: 16px;
         }
 
+        #seatMap:active {
+            cursor: grabbing;
+        }
+
+        /* Seat Section Styles */
         .seat-section {
             cursor: pointer;
             transition: all 0.2s;
         }
 
+        .seat-section:hover {
+            filter: brightness(0.95);
+        }
+
         .seat-section.selected {
-            filter: drop-shadow(0 0 6px #C5A028);
+            filter: drop-shadow(0 0 8px #C5A028);
         }
 
         .seat-section.selected rect,
@@ -207,12 +240,13 @@
             stroke-width: 2.5 !important;
         }
 
+        /* Legend */
         .legend {
-            padding: 14px 20px;
-            border-top: 1px solid #E2E8F0;
+            padding: 16px 24px;
+            border-top: 1px solid #EDF2F7;
             display: flex;
             justify-content: center;
-            gap: 32px;
+            gap: 40px;
             flex-wrap: wrap;
             background: white;
         }
@@ -220,69 +254,87 @@
         .legend-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             font-size: 13px;
+            font-weight: 500;
+            color: #4A5568;
         }
 
         .legend-color {
             width: 14px;
             height: 14px;
-            border-radius: 3px;
+            border-radius: 4px;
         }
 
-        /* RIGHT COLUMN - TICKET LIST (FULL LIST FROM SOURCE) */
+        /* RIGHT COLUMN - TICKET LIST */
         .ticket-card {
             flex: 1;
             background: white;
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
             position: sticky;
-            top: 20px;
+            top: 24px;
             height: fit-content;
         }
 
         .ticket-header {
-            padding: 16px 20px;
-            background: #F8F9FA;
-            border-bottom: 1px solid #E2E8F0;
+            padding: 18px 24px;
+            background: white;
+            border-bottom: 1px solid #EDF2F7;
         }
 
         .ticket-header h3 {
             font-size: 18px;
             font-weight: 700;
+            color: #1A1F36;
         }
 
         .selected-info {
-            background: #FFF8E7;
-            padding: 16px;
-            margin: 16px;
-            border-radius: 12px;
+            background: #FFF9ED;
+            padding: 16px 20px;
+            margin: 20px;
+            border-radius: 16px;
             text-align: center;
+            border: 1px solid #FEF3C7;
+        }
+
+        .selected-label {
+            font-size: 12px;
+            color: #8B6914;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .selected-section-name {
             font-size: 18px;
             font-weight: 700;
             color: #C5A028;
-            margin-top: 4px;
+            margin-top: 6px;
         }
 
-        /* FULL TICKET LIST - ALL CATEGORIES */
+        /* Ticket List */
         .ticket-list-full {
-            max-height: 450px;
+            max-height: 460px;
             overflow-y: auto;
-            padding: 0 16px;
+            padding: 0 20px;
         }
 
         .ticket-row {
-            padding: 16px;
-            border-bottom: 1px solid #E2E8F0;
+            padding: 18px 0;
+            border-bottom: 1px solid #EDF2F7;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 12px;
+            transition: background 0.2s;
+        }
+
+        .ticket-row:hover {
+            background: #FAFAFA;
+            margin: 0 -20px;
+            padding: 18px 20px;
         }
 
         .ticket-info {
@@ -293,17 +345,18 @@
         .ticket-name {
             font-weight: 700;
             font-size: 15px;
+            color: #1A1F36;
             margin-bottom: 4px;
         }
 
         .ticket-desc {
             font-size: 11px;
-            color: #64748B;
+            color: #8B8B8B;
         }
 
         .ticket-price {
             text-align: center;
-            min-width: 90px;
+            min-width: 100px;
         }
 
         .price-amount {
@@ -314,7 +367,7 @@
 
         .price-each {
             font-size: 10px;
-            color: #64748B;
+            color: #8B8B8B;
         }
 
         .ticket-qty {
@@ -323,36 +376,45 @@
 
         .qty-select {
             width: 100%;
-            padding: 8px 12px;
+            padding: 10px 12px;
             border: 1px solid #E2E8F0;
             border-radius: 30px;
             background: white;
             font-size: 13px;
+            font-weight: 500;
             cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .qty-select:focus {
+            outline: none;
+            border-color: #C5A028;
         }
 
         .book-btn {
-            background: #0B132B;
+            background: #1A1F36;
             color: white;
             border: none;
-            padding: 8px 20px;
+            padding: 10px 24px;
             border-radius: 30px;
             font-weight: 600;
             font-size: 13px;
             cursor: pointer;
-            min-width: 80px;
+            min-width: 85px;
+            transition: all 0.2s;
         }
 
         .book-btn:hover {
             background: #C5A028;
-            color: #0B132B;
+            color: #1A1F36;
         }
 
-        /* CART SUMMARY */
+        /* Cart Summary */
         .cart-summary {
-            background: #F8F9FA;
-            padding: 20px;
-            margin-top: 16px;
+            background: #F8FAFC;
+            padding: 20px 24px;
+            margin-top: 20px;
+            border-top: 1px solid #EDF2F7;
         }
 
         .summary-row {
@@ -360,6 +422,7 @@
             justify-content: space-between;
             margin-bottom: 12px;
             font-size: 14px;
+            color: #4A5568;
         }
 
         .summary-row.total {
@@ -368,12 +431,13 @@
             border-top: 1px solid #E2E8F0;
             font-weight: 700;
             font-size: 18px;
+            color: #1A1F36;
         }
 
         .checkout-btn {
             width: 100%;
             background: #C5A028;
-            color: #0B132B;
+            color: #1A1F36;
             border: none;
             padding: 14px;
             border-radius: 40px;
@@ -389,29 +453,30 @@
             transform: translateY(-2px);
         }
 
-        /* MATCH DESCRIPTION SECTION - FULL */
+        /* Match Description */
         .match-description {
             max-width: 1400px;
-            margin: 30px auto;
-            padding: 0 20px;
+            margin: 32px auto;
+            padding: 0 24px;
         }
 
         .desc-card {
             background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
         }
 
         .desc-card h2 {
-            font-size: 24px;
+            font-size: 22px;
             margin-bottom: 20px;
-            color: #0B132B;
+            color: #1A1F36;
         }
 
         .desc-card h3 {
             font-size: 18px;
-            margin: 20px 0 10px;
+            margin: 24px 0 12px;
+            color: #1A1F36;
         }
 
         .desc-card p {
@@ -428,26 +493,32 @@
         .desc-card li {
             margin-bottom: 8px;
             line-height: 1.5;
+            color: #4A5568;
         }
 
-        /* FOOTER */
+        /* Footer */
         .footer {
             background: #0B132B;
             color: white;
-            padding: 40px 20px 24px;
-            margin-top: 40px;
+            padding: 40px 24px 28px;
+            margin-top: 48px;
         }
 
         .footer-links {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .footer-links a {
             color: rgba(255,255,255,0.6);
             text-decoration: none;
-            margin: 0 12px;
+            margin: 0 14px;
             font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #C5A028;
         }
 
         .footer-bottom {
@@ -455,7 +526,7 @@
             font-size: 12px;
             color: rgba(255,255,255,0.4);
             padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255,255,255,0.08);
         }
 
         .toast {
@@ -465,12 +536,13 @@
             transform: translateX(-50%);
             background: #059669;
             color: white;
-            padding: 12px 24px;
+            padding: 14px 28px;
             border-radius: 50px;
             z-index: 1000;
             display: none;
             font-size: 14px;
-            white-space: nowrap;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         @media (max-width: 900px) {
@@ -481,10 +553,32 @@
                 position: static;
             }
             .svg-wrapper {
-                min-height: 400px;
+                min-height: 420px;
             }
-            .toast {
-                white-space: normal;
+            .filter-bar {
+                border-radius: 20px;
+                margin: 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .ticket-header-wrapper {
+                padding: 20px;
+            }
+            .event-title {
+                font-size: 22px;
+            }
+            .filter-select, .reset-btn, .sell-btn {
+                width: 100%;
+            }
+            .filter-bar {
+                flex-direction: column;
+            }
+            .ticket-row {
+                flex-direction: column;
+                text-align: center;
+            }
+            .ticket-info {
                 text-align: center;
             }
         }
@@ -492,7 +586,7 @@
 </head>
 <body>
 
-    <!-- ===== HEADER ===== -->
+    <!-- HEADER -->
     <div class="ticket-header-wrapper">
         <div class="ticket-header-info-wrapper">
             <div>
@@ -515,43 +609,43 @@
         </div>
     </div>
 
-    <!-- ===== FILTER BAR ===== -->
+    <!-- FILTER BAR -->
     <div class="filter-bar">
         <select id="tixQty" class="filter-select">
-            <option value="0">Any tickets</option>
+            <option value="0">🎫 Any tickets</option>
             <option value="1">1 ticket</option>
             <option value="2">2 tickets</option>
             <option value="3">3 tickets</option>
             <option value="4">4 tickets</option>
         </select>
         <select id="tixCategory" class="filter-select">
-            <option value="all">»» All Categories</option>
-            <option value="standard">Standard</option>
-            <option value="premium">Premium</option>
-            <option value="vip">VIP / Hospitality</option>
+            <option value="all">📋 All Categories</option>
+            <option value="standard">🟢 Standard</option>
+            <option value="premium">🔵 Premium</option>
+            <option value="vip">⭐ VIP / Hospitality</option>
         </select>
-        <button class="reset-btn" onclick="resetFilters()">Clear</button>
-        <button class="sell-btn" onclick="showToast('Sell tickets feature coming soon')">Sell</button>
+        <button class="reset-btn" onclick="resetFilters()">⟳ Clear Filters</button>
+        <button class="sell-btn" onclick="showToast('Sell tickets feature coming soon')">💰 Sell Tickets</button>
     </div>
 
-    <!-- ===== MAIN 2-COLUMN ===== -->
+    <!-- MAIN 2-COLUMN -->
     <div class="main-container">
         <!-- LEFT: SEAT MAP -->
         <div class="seat-map-card">
             <div class="map-header">
-                <h3>Seat Map</h3>
+                <h3>🏟️ Stadium Seat Map</h3>
                 <div class="zoom-controls">
                     <button class="zoom-btn" id="zoomInBtn">+</button>
-                    <button class="zoom-btn" id="zoomOutBtn">-</button>
+                    <button class="zoom-btn" id="zoomOutBtn">−</button>
                     <button class="zoom-btn" id="resetViewBtn">⟳</button>
                 </div>
             </div>
             <div class="svg-wrapper" id="svgWrapper">
                 <svg id="seatMap" viewBox="0 0 1000 650" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="1000" height="650" fill="#e8e5dd"/>
+                    <rect width="1000" height="650" fill="#F0F2F5"/>
                     
-                    <!-- Pitch -->
-                    <rect x="280" y="230" width="440" height="190" rx="6" fill="#2d5a27" stroke="#4a8c3f" stroke-width="1.5"/>
+                    <!-- Football Pitch -->
+                    <rect x="280" y="230" width="440" height="190" rx="8" fill="#2d5a27" stroke="#4a8c3f" stroke-width="1.5"/>
                     <line x1="500" y1="230" x2="500" y2="420" stroke="white" stroke-width="1.5"/>
                     <circle cx="500" cy="325" r="20" fill="none" stroke="white" stroke-width="1.5"/>
                     <circle cx="500" cy="325" r="2" fill="white"/>
@@ -561,142 +655,141 @@
                     <rect x="694" y="308" width="12" height="34" fill="none" stroke="white" stroke-width="0.8"/>
                     <rect x="276" y="318" width="4" height="14" fill="rgba(255,255,255,0.8)"/>
                     <rect x="720" y="318" width="4" height="14" fill="rgba(255,255,255,0.8)"/>
+                    <text x="500" y="335" fill="rgba(255,255,255,0.2)" font-size="20" text-anchor="middle">⚽</text>
                     
                     <!-- Premium Sections - Top -->
                     <g data-section="101" data-price="350" data-category="premium" class="seat-section">
-                        <path d="M280,65 Q350,50 420,50 L418,85 Q348,85 278,98 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <path d="M280,65 Q350,50 420,50 L418,85 Q348,85 278,98 Z" fill="#1e3a5f" stroke="#3b5d8f" stroke-width="1.5"/>
                         <text x="350" y="80" fill="white" font-size="11" font-weight="bold" text-anchor="middle">101</text>
                     </g>
                     <g data-section="102" data-price="340" data-category="premium" class="seat-section">
-                        <path d="M420,50 Q490,48 560,52 L558,86 Q488,82 418,85 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <path d="M420,50 Q490,48 560,52 L558,86 Q488,82 418,85 Z" fill="#1e3a5f" stroke="#3b5d8f" stroke-width="1.5"/>
                         <text x="490" y="78" fill="white" font-size="11" font-weight="bold" text-anchor="middle">102</text>
                     </g>
                     <g data-section="103" data-price="340" data-category="premium" class="seat-section">
-                        <path d="M560,52 Q630,58 690,70 L686,102 Q626,90 558,86 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <path d="M560,52 Q630,58 690,70 L686,102 Q626,90 558,86 Z" fill="#1e3a5f" stroke="#3b5d8f" stroke-width="1.5"/>
                         <text x="625" y="86" fill="white" font-size="11" font-weight="bold" text-anchor="middle">103</text>
                     </g>
                     
                     <!-- Premium - Right -->
                     <g data-section="104" data-price="360" data-category="premium" class="seat-section">
-                        <path d="M850,180 Q880,220 890,275 L862,278 Q852,223 820,182 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <path d="M850,180 Q880,220 890,275 L862,278 Q852,223 820,182 Z" fill="#1e3a5f" stroke="#3b5d8f" stroke-width="1.5"/>
                         <text x="856" y="238" fill="white" font-size="11" font-weight="bold" text-anchor="middle">104</text>
                     </g>
                     <g data-section="105" data-price="370" data-category="premium" class="seat-section">
-                        <path d="M890,275 Q898,330 892,385 L864,382 Q870,327 862,278 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <path d="M890,275 Q898,330 892,385 L864,382 Q870,327 862,278 Z" fill="#1e3a5f" stroke="#3b5d8f" stroke-width="1.5"/>
                         <text x="878" y="338" fill="white" font-size="11" font-weight="bold" text-anchor="middle">105</text>
                     </g>
                     
                     <!-- Premium - Bottom -->
                     <g data-section="106" data-price="350" data-category="premium" class="seat-section">
-                        <path d="M690,580 Q630,592 560,595 L558,562 Q628,559 686,548 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <path d="M690,580 Q630,592 560,595 L558,562 Q628,559 686,548 Z" fill="#1e3a5f" stroke="#3b5d8f" stroke-width="1.5"/>
                         <text x="625" y="572" fill="white" font-size="11" font-weight="bold" text-anchor="middle">106</text>
                     </g>
                     <g data-section="107" data-price="340" data-category="premium" class="seat-section">
-                        <path d="M560,595 Q490,598 420,598 L418,565 Q488,565 558,562 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <path d="M560,595 Q490,598 420,598 L418,565 Q488,565 558,562 Z" fill="#1e3a5f" stroke="#3b5d8f" stroke-width="1.5"/>
                         <text x="490" y="576" fill="white" font-size="11" font-weight="bold" text-anchor="middle">107</text>
                     </g>
                     <g data-section="108" data-price="340" data-category="premium" class="seat-section">
-                        <path d="M420,598 Q350,595 280,585 L278,552 Q348,562 418,565 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <path d="M420,598 Q350,595 280,585 L278,552 Q348,562 418,565 Z" fill="#1e3a5f" stroke="#3b5d8f" stroke-width="1.5"/>
                         <text x="350" y="570" fill="white" font-size="11" font-weight="bold" text-anchor="middle">108</text>
                     </g>
                     
                     <!-- Premium - Left -->
                     <g data-section="109" data-price="360" data-category="premium" class="seat-section">
-                        <path d="M150,180 Q120,220 110,275 L138,278 Q148,223 180,182 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <path d="M150,180 Q120,220 110,275 L138,278 Q148,223 180,182 Z" fill="#1e3a5f" stroke="#3b5d8f" stroke-width="1.5"/>
                         <text x="144" y="238" fill="white" font-size="11" font-weight="bold" text-anchor="middle">109</text>
                     </g>
                     <g data-section="110" data-price="370" data-category="premium" class="seat-section">
-                        <path d="M110,275 Q102,330 108,385 L136,382 Q130,327 138,278 Z" fill="#1a237e" stroke="#3f51b5" stroke-width="1.5"/>
+                        <path d="M110,275 Q102,330 108,385 L136,382 Q130,327 138,278 Z" fill="#1e3a5f" stroke="#3b5d8f" stroke-width="1.5"/>
                         <text x="122" y="338" fill="white" font-size="11" font-weight="bold" text-anchor="middle">110</text>
                     </g>
 
                     <!-- Standard Sections -->
                     <g data-section="201" data-price="180" data-category="standard" class="seat-section">
-                        <path d="M310,115 Q370,105 430,105 L428,135 Q368,135 308,142 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
-                        <text x="370" y="130" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">201</text>
+                        <path d="M310,115 Q370,105 430,105 L428,135 Q368,135 308,142 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+                        <text x="370" y="130" fill="#1A1F36" font-size="10" font-weight="bold" text-anchor="middle">201</text>
                     </g>
                     <g data-section="202" data-price="170" data-category="standard" class="seat-section">
-                        <path d="M430,105 Q490,103 550,106 L548,136 Q488,133 428,135 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
-                        <text x="490" y="128" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">202</text>
+                        <path d="M430,105 Q490,103 550,106 L548,136 Q488,133 428,135 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+                        <text x="490" y="128" fill="#1A1F36" font-size="10" font-weight="bold" text-anchor="middle">202</text>
                     </g>
                     <g data-section="203" data-price="170" data-category="standard" class="seat-section">
-                        <path d="M550,106 Q610,112 660,122 L656,150 Q606,140 548,136 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
-                        <text x="605" y="136" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">203</text>
+                        <path d="M550,106 Q610,112 660,122 L656,150 Q606,140 548,136 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+                        <text x="605" y="136" fill="#1A1F36" font-size="10" font-weight="bold" text-anchor="middle">203</text>
                     </g>
                     <g data-section="204" data-price="190" data-category="standard" class="seat-section">
-                        <path d="M810,215 Q830,255 838,300 L814,302 Q806,257 788,218 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
-                        <text x="812" y="266" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">204</text>
+                        <path d="M810,215 Q830,255 838,300 L814,302 Q806,257 788,218 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+                        <text x="812" y="266" fill="#1A1F36" font-size="10" font-weight="bold" text-anchor="middle">204</text>
                     </g>
                     <g data-section="205" data-price="200" data-category="standard" class="seat-section">
-                        <path d="M838,300 Q842,345 838,390 L814,388 Q818,343 814,302 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
-                        <text x="826" y="353" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">205</text>
+                        <path d="M838,300 Q842,345 838,390 L814,388 Q818,343 814,302 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+                        <text x="826" y="353" fill="#1A1F36" font-size="10" font-weight="bold" text-anchor="middle">205</text>
                     </g>
                     <g data-section="206" data-price="180" data-category="standard" class="seat-section">
-                        <path d="M660,528 Q610,538 550,542 L548,512 Q608,508 656,500 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
-                        <text x="605" y="520" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">206</text>
+                        <path d="M660,528 Q610,538 550,542 L548,512 Q608,508 656,500 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+                        <text x="605" y="520" fill="#1A1F36" font-size="10" font-weight="bold" text-anchor="middle">206</text>
                     </g>
                     <g data-section="207" data-price="170" data-category="standard" class="seat-section">
-                        <path d="M550,542 Q490,545 430,545 L428,515 Q488,515 548,512 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
-                        <text x="490" y="528" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">207</text>
+                        <path d="M550,542 Q490,545 430,545 L428,515 Q488,515 548,512 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+                        <text x="490" y="528" fill="#1A1F36" font-size="10" font-weight="bold" text-anchor="middle">207</text>
                     </g>
                     <g data-section="208" data-price="170" data-category="standard" class="seat-section">
-                        <path d="M430,545 Q370,543 310,535 L308,505 Q368,513 428,515 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
-                        <text x="370" y="522" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">208</text>
+                        <path d="M430,545 Q370,543 310,535 L308,505 Q368,513 428,515 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+                        <text x="370" y="522" fill="#1A1F36" font-size="10" font-weight="bold" text-anchor="middle">208</text>
                     </g>
                     <g data-section="209" data-price="190" data-category="standard" class="seat-section">
-                        <path d="M190,215 Q170,255 162,300 L186,302 Q194,257 212,218 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
-                        <text x="188" y="266" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">209</text>
+                        <path d="M190,215 Q170,255 162,300 L186,302 Q194,257 212,218 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+                        <text x="188" y="266" fill="#1A1F36" font-size="10" font-weight="bold" text-anchor="middle">209</text>
                     </g>
                     <g data-section="210" data-price="200" data-category="standard" class="seat-section">
-                        <path d="M162,300 Q158,345 162,390 L186,388 Q182,343 186,302 Z" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
-                        <text x="174" y="353" fill="#333" font-size="10" font-weight="bold" text-anchor="middle">210</text>
+                        <path d="M162,300 Q158,345 162,390 L186,388 Q182,343 186,302 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+                        <text x="174" y="353" fill="#1A1F36" font-size="10" font-weight="bold" text-anchor="middle">210</text>
                     </g>
 
-                    <!-- VIP -->
+                    <!-- VIP Section -->
                     <g data-section="301" data-price="550" data-category="vip" class="seat-section">
-                        <rect x="420" y="175" width="160" height="35" rx="8" fill="#e1bee7" stroke="#ce93d8" stroke-width="1.5"/>
-                        <text x="500" y="197" fill="#6a1b9a" font-size="11" font-weight="bold" text-anchor="middle">VIP LOUNGE</text>
+                        <rect x="420" y="175" width="160" height="35" rx="8" fill="#E9D5FF" stroke="#C084FC" stroke-width="1.5"/>
+                        <text x="500" y="197" fill="#6B21A8" font-size="11" font-weight="bold" text-anchor="middle">⭐ VIP LOUNGE</text>
                     </g>
                 </svg>
             </div>
             <div class="legend">
-                <div class="legend-item"><div class="legend-color" style="background:#1a237e;"></div> Premium</div>
-                <div class="legend-item"><div class="legend-color" style="background:#f5f5f5; border:1px solid #ccc;"></div> Standard</div>
-                <div class="legend-item"><div class="legend-color" style="background:#e1bee7;"></div> VIP</div>
+                <div class="legend-item"><div class="legend-color" style="background:#1e3a5f;"></div> Premium</div>
+                <div class="legend-item"><div class="legend-color" style="background:#FFFFFF; border:1px solid #CBD5E1;"></div> Standard</div>
+                <div class="legend-item"><div class="legend-color" style="background:#E9D5FF;"></div> VIP</div>
                 <div class="legend-item"><div class="legend-color" style="background:#C5A028;"></div> Selected</div>
             </div>
         </div>
 
-        <!-- RIGHT: FULL TICKET LIST -->
+        <!-- RIGHT: TICKET LIST -->
         <div class="ticket-card">
             <div class="ticket-header">
-                <h3>Available Tickets</h3>
+                <h3>🎟️ Available Tickets</h3>
             </div>
             <div class="selected-info">
-                <div style="font-size:12px; color:#888;">Selected Section</div>
+                <div class="selected-label">Selected Section</div>
                 <div class="selected-section-name" id="selectedSectionName">None</div>
             </div>
-            <div class="ticket-list-full" id="ticketListFull">
-                <!-- All ticket categories will be loaded here -->
-            </div>
+            <div class="ticket-list-full" id="ticketListFull"></div>
             <div class="cart-summary">
                 <div class="summary-row"><span>Subtotal</span><span id="subtotal">$0</span></div>
                 <div class="summary-row"><span>Service Fee (10%)</span><span id="serviceFee">$0</span></div>
                 <div class="summary-row total"><span>Total Due</span><span id="total">$0</span></div>
                 <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout →</button>
-                <div style="text-align:center; font-size:11px; margin-top:10px;">🔒 Secure SSL Encrypted</div>
+                <div style="text-align:center; font-size:11px; margin-top:12px; color:#8B8B8B;">🔒 Secure SSL Encrypted</div>
             </div>
         </div>
     </div>
 
-    <!-- ===== MATCH DESCRIPTION - FULL ===== -->
+    <!-- MATCH DESCRIPTION -->
     <div class="match-description">
         <div class="desc-card">
             <h2>South Korea vs Czechia Tickets: Complete Guide to the FIFA World Cup 2026 Clash</h2>
             <p>The FIFA World Cup 2026 kicks off with an exciting group stage encounter as South Korea takes on Czechia at the modern Estadio Akron in Guadalajara. This match brings together Asian speed and European strength, creating a balanced and competitive contest.</p>
-            <p>Both teams will aim to start their World Cup journey with a strong performance. South Korea's fast and dynamic style will challenge Czechia's structured and physical approach. For fans, this match offers a great opportunity to experience world-class football in a vibrant Mexican city.</p>
+            <p>Both teams will aim to start their World Cup journey with a strong performance. South Korea's fast and dynamic style will challenge Czechia's structured and physical approach.</p>
             
-            <h3>South Korea vs Czechia Match Date and Venue Details</h3>
+            <h3>Match Date and Venue Details</h3>
             <ul>
                 <li><strong>Match Date:</strong> Thursday, June 11, 2026</li>
                 <li><strong>Tournament:</strong> FIFA World Cup 2026</li>
@@ -704,23 +797,23 @@
                 <li><strong>City:</strong> Guadalajara, Mexico</li>
             </ul>
             
-            <h3>Why Buy Tickets from TicketRoyal?</h3>
+            <h3>Why Buy from TicketRoyal?</h3>
             <ul>
-                <li>✅ 100% genuine and verified tickets</li>
-                <li>✅ Safe and secure booking process</li>
-                <li>✅ Easy delivery via email or mobile</li>
-                <li>✅ 24/7 Customer support</li>
+                <li>✅ 100% Verified Tickets</li>
+                <li>✅ Secure Checkout</li>
+                <li>✅ Instant Delivery</li>
+                <li>✅ 24/7 Customer Support</li>
                 <li>✅ <strong>150% Money Back Guarantee</strong></li>
             </ul>
         </div>
     </div>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-links">
             <a href="#">Home</a> | <a href="#">My Account</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a> | <a href="#">Contact Us</a>
         </div>
-        <div class="footer-bottom">Copyright © 2026 - TicketRoyal is a premium secondary ticket marketplace. Ticket prices are set by sellers and may be above or below face value.</div>
+        <div class="footer-bottom">© 2026 TicketRoyal — Official FIFA World Cup 2026™ Ticket Marketplace. All rights reserved.</div>
     </footer>
 
     <div class="toast" id="toast">✓ Added to cart!</div>
@@ -735,7 +828,7 @@
         document.getElementById('matchVenue').textContent = urlParams.get('stadium') || 'Estadio Akron';
         document.getElementById('matchCity').textContent = urlParams.get('city') || 'Guadalajara, Mexico';
 
-        // FULL TICKET CATEGORIES - as per your source
+        // Ticket categories
         const allTickets = [
             { name: "Category 3", desc: "(Max 4 Seats Together)", price: 600, category: "standard", maxQty: 4, section: "201" },
             { name: "Cat 3", desc: "", price: 750, category: "standard", maxQty: 4, section: "202" },
@@ -744,27 +837,16 @@
             { name: "Upper Block 32", desc: "", price: 1450, category: "standard", maxQty: 4, section: "203" },
             { name: "Category 1", desc: "(Max 4 Seats Together)", price: 1750, category: "premium", maxQty: 4, section: "103" },
             { name: "Upper Tier", desc: "", price: 1800, category: "standard", maxQty: 4, section: "204" },
-            { name: "Upper Block 43", desc: "", price: 1850, category: "standard", maxQty: 4, section: "205" },
             { name: "Prime", desc: "(Max 4 Seats Together)", price: 2000, category: "premium", maxQty: 4, section: "104" },
-            { name: "Category 1 Lower", desc: "(Max 2 Seats Together)", price: 2000, category: "premium", maxQty: 2, section: "105" },
-            { name: "Upper Block 18", desc: "", price: 2150, category: "standard", maxQty: 4, section: "206" },
-            { name: "Lower Block 14", desc: "", price: 2350, category: "premium", maxQty: 4, section: "106" },
-            { name: "Lower Block 06", desc: "", price: 2400, category: "premium", maxQty: 4, section: "107" },
             { name: "Lower Tier", desc: "", price: 2500, category: "premium", maxQty: 4, section: "108" },
-            { name: "Cat 1", desc: "", price: 2700, category: "premium", maxQty: 4, section: "109" },
-            { name: "Upper Block 25", desc: "", price: 2775, category: "standard", maxQty: 4, section: "207" },
-            { name: "Lower Block 25", desc: "", price: 2775, category: "premium", maxQty: 4, section: "110" },
-            { name: "Lower Block 28", desc: "", price: 2800, category: "premium", maxQty: 4, section: "208" },
-            { name: "Upper Block 07", desc: "", price: 3000, category: "standard", maxQty: 4, section: "209" },
-            { name: "Upper Block 13", desc: "", price: 3250, category: "standard", maxQty: 4, section: "210" },
             { name: "VIP Lounge", desc: "(Hospitality Included)", price: 5250, category: "vip", maxQty: 10, section: "301" }
         ];
 
         let selectedSectionId = null;
         let quantities = {};
-        allTickets.forEach((t, idx) => { quantities[idx] = 0; });
+        allTickets.forEach((_, idx) => { quantities[idx] = 0; });
 
-        // Zoom/Pan
+        // Zoom/Pan functionality
         let svg = document.getElementById('seatMap');
         let container = document.getElementById('svgWrapper');
         let scale = 1;
@@ -786,6 +868,7 @@
             startX = e.clientX - panX;
             startY = e.clientY - panY;
             container.style.cursor = 'grabbing';
+            e.preventDefault();
         });
         window.addEventListener('mousemove', (e) => {
             if (!isPanning) return;
@@ -795,7 +878,7 @@
         });
         window.addEventListener('mouseup', () => { isPanning = false; container.style.cursor = 'default'; });
 
-        // Render full ticket list
+        // Render ticket list
         function renderTicketList() {
             const container = document.getElementById('ticketListFull');
             let filtered = [...allTickets];
@@ -803,12 +886,8 @@
             const qtyFilter = parseInt(document.getElementById('tixQty').value);
             const catFilter = document.getElementById('tixCategory').value;
             
-            if (qtyFilter > 0) {
-                filtered = filtered.filter(t => t.maxQty >= qtyFilter);
-            }
-            if (catFilter !== 'all') {
-                filtered = filtered.filter(t => t.category === catFilter);
-            }
+            if (qtyFilter > 0) filtered = filtered.filter(t => t.maxQty >= qtyFilter);
+            if (catFilter !== 'all') filtered = filtered.filter(t => t.category === catFilter);
             
             container.innerHTML = filtered.map((ticket, idx) => `
                 <div class="ticket-row" data-section="${ticket.section}">
@@ -841,13 +920,10 @@
         function bookTicket(idx) {
             const ticket = allTickets[idx];
             const qty = parseInt(document.getElementById(`qty_${idx}`).value);
-            if (qty === 0) {
-                showToast('Please select quantity first');
-                return;
-            }
+            if (qty === 0) { showToast('Please select quantity first'); return; }
             quantities[idx] = qty;
             updateTotal();
-            showToast(`Added ${qty} × ${ticket.name} - $${(ticket.price * qty).toLocaleString()}`);
+            showToast(`✓ Added ${qty} × ${ticket.name} - $${(ticket.price * qty).toLocaleString()}`);
         }
 
         function updateTotal() {
@@ -875,9 +951,12 @@
                 document.getElementById('selectedSectionName').textContent = section.name;
                 document.getElementById('tixCategory').value = section.category;
                 renderTicketList();
+            } else {
+                document.getElementById('selectedSectionName').textContent = `Section ${sectionId}`;
             }
             document.querySelectorAll('.seat-section').forEach(el => el.classList.remove('selected'));
-            document.querySelector(`.seat-section[data-section="${sectionId}"]`).classList.add('selected');
+            const selectedEl = document.querySelector(`.seat-section[data-section="${sectionId}"]`);
+            if (selectedEl) selectedEl.classList.add('selected');
         }
 
         function showToast(msg) {
@@ -887,17 +966,17 @@
             setTimeout(() => toast.style.display = 'none', 2000);
         }
 
+        // Event listeners
         document.querySelectorAll('.seat-section').forEach(el => {
             el.addEventListener('click', () => selectSection(parseInt(el.getAttribute('data-section'))));
         });
-
         document.getElementById('tixQty').addEventListener('change', renderTicketList);
         document.getElementById('tixCategory').addEventListener('change', renderTicketList);
         document.getElementById('checkoutBtn').onclick = () => {
-            let has = false;
-            for (const q of Object.values(quantities)) if (q > 0) has = true;
-            if (!has) { showToast('Please select tickets first'); return; }
-            showToast('Redirecting to checkout...');
+            let hasTickets = false;
+            for (const q of Object.values(quantities)) if (q > 0) hasTickets = true;
+            if (!hasTickets) { showToast('Please select tickets first'); return; }
+            showToast('Redirecting to secure checkout...');
             setTimeout(() => window.location.href = 'checkout.html', 1000);
         };
 
