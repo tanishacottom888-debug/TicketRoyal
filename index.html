@@ -603,7 +603,7 @@
         </div>
     </div>
 
-    <!-- HERO SECTION - NO BUTTONS, CLEAN AND SIMPLE -->
+    <!-- HERO SECTION -->
     <div class="hero">
         <img class="hero-image" src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=1200&auto=format" alt="Concert crowd vibrant atmosphere">
         <div class="hero-overlay"></div>
@@ -750,6 +750,19 @@
 
         let currentFilter = "all";
 
+        // Function to navigate to checkout with event data
+        function goToCheckout(eventId) {
+            const event = eventsData.find(e => e.id === eventId);
+            if (event) {
+                // Store selected event in sessionStorage to use on checkout page
+                sessionStorage.setItem('selectedEvent', JSON.stringify(event));
+                // Redirect to checkout page
+                window.location.href = 'checkout.html';
+            } else {
+                showToast('Event not found');
+            }
+        }
+
         function renderEvents() {
             const filtered = currentFilter === "all" ? eventsData : eventsData.filter(e => e.category === currentFilter);
             const grid = document.getElementById('eventsGrid');
@@ -762,7 +775,7 @@
                         <div class="event-info"><i class="far fa-calendar-alt"></i> ${ev.date}</div>
                         <div class="event-footer">
                             <div class="event-price">$${ev.price} <small>+ fees</small></div>
-                            <button class="btn-sm" onclick="showToast('Tickets for ${ev.name} → proceed to checkout')">Get Tickets →</button>
+                            <button class="btn-sm" onclick="goToCheckout(${ev.id})">Get Tickets →</button>
                         </div>
                     </div>
                 </div>
