@@ -3,437 +3,850 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="TicketRoyal - Premium Ticket Marketplace for BTS, FIFA World Cup, Concerts, Theatre & Live Events Worldwide">
-    <meta name="keywords" content="BTS tickets, World Cup tickets, concert tickets, football tickets, live events">
     <title>TicketRoyal | Premium Tickets for BTS, World Cup & Live Events</title>
+    <meta name="description" content="TicketRoyal — Official ticket marketplace for BTS, FIFA World Cup, concerts, theatre, and festivals. 150% buyer guarantee, instant e-tickets.">
+    <!-- Google Fonts + Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         :root {
-            --tr-primary: #0a2540;
-            --tr-primary-dark: #051e30;
-            --tr-secondary: #0066b4;
-            --tr-accent: #f5a623;
-            --tr-accent-dark: #e09112;
-            --tr-white: #ffffff;
-            --tr-gray-bg: #f4f7fc;
-            --tr-card-border: #e6edf4;
-            --tr-text-dark: #1a2c3e;
-            --tr-text-muted: #5c6f87;
-            --tr-text-light: #8b9ab0;
-            --tr-success: #1f6e43;
+            --tr-primary: #0A2540;
+            --tr-primary-dark: #051E30;
+            --tr-secondary: #0066B4;
+            --tr-accent: #F5A623;
+            --tr-accent-dark: #E09112;
+            --tr-white: #FFFFFF;
+            --tr-gray-bg: #F6F9FC;
+            --tr-card-border: #EAF0F6;
+            --tr-text-dark: #1A2C3E;
+            --tr-text-muted: #5C6F87;
+            --tr-text-light: #8B9AB0;
             --tr-border-radius: 24px;
-            --tr-shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04);
-            --tr-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
-            --tr-shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.1);
-            --tr-transition: all 0.3s ease;
+            --tr-shadow-sm: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.03);
+            --tr-shadow-md: 0 12px 28px rgba(0,0,0,0.06);
+            --tr-shadow-hover: 0 24px 48px rgba(0,0,0,0.12);
+            --tr-transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
         }
 
         body {
             background: var(--tr-gray-bg);
             font-family: 'Inter', sans-serif;
             color: var(--tr-text-dark);
-            line-height: 1.5;
+            scroll-behavior: smooth;
         }
 
-        /* Navigation */
+        /* --- NAVIGATION (premium, clean) --- */
         .top-nav-bar {
-            background: var(--tr-white);
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--tr-card-border);
-            padding: 14px 32px;
+            padding: 14px 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(10px);
-            background: rgba(255,255,255,0.96);
         }
 
-        .nav-left { display: flex; align-items: center; gap: 32px; }
-        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--tr-primary), var(--tr-secondary)); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
-        .logo-icon i { font-size: 20px; color: var(--tr-accent); }
-        .logo-text { font-size: 22px; font-weight: 800; color: var(--tr-primary); }
-        .logo-text span { color: var(--tr-accent); }
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
 
-        .nav-links { display: flex; gap: 28px; }
-        .nav-links a { text-decoration: none; color: var(--tr-text-muted); font-weight: 500; font-size: 14px; transition: var(--tr-transition); }
-        .nav-links a:hover { color: var(--tr-secondary); }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
 
-        .nav-right { display: flex; gap: 16px; align-items: center; }
-        .cart-icon { position: relative; cursor: pointer; }
-        .cart-count { position: absolute; top: -8px; right: -12px; background: var(--tr-accent); color: var(--tr-primary-dark); font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 20px; }
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--tr-primary), var(--tr-secondary));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+        }
 
-        .hamburger { display: none; background: none; border: none; cursor: pointer; }
-        .hamburger span { display: block; width: 24px; height: 2px; background: var(--tr-primary); margin: 5px 0; }
+        .logo-icon i {
+            font-size: 20px;
+            color: var(--tr-accent);
+        }
 
-        /* Sidebar (same as before) */
-        .sidebar-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 200; }
+        .logo-text {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            color: var(--tr-primary);
+        }
+
+        .logo-text span {
+            color: var(--tr-accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--tr-text-muted);
+            font-weight: 500;
+            font-size: 14px;
+            transition: var(--tr-transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--tr-secondary);
+        }
+
+        .cart-icon {
+            background: var(--tr-primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--tr-transition);
+        }
+
+        .cart-icon:hover {
+            background: var(--tr-secondary);
+            transform: scale(1.02);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--tr-primary);
+            margin: 5px 0;
+        }
+
+        /* Sidebar (mobile) */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 200;
+        }
         .sidebar-overlay.open { display: block; }
-        .sidebar { position: fixed; top: 0; right: -300px; width: 300px; height: 100%; background: var(--tr-white); z-index: 201; transition: right 0.3s ease; display: flex; flex-direction: column; }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background: var(--tr-white);
+            z-index: 201;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -4px 0 24px rgba(0,0,0,0.08);
+        }
         .sidebar.open { right: 0; }
-        .sidebar-header { padding: 24px 20px; border-bottom: 1px solid var(--tr-card-border); display: flex; justify-content: space-between; }
+        .sidebar-header {
+            padding: 24px 20px;
+            border-bottom: 1px solid var(--tr-card-border);
+            display: flex;
+            justify-content: space-between;
+        }
         .sidebar-menu { flex: 1; padding: 16px 0; }
-        .sidebar-item { display: flex; align-items: center; gap: 14px; padding: 14px 20px; color: var(--tr-text-dark); text-decoration: none; font-weight: 500; cursor: pointer; background: none; border: none; width: 100%; text-align: left; font-family: 'Inter', sans-serif; }
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 20px;
+            width: 100%;
+            background: none;
+            border: none;
+            font-family: 'Inter';
+            font-weight: 500;
+            cursor: pointer;
+            color: var(--tr-text-dark);
+        }
         .sidebar-item:hover { background: var(--tr-gray-bg); color: var(--tr-secondary); }
 
-        /* Hero Section */
-        .hero { position: relative; margin: 20px 24px 0; border-radius: var(--tr-border-radius); overflow: hidden; min-height: 480px; }
-        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=1200&auto=format&fit=crop'); background-size: cover; background-position: center; }
-        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(10,37,64,0.88) 0%, rgba(5,30,48,0.78) 100%); }
-        .hero-content { position: relative; z-index: 3; max-width: 600px; padding: 60px 48px; }
-        .hero-badge { display: inline-block; background: rgba(245,166,35,0.15); color: var(--tr-accent); padding: 6px 14px; border-radius: 40px; font-size: 11px; font-weight: 600; margin-bottom: 16px; }
-        .hero-title { font-size: 44px; font-weight: 800; color: var(--tr-white); margin-bottom: 16px; line-height: 1.2; }
-        .hero-title span { color: var(--tr-accent); }
-        .hero-text { color: rgba(255,255,255,0.85); font-size: 15px; margin-bottom: 24px; }
-        .hero-stats { display: flex; gap: 32px; margin-bottom: 28px; }
-        .hero-stat-number { font-size: 28px; font-weight: 800; color: var(--tr-accent); }
-        .hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.7); }
-        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
-        .btn-primary { background: var(--tr-accent); color: var(--tr-primary-dark); padding: 12px 28px; border-radius: 40px; font-weight: 700; border: none; cursor: pointer; font-family: 'Inter'; transition: var(--tr-transition); }
-        .btn-primary:hover { background: var(--tr-accent-dark); transform: translateY(-2px); }
-        .btn-outline { background: transparent; color: white; padding: 12px 28px; border-radius: 40px; font-weight: 600; border: 1.5px solid rgba(255,255,255,0.3); cursor: pointer; font-family: 'Inter'; transition: var(--tr-transition); }
-        .btn-outline:hover { background: rgba(255,255,255,0.1); }
+        /* HERO SECTION — FULL EDGE, REDUCED HEIGHT, HIGH CONTRAST */
+        .hero-full {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            min-height: 460px;
+            max-height: 560px;
+            overflow: hidden;
+            background: var(--tr-primary-dark);
+        }
 
-        /* Container */
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-        .section { padding: 60px 0; border-bottom: 1px solid var(--tr-card-border); }
-        .section:last-child { border-bottom: none; }
-        .section-header { text-align: center; margin-bottom: 40px; }
-        .section-title { font-size: 32px; font-weight: 700; color: var(--tr-primary); }
-        .section-title span { color: var(--tr-accent); }
-        .section-subtitle { color: var(--tr-text-muted); margin-top: 8px; }
+        .hero-bg-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+            filter: brightness(0.92) contrast(1.05);
+            z-index: 0;
+        }
+
+        .hero-overlay-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(105deg, rgba(10,37,64,0.88) 0%, rgba(5,30,48,0.75) 100%);
+            z-index: 1;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 70px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            min-height: 460px;
+        }
+
+        .hero-badge {
+            background: rgba(245,166,35,0.18);
+            backdrop-filter: blur(4px);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+            padding: 6px 16px;
+            border-radius: 40px;
+            color: var(--tr-accent);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1.15;
+            color: white;
+            max-width: 650px;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-title span {
+            color: var(--tr-accent);
+            background: linear-gradient(135deg, #F5A623, #FFC857);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-description {
+            font-size: 16px;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.88);
+            max-width: 520px;
+            margin-bottom: 28px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 36px;
+            margin-bottom: 32px;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--tr-accent);
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 0.3px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-outline-light {
+            padding: 12px 30px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--tr-transition);
+            font-family: 'Inter';
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--tr-accent);
+            color: var(--tr-primary-dark);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+        }
+
+        .btn-primary:hover {
+            background: var(--tr-accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline-light {
+            background: transparent;
+            border: 1.5px solid rgba(255,255,255,0.4);
+            color: white;
+        }
+
+        .btn-outline-light:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--tr-accent);
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Sections */
+        .section {
+            padding: 56px 0;
+            border-bottom: 1px solid var(--tr-card-border);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 42px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--tr-primary);
+        }
+
+        .section-title span {
+            color: var(--tr-accent);
+        }
+
+        .section-subtitle {
+            color: var(--tr-text-muted);
+            font-size: 15px;
+            margin-top: 8px;
+        }
 
         /* Category Pills */
-        .category-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 40px; }
-        .category-pill { background: var(--tr-white); border: 1px solid var(--tr-card-border); padding: 8px 24px; border-radius: 40px; font-size: 13px; font-weight: 500; cursor: pointer; transition: var(--tr-transition); }
-        .category-pill:hover, .category-pill.active { background: var(--tr-primary); color: white; border-color: var(--tr-primary); }
+        .category-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 42px;
+        }
 
-        /* Event Cards */
-        .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 28px; }
-        .event-card { background: var(--tr-white); border-radius: var(--tr-border-radius); overflow: hidden; box-shadow: var(--tr-shadow-sm); transition: var(--tr-transition); }
-        .event-card:hover { transform: translateY(-5px); box-shadow: var(--tr-shadow-lg); }
-        .event-image { height: 200px; background-size: cover; background-position: center; position: relative; }
-        .event-category { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); color: white; padding: 4px 12px; border-radius: 20px; font-size: 10px; font-weight: 600; }
-        .event-details { padding: 20px; }
-        .event-name { font-size: 18px; font-weight: 800; margin-bottom: 8px; color: var(--tr-primary); }
-        .event-info { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--tr-text-muted); margin-bottom: 8px; }
-        .event-info i { width: 18px; color: var(--tr-secondary); }
-        .event-price-row { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--tr-card-border); }
-        .event-price { font-size: 22px; font-weight: 800; color: var(--tr-primary); }
-        .btn-ticket { background: var(--tr-primary); color: white; padding: 8px 20px; border-radius: 40px; font-weight: 600; font-size: 12px; border: none; cursor: pointer; transition: var(--tr-transition); }
+        .category-pill {
+            background: white;
+            border: 1px solid var(--tr-card-border);
+            padding: 8px 26px;
+            border-radius: 100px;
+            font-weight: 500;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--tr-text-muted);
+        }
 
-        /* Cities Grid */
-        .cities-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
-        .city-card { background: var(--tr-white); border-radius: var(--tr-border-radius); padding: 20px; text-align: center; box-shadow: var(--tr-shadow-sm); transition: var(--tr-transition); cursor: pointer; }
-        .city-card:hover { transform: translateY(-3px); box-shadow: var(--tr-shadow-md); }
-        .city-icon { font-size: 36px; margin-bottom: 12px; }
-        .city-name { font-weight: 700; font-size: 16px; }
-        .city-event-count { font-size: 12px; color: var(--tr-text-muted); margin-top: 6px; }
+        .category-pill.active, .category-pill:hover {
+            background: var(--tr-primary);
+            color: white;
+            border-color: var(--tr-primary);
+        }
 
-        /* Testimonials */
-        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 28px; }
-        .testimonial-card { background: var(--tr-white); border-radius: var(--tr-border-radius); padding: 28px; box-shadow: var(--tr-shadow-sm); }
-        .testimonial-rating { color: var(--tr-accent); margin-bottom: 16px; }
-        .testimonial-text { font-size: 15px; line-height: 1.6; color: var(--tr-text-dark); margin-bottom: 20px; font-style: italic; }
-        .testimonial-author { display: flex; align-items: center; gap: 12px; }
-        .testimonial-avatar { width: 48px; height: 48px; background: var(--tr-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; }
-        .testimonial-name { font-weight: 700; font-size: 14px; }
-        .testimonial-verified { font-size: 11px; color: var(--tr-text-muted); }
+        /* Event Cards Grid — crisp, modern */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 28px;
+        }
 
-        /* Trust Badges */
-        .trust-badges { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin: 40px 0; }
-        .trust-badge { text-align: center; }
-        .trust-badge i { font-size: 32px; color: var(--tr-secondary); margin-bottom: 8px; }
-        .trust-badge span { display: block; font-size: 12px; color: var(--tr-text-muted); }
+        .event-card {
+            background: var(--tr-white);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: var(--tr-transition);
+            box-shadow: var(--tr-shadow-sm);
+            border: 1px solid var(--tr-card-border);
+        }
 
-        /* FAQ Accordion */
-        .faq-grid { max-width: 800px; margin: 0 auto; }
-        .faq-item { background: var(--tr-white); border-radius: 16px; margin-bottom: 16px; overflow: hidden; }
-        .faq-question { padding: 20px; font-weight: 700; display: flex; justify-content: space-between; cursor: pointer; background: var(--tr-white); }
-        .faq-answer { padding: 0 20px 20px; display: none; color: var(--tr-text-muted); font-size: 14px; line-height: 1.6; }
+        .event-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--tr-shadow-hover);
+        }
+
+        .event-img {
+            height: 210px;
+            width: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .event-details {
+            padding: 20px 24px 24px;
+        }
+
+        .event-name {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .event-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--tr-text-muted);
+            margin-bottom: 8px;
+        }
+
+        .event-info i {
+            width: 18px;
+            color: var(--tr-secondary);
+        }
+
+        .event-footer {
+            margin-top: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--tr-card-border);
+            padding-top: 16px;
+        }
+
+        .event-price {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--tr-primary);
+        }
+
+        .btn-sm {
+            background: var(--tr-primary);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-sm:hover {
+            background: var(--tr-secondary);
+        }
+
+        /* Cities Grid & Testimonials + FAQ + Newsletter (professional touch) */
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .city-card {
+            background: white;
+            border-radius: 20px;
+            padding: 22px 16px;
+            text-align: center;
+            transition: 0.2s;
+            cursor: pointer;
+            border: 1px solid var(--tr-card-border);
+        }
+
+        .city-card:hover { transform: translateY(-4px); box-shadow: var(--tr-shadow-md); }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 24px;
+            padding: 28px;
+            border: 1px solid var(--tr-card-border);
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            border: 1px solid var(--tr-card-border);
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .faq-answer {
+            padding: 0 24px 20px;
+            display: none;
+            color: var(--tr-text-muted);
+        }
+
         .faq-item.active .faq-answer { display: block; }
 
-        /* Newsletter Banner */
-        .newsletter-banner { background: linear-gradient(135deg, var(--tr-primary), var(--tr-secondary)); border-radius: var(--tr-border-radius); padding: 48px; text-align: center; margin: 40px 0; }
-        .newsletter-banner h3 { color: white; font-size: 28px; margin-bottom: 12px; }
-        .newsletter-banner p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
-        .newsletter-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-        .newsletter-input { padding: 14px 20px; border-radius: 40px; border: none; width: 300px; font-family: 'Inter'; }
-        .newsletter-btn { background: var(--tr-accent); color: var(--tr-primary-dark); padding: 14px 28px; border-radius: 40px; font-weight: 700; border: none; cursor: pointer; }
+        .newsletter-banner {
+            background: linear-gradient(115deg, var(--tr-primary) 0%, var(--tr-secondary) 100%);
+            border-radius: 28px;
+            padding: 48px 40px;
+            text-align: center;
+            margin: 40px 0;
+        }
 
-        /* Footer */
-        .footer { background: var(--tr-primary); color: white; padding: 48px 24px 24px; margin-top: 40px; }
-        .footer-container { max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 48px; justify-content: space-between; }
-        .footer-col h4 { color: var(--tr-accent); font-size: 14px; margin-bottom: 16px; }
-        .footer-col a { display: block; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; margin-bottom: 10px; cursor: pointer; transition: var(--tr-transition); }
-        .footer-col a:hover { color: var(--tr-accent); }
-        .footer-bottom { text-align: center; padding-top: 32px; margin-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; color: rgba(255,255,255,0.5); }
+        .newsletter-banner h3 { font-size: 28px; color: white; margin-bottom: 12px; }
+        .newsletter-banner p { color: rgba(255,255,255,0.85); margin-bottom: 24px; }
 
-        .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--tr-primary); color: white; padding: 12px 24px; border-radius: 40px; z-index: 400; display: none; font-size: 13px; }
+        .newsletter-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-        @media (max-width: 768px) {
-            .nav-links, .nav-right { display: none; }
+        .newsletter-group input {
+            padding: 14px 22px;
+            border-radius: 60px;
+            border: none;
+            width: 280px;
+            font-family: 'Inter';
+        }
+
+        footer {
+            background: var(--tr-primary);
+            color: white;
+            margin-top: 40px;
+            padding: 48px 32px 24px;
+        }
+
+        .footer-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--tr-primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 48px;
+            font-size: 13px;
+            z-index: 400;
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+            .top-nav-bar { padding: 12px 24px; }
+            .nav-links, .cart-icon { display: none; }
             .hamburger { display: block; }
-            .top-nav-bar { padding: 12px 20px; }
-            .hero { margin: 12px 16px 0; min-height: 400px; }
-            .hero-content { padding: 40px 24px; }
+            .hero-container { padding: 50px 28px; }
+            .hero-title { font-size: 38px; }
+            .hero-full { min-height: 440px; }
+        }
+        @media (max-width: 640px) {
             .hero-title { font-size: 32px; }
-            .section { padding: 40px 0; }
-            .container { padding: 0 16px; }
-            .newsletter-banner { padding: 32px 20px; }
+            .hero-stats { gap: 20px; }
+            .section-title { font-size: 26px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <div class="top-nav-bar">
-        <div class="nav-left">
-            <a href="index.html" class="logo">
-                <div class="logo-icon"><i class="fas fa-crown"></i></div>
-                <div class="logo-text">Ticket<span>Royal</span></div>
-            </a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="matches.html">Matches</a>
-                <a href="events.html">Events</a>
-                <a href="#" onclick="showToast('Coming soon')">BTS</a>
-                <a href="#" onclick="showToast('Coming soon')">Help</a>
-            </div>
-        </div>
-        <div class="nav-right">
-            <div class="cart-icon" onclick="showToast('Cart coming soon')"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></div>
-        </div>
-        <button class="hamburger" onclick="openSidebar()"><span></span><span></span><span></span></button>
-    </div>
-
-    <!-- Sidebar -->
-    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-header"><h3>Menu</h3><button class="close-sidebar" onclick="closeSidebar()">✕</button></div>
-        <div class="sidebar-menu">
-            <button class="sidebar-item" onclick="goToPage('index.html')"><i class="fas fa-home"></i> Home</button>
-            <button class="sidebar-item" onclick="goToPage('matches.html')"><i class="fas fa-futbol"></i> Matches</button>
-            <button class="sidebar-item" onclick="goToPage('events.html')"><i class="fas fa-calendar-alt"></i> Events</button>
-            <button class="sidebar-item" onclick="showToast('BTS tickets coming soon')"><i class="fas fa-microphone-alt"></i> BTS</button>
-            <button class="sidebar-item" onclick="showToast('Coming soon')"><i class="fas fa-ticket-alt"></i> My Tickets</button>
-            <button class="sidebar-item" onclick="showToast('Coming soon')"><i class="fas fa-headset"></i> Support</button>
-        </div>
-        <div class="sidebar-footer"><p>© 2026 TicketRoyal</p></div>
-    </div>
-
-    <!-- Hero Section -->
-    <div class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-badge"><i class="fas fa-bolt"></i> OFFICIAL TICKET MARKETPLACE</div>
-            <h1 class="hero-title">Tickets for <span>BTS, World Cup</span> & Live Events</h1>
-            <p class="hero-text">Your trusted source for concerts, sports, theatre, and festivals. 150% money-back guarantee.</p>
-            <div class="hero-stats">
-                <div><span class="hero-stat-number">2M+</span><div class="hero-stat-label">Tickets Sold</div></div>
-                <div><span class="hero-stat-number">98%</span><div class="hero-stat-label">Satisfaction</div></div>
-                <div><span class="hero-stat-number">24/7</span><div class="hero-stat-label">Support</div></div>
-            </div>
-            <div class="hero-buttons">
-                <button class="btn-primary" onclick="goToPage('events.html')">Browse Events →</button>
-                <button class="btn-outline" onclick="showToast('BTS tickets coming soon')">BTS Tickets →</button>
-            </div>
+<!-- TOP NAVIGATION -->
+<div class="top-nav-bar">
+    <div class="nav-left">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-crown"></i></div>
+            <div class="logo-text">Ticket<span>Royal</span></div>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="matches.html">Matches</a>
+            <a href="events.html">Events</a>
+            <a href="#" onclick="showToast('BTS tickets launching soon')">BTS</a>
         </div>
     </div>
+    <div class="cart-icon" onclick="showToast('Cart ready — add tickets first')"><i class="fas fa-shopping-cart"></i></div>
+    <button class="hamburger" onclick="openSidebar()"><span></span><span></span><span></span></button>
+</div>
 
-    <div class="container">
-        <!-- Trust Badges -->
-        <div class="trust-badges">
-            <div class="trust-badge"><i class="fas fa-shield-alt"></i><span>150% Guarantee</span></div>
-            <div class="trust-badge"><i class="fas fa-lock"></i><span>Secure Payment</span></div>
-            <div class="trust-badge"><i class="fas fa-headset"></i><span>24/7 Support</span></div>
-            <div class="trust-badge"><i class="fas fa-envelope"></i><span>Instant Delivery</span></div>
+<!-- SIDEBAR (mobile) -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header"><h3>TicketRoyal</h3><button class="close-sidebar" onclick="closeSidebar()">✕</button></div>
+    <div class="sidebar-menu">
+        <button class="sidebar-item" onclick="location.href='index.html'"><i class="fas fa-home"></i> Home</button>
+        <button class="sidebar-item" onclick="location.href='matches.html'"><i class="fas fa-futbol"></i> Matches</button>
+        <button class="sidebar-item" onclick="location.href='events.html'"><i class="fas fa-calendar-alt"></i> Events</button>
+        <button class="sidebar-item" onclick="showToast('BTS coming soon')"><i class="fas fa-microphone-alt"></i> BTS World Tour</button>
+        <button class="sidebar-item" onclick="showToast('Help center')"><i class="fas fa-headset"></i> Support</button>
+    </div>
+</div>
+
+<!-- HERO SECTION — full edge, reduced height, high-res image, premium contrast -->
+<div class="hero-full">
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1533174072545-7a4b6ad3a0c3?q=80&w=1170&auto=format" alt="concert crowd premium">
+    <div class="hero-overlay-gradient"></div>
+    <div class="hero-container">
+        <div class="hero-badge"><i class="fas fa-bolt"></i> OFFICIAL MARKETPLACE</div>
+        <h1 class="hero-title">Tickets for <span>BTS, World Cup</span> & Iconic Events</h1>
+        <p class="hero-description">150% money-back guarantee • Instant e-tickets • 24/7 fan support. Join 2M+ happy ticket holders.</p>
+        <div class="hero-stats">
+            <div><div class="stat-number">2M+</div><div class="stat-label">Tickets sold</div></div>
+            <div><div class="stat-number">98%</div><div class="stat-label">fan satisfaction</div></div>
+            <div><div class="stat-number">24/7</div><div class="stat-label">concierge</div></div>
         </div>
-
-        <!-- Category Pills -->
-        <div class="category-pills">
-            <span class="category-pill active" data-category="all">All Events</span>
-            <span class="category-pill" data-category="concert">Concerts</span>
-            <span class="category-pill" data-category="sports">Sports</span>
-            <span class="category-pill" data-category="theatre">Theatre</span>
-            <span class="category-pill" data-category="festival">Festivals</span>
+        <div class="hero-buttons">
+            <button class="btn-primary" onclick="location.href='events.html'">Explore Events →</button>
+            <button class="btn-outline-light" onclick="showToast('BTS presale notifications open')">BTS Priority Access</button>
         </div>
+    </div>
+</div>
 
-        <!-- Featured Events -->
-        <div class="section">
-            <div class="section-header">
-                <h2 class="section-title"><span>Trending</span> Events</h2>
-                <p class="section-subtitle">Get tickets before they sell out</p>
-            </div>
-            <div class="events-grid" id="eventsGrid"></div>
-            <div style="text-align: center; margin-top: 32px;">
-                <button class="btn-primary" onclick="goToPage('events.html')">View All Events →</button>
-            </div>
+<div class="container">
+    <!-- CATEGORY PILLS -->
+    <div class="category-pills" style="margin-top: 32px;">
+        <span class="category-pill active" data-cat="all">All Events</span>
+        <span class="category-pill" data-cat="concert">Concerts</span>
+        <span class="category-pill" data-cat="sports">Sports</span>
+        <span class="category-pill" data-cat="theatre">Theatre & Arts</span>
+    </div>
+
+    <!-- TRENDING EVENTS GRID (high quality imagery) -->
+    <div class="section" style="padding-top: 0;">
+        <div class="section-header">
+            <h2 class="section-title"><span>Trending</span> Now</h2>
+            <p class="section-subtitle">High-demand events selling fast — secure your seat</p>
         </div>
-
-        <!-- Popular Cities -->
-        <div class="section">
-            <div class="section-header">
-                <h2 class="section-title"><span>Popular</span> Cities</h2>
-                <p class="section-subtitle">Find events in your city</p>
-            </div>
-            <div class="cities-grid" id="citiesGrid"></div>
-        </div>
-
-        <!-- Testimonials -->
-        <div class="section">
-            <div class="section-header">
-                <h2 class="section-title">What Our <span>Customers Say</span></h2>
-                <p class="section-subtitle">Trusted by thousands of fans worldwide</p>
-            </div>
-            <div class="testimonials-grid" id="testimonialsGrid"></div>
-        </div>
-
-        <!-- Newsletter Banner -->
-        <div class="newsletter-banner">
-            <h3>Get 10% Off Your First Order</h3>
-            <p>Subscribe to receive exclusive offers, presale codes, and event announcements</p>
-            <div class="newsletter-form">
-                <input type="email" placeholder="Enter your email address" class="newsletter-input" id="newsletterEmail">
-                <button class="newsletter-btn" onclick="subscribeNewsletter()">Subscribe →</button>
-            </div>
-        </div>
-
-        <!-- FAQ Section -->
-        <div class="section">
-            <div class="section-header">
-                <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
-            </div>
-            <div class="faq-grid" id="faqGrid"></div>
+        <div class="events-grid" id="eventsGrid"></div>
+        <div class="view-all" style="text-align:center; margin-top: 32px;">
+            <button class="btn-primary" onclick="location.href='events.html'">View all events →</button>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-col"><h4>TicketRoyal</h4><a onclick="showToast('Coming soon')">About Us</a><a onclick="showToast('Coming soon')">Contact</a><a onclick="showToast('Coming soon')">Careers</a></div>
-            <div class="footer-col"><h4>Tickets</h4><a onclick="goToPage('matches.html')">Football</a><a onclick="goToPage('events.html')">Concerts</a><a onclick="showToast('Coming soon')">BTS</a><a onclick="showToast('Coming soon')">VIP Packages</a></div>
-            <div class="footer-col"><h4>Support</h4><a onclick="showToast('Coming soon')">FAQs</a><a onclick="showToast('Coming soon')">Terms & Conditions</a><a onclick="showToast('Coming soon')">Privacy Policy</a><a onclick="showToast('Coming soon')">Refund Policy</a></div>
-            <div class="footer-col"><h4>Follow Us</h4><a onclick="showToast('Coming soon')"><i class="fab fa-instagram"></i> Instagram</a><a onclick="showToast('Coming soon')"><i class="fab fa-twitter"></i> Twitter</a><a onclick="showToast('Coming soon')"><i class="fab fa-facebook"></i> Facebook</a></div>
+    <!-- POPULAR CITIES (global reach) -->
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">Events in <span>top cities</span></h2>
         </div>
-        <div class="footer-bottom">© 2026 TicketRoyal — Premium Ticket Marketplace. All rights reserved.</div>
-    </footer>
+        <div class="cities-grid" id="citiesGrid"></div>
+    </div>
 
-    <div class="toast" id="toast">✓ Added to cart</div>
+    <!-- TESTIMONIALS (social proof) -->
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">Trusted by <span>fans</span></h2>
+        </div>
+        <div class="testimonials-grid" id="testimonialsGrid"></div>
+    </div>
 
-    <script>
-        // Events Data
-        const events = [
-            { id: 1, name: "BTS · Yet to Come Tour", venue: "SoFi Stadium, LA", date: "Jun 10, 2026", price: 299, category: "concert", image: "https://images.unsplash.com/photo-1618517351616-38fb9c5210c6?w=400&h=200&fit=crop" },
-            { id: 2, name: "BTS · Yet to Come Tour", venue: "MetLife Stadium, NJ", date: "Jun 17, 2026", price: 299, category: "concert", image: "https://images.unsplash.com/photo-1618517351616-38fb9c5210c6?w=400&h=200&fit=crop" },
-            { id: 3, name: "Taylor Swift · Eras Tour", venue: "Wembley, London", date: "Jul 22, 2026", price: 245, category: "concert", image: "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=400&h=200&fit=crop" }
-        ];
+    <!-- NEWSLETTER + DISCOUNT -->
+    <div class="newsletter-banner">
+        <h3>Get 10% off your first booking</h3>
+        <p>Subscribe to receive exclusive presale codes & event alerts</p>
+        <div class="newsletter-group">
+            <input type="email" id="newsEmail" placeholder="Email address">
+            <button class="btn-primary" onclick="subscribeNews()">Subscribe →</button>
+        </div>
+    </div>
 
-        // Cities Data
-        const cities = [
-            { name: "Los Angeles", icon: "🌴", events: 42 },
-            { name: "New York", icon: "🗽", events: 38 },
-            { name: "London", icon: "🇬🇧", events: 35 },
-            { name: "Chicago", icon: "🌆", events: 28 },
-            { name: "Las Vegas", icon: "🎰", events: 31 },
-            { name: "Miami", icon: "🏖️", events: 24 }
-        ];
+    <!-- FAQ SECTION -->
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">Frequently asked <span>questions</span></h2>
+        </div>
+        <div id="faqContainer"></div>
+    </div>
+</div>
 
-        // Testimonials
-        const testimonials = [
-            { name: "Sarah Johnson", rating: 5, text: "Got BTS tickets easily! The process was smooth and tickets arrived instantly.", verified: "Verified Buyer" },
-            { name: "Michael Chen", rating: 5, text: "Best platform for World Cup tickets. Great customer service when I had questions.", verified: "Verified Buyer" },
-            { name: "Emma Wilson", rating: 5, text: "Secured VIP tickets for Taylor Swift. Will definitely use again!", verified: "Verified Buyer" }
-        ];
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div><h4 style="color:var(--tr-accent);">TicketRoyal</h4><a onclick="showToast('About')">About</a><a onclick="showToast('Contact')">Contact</a></div>
+        <div><h4 style="color:var(--tr-accent);">Tickets</h4><a onclick="location.href='matches.html'">World Cup 2026</a><a onclick="location.href='events.html'">Concerts</a><a onclick="showToast('BTS')">BTS</a></div>
+        <div><h4 style="color:var(--tr-accent);">Support</h4><a onclick="showToast('FAQs')">FAQs</a><a onclick="showToast('Guarantee')">150% Guarantee</a><a onclick="showToast('Privacy')">Privacy</a></div>
+        <div><h4 style="color:var(--tr-accent);">Connect</h4><a><i class="fab fa-instagram"></i> Instagram</a><a><i class="fab fa-twitter"></i> X</a></div>
+    </div>
+    <div style="text-align:center; margin-top:40px; font-size:12px; opacity:0.7;">© 2026 TicketRoyal — premium ticket marketplace. All rights reserved.</div>
+</footer>
+<div class="toast" id="toastMsg">✓ Action completed</div>
 
-        // FAQ
-        const faqs = [
-            { q: "How do I receive my tickets?", a: "Tickets are delivered instantly via email as e-tickets. You can also access them in your account dashboard." },
-            { q: "Are tickets refundable?", a: "All sales are final, but we offer a 150% guarantee if tickets aren't delivered before the event." },
-            { q: "Is TicketRoyal an official seller?", a: "Yes, we are an authorized ticket marketplace for all major events including FIFA World Cup and major concerts." },
-            { q: "How do I contact support?", a: "Our 24/7 customer support team is available via live chat, email, and phone." }
-        ];
+<script>
+    // PREMIUM EVENTS (CLEAR IMAGES, BTS + FOOTBALL + THEATRE)
+    const eventsData = [
+        { id:1, name:"BTS · Yet to Come World Tour", venue:"SoFi Stadium, Los Angeles", date:"Jun 10, 2026", price:299, category:"concert", img:"https://images.unsplash.com/photo-1618517351616-38fb9c5210c6?w=600&h=380&fit=crop" },
+        { id:2, name:"BTS · Yet to Come Tour", venue:"MetLife Stadium, New Jersey", date:"Jun 17, 2026", price:299, category:"concert", img:"https://images.unsplash.com/photo-1522673607200-4f1425b4fb79?w=600&h=380&fit=crop" },
+        { id:3, name:"FIFA World Cup 2026: USA vs Mexico", venue:"MetLife Stadium, NJ", date:"Jun 11, 2026", price:249, category:"sports", img:"https://images.unsplash.com/photo-1522778526097-ce0a22ceb253?w=600&h=380&fit=crop" },
+        { id:4, name:"Taylor Swift | The Eras Tour", venue:"Wembley Stadium, London", date:"Jul 22, 2026", price:245, category:"concert", img:"https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=600&h=380&fit=crop" },
+        { id:5, name:"Hamilton · Broadway", venue:"Richard Rodgers Theatre, NYC", date:"Jul 05, 2026", price:165, category:"theatre", img:"https://images.unsplash.com/photo-1507924538820-ede94a04019d?w=600&h=380&fit=crop" }
+    ];
 
-        function renderEvents() {
-            const grid = document.getElementById('eventsGrid');
-            grid.innerHTML = events.map(e => `
-                <div class="event-card">
-                    <div class="event-image" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), url('${e.image}');">
-                        <span class="event-category">${e.category}</span>
-                    </div>
-                    <div class="event-details">
-                        <div class="event-name">${e.name}</div>
-                        <div class="event-info"><i class="fas fa-map-marker-alt"></i> ${e.venue}</div>
-                        <div class="event-info"><i class="far fa-calendar-alt"></i> ${e.date}</div>
-                        <div class="event-price-row">
-                            <div class="event-price">$${e.price} <small>+ fees</small></div>
-                            <button class="btn-ticket" onclick="showToast('Tickets for ${e.name}')">Get Tickets →</button>
-                        </div>
+    const cities = [
+        { name:"Los Angeles", icon:"🌴", count:48 }, { name:"New York", icon:"🗽", count:52 }, { name:"London", icon:"🇬🇧", count:41 },
+        { name:"Chicago", icon:"🌆", count:33 }, { name:"Las Vegas", icon:"🎰", count:37 }, { name:"Miami", icon:"☀️", count:29 }
+    ];
+
+    const testimonials = [
+        { name:"Daniel K.", rating:5, text:"Got BTS VIP tickets within minutes. Legit and fast delivery.", verified:"verified buyer" },
+        { name:"Sophia M.", rating:5, text:"Secured World Cup semi-finals. The 150% guarantee gave me confidence.", verified:"verified buyer" },
+        { name:"James L.", rating:5, text:"Premium support team replied in seconds. Great experience.", verified:"verified buyer" }
+    ];
+
+    const faqs = [
+        { q:"How are tickets delivered?", a:"Instant e-tickets sent via email & accessible in your account. Mobile entry ready." },
+        { q:"What is the 150% guarantee?", a:"If your tickets don't arrive on time, we refund 100% + 50% credit toward future purchase." },
+        { q:"Can I resell my tickets?", a:"Yes, you can transfer or resell through our fan-to-fan exchange (coming soon)." },
+        { q:"Are prices above face value?", a:"As a secondary marketplace, prices may vary. We show the final all-in price." }
+    ];
+
+    function renderEvents(filter = "all") {
+        const filtered = filter === "all" ? eventsData : eventsData.filter(e => e.category === filter);
+        const grid = document.getElementById('eventsGrid');
+        grid.innerHTML = filtered.map(ev => `
+            <div class="event-card">
+                <img class="event-img" src="${ev.img}" alt="${ev.name}" loading="lazy">
+                <div class="event-details">
+                    <div class="event-name">${ev.name}</div>
+                    <div class="event-info"><i class="fas fa-map-marker-alt"></i> ${ev.venue}</div>
+                    <div class="event-info"><i class="far fa-calendar-alt"></i> ${ev.date}</div>
+                    <div class="event-footer">
+                        <div class="event-price">$${ev.price} <small style="font-size:12px;">+ fees</small></div>
+                        <button class="btn-sm" onclick="showToast('Tickets for ${ev.name} → checkout ready')">View tickets →</button>
                     </div>
                 </div>
-            `).join('');
-        }
+            </div>
+        `).join('');
+    }
 
-        function renderCities() {
-            const grid = document.getElementById('citiesGrid');
-            grid.innerHTML = cities.map(c => `
-                <div class="city-card" onclick="showToast('Events in ${c.name} coming soon')">
-                    <div class="city-icon">${c.icon}</div>
-                    <div class="city-name">${c.name}</div>
-                    <div class="city-event-count">${c.events} upcoming events</div>
-                </div>
-            `).join('');
-        }
+    function renderCities() {
+        document.getElementById('citiesGrid').innerHTML = cities.map(c => `
+            <div class="city-card" onclick="showToast('${c.count} events in ${c.name}')">
+                <div style="font-size:36px;">${c.icon}</div>
+                <div style="font-weight:700; margin:8px 0;">${c.name}</div>
+                <div style="font-size:12px; color:var(--tr-text-muted);">${c.count} upcoming events</div>
+            </div>
+        `).join('');
+    }
 
-        function renderTestimonials() {
-            const grid = document.getElementById('testimonialsGrid');
-            grid.innerHTML = testimonials.map(t => `
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">${'★'.repeat(t.rating)}${'☆'.repeat(5-t.rating)}</div>
-                    <div class="testimonial-text">"${t.text}"</div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">${t.name.charAt(0)}</div>
-                        <div><div class="testimonial-name">${t.name}</div><div class="testimonial-verified">${t.verified}</div></div>
-                    </div>
-                </div>
-            `).join('');
-        }
+    function renderTestimonials() {
+        document.getElementById('testimonialsGrid').innerHTML = testimonials.map(t => `
+            <div class="testimonial-card">
+                <div style="color:var(--tr-accent); margin-bottom:12px;">${'★'.repeat(t.rating)}</div>
+                <p style="margin-bottom:16px; line-height:1.5;">“${t.text}”</p>
+                <div><strong>${t.name}</strong> • <span style="font-size:12px;">${t.verified}</span></div>
+            </div>
+        `).join('');
+    }
 
-        function renderFAQ() {
-            const grid = document.getElementById('faqGrid');
-            grid.innerHTML = faqs.map((f, i) => `
-                <div class="faq-item" onclick="toggleFAQ(this)">
-                    <div class="faq-question">${f.q} <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">${f.a}</div>
-                </div>
-            `).join('');
-        }
+    function renderFaqs() {
+        const container = document.getElementById('faqContainer');
+        container.innerHTML = faqs.map((f, idx) => `
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-question">${f.q} <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">${f.a}</div>
+            </div>
+        `).join('');
+    }
 
-        function toggleFAQ(element) {
-            element.classList.toggle('active');
-        }
+    // Category filter UI + interaction
+    let currentFilter = "all";
+    document.querySelectorAll('.category-pill').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.category-pill').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            currentFilter = this.getAttribute('data-cat');
+            renderEvents(currentFilter);
+        });
+    });
 
-        function subscribeNewsletter() {
-            const email = document.getElementById('newsletterEmail').value;
-            if (email) showToast('Subscribed! Check your email for 10% off');
-            else showToast('Please enter a valid email');
-        }
+    function subscribeNews() {
+        const email = document.getElementById('newsEmail').value;
+        if(email && email.includes('@')) showToast('10% promo sent! Check your inbox');
+        else showToast('Enter a valid email address');
+    }
 
-        function goToPage(page) { window.location.href = page; }
-        function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 2500); }
-        function openSidebar() { document.getElementById('sidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; }
-        function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('open'); document.body.style.overflow = ''; }
+    function showToast(msg) {
+        const toast = document.getElementById('toastMsg');
+        toast.textContent = msg;
+        toast.style.display = 'block';
+        setTimeout(() => toast.style.display = 'none', 2800);
+    }
 
-        renderEvents();
-        renderCities();
-        renderTestimonials();
-        renderFAQ();
-    </script>
+    function openSidebar() {
+        document.getElementById('sidebar').classList.add('open');
+        document.getElementById('sidebarOverlay').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeSidebar() {
+        document.getElementById('sidebar').classList.remove('open');
+        document.getElementById('sidebarOverlay').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    renderEvents("all");
+    renderCities();
+    renderTestimonials();
+    renderFaqs();
+</script>
 </body>
 </html>
