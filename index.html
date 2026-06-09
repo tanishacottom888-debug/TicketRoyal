@@ -78,7 +78,7 @@
         .sidebar-item:hover { background: var(--tr-gray-bg); color: var(--tr-secondary); }
         .close-sidebar { background: none; border: none; font-size: 24px; cursor: pointer; }
 
-        /* HERO SECTION - REDUCED HEIGHT, BRIGHT IMAGE, RICH DESCRIPTION */
+        /* HERO SECTION - CLEAN, PROFESSIONAL COPY */
         .hero {
             width: 100%;
             position: relative;
@@ -95,13 +95,13 @@
             display: block;
         }
 
-        .hero-overlay-light {
+        .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 100%);
+            background: linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 100%);
         }
 
         .hero-content {
@@ -121,7 +121,7 @@
         }
 
         .hero-badge {
-            background: rgba(245,166,35,0.95);
+            background: var(--tr-accent);
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -129,17 +129,17 @@
             border-radius: 40px;
             color: var(--tr-primary-dark);
             font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 16px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            margin-bottom: 20px;
         }
 
         .hero-title {
-            font-size: 42px;
+            font-size: 44px;
             font-weight: 800;
             line-height: 1.2;
             color: white;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
         .hero-title span {
@@ -147,29 +147,37 @@
         }
 
         .hero-description {
-            font-size: 15px;
-            color: rgba(255,255,255,0.95);
-            margin-bottom: 16px;
+            font-size: 16px;
+            color: rgba(255,255,255,0.92);
+            margin-bottom: 8px;
             line-height: 1.5;
         }
 
-        .hero-description-rich {
-            font-size: 13px;
-            color: rgba(255,255,255,0.85);
-            margin-bottom: 20px;
-            line-height: 1.5;
-            border-left: 3px solid var(--tr-accent);
-            padding-left: 14px;
+        .hero-events-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 18px 0 22px;
+        }
+
+        .hero-event-tag {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(4px);
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 12px;
+            color: white;
+            font-weight: 500;
         }
 
         .hero-stats {
             display: flex;
-            gap: 32px;
-            margin-bottom: 24px;
+            gap: 36px;
+            margin-bottom: 28px;
         }
 
         .stat-number {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 800;
             color: var(--tr-accent);
         }
@@ -177,6 +185,7 @@
         .stat-label {
             font-size: 11px;
             color: rgba(255,255,255,0.85);
+            letter-spacing: 0.3px;
         }
 
         .hero-buttons {
@@ -188,10 +197,10 @@
         .btn-primary {
             background: var(--tr-accent);
             color: var(--tr-primary-dark);
-            padding: 12px 28px;
+            padding: 12px 30px;
             border-radius: 60px;
             font-weight: 700;
-            font-size: 13px;
+            font-size: 14px;
             border: none;
             cursor: pointer;
             font-family: 'Inter';
@@ -207,10 +216,10 @@
             background: transparent;
             border: 1.5px solid rgba(255,255,255,0.5);
             color: white;
-            padding: 12px 28px;
+            padding: 12px 30px;
             border-radius: 60px;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 14px;
             cursor: pointer;
             font-family: 'Inter';
             transition: var(--tr-transition);
@@ -517,15 +526,16 @@
             .top-nav-bar { padding: 12px 24px; }
             .nav-links, .cart-icon { display: none; }
             .hamburger { display: block; }
-            .hero { height: 380px; max-height: 380px; }
+            .hero { height: 400px; max-height: 400px; }
             .hero-title { font-size: 32px; }
             .hero-content { padding: 0 24px; }
         }
         @media (max-width: 640px) {
-            .hero { height: 420px; }
+            .hero { height: 450px; }
             .hero-title { font-size: 28px; }
             .hero-stats { gap: 20px; }
-            .hero-description-rich { font-size: 11px; }
+            .hero-events-list { gap: 8px; }
+            .hero-event-tag { font-size: 10px; padding: 4px 10px; }
         }
     </style>
 </head>
@@ -562,26 +572,30 @@
         </div>
     </div>
 
-    <!-- HERO SECTION - REDUCED HEIGHT, BRIGHT IMAGE, RICH DESCRIPTION ADDED -->
+    <!-- HERO SECTION - CLEAN, PROFESSIONAL COPY, FIXED WORDING -->
     <div class="hero">
-        <img class="hero-image" src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=1200&auto=format" alt="BTS concert vibrant crowd">
-        <div class="hero-overlay-light"></div>
+        <img class="hero-image" src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=1200&auto=format" alt="Concert crowd vibrant atmosphere">
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-text-box">
                 <div class="hero-badge"><i class="fas fa-bolt"></i> OFFICIAL MARKETPLACE</div>
-                <h1 class="hero-title">Tickets for <span>BTS, World Cup</span> & Major Events</h1>
-                <p class="hero-description">Your trusted source for premium tickets. 150% money-back guarantee.</p>
-                <div class="hero-description-rich">
-                    <i class="fas fa-check-circle" style="color:var(--tr-accent); margin-right:6px;"></i> BTS World Tour · FIFA World Cup 2026 · Taylor Swift · Broadway · F1 · and more
+                <h1 class="hero-title">Tickets for <span>BTS, World Cup</span> & More</h1>
+                <p class="hero-description">Your trusted source for premium live event tickets. 150% money-back guarantee.</p>
+                <div class="hero-events-list">
+                    <span class="hero-event-tag">BTS World Tour</span>
+                    <span class="hero-event-tag">FIFA World Cup 2026</span>
+                    <span class="hero-event-tag">Taylor Swift</span>
+                    <span class="hero-event-tag">Broadway</span>
+                    <span class="hero-event-tag">Formula 1</span>
                 </div>
                 <div class="hero-stats">
                     <div><div class="stat-number">2M+</div><div class="stat-label">Tickets Sold</div></div>
-                    <div><div class="stat-number">98%</div><div class="stat-label">Satisfaction</div></div>
-                    <div><div class="stat-number">24/7</div><div class="stat-label">Support</div></div>
+                    <div><div class="stat-number">98%</div><div class="stat-label">Customer Satisfaction</div></div>
+                    <div><div class="stat-number">24/7</div><div class="stat-label">Customer Support</div></div>
                 </div>
                 <div class="hero-buttons">
-                    <button class="btn-primary" onclick="location.href='events.html'">Explore Events →</button>
-                    <button class="btn-outline-light" onclick="showToast('Get notified for BTS')">BTS Priority Access</button>
+                    <button class="btn-primary" onclick="location.href='events.html'">Browse Events →</button>
+                    <button class="btn-outline-light" onclick="showToast('Get BTS ticket alerts')">BTS Ticket Alerts</button>
                 </div>
             </div>
         </div>
@@ -627,7 +641,7 @@
         <!-- Newsletter -->
         <div class="newsletter-banner">
             <h3>Get 10% off your first order</h3>
-            <p>Subscribe for presale codes & exclusive offers</p>
+            <p>Subscribe for presale codes and exclusive offers</p>
             <div class="newsletter-group">
                 <input type="email" id="newsEmail" placeholder="Your email address">
                 <button class="btn-primary" onclick="subscribeNews()">Subscribe →</button>
