@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="TicketRoyal - Premium Ticket Marketplace for FIFA World Cup 2026, Concerts, Theatre, and Live Events">
+    <meta name="description" content="TicketRoyal - Premium Ticket Marketplace for FIFA World Cup 2026, Concerts, Theatre & Live Events">
     <title>TicketRoyal | Premium Tickets for Live Events & World Cup 2026</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* ---------- TICKETROYAL DESIGN SYSTEM (EXACT MATCH TO CHECKOUT PAGE) ---------- */
         * {
             margin: 0;
             padding: 0;
@@ -19,39 +23,40 @@
             --tr-accent: #f5a623;
             --tr-accent-dark: #e09112;
             --tr-white: #ffffff;
-            --tr-gray-bg: #f7f9fc;
+            --tr-gray-bg: #f4f7fc;
             --tr-card-border: #e6edf4;
             --tr-text-dark: #1a2c3e;
             --tr-text-muted: #5c6f87;
             --tr-text-light: #8b9ab0;
-            --tr-border-radius: 20px;
-            --tr-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --tr-success: #1f6e43;
+            --tr-border-radius: 28px;
+            --tr-shadow-sm: 0 12px 30px rgba(0, 0, 0, 0.05);
             --tr-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
-            --tr-shadow-hover: 0 16px 32px rgba(0, 0, 0, 0.1);
+            --tr-shadow-hover: 0 20px 35px rgba(0, 0, 0, 0.1);
             --tr-transition: all 0.25s ease;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: var(--tr-gray-bg);
+            font-family: 'Inter', sans-serif;
             color: var(--tr-text-dark);
             overflow-x: hidden;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
-
-        /* Navigation Bar */
-        .nav {
+        /* Navigation Bar - EXACT SAME AS CHECKOUT */
+        .top-nav-bar {
             background: var(--tr-white);
-            padding: 16px 24px;
+            border-bottom: 1px solid var(--tr-card-border);
+            padding: 16px 32px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid var(--tr-card-border);
-            box-shadow: var(--tr-shadow-sm);
+            backdrop-filter: blur(8px);
+            background: rgba(255,255,255,0.96);
         }
 
         .nav-left {
@@ -60,34 +65,20 @@
             gap: 16px;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--tr-primary);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--tr-accent);
+        .brand-tag {
             font-weight: 800;
-            font-size: 18px;
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, var(--tr-primary) 0%, var(--tr-secondary) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
         }
 
-        .logo-text {
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: -0.3px;
-            color: var(--tr-primary);
-        }
-
-        .logo-text span {
+        .brand-tag i {
             color: var(--tr-accent);
+            background: none;
+            -webkit-background-clip: unset;
         }
 
         .nav-links {
@@ -184,6 +175,7 @@
             border: none;
             width: 100%;
             text-align: left;
+            font-family: 'Inter', sans-serif;
         }
         .sidebar-item:hover { 
             background: var(--tr-gray-bg); 
@@ -199,12 +191,14 @@
             text-align: center;
         }
 
-        /* Hero Section */
+        /* Hero Section - REDUCED HEIGHT */
         .hero {
             position: relative;
-            height: 65vh;
-            min-height: 500px;
+            height: 45vh;
+            min-height: 380px;
             overflow: hidden;
+            margin: 20px 24px 0;
+            border-radius: var(--tr-border-radius);
         }
 
         .hero-bg {
@@ -224,14 +218,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(10,37,64,0.88) 0%, rgba(5,30,48,0.75) 100%);
+            background: linear-gradient(135deg, rgba(10,37,64,0.85) 0%, rgba(5,30,48,0.7) 100%);
+            border-radius: var(--tr-border-radius);
         }
 
         .hero-content {
             position: relative;
             z-index: 3;
-            max-width: 650px;
-            padding: 0 24px;
+            max-width: 600px;
+            padding: 0 40px;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -244,19 +239,19 @@
             display: inline-block;
             padding: 6px 14px;
             border-radius: 40px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             letter-spacing: 1px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             width: fit-content;
         }
 
         .hero-title {
             color: var(--tr-white);
-            font-size: 42px;
+            font-size: 36px;
             font-weight: 800;
             line-height: 1.2;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .hero-title span {
@@ -265,30 +260,31 @@
 
         .hero-text {
             color: rgba(255,255,255,0.85);
-            font-size: 16px;
+            font-size: 14px;
             line-height: 1.5;
-            margin-bottom: 28px;
-            max-width: 500px;
+            margin-bottom: 20px;
+            max-width: 450px;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 16px;
+            gap: 14px;
             flex-wrap: wrap;
         }
 
         .btn-primary {
             background: var(--tr-accent);
             color: var(--tr-primary-dark);
-            padding: 12px 28px;
-            border-radius: 40px;
+            padding: 10px 24px;
+            border-radius: 60px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px;
             display: inline-block;
             cursor: pointer;
             border: none;
             transition: var(--tr-transition);
+            font-family: 'Inter', sans-serif;
         }
 
         .btn-primary:hover {
@@ -299,13 +295,15 @@
         .btn-outline {
             background: transparent;
             color: var(--tr-white);
-            padding: 12px 28px;
-            border-radius: 40px;
+            padding: 10px 24px;
+            border-radius: 60px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 13px;
             border: 1.5px solid rgba(255,255,255,0.3);
             cursor: pointer;
             transition: var(--tr-transition);
+            font-family: 'Inter', sans-serif;
         }
 
         .btn-outline:hover {
@@ -313,18 +311,25 @@
             border-color: var(--tr-white);
         }
 
+        /* Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
         /* Sections */
         .section {
-            padding: 60px 24px;
+            padding: 50px 0;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 48px;
+            margin-bottom: 40px;
         }
 
         .section-title {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
             color: var(--tr-primary);
         }
@@ -335,8 +340,23 @@
 
         .section-subtitle {
             color: var(--tr-text-muted);
-            margin-top: 10px;
-            font-size: 15px;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        /* Cards - EXACT SAME AS CHECKOUT */
+        .card {
+            background: var(--tr-white);
+            border-radius: var(--tr-border-radius);
+            box-shadow: var(--tr-shadow-sm);
+            transition: var(--tr-transition);
+            overflow: hidden;
+            border: 1px solid var(--tr-card-border);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--tr-shadow-hover);
         }
 
         /* Match Cards Grid */
@@ -344,22 +364,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
             gap: 24px;
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-
-        .match-card {
-            background: var(--tr-white);
-            border-radius: var(--tr-border-radius);
-            overflow: hidden;
-            box-shadow: var(--tr-shadow-sm);
-            transition: var(--tr-transition);
-            border: 1px solid var(--tr-card-border);
-        }
-
-        .match-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--tr-shadow-hover);
         }
 
         .match-header {
@@ -398,25 +402,25 @@
         }
 
         .match-flag {
-            font-size: 40px;
-            margin-bottom: 10px;
+            font-size: 36px;
+            margin-bottom: 8px;
         }
 
         .match-team-name {
             font-weight: 700;
-            font-size: 16px;
+            font-size: 14px;
             color: var(--tr-text-dark);
         }
 
         .match-vs {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             background: var(--tr-gray-bg);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 800;
             color: var(--tr-text-muted);
         }
@@ -425,7 +429,7 @@
             padding: 0 20px 16px;
             display: flex;
             justify-content: space-between;
-            font-size: 12px;
+            font-size: 11px;
             color: var(--tr-text-muted);
         }
 
@@ -438,13 +442,13 @@
         }
 
         .match-price {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
             color: var(--tr-primary);
         }
 
         .match-price small {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 400;
             color: var(--tr-text-muted);
         }
@@ -453,12 +457,13 @@
             background: var(--tr-primary);
             color: var(--tr-white);
             border: none;
-            padding: 10px 24px;
-            border-radius: 40px;
+            padding: 8px 20px;
+            border-radius: 60px;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer;
             transition: var(--tr-transition);
+            font-family: 'Inter', sans-serif;
         }
 
         .btn-ticket:hover {
@@ -469,98 +474,88 @@
         .steps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 32px;
-            max-width: 1000px;
-            margin: 0 auto;
+            gap: 24px;
         }
 
         .step-card {
-            text-align: center;
-            padding: 32px 20px;
             background: var(--tr-white);
             border-radius: var(--tr-border-radius);
+            padding: 32px 20px;
+            text-align: center;
             border: 1px solid var(--tr-card-border);
         }
 
         .step-number {
-            width: 56px;
-            height: 56px;
+            width: 52px;
+            height: 52px;
             background: var(--tr-accent);
             color: var(--tr-primary-dark);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 800;
-            margin: 0 auto 20px;
+            margin: 0 auto 16px;
         }
 
         .step-title {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .step-text {
             color: var(--tr-text-muted);
-            font-size: 14px;
+            font-size: 13px;
             line-height: 1.5;
         }
 
-        /* Features */
+        /* Features Grid */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 24px;
-            max-width: 1000px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
         }
 
         .feature-card {
-            text-align: center;
-            padding: 32px 20px;
             background: var(--tr-white);
             border-radius: var(--tr-border-radius);
+            padding: 24px 20px;
+            text-align: center;
             border: 1px solid var(--tr-card-border);
         }
 
         .feature-icon {
-            font-size: 44px;
-            margin-bottom: 16px;
+            font-size: 40px;
+            margin-bottom: 12px;
         }
 
         .feature-title {
             font-weight: 700;
-            font-size: 16px;
-            margin-bottom: 8px;
+            font-size: 15px;
+            margin-bottom: 6px;
         }
 
         .feature-text {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--tr-text-muted);
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         /* Events Preview */
-        .events-preview {
-            background: var(--tr-white);
-        }
-
         .events-grid-preview {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 24px;
-            max-width: 1280px;
-            margin: 0 auto;
         }
 
         .event-card {
             background: var(--tr-white);
             border-radius: var(--tr-border-radius);
             padding: 24px;
-            border: 1px solid var(--tr-card-border);
             text-align: center;
+            border: 1px solid var(--tr-card-border);
             transition: var(--tr-transition);
         }
 
@@ -570,30 +565,35 @@
         }
 
         .event-icon {
-            font-size: 48px;
-            margin-bottom: 16px;
+            font-size: 44px;
+            margin-bottom: 12px;
         }
 
         .event-name {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .event-venue {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--tr-text-muted);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .event-price {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 800;
             color: var(--tr-primary);
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
-        /* Footer */
+        .view-all-link {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        /* Footer - SAME AS CHECKOUT */
         .footer {
             background: var(--tr-primary);
             color: var(--tr-white);
@@ -618,16 +618,16 @@
 
         .footer-col h4 {
             color: var(--tr-accent);
-            font-size: 14px;
-            margin-bottom: 16px;
+            font-size: 13px;
+            margin-bottom: 14px;
         }
 
         .footer-col a {
             display: block;
             color: rgba(255,255,255,0.7);
             text-decoration: none;
-            font-size: 13px;
-            margin-bottom: 10px;
+            font-size: 12px;
+            margin-bottom: 8px;
             cursor: pointer;
             transition: var(--tr-transition);
         }
@@ -638,16 +638,11 @@
 
         .footer-bottom {
             text-align: center;
-            padding-top: 32px;
-            margin-top: 32px;
+            padding-top: 28px;
+            margin-top: 28px;
             border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 12px;
+            font-size: 11px;
             color: rgba(255,255,255,0.5);
-        }
-
-        .view-all-link {
-            text-align: center;
-            margin-top: 32px;
         }
 
         /* Toast */
@@ -658,11 +653,11 @@
             transform: translateX(-50%);
             background: var(--tr-primary);
             color: var(--tr-white);
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 40px;
             z-index: 400;
             display: none;
-            font-size: 14px;
+            font-size: 13px;
             white-space: nowrap;
             box-shadow: var(--tr-shadow-md);
         }
@@ -675,22 +670,29 @@
                 display: none;
             }
             .hero-title {
-                font-size: 52px;
+                font-size: 36px;
             }
         }
 
         @media (max-width: 768px) {
+            .top-nav-bar {
+                padding: 12px 20px;
+            }
             .hero {
-                height: 70vh;
+                margin: 12px 16px 0;
+                min-height: 320px;
+            }
+            .hero-content {
+                padding: 0 24px;
             }
             .hero-title {
-                font-size: 32px;
+                font-size: 28px;
             }
             .section {
-                padding: 40px 16px;
+                padding: 40px 0;
             }
-            .section-title {
-                font-size: 26px;
+            .container {
+                padding: 0 16px;
             }
             .toast {
                 white-space: normal;
@@ -702,12 +704,11 @@
 </head>
 <body>
 
-    <!-- Navigation -->
-    <div class="nav">
+    <!-- Top Navigation - EXACT SAME AS CHECKOUT -->
+    <div class="top-nav-bar">
         <div class="nav-left">
-            <div class="logo">
-                <div class="logo-icon">TR</div>
-                <div class="logo-text">Ticket<span>Royal</span></div>
+            <div class="brand-tag">
+                <i class="fas fa-crown"></i> TicketRoyal
             </div>
             <div class="nav-links">
                 <a href="index.html">Home</a>
@@ -730,13 +731,13 @@
             <button class="close-sidebar" onclick="closeSidebar()">✕</button>
         </div>
         <div class="sidebar-menu">
-            <button class="sidebar-item" onclick="goToPage('index.html')"><i>🏠</i> <span>Home</span></button>
-            <button class="sidebar-item" onclick="goToPage('matches.html')"><i>⚽</i> <span>Matches</span></button>
-            <button class="sidebar-item" onclick="goToPage('events.html')"><i>🎪</i> <span>Events</span></button>
-            <button class="sidebar-item" onclick="showToast('Tickets page coming soon')"><i>🎫</i> <span>Tickets</span></button>
-            <button class="sidebar-item" onclick="showToast('Stadiums page coming soon')"><i>🏟️</i> <span>Stadiums</span></button>
-            <button class="sidebar-item" onclick="showToast('Cart page coming soon')"><i>🛒</i> <span>Cart</span></button>
-            <button class="sidebar-item" onclick="showToast('Contact page coming soon')"><i>📞</i> <span>Contact</span></button>
+            <button class="sidebar-item" onclick="goToPage('index.html')"><i class="fas fa-home"></i> <span>Home</span></button>
+            <button class="sidebar-item" onclick="goToPage('matches.html')"><i class="fas fa-futbol"></i> <span>Matches</span></button>
+            <button class="sidebar-item" onclick="goToPage('events.html')"><i class="fas fa-calendar-alt"></i> <span>Events</span></button>
+            <button class="sidebar-item" onclick="showToast('Tickets page coming soon')"><i class="fas fa-ticket-alt"></i> <span>Tickets</span></button>
+            <button class="sidebar-item" onclick="showToast('Stadiums page coming soon')"><i class="fas fa-map-marker-alt"></i> <span>Stadiums</span></button>
+            <button class="sidebar-item" onclick="showToast('Cart page coming soon')"><i class="fas fa-shopping-cart"></i> <span>Cart</span></button>
+            <button class="sidebar-item" onclick="showToast('Contact page coming soon')"><i class="fas fa-headset"></i> <span>Contact</span></button>
         </div>
         <div class="sidebar-footer">
             <p>© 2026 TicketRoyal</p>
@@ -744,14 +745,14 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
+    <!-- Hero Section - REDUCED HEIGHT -->
     <div class="hero">
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-badge">FIFA WORLD CUP 2026™</div>
             <h1 class="hero-title">Secure Your Seat for <span>Football History</span></h1>
-            <p class="hero-text">Official tickets for all 104 matches across 16 iconic venues. Premium seating, VIP packages, and hospitality experiences available.</p>
+            <p class="hero-text">Official tickets for all 104 matches across 16 iconic venues.</p>
             <div class="hero-buttons">
                 <button class="btn-primary" onclick="goToPage('matches.html')">Buy Tickets →</button>
                 <button class="btn-outline" onclick="goToPage('events.html')">Explore Events</button>
@@ -759,80 +760,82 @@
         </div>
     </div>
 
-    <!-- Upcoming Matches Section -->
-    <div class="section">
-        <div class="section-header">
-            <h2 class="section-title"><span>Upcoming</span> Matches</h2>
-            <p class="section-subtitle">Secure your seats for the biggest football matches of 2026</p>
+    <div class="container">
+        <!-- Upcoming Matches Section -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title"><span>Upcoming</span> Matches</h2>
+                <p class="section-subtitle">Secure your seats for the biggest football matches of 2026</p>
+            </div>
+            <div class="matches-grid" id="matchesGrid"></div>
+            <div class="view-all-link">
+                <button class="btn-primary" onclick="goToPage('matches.html')">View All Matches →</button>
+            </div>
         </div>
-        <div class="matches-grid" id="matchesGrid"></div>
-        <div class="view-all-link">
-            <button class="btn-primary" onclick="goToPage('matches.html')">View All Matches →</button>
-        </div>
-    </div>
 
-    <!-- Events Preview Section -->
-    <div class="section events-preview">
-        <div class="section-header">
-            <h2 class="section-title">Live <span>Events</span></h2>
-            <p class="section-subtitle">Concerts, theatre, festivals, and entertainment across US & UK</p>
+        <!-- Events Preview Section -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Live <span>Events</span></h2>
+                <p class="section-subtitle">Concerts, theatre, festivals, and entertainment across US & UK</p>
+            </div>
+            <div class="events-grid-preview" id="eventsPreview"></div>
+            <div class="view-all-link">
+                <button class="btn-primary" onclick="goToPage('events.html')">Discover All Events →</button>
+            </div>
         </div>
-        <div class="events-grid-preview" id="eventsPreview"></div>
-        <div class="view-all-link">
-            <button class="btn-primary" onclick="goToPage('events.html')">Discover All Events →</button>
-        </div>
-    </div>
 
-    <!-- How It Works -->
-    <div class="section">
-        <div class="section-header">
-            <h2 class="section-title">How It <span>Works</span></h2>
-            <p class="section-subtitle">Get your tickets in three simple steps</p>
+        <!-- How It Works -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">How It <span>Works</span></h2>
+                <p class="section-subtitle">Get your tickets in three simple steps</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Browse Events</div>
+                    <div class="step-text">Explore matches, concerts, or theatre performances</div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Select Seats</div>
+                    <div class="step-text">Choose Standard, Premium, or VIP categories</div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Get Tickets</div>
+                    <div class="step-text">Receive instant e-tickets via email</div>
+                </div>
+            </div>
         </div>
-        <div class="steps-grid">
-            <div class="step-card">
-                <div class="step-number">1</div>
-                <div class="step-title">Browse Events</div>
-                <div class="step-text">Explore matches, concerts, or theatre performances</div>
-            </div>
-            <div class="step-card">
-                <div class="step-number">2</div>
-                <div class="step-title">Select Seats</div>
-                <div class="step-text">Choose Standard, Premium, or VIP categories</div>
-            </div>
-            <div class="step-card">
-                <div class="step-number">3</div>
-                <div class="step-title">Get Tickets</div>
-                <div class="step-text">Receive instant e-tickets via email</div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Why Choose Us -->
-    <div class="section" style="background: var(--tr-white);">
-        <div class="section-header">
-            <h2 class="section-title">Why Choose <span>TicketRoyal</span></h2>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🏆</div>
-                <div class="feature-title">Premium Marketplace</div>
-                <div class="feature-text">Curated tickets for world-class events</div>
+        <!-- Why Choose Us -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose <span>TicketRoyal</span></h2>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <div class="feature-title">Secure Payment</div>
-                <div class="feature-text">256-bit SSL encrypted transactions</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">💬</div>
-                <div class="feature-title">24/7 Support</div>
-                <div class="feature-text">Dedicated customer service team</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📱</div>
-                <div class="feature-title">Instant Delivery</div>
-                <div class="feature-text">E-tickets delivered immediately</div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <div class="feature-title">Premium Marketplace</div>
+                    <div class="feature-text">Curated tickets for world-class events</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-title">Secure Payment</div>
+                    <div class="feature-text">256-bit SSL encrypted transactions</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <div class="feature-title">24/7 Support</div>
+                    <div class="feature-text">Dedicated customer service team</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-title">Instant Delivery</div>
+                    <div class="feature-text">E-tickets delivered immediately</div>
+                </div>
             </div>
         </div>
     </div>
@@ -892,7 +895,7 @@
             const grid = document.getElementById('matchesGrid');
             if (!grid) return;
             grid.innerHTML = matches.map(m => `
-                <div class="match-card">
+                <div class="card">
                     <div class="match-header">
                         <span class="match-date">${m.date} • ${m.time}</span>
                         <span class="match-stage">${m.stage}</span>
