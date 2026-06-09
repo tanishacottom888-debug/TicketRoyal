@@ -5,9 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>TicketRoyal • Secure Checkout</title>
   <!-- Google Fonts & Font Awesome 6 -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    /* ---------- TICKETROYAL DESIGN SYSTEM ---------- */
+    /* Colors, fonts, shadows - to be reused across all pages */
+    :root {
+      --tr-primary: #0f2b3d;
+      --tr-primary-dark: #081b28;
+      --tr-accent: #d4af37;
+      --tr-accent-light: #f5e7b2;
+      --tr-secondary: #2c5f8a;
+      --tr-gray-bg: #f8fafd;
+      --tr-card-border: #eef2f8;
+      --tr-text-dark: #121826;
+      --tr-text-muted: #5b6e8c;
+      --tr-success: #1f6e43;
+      --tr-warning-bg: #fff2e0;
+      --tr-border-radius: 28px;
+      --tr-shadow-sm: 0 12px 30px rgba(0, 0, 0, 0.05);
+      --tr-transition: all 0.2s ease;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -16,25 +35,79 @@
 
     body {
       background: #f4f7fc;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      color: #121826;
+      font-family: 'Inter', sans-serif;
+      color: var(--tr-text-dark);
       padding-bottom: 60px;
+    }
+
+    /* Typography system */
+    h1, h2, h3, .heading {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* Back button & top bar */
+    .top-nav-bar {
+      background: white;
+      border-bottom: 1px solid var(--tr-card-border);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+      background: rgba(255,255,255,0.96);
+    }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--tr-primary);
+      color: white;
+      padding: 10px 22px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: var(--tr-transition);
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-back i {
+      font-size: 1rem;
+    }
+    .btn-back:hover {
+      background: var(--tr-secondary);
+      transform: translateX(-2px);
+    }
+    .brand-tag {
+      font-weight: 800;
+      font-size: 1.4rem;
+      background: linear-gradient(135deg, var(--tr-primary) 0%, var(--tr-secondary) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+    .brand-tag i {
+      color: var(--tr-accent);
+      background: none;
+      -webkit-background-clip: unset;
     }
 
     /* timer ribbon */
     .timer-ribbon {
-      background: #1e293b;
-      color: #ffde9c;
+      background: var(--tr-primary-dark);
+      color: var(--tr-accent-light);
       text-align: center;
       padding: 12px 20px;
       font-size: 0.9rem;
       font-weight: 600;
-      letter-spacing: 0.3px;
-      border-bottom: 1px solid #334155;
-    }
-    .timer-ribbon i {
-      margin-right: 10px;
-      color: #facc15;
+      border-bottom: 1px solid #2c3e50;
     }
     .timer-value {
       background: #0f172a;
@@ -42,39 +115,37 @@
       border-radius: 40px;
       margin-left: 8px;
       font-family: monospace;
-      font-size: 1rem;
       font-weight: 800;
     }
 
-    /* container */
+    /* container & grid */
     .checkout-container {
       max-width: 1320px;
       margin: 32px auto 0;
       padding: 0 24px;
     }
-
     .checkout-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 32px;
     }
 
-    /* cards */
+    /* cards (reusable component) */
     .card {
       background: #ffffff;
-      border-radius: 28px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
-      transition: all 0.2s;
+      border-radius: var(--tr-border-radius);
+      box-shadow: var(--tr-shadow-sm);
+      transition: var(--tr-transition);
       margin-bottom: 28px;
-      border: 1px solid #eef2f8;
+      border: 1px solid var(--tr-card-border);
+      overflow: hidden;
     }
-
     .card-header {
       padding: 20px 28px;
-      border-bottom: 1px solid #eef2f8;
+      border-bottom: 1px solid var(--tr-card-border);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
     .card-header h2, .card-header h3 {
       font-size: 1.35rem;
@@ -85,7 +156,7 @@
       padding: 24px 28px;
     }
 
-    /* order summary column */
+    /* order column */
     .order-col {
       flex: 1.2;
       min-width: 300px;
@@ -95,23 +166,20 @@
       min-width: 340px;
     }
 
-    /* ticket row */
+    /* ticket block */
     .ticket-item {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 16px;
-      border-bottom: 1px solid #edf2f7;
+      border-bottom: 1px solid var(--tr-card-border);
       padding-bottom: 22px;
       margin-bottom: 20px;
     }
     .event-title {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 800;
-      background: linear-gradient(135deg, #1f2b48, #152032);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
+      color: var(--tr-primary);
     }
     .match-meta {
       display: flex;
@@ -119,37 +187,28 @@
       gap: 16px;
       margin-top: 8px;
       font-size: 0.8rem;
-      color: #4b5565;
+      color: var(--tr-text-muted);
     }
     .match-meta i {
       width: 18px;
     }
-    .price-block {
-      text-align: right;
-    }
     .price-number {
-      font-size: 1.8rem;
+      font-size: 1.7rem;
       font-weight: 800;
-      color: #0f2b3d;
-    }
-    .price-note {
-      font-size: 0.7rem;
-      color: #6c7a91;
+      color: var(--tr-primary);
     }
     .remove-link {
       color: #c2410c;
       font-size: 0.75rem;
       font-weight: 600;
       text-decoration: none;
-      display: inline-block;
-      margin-top: 6px;
     }
 
     .fee-row {
       display: flex;
       justify-content: space-between;
       padding: 12px 0;
-      border-bottom: 1px solid #ecf3fa;
+      border-bottom: 1px solid var(--tr-card-border);
       font-weight: 500;
     }
     .total-row {
@@ -162,19 +221,38 @@
     .grand-price {
       font-size: 1.6rem;
       font-weight: 800;
-      color: #0d6e2e;
+      color: var(--tr-success);
     }
-
     .delivery-badge {
-      background: #f8fafd;
+      background: var(--tr-gray-bg);
       padding: 12px 16px;
       border-radius: 24px;
       margin: 16px 0;
       font-size: 0.8rem;
       border: 1px dashed #cbd5e1;
     }
+    .guarantee-box {
+      background: #eef6ff;
+      border-radius: 24px;
+      padding: 12px;
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-top: 16px;
+    }
+    .payment-icons {
+      display: flex;
+      gap: 20px;
+      justify-content: flex-end;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+    .payment-icons i {
+      font-size: 32px;
+      color: #2c3e66;
+    }
 
-    /* form styling */
+    /* form elements - ticketroyal style */
     .form-row {
       display: flex;
       flex-wrap: wrap;
@@ -190,7 +268,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      color: #4a627a;
+      color: var(--tr-text-muted);
       display: block;
       margin-bottom: 6px;
     }
@@ -199,17 +277,16 @@
       padding: 12px 16px;
       border: 1.5px solid #e2e8f0;
       border-radius: 20px;
-      font-family: inherit;
+      font-family: 'Inter', sans-serif;
       font-size: 0.9rem;
       transition: 0.2s;
       background: white;
     }
     input:focus, select:focus, textarea:focus {
-      border-color: #3b6eff;
+      border-color: var(--tr-secondary);
       outline: none;
-      box-shadow: 0 0 0 3px rgba(59,110,255,0.1);
+      box-shadow: 0 0 0 3px rgba(44,95,138,0.1);
     }
-
     .checkbox-wrap {
       display: flex;
       align-items: center;
@@ -219,11 +296,9 @@
     .checkbox-wrap input {
       width: 20px;
       height: 20px;
-      margin: 0;
     }
-
     .btn-pay {
-      background: #0b2b40;
+      background: var(--tr-primary);
       width: 100%;
       padding: 16px;
       border: none;
@@ -236,79 +311,66 @@
       justify-content: center;
       gap: 12px;
       cursor: pointer;
-      transition: 0.2s;
-      margin-top: 10px;
+      transition: var(--tr-transition);
+      font-family: 'Inter', sans-serif;
     }
     .btn-pay:hover {
-      background: #134b66;
+      background: var(--tr-secondary);
       transform: scale(0.98);
-    }
-
-    .payment-icons {
-      display: flex;
-      gap: 20px;
-      justify-content: flex-end;
-      margin-top: 18px;
-      flex-wrap: wrap;
-    }
-    .payment-icons i, .payment-icons span {
-      font-size: 32px;
-      color: #2c3e66;
-    }
-
-    .guarantee-box {
-      background: #eef6ff;
-      border-radius: 24px;
-      padding: 12px;
-      text-align: center;
-      font-size: 0.75rem;
-      font-weight: 600;
-      margin-top: 16px;
     }
     .contact-card {
       background: #fff9ef;
-      border-left: 5px solid #f5a623;
+      border-left: 5px solid var(--tr-accent);
     }
     footer {
       text-align: center;
       margin-top: 55px;
       font-size: 0.7rem;
-      color: #5b6e8c;
+      color: var(--tr-text-muted);
+      border-top: 1px solid #e2e8f0;
+      padding-top: 28px;
     }
-
     @media (max-width: 780px) {
-      .checkout-container {
-        padding: 0 16px;
-      }
-      .card-body {
-        padding: 20px;
-      }
+      .top-nav-bar { padding: 12px 20px; }
+      .checkout-container { padding: 0 16px; }
+      .card-body { padding: 20px; }
     }
   </style>
 </head>
 <body>
 
+<!-- TOP BAR WITH BACK BUTTON (matches page return) -->
+<div class="top-nav-bar">
+  <a href="#" id="backToMatchesBtn" class="btn-back">
+    <i class="fas fa-arrow-left"></i> Back to Matches
+  </a>
+  <div class="brand-tag">
+    <i class="fas fa-crown"></i> TicketRoyal
+  </div>
+  <div style="flex:1"></div>
+  <div style="font-size:0.8rem;"><i class="fas fa-shield-alt"></i> Secure checkout</div>
+</div>
+
 <div class="timer-ribbon">
-  <i class="fas fa-clock"></i> Your cart is reserved for <span id="timerDisplay" class="timer-value">10:00</span> — complete checkout to secure tickets.
+  <i class="fas fa-hourglass-half"></i> Your cart is reserved for <span id="timerDisplay" class="timer-value">10:00</span> — complete checkout to secure tickets.
 </div>
 
 <div class="checkout-container">
   <div class="checkout-grid">
     
-    <!-- LEFT COLUMN: ORDER SUMMARY (TicketRoyal style) -->
+    <!-- LEFT COLUMN: ORDER SUMMARY -->
     <div class="order-col">
       <div class="card">
         <div class="card-header">
-          <i class="fas fa-ticket-alt fa-lg" style="color:#2c5f8a;"></i>
+          <i class="fas fa-ticket-alt fa-lg" style="color: var(--tr-secondary);"></i>
           <h2>Your Royal Order</h2>
         </div>
         <div class="card-body">
-          <!-- ticket block (inspired by original) -->
           <div class="ticket-item" id="ticketBlockWrapper">
             <div class="event-details">
-              <div class="event-title">1 X Block 639 (Premium)</div>
+              <div class="event-title">1 X Block 639 · Premium Seating</div>
               <div style="font-weight: 800; font-size: 1.1rem;">Mexico Vs South Africa</div>
-              <div style="color:#2563eb; font-weight: 600;">Match 01 • FIFA World Cup 2026™</div>
+              <div style="color: var(--tr-secondary); font-weight: 600;">Match 01 • FIFA World Cup 2026™</div>
               <div class="match-meta">
                 <span><i class="far fa-calendar-alt"></i> Thu, Jun 11, 2026 · 20:00</span>
                 <span><i class="fas fa-map-marker-alt"></i> Estadio Banorte, Mexico City</span>
@@ -316,12 +378,11 @@
             </div>
             <div class="price-block">
               <div class="price-number">$5,500.00</div>
-              <div class="price-note">per ticket</div>
+              <div class="price-note" style="font-size:0.7rem;">per ticket</div>
               <a href="#" id="removeTicketBtn" class="remove-link"><i class="fas fa-trash-alt"></i> Remove</a>
             </div>
           </div>
 
-          <!-- fee breakdown -->
           <div class="fee-row">
             <span>Booking & Handling Fees</span>
             <span id="handlingFeeText">$1,650.00</span>
@@ -352,10 +413,10 @@
         </div>
       </div>
 
-      <!-- contact & help card -->
+      <!-- support card -->
       <div class="card contact-card">
         <div class="card-header">
-          <i class="fas fa-concierge-bell"></i>
+          <i class="fas fa-headset"></i>
           <h3>Royal Support</h3>
         </div>
         <div class="card-body">
@@ -367,7 +428,7 @@
       </div>
     </div>
 
-    <!-- RIGHT COLUMN: BILLING FORM (TicketRoyal checkout) -->
+    <!-- RIGHT COLUMN: BILLING FORM -->
     <div class="form-col">
       <div class="card">
         <div class="card-header">
@@ -429,14 +490,14 @@
               <textarea rows="2" id="notes" placeholder="Special requests or delivery instructions"></textarea>
             </div>
 
-            <!-- dynamic country warning (like original) -->
-            <div id="countryWarningMsg" style="background:#fff2e0; border-radius: 20px; padding: 12px; margin: 16px 0; font-size: 0.75rem; border-left: 4px solid #f5a623;">
+            <!-- dynamic country warning (banking note) -->
+            <div id="countryWarningMsg" style="background: var(--tr-warning-bg); border-radius: 20px; padding: 12px; margin: 16px 0; font-size: 0.75rem; border-left: 4px solid #f5a623;">
               <i class="fas fa-university"></i> <strong>Payment tip:</strong> For international cards, enable global transactions. 3D Secure ready.
             </div>
 
             <div class="checkbox-wrap">
               <input type="checkbox" id="termsCheckbox" required>
-              <label for="termsCheckbox" style="text-transform: none; font-weight: 500;">I have read and agree to <a href="#" target="_blank" style="color:#1e4f8a;">TicketRoyal Terms & Conditions</a> (All sales final, 150% money-back guarantee, postponed event policy).</label>
+              <label for="termsCheckbox" style="text-transform: none; font-weight: 500;">I have read and agree to <a href="#" target="_blank" style="color: var(--tr-secondary);">TicketRoyal Terms & Conditions</a> (All sales final, 150% money-back guarantee).</label>
             </div>
 
             <button type="submit" class="btn-pay" id="payNowBtn">
@@ -456,8 +517,8 @@
 </div>
 
 <script>
-  // ---------- TIMER (10 min countdown) ----------
-  let remainingSeconds = 600; // 10 minutes
+  // ---------- TIMER (10 minutes) ----------
+  let remainingSeconds = 600;
   const timerSpan = document.getElementById('timerDisplay');
   let timerInterval;
 
@@ -466,18 +527,16 @@
     let seconds = secs % 60;
     return `${mins.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
   }
-
   function updateTimerUI() {
     timerSpan.textContent = formatTime(remainingSeconds);
     if (remainingSeconds <= 0) {
       clearInterval(timerInterval);
       timerSpan.textContent = "Expired";
       alert("Your cart session has expired. Please refresh to restart booking.");
-      document.getElementById('payNowBtn').disabled = true;
-      document.getElementById('payNowBtn').style.opacity = "0.5";
+      const payBtn = document.getElementById('payNowBtn');
+      if(payBtn) { payBtn.disabled = true; payBtn.style.opacity = "0.5"; }
     }
   }
-
   function startTimer() {
     updateTimerUI();
     timerInterval = setInterval(() => {
@@ -491,7 +550,7 @@
   }
   startTimer();
 
-  // ---------- CART DATA (inspired by original ticket) ----------
+  // ---------- CART DATA ----------
   let ticketQty = 1;
   let ticketBasePrice = 5500.00;
   let handlingFee = 1650.00;
@@ -500,7 +559,6 @@
   function computeGrandTotal() {
     return (ticketBasePrice * ticketQty) + handlingFee + deliveryCost;
   }
-
   function refreshTotalsUI() {
     const grand = computeGrandTotal();
     document.getElementById('grandTotalSpan').innerHTML = `$${grand.toFixed(2)}`;
@@ -508,7 +566,7 @@
     document.getElementById('handlingFeeText').innerHTML = `$${handlingFee.toFixed(2)}`;
   }
 
-  // Remove ticket function (simulate empty cart)
+  // Remove ticket from cart
   const removeBtn = document.getElementById('removeTicketBtn');
   if (removeBtn) {
     removeBtn.addEventListener('click', (e) => {
@@ -518,28 +576,26 @@
         if (wrapper) {
           wrapper.innerHTML = `<div style="padding: 20px; text-align: center;">
             <i class="fas fa-shopping-cart fa-2x" style="color:#b0c4de;"></i>
-            <p style="margin-top: 8px;">Your cart is empty.<br><a href="#" style="color:#2266cc;">Browse events</a></p>
+            <p style="margin-top: 8px;">Your cart is empty.<br><a href="#" style="color: var(--tr-secondary);">Browse events</a></p>
           </div>`;
         }
         ticketQty = 0;
         ticketBasePrice = 0;
         handlingFee = 0;
         refreshTotalsUI();
-        // disable payment button
         const payBtn = document.getElementById('payNowBtn');
         payBtn.disabled = true;
         payBtn.style.opacity = "0.6";
         payBtn.innerHTML = '<i class="fas fa-ban"></i> Cart empty';
         alert("Ticket removed. Your cart is now empty.");
       } else {
-        // just in case quantity bigger but we stay with 1
         ticketQty = 0;
         refreshTotalsUI();
       }
     });
   }
 
-  // country warning dynamic (like original `iccmsg`)
+  // country warning dynamic
   const countrySelect = document.getElementById('country');
   const warningDiv = document.getElementById('countryWarningMsg');
   function updateCountryWarning() {
@@ -552,7 +608,7 @@
       warningDiv.style.background = "#e6f7f0";
     } else {
       warningDiv.innerHTML = `<i class="fas fa-globe"></i> <strong>International order:</strong> Ensure your card is enabled for cross-border transactions. 3D Secure verification may be required.`;
-      warningDiv.style.background = "#fff2e0";
+      warningDiv.style.background = "var(--tr-warning-bg)";
     }
   }
   countrySelect.addEventListener('change', updateCountryWarning);
@@ -565,7 +621,6 @@
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    // validate required fields
     const firstName = document.getElementById('firstName').value.trim();
     const lastName = document.getElementById('lastName').value.trim();
     const address = document.getElementById('address').value.trim();
@@ -584,7 +639,7 @@
       return;
     }
     if (!termsAccepted) {
-      alert("You must agree to the Terms & Conditions to proceed with your booking.");
+      alert("You must agree to the Terms & Conditions to proceed.");
       return;
     }
     if (ticketQty === 0) {
@@ -592,12 +647,10 @@
       return;
     }
 
-    // simulate processing / payment redirection (like original but with ticket royal style)
     const originalBtnHTML = payButton.innerHTML;
     payButton.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Processing order ...';
     payButton.disabled = true;
 
-    // Build order data
     const orderTotal = computeGrandTotal();
     const orderDetails = {
       event: "Mexico vs South Africa - FIFA World Cup 2026",
@@ -606,44 +659,37 @@
       subtotal: ticketBasePrice,
       fees: handlingFee,
       total: orderTotal,
-      customer: {
-        firstName, lastName, address, city, country, email, phone,
-        notes: document.getElementById('notes').value
-      }
+      customer: { firstName, lastName, address, city, country, email, phone, notes: document.getElementById('notes').value }
     };
     console.log("TicketRoyal order payload:", orderDetails);
 
-    // simulate network delay & confirmation
     setTimeout(() => {
       alert(`✨ ORDER CONFIRMED, ${firstName}! ✨\n\nBooking Reference: TR-${Math.floor(Math.random()*100000)}.\nTotal charged: $${orderTotal.toFixed(2)} USD.\nYou will receive an email at ${email} with payment link & e-ticket instructions.\n\nTicket delivery: Mobile entry 24-72h before event. Royal guarantee applies.`);
-      
       payButton.innerHTML = '<i class="fas fa-check-circle"></i> Booking Completed!';
-      payButton.style.background = "#1f6e43";
-      // disable further submits
+      payButton.style.background = "var(--tr-success)";
       payButton.disabled = true;
-      
-      // optional: reset form fields? but keep receipt state.
-      // You can also redirect but we preserve UI
-      setTimeout(() => {
-        // subtle message
-        console.log("Order finalized");
-      }, 500);
     }, 1800);
   });
 
-  // initial total sync
   refreshTotalsUI();
 
-  // extra: handle special instructions/comments tooltip
-  // mimic original page's styling and completeness
-  // also show small loading text if needed
-  const style = document.createElement('style');
-  style.textContent = `
-    .btn-pay:disabled { opacity: 0.7; cursor: not-allowed; }
-    input:invalid, select:invalid { border-color: #ffb3b3; }
-    .fa-crown { color: #ffcd7e; }
-  `;
-  document.head.appendChild(style);
+  // ---------- BACK BUTTON FUNCTIONALITY (return to matches page) ----------
+  const backBtn = document.getElementById('backToMatchesBtn');
+  if (backBtn) {
+    backBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      // In real scenario, this would link to the matches / events listing page.
+      // For demo, we show an alert and simulate navigation.
+      // You can replace window.location.href with your actual matches page URL.
+      if (confirm("Go back to matches page? Any unsaved changes will be lost.")) {
+        // Simulate redirect to matches page (replace with actual event listing URL)
+        // Example: window.location.href = "/matches.html";
+        alert("Redirecting to Matches page (demo). Replace with actual URL.");
+        // Uncomment next line for actual navigation:
+        // window.location.href = "https://www.ticketroyal.com/matches";
+      }
+    });
+  }
 </script>
 </body>
 </html>
