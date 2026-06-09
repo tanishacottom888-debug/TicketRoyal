@@ -78,12 +78,12 @@
         .sidebar-item:hover { background: var(--tr-gray-bg); color: var(--tr-secondary); }
         .close-sidebar { background: none; border: none; font-size: 24px; cursor: pointer; }
 
-        /* HERO SECTION - CLEAN, PROFESSIONAL COPY */
+        /* HERO SECTION - ENHANCED VISIBILITY FOR CTAs */
         .hero {
             width: 100%;
             position: relative;
-            height: 420px;
-            max-height: 420px;
+            height: 440px;
+            max-height: 440px;
             overflow: hidden;
         }
 
@@ -101,7 +101,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 100%);
+            background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.25) 100%);
         }
 
         .hero-content {
@@ -148,7 +148,7 @@
 
         .hero-description {
             font-size: 16px;
-            color: rgba(255,255,255,0.92);
+            color: rgba(255,255,255,0.94);
             margin-bottom: 8px;
             line-height: 1.5;
         }
@@ -190,14 +190,14 @@
 
         .hero-buttons {
             display: flex;
-            gap: 16px;
+            gap: 18px;
             flex-wrap: wrap;
         }
 
         .btn-primary {
             background: var(--tr-accent);
             color: var(--tr-primary-dark);
-            padding: 12px 30px;
+            padding: 12px 32px;
             border-radius: 60px;
             font-weight: 700;
             font-size: 14px;
@@ -205,29 +205,33 @@
             cursor: pointer;
             font-family: 'Inter';
             transition: var(--tr-transition);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .btn-primary:hover {
             background: var(--tr-accent-dark);
             transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
         }
 
         .btn-outline-light {
-            background: transparent;
-            border: 1.5px solid rgba(255,255,255,0.5);
-            color: white;
-            padding: 12px 30px;
+            background: rgba(255,255,255,0.95);
+            border: none;
+            color: var(--tr-primary-dark);
+            padding: 12px 32px;
             border-radius: 60px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 14px;
             cursor: pointer;
             font-family: 'Inter';
             transition: var(--tr-transition);
+            backdrop-filter: blur(4px);
         }
 
         .btn-outline-light:hover {
-            background: rgba(255,255,255,0.15);
-            border-color: var(--tr-accent);
+            background: var(--tr-accent);
+            transform: translateY(-2px);
+            color: var(--tr-primary-dark);
         }
 
         /* Container */
@@ -376,31 +380,105 @@
             background: var(--tr-secondary);
         }
 
-        /* Cities Grid */
+        /* Cities Grid - IMPROVED ICONS & VISIBILITY */
         .cities-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-            gap: 20px;
+            gap: 24px;
         }
 
         .city-card {
             background: var(--tr-white);
-            border-radius: 20px;
-            padding: 24px 16px;
+            border-radius: 24px;
+            padding: 28px 16px;
             text-align: center;
             transition: var(--tr-transition);
             cursor: pointer;
             border: 1px solid var(--tr-card-border);
+            box-shadow: var(--tr-shadow-sm);
         }
 
         .city-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--tr-shadow-md);
+            transform: translateY(-5px);
+            box-shadow: var(--tr-shadow-hover);
+            border-color: var(--tr-accent);
         }
 
         .city-icon {
-            font-size: 38px;
-            margin-bottom: 10px;
+            font-size: 44px;
+            margin-bottom: 14px;
+        }
+
+        .city-name {
+            font-weight: 800;
+            font-size: 16px;
+            margin-bottom: 6px;
+            color: var(--tr-primary);
+        }
+
+        .city-event-count {
+            font-size: 12px;
+            color: var(--tr-accent);
+            font-weight: 600;
+        }
+
+        /* HOT DEALS / FLASH SALE SECTION */
+        .hot-deals {
+            background: linear-gradient(135deg, var(--tr-primary) 0%, var(--tr-secondary) 100%);
+            border-radius: 28px;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hot-deals h3 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .hot-deals p {
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .hot-deals-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .hot-deal-item {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            padding: 16px 24px;
+            min-width: 160px;
+            text-align: center;
+            transition: var(--tr-transition);
+        }
+
+        .hot-deal-item:hover {
+            background: rgba(255,255,255,0.25);
+            transform: scale(1.02);
+        }
+
+        .hot-price {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--tr-accent);
+        }
+
+        /* Upcoming Events Banner */
+        .upcoming-banner {
+            background: var(--tr-white);
+            border-radius: 28px;
+            padding: 32px;
+            text-align: center;
+            margin: 40px 0;
+            border: 1px solid var(--tr-card-border);
         }
 
         /* Testimonials */
@@ -526,16 +604,16 @@
             .top-nav-bar { padding: 12px 24px; }
             .nav-links, .cart-icon { display: none; }
             .hamburger { display: block; }
-            .hero { height: 400px; max-height: 400px; }
+            .hero { height: 420px; max-height: 420px; }
             .hero-title { font-size: 32px; }
             .hero-content { padding: 0 24px; }
         }
         @media (max-width: 640px) {
-            .hero { height: 450px; }
+            .hero { height: 480px; }
             .hero-title { font-size: 28px; }
             .hero-stats { gap: 20px; }
-            .hero-events-list { gap: 8px; }
-            .hero-event-tag { font-size: 10px; padding: 4px 10px; }
+            .hot-deals { padding: 24px; }
+            .hot-deal-item { min-width: 130px; padding: 12px 16px; }
         }
     </style>
 </head>
@@ -572,7 +650,7 @@
         </div>
     </div>
 
-    <!-- HERO SECTION - CLEAN, PROFESSIONAL COPY, FIXED WORDING -->
+    <!-- HERO SECTION - VISIBLE CTAs -->
     <div class="hero">
         <img class="hero-image" src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=1200&auto=format" alt="Concert crowd vibrant atmosphere">
         <div class="hero-overlay"></div>
@@ -590,8 +668,8 @@
                 </div>
                 <div class="hero-stats">
                     <div><div class="stat-number">2M+</div><div class="stat-label">Tickets Sold</div></div>
-                    <div><div class="stat-number">98%</div><div class="stat-label">Customer Satisfaction</div></div>
-                    <div><div class="stat-number">24/7</div><div class="stat-label">Customer Support</div></div>
+                    <div><div class="stat-number">98%</div><div class="stat-label">Satisfaction</div></div>
+                    <div><div class="stat-number">24/7</div><div class="stat-label">Support</div></div>
                 </div>
                 <div class="hero-buttons">
                     <button class="btn-primary" onclick="location.href='events.html'">Browse Events →</button>
@@ -610,7 +688,7 @@
             <span class="category-pill" data-cat="theatre">Theatre</span>
         </div>
 
-        <!-- Events Grid -->
+        <!-- Trending Events -->
         <div class="section" style="padding-top: 0;">
             <div class="section-header">
                 <h2 class="section-title"><span>Trending</span> Events</h2>
@@ -622,12 +700,27 @@
             </div>
         </div>
 
-        <!-- Popular Cities -->
+        <!-- HOT DEALS / FLASH SALE (makes page HOT) -->
+        <div class="hot-deals">
+            <h3><i class="fas fa-fire" style="color: var(--tr-accent);"></i> Flash Sale: Limited Time</h3>
+            <p>Discounted tickets for select events — prices drop every hour</p>
+            <div class="hot-deals-grid" id="hotDealsGrid"></div>
+        </div>
+
+        <!-- Cities Grid - IMPROVED ICONS -->
         <div class="section">
             <div class="section-header">
                 <h2 class="section-title">Events in <span>Top Cities</span></h2>
+                <p class="section-subtitle">Find tickets near you</p>
             </div>
             <div class="cities-grid" id="citiesGrid"></div>
+        </div>
+
+        <!-- Upcoming Must-See Events -->
+        <div class="upcoming-banner">
+            <h3 style="font-size: 22px; margin-bottom: 8px;"><i class="fas fa-calendar-star"></i> Just Announced</h3>
+            <p style="color: var(--tr-text-muted); margin-bottom: 20px;">New events added weekly — be the first to know</p>
+            <button class="btn-primary" onclick="showToast('New events added weekly')">View New Arrivals →</button>
         </div>
 
         <!-- Testimonials -->
@@ -681,8 +774,16 @@
         ];
 
         const cities = [
-            { name:"Los Angeles", icon:"🌴", count:48 }, { name:"New York", icon:"🗽", count:52 }, { name:"London", icon:"🇬🇧", count:41 },
-            { name:"Chicago", icon:"🌆", count:33 }, { name:"Las Vegas", icon:"🎰", count:37 }, { name:"Miami", icon:"☀️", count:29 }
+            { name:"Los Angeles", icon:"🌴", count:48 }, { name:"New York", icon:"🗽", count:52 }, 
+            { name:"London", icon:"🇬🇧", count:41 }, { name:"Chicago", icon:"🌆", count:33 },
+            { name:"Las Vegas", icon:"🎰", count:37 }, { name:"Miami", icon:"☀️", count:29 },
+            { name:"Toronto", icon:"🍁", count:26 }, { name:"San Francisco", icon:"🌉", count:31 }
+        ];
+
+        const hotDeals = [
+            { event: "BTS LA", price: 249, original: 299 },
+            { event: "World Cup Final", price: 399, original: 499 },
+            { event: "Taylor Swift London", price: 189, original: 245 }
         ];
 
         const testimonials = [
@@ -719,18 +820,32 @@
             `).join('');
         }
 
+        function renderHotDeals() {
+            const container = document.getElementById('hotDealsGrid');
+            container.innerHTML = hotDeals.map(deal => `
+                <div class="hot-deal-item" onclick="showToast('Flash sale: ${deal.event} tickets starting at $${deal.price}')">
+                    <div style="font-weight:700;">${deal.event}</div>
+                    <div class="hot-price">$${deal.price}</div>
+                    <div style="font-size:12px; text-decoration:line-through; opacity:0.7;">was $${deal.original}</div>
+                    <div style="font-size:11px; margin-top:6px;"><i class="fas fa-clock"></i> Limited</div>
+                </div>
+            `).join('');
+        }
+
         function renderCities() {
-            document.getElementById('citiesGrid').innerHTML = cities.map(c => `
+            const grid = document.getElementById('citiesGrid');
+            grid.innerHTML = cities.map(c => `
                 <div class="city-card" onclick="showToast('${c.count} events in ${c.name}')">
                     <div class="city-icon">${c.icon}</div>
-                    <div style="font-weight:700;">${c.name}</div>
-                    <div style="font-size:12px; color:var(--tr-text-muted);">${c.count} events</div>
+                    <div class="city-name">${c.name}</div>
+                    <div class="city-event-count">${c.count} upcoming events</div>
                 </div>
             `).join('');
         }
 
         function renderTestimonials() {
-            document.getElementById('testimonialsGrid').innerHTML = testimonials.map(t => `
+            const grid = document.getElementById('testimonialsGrid');
+            grid.innerHTML = testimonials.map(t => `
                 <div class="testimonial-card">
                     <div style="color:var(--tr-accent); margin-bottom:12px;">${'★'.repeat(t.rating)}</div>
                     <p style="margin-bottom:16px; line-height:1.5;">“${t.text}”</p>
@@ -784,6 +899,7 @@
         }
 
         renderEvents();
+        renderHotDeals();
         renderCities();
         renderTestimonials();
         renderFaqs();
