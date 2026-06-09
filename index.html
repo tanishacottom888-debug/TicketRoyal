@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="TicketRoyal - Premium Ticket Marketplace for FIFA World Cup 2026, Concerts, Theatre & Live Events">
-    <title>TicketRoyal | Premium Tickets for Live Events & World Cup 2026</title>
+    <meta name="description" content="TicketRoyal - Premium Tickets for BTS, FIFA World Cup, Concerts, Theatre & Live Events Worldwide">
+    <title>TicketRoyal | Premium Tickets for BTS, World Cup, Concerts & Live Events</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ---------- TICKETROYAL DESIGN SYSTEM (EXACT MATCH TO CHECKOUT PAGE) ---------- */
+        /* ---------- TICKETROYAL DESIGN SYSTEM ---------- */
         * {
             margin: 0;
             padding: 0;
@@ -43,7 +43,7 @@
             overflow-x: hidden;
         }
 
-        /* Navigation Bar - EXACT SAME AS CHECKOUT */
+        /* Navigation Bar */
         .top-nav-bar {
             background: var(--tr-white);
             border-bottom: 1px solid var(--tr-card-border);
@@ -65,20 +65,51 @@
             gap: 16px;
         }
 
-        .brand-tag {
-            font-weight: 800;
-            font-size: 1.4rem;
-            background: linear-gradient(135deg, var(--tr-primary) 0%, var(--tr-secondary) 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            letter-spacing: -0.5px;
+        /* Logo styling */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
         }
 
-        .brand-tag i {
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--tr-primary) 0%, var(--tr-secondary) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(10,37,64,0.2);
+        }
+
+        .logo-icon i {
+            font-size: 22px;
             color: var(--tr-accent);
-            background: none;
-            -webkit-background-clip: unset;
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 14px;
+            border: 1px solid rgba(245,166,35,0.3);
+            top: -2px;
+            left: -2px;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--tr-primary);
+        }
+
+        .logo-text span {
+            color: var(--tr-accent);
         }
 
         .nav-links {
@@ -191,7 +222,7 @@
             text-align: center;
         }
 
-        /* Hero Section - REDUCED HEIGHT */
+        /* Hero Section */
         .hero {
             position: relative;
             height: 45vh;
@@ -207,7 +238,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1522778526097-ce0a22ceb253?q=80&w=1200&auto=format&fit=crop');
+            background-image: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=1200&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
         }
@@ -218,14 +249,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(10,37,64,0.85) 0%, rgba(5,30,48,0.7) 100%);
+            background: linear-gradient(135deg, rgba(10,37,64,0.85) 0%, rgba(5,30,48,0.75) 100%);
             border-radius: var(--tr-border-radius);
         }
 
         .hero-content {
             position: relative;
             z-index: 3;
-            max-width: 600px;
+            max-width: 650px;
             padding: 0 40px;
             height: 100%;
             display: flex;
@@ -248,7 +279,7 @@
 
         .hero-title {
             color: var(--tr-white);
-            font-size: 36px;
+            font-size: 38px;
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 12px;
@@ -263,7 +294,7 @@
             font-size: 14px;
             line-height: 1.5;
             margin-bottom: 20px;
-            max-width: 450px;
+            max-width: 500px;
         }
 
         .hero-buttons {
@@ -344,7 +375,7 @@
             font-size: 14px;
         }
 
-        /* Cards - EXACT SAME AS CHECKOUT */
+        /* Cards */
         .card {
             background: var(--tr-white);
             border-radius: var(--tr-border-radius);
@@ -470,6 +501,58 @@
             background: var(--tr-secondary);
         }
 
+        /* Events Grid */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .event-card {
+            background: var(--tr-white);
+            border-radius: var(--tr-border-radius);
+            padding: 24px;
+            border: 1px solid var(--tr-card-border);
+            transition: var(--tr-transition);
+            text-align: center;
+        }
+
+        .event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--tr-shadow-md);
+        }
+
+        .event-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .event-name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--tr-primary);
+        }
+
+        .event-venue {
+            font-size: 12px;
+            color: var(--tr-text-muted);
+            margin-bottom: 12px;
+        }
+
+        .event-price {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--tr-primary);
+            margin-bottom: 16px;
+        }
+
+        .event-date {
+            font-size: 12px;
+            color: var(--tr-text-muted);
+            margin-bottom: 16px;
+        }
+
         /* How It Works */
         .steps-grid {
             display: grid;
@@ -543,57 +626,12 @@
             line-height: 1.4;
         }
 
-        /* Events Preview */
-        .events-grid-preview {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .event-card {
-            background: var(--tr-white);
-            border-radius: var(--tr-border-radius);
-            padding: 24px;
-            text-align: center;
-            border: 1px solid var(--tr-card-border);
-            transition: var(--tr-transition);
-        }
-
-        .event-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--tr-shadow-md);
-        }
-
-        .event-icon {
-            font-size: 44px;
-            margin-bottom: 12px;
-        }
-
-        .event-name {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .event-venue {
-            font-size: 12px;
-            color: var(--tr-text-muted);
-            margin-bottom: 12px;
-        }
-
-        .event-price {
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--tr-primary);
-            margin-bottom: 14px;
-        }
-
         .view-all-link {
             text-align: center;
             margin-top: 32px;
         }
 
-        /* Footer - SAME AS CHECKOUT */
+        /* Footer */
         .footer {
             background: var(--tr-primary);
             color: var(--tr-white);
@@ -669,9 +707,6 @@
             .hamburger {
                 display: none;
             }
-            .hero-title {
-                font-size: 36px;
-            }
         }
 
         @media (max-width: 768px) {
@@ -699,17 +734,30 @@
                 text-align: center;
                 max-width: 90%;
             }
+            .logo-text {
+                font-size: 18px;
+            }
+            .logo-icon {
+                width: 36px;
+                height: 36px;
+            }
+            .logo-icon i {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Navigation - EXACT SAME AS CHECKOUT -->
+    <!-- Top Navigation -->
     <div class="top-nav-bar">
         <div class="nav-left">
-            <div class="brand-tag">
-                <i class="fas fa-crown"></i> TicketRoyal
-            </div>
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="logo-text">Ticket<span>Royal</span></div>
+            </a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="matches.html">Matches</a>
@@ -737,6 +785,7 @@
             <button class="sidebar-item" onclick="showToast('Tickets page coming soon')"><i class="fas fa-ticket-alt"></i> <span>Tickets</span></button>
             <button class="sidebar-item" onclick="showToast('Stadiums page coming soon')"><i class="fas fa-map-marker-alt"></i> <span>Stadiums</span></button>
             <button class="sidebar-item" onclick="showToast('Cart page coming soon')"><i class="fas fa-shopping-cart"></i> <span>Cart</span></button>
+            <button class="sidebar-item" onclick="showToast('BTS Tickets coming soon')"><i class="fas fa-microphone-alt"></i> <span>BTS</span></button>
             <button class="sidebar-item" onclick="showToast('Contact page coming soon')"><i class="fas fa-headset"></i> <span>Contact</span></button>
         </div>
         <div class="sidebar-footer">
@@ -745,22 +794,34 @@
         </div>
     </div>
 
-    <!-- Hero Section - REDUCED HEIGHT -->
+    <!-- Hero Section - Updated for BTS & Global Events -->
     <div class="hero">
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <div class="hero-badge">FIFA WORLD CUP 2026™</div>
-            <h1 class="hero-title">Secure Your Seat for <span>Football History</span></h1>
-            <p class="hero-text">Official tickets for all 104 matches across 16 iconic venues.</p>
+            <div class="hero-badge">LIVE EVENTS • WORLDWIDE</div>
+            <h1 class="hero-title">Tickets for <span>BTS, World Cup</span> & More</h1>
+            <p class="hero-text">Your premier destination for concerts, sports, theatre, and festivals. BTS • Taylor Swift • FIFA World Cup • Broadway • Formula 1</p>
             <div class="hero-buttons">
-                <button class="btn-primary" onclick="goToPage('matches.html')">Buy Tickets →</button>
-                <button class="btn-outline" onclick="goToPage('events.html')">Explore Events</button>
+                <button class="btn-primary" onclick="goToPage('events.html')">Browse Events →</button>
+                <button class="btn-outline" onclick="showToast('BTS tickets coming soon! Sign up for alerts')">BTS Tickets</button>
             </div>
         </div>
     </div>
 
     <div class="container">
+        <!-- Events Section - Featured Events including BTS -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title"><span>Trending</span> Events</h2>
+                <p class="section-subtitle">BTS, concerts, festivals, and more — get your tickets now</p>
+            </div>
+            <div class="events-grid" id="eventsGrid"></div>
+            <div class="view-all-link">
+                <button class="btn-primary" onclick="goToPage('events.html')">View All Events →</button>
+            </div>
+        </div>
+
         <!-- Upcoming Matches Section -->
         <div class="section">
             <div class="section-header">
@@ -770,18 +831,6 @@
             <div class="matches-grid" id="matchesGrid"></div>
             <div class="view-all-link">
                 <button class="btn-primary" onclick="goToPage('matches.html')">View All Matches →</button>
-            </div>
-        </div>
-
-        <!-- Events Preview Section -->
-        <div class="section">
-            <div class="section-header">
-                <h2 class="section-title">Live <span>Events</span></h2>
-                <p class="section-subtitle">Concerts, theatre, festivals, and entertainment across US & UK</p>
-            </div>
-            <div class="events-grid-preview" id="eventsPreview"></div>
-            <div class="view-all-link">
-                <button class="btn-primary" onclick="goToPage('events.html')">Discover All Events →</button>
             </div>
         </div>
 
@@ -795,7 +844,7 @@
                 <div class="step-card">
                     <div class="step-number">1</div>
                     <div class="step-title">Browse Events</div>
-                    <div class="step-text">Explore matches, concerts, or theatre performances</div>
+                    <div class="step-text">Explore concerts, matches, or theatre performances</div>
                 </div>
                 <div class="step-card">
                     <div class="step-number">2</div>
@@ -854,6 +903,7 @@
                     <h4>Tickets</h4>
                     <a onclick="goToPage('matches.html')">Football Matches</a>
                     <a onclick="goToPage('events.html')">Concerts & Events</a>
+                    <a onclick="showToast('BTS tickets coming soon')">BTS Tickets</a>
                     <a onclick="showToast('Hospitality coming soon')">VIP Hospitality</a>
                 </div>
                 <div class="footer-col">
@@ -870,12 +920,22 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">© 2026 TicketRoyal — Premium Ticket Marketplace for World Cup 2026 & Live Events</div>
+        <div class="footer-bottom">© 2026 TicketRoyal — Premium Ticket Marketplace for BTS, World Cup, Concerts & Live Events</div>
     </footer>
 
     <div class="toast" id="toast">✓ Added to cart</div>
 
     <script>
+        // Events Data including BTS
+        const events = [
+            { id: 1, name: "BTS · Yet to Come World Tour", venue: "SoFi Stadium, Los Angeles, CA", date: "Jun 10, 2026", price: 299, icon: "🎤", category: "concert" },
+            { id: 2, name: "BTS · Yet to Come World Tour", venue: "MetLife Stadium, New Jersey", date: "Jun 17, 2026", price: 299, icon: "🎤", category: "concert" },
+            { id: 3, name: "Taylor Swift · The Eras Tour", venue: "Wembley Stadium, London", date: "Jul 22, 2026", price: 245, icon: "🎸", category: "concert" },
+            { id: 4, name: "Hamilton · Broadway", venue: "Richard Rodgers Theatre, NYC", date: "Jun 28, 2026", price: 165, icon: "🎭", category: "theatre" },
+            { id: 5, name: "Formula 1 · British Grand Prix", venue: "Silverstone Circuit, UK", date: "Jul 05, 2026", price: 520, icon: "🏎️", category: "motorsport" },
+            { id: 6, name: "Coldplay · Music of the Spheres", venue: "Rose Bowl, Los Angeles", date: "Aug 15, 2026", price: 189, icon: "🌈", category: "concert" }
+        ];
+
         // Match Data
         const matches = [
             { id: 1, stage: "Group A", team1: "USA", team2: "Mexico", flag1: "🇺🇸", flag2: "🇲🇽", stadium: "MetLife Stadium", city: "New Jersey", date: "Thu, Jun 11", time: "8:00 PM", price: 199 },
@@ -883,12 +943,21 @@
             { id: 3, stage: "Group C", team1: "England", team2: "Germany", flag1: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", flag2: "🇩🇪", stadium: "AT&T Stadium", city: "Dallas", date: "Sat, Jun 13", time: "7:00 PM", price: 229 }
         ];
 
-        // Events Preview Data
-        const previewEvents = [
-            { name: "Taylor Swift · The Eras Tour", venue: "SoFi Stadium, Los Angeles", date: "Jun 15, 2026", price: 245, icon: "🎤" },
-            { name: "Hamilton · Broadway", venue: "Richard Rodgers Theatre, NYC", date: "Jun 28, 2026", price: 165, icon: "🎭" },
-            { name: "Formula 1 · British GP", venue: "Silverstone Circuit, UK", date: "Jul 05, 2026", price: 520, icon: "🏎️" }
-        ];
+        // Render Events Grid
+        function renderEvents() {
+            const grid = document.getElementById('eventsGrid');
+            if (!grid) return;
+            grid.innerHTML = events.map(e => `
+                <div class="event-card">
+                    <div class="event-icon">${e.icon}</div>
+                    <div class="event-name">${e.name}</div>
+                    <div class="event-venue"><i class="fas fa-map-marker-alt"></i> ${e.venue}</div>
+                    <div class="event-date"><i class="far fa-calendar-alt"></i> ${e.date}</div>
+                    <div class="event-price">From $${e.price}</div>
+                    <button class="btn-ticket" onclick="showToast('Tickets for ${e.name} coming soon')">Get Tickets →</button>
+                </div>
+            `).join('');
+        }
 
         // Render Matches
         function renderMatches() {
@@ -923,21 +992,6 @@
             `).join('');
         }
 
-        // Render Events Preview
-        function renderEventsPreview() {
-            const grid = document.getElementById('eventsPreview');
-            if (!grid) return;
-            grid.innerHTML = previewEvents.map(e => `
-                <div class="event-card">
-                    <div class="event-icon">${e.icon}</div>
-                    <div class="event-name">${e.name}</div>
-                    <div class="event-venue">${e.venue}</div>
-                    <div class="event-price">From $${e.price}</div>
-                    <button class="btn-ticket" onclick="showToast('View tickets for ${e.name}')">View Event →</button>
-                </div>
-            `).join('');
-        }
-
         // Navigation Functions
         function goToPage(page) {
             window.location.href = page;
@@ -965,8 +1019,8 @@
         }
 
         // Initialize
+        renderEvents();
         renderMatches();
-        renderEventsPreview();
     </script>
 </body>
 </html>
