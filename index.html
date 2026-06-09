@@ -3,18 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="TicketRoyal - Premium Tickets for BTS, FIFA World Cup, Concerts, Theatre & Live Events Worldwide">
-    <title>TicketRoyal | Premium Tickets for BTS, World Cup, Concerts & Live Events</title>
-    <!-- Google Fonts -->
+    <meta name="description" content="TicketRoyal - Premium Ticket Marketplace for BTS, FIFA World Cup, Concerts, Theatre & Live Events Worldwide">
+    <meta name="keywords" content="BTS tickets, World Cup tickets, concert tickets, football tickets, live events">
+    <title>TicketRoyal | Premium Tickets for BTS, World Cup & Live Events</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ---------- TICKETROYAL DESIGN SYSTEM ---------- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --tr-primary: #0a2540;
@@ -29,998 +24,416 @@
             --tr-text-muted: #5c6f87;
             --tr-text-light: #8b9ab0;
             --tr-success: #1f6e43;
-            --tr-border-radius: 28px;
-            --tr-shadow-sm: 0 12px 30px rgba(0, 0, 0, 0.05);
+            --tr-border-radius: 24px;
+            --tr-shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04);
             --tr-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
-            --tr-shadow-hover: 0 20px 35px rgba(0, 0, 0, 0.1);
-            --tr-transition: all 0.25s ease;
+            --tr-shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.1);
+            --tr-transition: all 0.3s ease;
         }
 
         body {
             background: var(--tr-gray-bg);
             font-family: 'Inter', sans-serif;
             color: var(--tr-text-dark);
-            overflow-x: hidden;
+            line-height: 1.5;
         }
 
-        /* Navigation Bar */
+        /* Navigation */
         .top-nav-bar {
             background: var(--tr-white);
             border-bottom: 1px solid var(--tr-card-border);
-            padding: 16px 32px;
+            padding: 14px 32px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
             background: rgba(255,255,255,0.96);
         }
 
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
+        .nav-left { display: flex; align-items: center; gap: 32px; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--tr-primary), var(--tr-secondary)); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+        .logo-icon i { font-size: 20px; color: var(--tr-accent); }
+        .logo-text { font-size: 22px; font-weight: 800; color: var(--tr-primary); }
+        .logo-text span { color: var(--tr-accent); }
 
-        /* Logo styling */
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
+        .nav-links { display: flex; gap: 28px; }
+        .nav-links a { text-decoration: none; color: var(--tr-text-muted); font-weight: 500; font-size: 14px; transition: var(--tr-transition); }
+        .nav-links a:hover { color: var(--tr-secondary); }
 
-        .logo-icon {
-            width: 42px;
-            height: 42px;
-            background: linear-gradient(135deg, var(--tr-primary) 0%, var(--tr-secondary) 100%);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            box-shadow: 0 4px 12px rgba(10,37,64,0.2);
-        }
+        .nav-right { display: flex; gap: 16px; align-items: center; }
+        .cart-icon { position: relative; cursor: pointer; }
+        .cart-count { position: absolute; top: -8px; right: -12px; background: var(--tr-accent); color: var(--tr-primary-dark); font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 20px; }
 
-        .logo-icon i {
-            font-size: 22px;
-            color: var(--tr-accent);
-        }
+        .hamburger { display: none; background: none; border: none; cursor: pointer; }
+        .hamburger span { display: block; width: 24px; height: 2px; background: var(--tr-primary); margin: 5px 0; }
 
-        .logo-icon::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 14px;
-            border: 1px solid rgba(245,166,35,0.3);
-            top: -2px;
-            left: -2px;
-        }
-
-        .logo-text {
-            font-size: 22px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: var(--tr-primary);
-        }
-
-        .logo-text span {
-            color: var(--tr-accent);
-        }
-
-        .nav-links {
-            display: none;
-            gap: 28px;
-            margin-left: 40px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--tr-text-muted);
-            font-weight: 500;
-            font-size: 14px;
-            transition: var(--tr-transition);
-        }
-
-        .nav-links a:hover {
-            color: var(--tr-secondary);
-        }
-
-        .hamburger {
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .hamburger span {
-            width: 24px;
-            height: 2px;
-            background: var(--tr-primary);
-            transition: var(--tr-transition);
-        }
-
-        /* Sidebar */
-        .sidebar-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 200;
-        }
+        /* Sidebar (same as before) */
+        .sidebar-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 200; }
         .sidebar-overlay.open { display: block; }
-
-        .sidebar {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            width: 300px;
-            height: 100%;
-            background: var(--tr-white);
-            z-index: 201;
-            transition: right 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            box-shadow: -4px 0 24px rgba(0,0,0,0.1);
-        }
+        .sidebar { position: fixed; top: 0; right: -300px; width: 300px; height: 100%; background: var(--tr-white); z-index: 201; transition: right 0.3s ease; display: flex; flex-direction: column; }
         .sidebar.open { right: 0; }
-
-        .sidebar-header {
-            padding: 24px 20px;
-            border-bottom: 1px solid var(--tr-card-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .sidebar-header h3 { color: var(--tr-primary); font-size: 18px; font-weight: 700; }
-        .close-sidebar { 
-            background: transparent; 
-            border: none; 
-            font-size: 24px; 
-            cursor: pointer; 
-            color: var(--tr-text-muted);
-        }
-
+        .sidebar-header { padding: 24px 20px; border-bottom: 1px solid var(--tr-card-border); display: flex; justify-content: space-between; }
         .sidebar-menu { flex: 1; padding: 16px 0; }
-        .sidebar-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 14px 20px;
-            color: var(--tr-text-dark);
-            text-decoration: none;
-            transition: var(--tr-transition);
-            font-weight: 500;
-            cursor: pointer;
-            background: none;
-            border: none;
-            width: 100%;
-            text-align: left;
-            font-family: 'Inter', sans-serif;
-        }
-        .sidebar-item:hover { 
-            background: var(--tr-gray-bg); 
-            color: var(--tr-secondary); 
-        }
-        .sidebar-item i { width: 24px; font-size: 18px; }
-
-        .sidebar-footer {
-            padding: 20px;
-            border-top: 1px solid var(--tr-card-border);
-            font-size: 12px;
-            color: var(--tr-text-light);
-            text-align: center;
-        }
+        .sidebar-item { display: flex; align-items: center; gap: 14px; padding: 14px 20px; color: var(--tr-text-dark); text-decoration: none; font-weight: 500; cursor: pointer; background: none; border: none; width: 100%; text-align: left; font-family: 'Inter', sans-serif; }
+        .sidebar-item:hover { background: var(--tr-gray-bg); color: var(--tr-secondary); }
 
         /* Hero Section */
-        .hero {
-            position: relative;
-            height: 45vh;
-            min-height: 380px;
-            overflow: hidden;
-            margin: 20px 24px 0;
-            border-radius: var(--tr-border-radius);
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=1200&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(10,37,64,0.85) 0%, rgba(5,30,48,0.75) 100%);
-            border-radius: var(--tr-border-radius);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 3;
-            max-width: 650px;
-            padding: 0 40px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .hero-badge {
-            background: rgba(245,166,35,0.15);
-            color: var(--tr-accent);
-            display: inline-block;
-            padding: 6px 14px;
-            border-radius: 40px;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-            width: fit-content;
-        }
-
-        .hero-title {
-            color: var(--tr-white);
-            font-size: 38px;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 12px;
-        }
-
-        .hero-title span {
-            color: var(--tr-accent);
-        }
-
-        .hero-text {
-            color: rgba(255,255,255,0.85);
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 20px;
-            max-width: 500px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background: var(--tr-accent);
-            color: var(--tr-primary-dark);
-            padding: 10px 24px;
-            border-radius: 60px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 13px;
-            display: inline-block;
-            cursor: pointer;
-            border: none;
-            transition: var(--tr-transition);
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn-primary:hover {
-            background: var(--tr-accent-dark);
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--tr-white);
-            padding: 10px 24px;
-            border-radius: 60px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 13px;
-            border: 1.5px solid rgba(255,255,255,0.3);
-            cursor: pointer;
-            transition: var(--tr-transition);
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn-outline:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: var(--tr-white);
-        }
+        .hero { position: relative; margin: 20px 24px 0; border-radius: var(--tr-border-radius); overflow: hidden; min-height: 480px; }
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=1200&auto=format&fit=crop'); background-size: cover; background-position: center; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(10,37,64,0.88) 0%, rgba(5,30,48,0.78) 100%); }
+        .hero-content { position: relative; z-index: 3; max-width: 600px; padding: 60px 48px; }
+        .hero-badge { display: inline-block; background: rgba(245,166,35,0.15); color: var(--tr-accent); padding: 6px 14px; border-radius: 40px; font-size: 11px; font-weight: 600; margin-bottom: 16px; }
+        .hero-title { font-size: 44px; font-weight: 800; color: var(--tr-white); margin-bottom: 16px; line-height: 1.2; }
+        .hero-title span { color: var(--tr-accent); }
+        .hero-text { color: rgba(255,255,255,0.85); font-size: 15px; margin-bottom: 24px; }
+        .hero-stats { display: flex; gap: 32px; margin-bottom: 28px; }
+        .hero-stat-number { font-size: 28px; font-weight: 800; color: var(--tr-accent); }
+        .hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.7); }
+        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+        .btn-primary { background: var(--tr-accent); color: var(--tr-primary-dark); padding: 12px 28px; border-radius: 40px; font-weight: 700; border: none; cursor: pointer; font-family: 'Inter'; transition: var(--tr-transition); }
+        .btn-primary:hover { background: var(--tr-accent-dark); transform: translateY(-2px); }
+        .btn-outline { background: transparent; color: white; padding: 12px 28px; border-radius: 40px; font-weight: 600; border: 1.5px solid rgba(255,255,255,0.3); cursor: pointer; font-family: 'Inter'; transition: var(--tr-transition); }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); }
 
         /* Container */
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        .section { padding: 60px 0; border-bottom: 1px solid var(--tr-card-border); }
+        .section:last-child { border-bottom: none; }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-title { font-size: 32px; font-weight: 700; color: var(--tr-primary); }
+        .section-title span { color: var(--tr-accent); }
+        .section-subtitle { color: var(--tr-text-muted); margin-top: 8px; }
 
-        /* Sections */
-        .section {
-            padding: 50px 0;
-        }
+        /* Category Pills */
+        .category-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 40px; }
+        .category-pill { background: var(--tr-white); border: 1px solid var(--tr-card-border); padding: 8px 24px; border-radius: 40px; font-size: 13px; font-weight: 500; cursor: pointer; transition: var(--tr-transition); }
+        .category-pill:hover, .category-pill.active { background: var(--tr-primary); color: white; border-color: var(--tr-primary); }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+        /* Event Cards */
+        .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 28px; }
+        .event-card { background: var(--tr-white); border-radius: var(--tr-border-radius); overflow: hidden; box-shadow: var(--tr-shadow-sm); transition: var(--tr-transition); }
+        .event-card:hover { transform: translateY(-5px); box-shadow: var(--tr-shadow-lg); }
+        .event-image { height: 200px; background-size: cover; background-position: center; position: relative; }
+        .event-category { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); color: white; padding: 4px 12px; border-radius: 20px; font-size: 10px; font-weight: 600; }
+        .event-details { padding: 20px; }
+        .event-name { font-size: 18px; font-weight: 800; margin-bottom: 8px; color: var(--tr-primary); }
+        .event-info { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--tr-text-muted); margin-bottom: 8px; }
+        .event-info i { width: 18px; color: var(--tr-secondary); }
+        .event-price-row { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--tr-card-border); }
+        .event-price { font-size: 22px; font-weight: 800; color: var(--tr-primary); }
+        .btn-ticket { background: var(--tr-primary); color: white; padding: 8px 20px; border-radius: 40px; font-weight: 600; font-size: 12px; border: none; cursor: pointer; transition: var(--tr-transition); }
 
-        .section-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--tr-primary);
-        }
+        /* Cities Grid */
+        .cities-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+        .city-card { background: var(--tr-white); border-radius: var(--tr-border-radius); padding: 20px; text-align: center; box-shadow: var(--tr-shadow-sm); transition: var(--tr-transition); cursor: pointer; }
+        .city-card:hover { transform: translateY(-3px); box-shadow: var(--tr-shadow-md); }
+        .city-icon { font-size: 36px; margin-bottom: 12px; }
+        .city-name { font-weight: 700; font-size: 16px; }
+        .city-event-count { font-size: 12px; color: var(--tr-text-muted); margin-top: 6px; }
 
-        .section-title span {
-            color: var(--tr-accent);
-        }
+        /* Testimonials */
+        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 28px; }
+        .testimonial-card { background: var(--tr-white); border-radius: var(--tr-border-radius); padding: 28px; box-shadow: var(--tr-shadow-sm); }
+        .testimonial-rating { color: var(--tr-accent); margin-bottom: 16px; }
+        .testimonial-text { font-size: 15px; line-height: 1.6; color: var(--tr-text-dark); margin-bottom: 20px; font-style: italic; }
+        .testimonial-author { display: flex; align-items: center; gap: 12px; }
+        .testimonial-avatar { width: 48px; height: 48px; background: var(--tr-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; }
+        .testimonial-name { font-weight: 700; font-size: 14px; }
+        .testimonial-verified { font-size: 11px; color: var(--tr-text-muted); }
 
-        .section-subtitle {
-            color: var(--tr-text-muted);
-            margin-top: 8px;
-            font-size: 14px;
-        }
+        /* Trust Badges */
+        .trust-badges { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin: 40px 0; }
+        .trust-badge { text-align: center; }
+        .trust-badge i { font-size: 32px; color: var(--tr-secondary); margin-bottom: 8px; }
+        .trust-badge span { display: block; font-size: 12px; color: var(--tr-text-muted); }
 
-        /* Cards */
-        .card {
-            background: var(--tr-white);
-            border-radius: var(--tr-border-radius);
-            box-shadow: var(--tr-shadow-sm);
-            transition: var(--tr-transition);
-            overflow: hidden;
-            border: 1px solid var(--tr-card-border);
-        }
+        /* FAQ Accordion */
+        .faq-grid { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--tr-white); border-radius: 16px; margin-bottom: 16px; overflow: hidden; }
+        .faq-question { padding: 20px; font-weight: 700; display: flex; justify-content: space-between; cursor: pointer; background: var(--tr-white); }
+        .faq-answer { padding: 0 20px 20px; display: none; color: var(--tr-text-muted); font-size: 14px; line-height: 1.6; }
+        .faq-item.active .faq-answer { display: block; }
 
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--tr-shadow-hover);
-        }
-
-        /* Match Cards Grid */
-        .matches-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 24px;
-        }
-
-        .match-header {
-            background: var(--tr-primary);
-            color: var(--tr-white);
-            padding: 12px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .match-date {
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        .match-stage {
-            background: rgba(245,166,35,0.2);
-            color: var(--tr-accent);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 10px;
-            font-weight: 700;
-        }
-
-        .match-teams {
-            padding: 24px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .match-team {
-            text-align: center;
-            flex: 1;
-        }
-
-        .match-flag {
-            font-size: 36px;
-            margin-bottom: 8px;
-        }
-
-        .match-team-name {
-            font-weight: 700;
-            font-size: 14px;
-            color: var(--tr-text-dark);
-        }
-
-        .match-vs {
-            width: 36px;
-            height: 36px;
-            background: var(--tr-gray-bg);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            font-weight: 800;
-            color: var(--tr-text-muted);
-        }
-
-        .match-venue {
-            padding: 0 20px 16px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 11px;
-            color: var(--tr-text-muted);
-        }
-
-        .match-footer {
-            padding: 16px 20px;
-            border-top: 1px solid var(--tr-card-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .match-price {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--tr-primary);
-        }
-
-        .match-price small {
-            font-size: 11px;
-            font-weight: 400;
-            color: var(--tr-text-muted);
-        }
-
-        .btn-ticket {
-            background: var(--tr-primary);
-            color: var(--tr-white);
-            border: none;
-            padding: 8px 20px;
-            border-radius: 60px;
-            font-weight: 600;
-            font-size: 12px;
-            cursor: pointer;
-            transition: var(--tr-transition);
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn-ticket:hover {
-            background: var(--tr-secondary);
-        }
-
-        /* Events Grid */
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 24px;
-        }
-
-        .event-card {
-            background: var(--tr-white);
-            border-radius: var(--tr-border-radius);
-            padding: 24px;
-            border: 1px solid var(--tr-card-border);
-            transition: var(--tr-transition);
-            text-align: center;
-        }
-
-        .event-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--tr-shadow-md);
-        }
-
-        .event-icon {
-            font-size: 48px;
-            margin-bottom: 12px;
-        }
-
-        .event-name {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 6px;
-            color: var(--tr-primary);
-        }
-
-        .event-venue {
-            font-size: 12px;
-            color: var(--tr-text-muted);
-            margin-bottom: 12px;
-        }
-
-        .event-price {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--tr-primary);
-            margin-bottom: 16px;
-        }
-
-        .event-date {
-            font-size: 12px;
-            color: var(--tr-text-muted);
-            margin-bottom: 16px;
-        }
-
-        /* How It Works */
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 24px;
-        }
-
-        .step-card {
-            background: var(--tr-white);
-            border-radius: var(--tr-border-radius);
-            padding: 32px 20px;
-            text-align: center;
-            border: 1px solid var(--tr-card-border);
-        }
-
-        .step-number {
-            width: 52px;
-            height: 52px;
-            background: var(--tr-accent);
-            color: var(--tr-primary-dark);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: 800;
-            margin: 0 auto 16px;
-        }
-
-        .step-title {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .step-text {
-            color: var(--tr-text-muted);
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        /* Features Grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .feature-card {
-            background: var(--tr-white);
-            border-radius: var(--tr-border-radius);
-            padding: 24px 20px;
-            text-align: center;
-            border: 1px solid var(--tr-card-border);
-        }
-
-        .feature-icon {
-            font-size: 40px;
-            margin-bottom: 12px;
-        }
-
-        .feature-title {
-            font-weight: 700;
-            font-size: 15px;
-            margin-bottom: 6px;
-        }
-
-        .feature-text {
-            font-size: 12px;
-            color: var(--tr-text-muted);
-            line-height: 1.4;
-        }
-
-        .view-all-link {
-            text-align: center;
-            margin-top: 32px;
-        }
+        /* Newsletter Banner */
+        .newsletter-banner { background: linear-gradient(135deg, var(--tr-primary), var(--tr-secondary)); border-radius: var(--tr-border-radius); padding: 48px; text-align: center; margin: 40px 0; }
+        .newsletter-banner h3 { color: white; font-size: 28px; margin-bottom: 12px; }
+        .newsletter-banner p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .newsletter-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .newsletter-input { padding: 14px 20px; border-radius: 40px; border: none; width: 300px; font-family: 'Inter'; }
+        .newsletter-btn { background: var(--tr-accent); color: var(--tr-primary-dark); padding: 14px 28px; border-radius: 40px; font-weight: 700; border: none; cursor: pointer; }
 
         /* Footer */
-        .footer {
-            background: var(--tr-primary);
-            color: var(--tr-white);
-            padding: 48px 24px 24px;
-            margin-top: 40px;
-        }
+        .footer { background: var(--tr-primary); color: white; padding: 48px 24px 24px; margin-top: 40px; }
+        .footer-container { max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 48px; justify-content: space-between; }
+        .footer-col h4 { color: var(--tr-accent); font-size: 14px; margin-bottom: 16px; }
+        .footer-col a { display: block; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; margin-bottom: 10px; cursor: pointer; transition: var(--tr-transition); }
+        .footer-col a:hover { color: var(--tr-accent); }
+        .footer-bottom { text-align: center; padding-top: 32px; margin-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; color: rgba(255,255,255,0.5); }
 
-        .footer-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 48px;
-            justify-content: space-between;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 48px;
-        }
-
-        .footer-col h4 {
-            color: var(--tr-accent);
-            font-size: 13px;
-            margin-bottom: 14px;
-        }
-
-        .footer-col a {
-            display: block;
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-size: 12px;
-            margin-bottom: 8px;
-            cursor: pointer;
-            transition: var(--tr-transition);
-        }
-
-        .footer-col a:hover {
-            color: var(--tr-accent);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 28px;
-            margin-top: 28px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 11px;
-            color: rgba(255,255,255,0.5);
-        }
-
-        /* Toast */
-        .toast {
-            position: fixed;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--tr-primary);
-            color: var(--tr-white);
-            padding: 10px 20px;
-            border-radius: 40px;
-            z-index: 400;
-            display: none;
-            font-size: 13px;
-            white-space: nowrap;
-            box-shadow: var(--tr-shadow-md);
-        }
-
-        @media (min-width: 768px) {
-            .nav-links {
-                display: flex;
-            }
-            .hamburger {
-                display: none;
-            }
-        }
+        .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--tr-primary); color: white; padding: 12px 24px; border-radius: 40px; z-index: 400; display: none; font-size: 13px; }
 
         @media (max-width: 768px) {
-            .top-nav-bar {
-                padding: 12px 20px;
-            }
-            .hero {
-                margin: 12px 16px 0;
-                min-height: 320px;
-            }
-            .hero-content {
-                padding: 0 24px;
-            }
-            .hero-title {
-                font-size: 28px;
-            }
-            .section {
-                padding: 40px 0;
-            }
-            .container {
-                padding: 0 16px;
-            }
-            .toast {
-                white-space: normal;
-                text-align: center;
-                max-width: 90%;
-            }
-            .logo-text {
-                font-size: 18px;
-            }
-            .logo-icon {
-                width: 36px;
-                height: 36px;
-            }
-            .logo-icon i {
-                font-size: 18px;
-            }
+            .nav-links, .nav-right { display: none; }
+            .hamburger { display: block; }
+            .top-nav-bar { padding: 12px 20px; }
+            .hero { margin: 12px 16px 0; min-height: 400px; }
+            .hero-content { padding: 40px 24px; }
+            .hero-title { font-size: 32px; }
+            .section { padding: 40px 0; }
+            .container { padding: 0 16px; }
+            .newsletter-banner { padding: 32px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Navigation -->
+    <!-- Navigation -->
     <div class="top-nav-bar">
         <div class="nav-left">
             <a href="index.html" class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-crown"></i>
-                </div>
+                <div class="logo-icon"><i class="fas fa-crown"></i></div>
                 <div class="logo-text">Ticket<span>Royal</span></div>
             </a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="matches.html">Matches</a>
                 <a href="events.html">Events</a>
-                <a href="#" onclick="showToast('Tickets page coming soon')">Tickets</a>
-                <a href="#" onclick="showToast('Stadiums page coming soon')">Stadiums</a>
+                <a href="#" onclick="showToast('Coming soon')">BTS</a>
+                <a href="#" onclick="showToast('Coming soon')">Help</a>
             </div>
         </div>
-        <button class="hamburger" onclick="openSidebar()">
-            <span></span><span></span><span></span>
-        </button>
+        <div class="nav-right">
+            <div class="cart-icon" onclick="showToast('Cart coming soon')"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></div>
+        </div>
+        <button class="hamburger" onclick="openSidebar()"><span></span><span></span><span></span></button>
     </div>
 
     <!-- Sidebar -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
     <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h3>Menu</h3>
-            <button class="close-sidebar" onclick="closeSidebar()">✕</button>
-        </div>
+        <div class="sidebar-header"><h3>Menu</h3><button class="close-sidebar" onclick="closeSidebar()">✕</button></div>
         <div class="sidebar-menu">
-            <button class="sidebar-item" onclick="goToPage('index.html')"><i class="fas fa-home"></i> <span>Home</span></button>
-            <button class="sidebar-item" onclick="goToPage('matches.html')"><i class="fas fa-futbol"></i> <span>Matches</span></button>
-            <button class="sidebar-item" onclick="goToPage('events.html')"><i class="fas fa-calendar-alt"></i> <span>Events</span></button>
-            <button class="sidebar-item" onclick="showToast('Tickets page coming soon')"><i class="fas fa-ticket-alt"></i> <span>Tickets</span></button>
-            <button class="sidebar-item" onclick="showToast('Stadiums page coming soon')"><i class="fas fa-map-marker-alt"></i> <span>Stadiums</span></button>
-            <button class="sidebar-item" onclick="showToast('Cart page coming soon')"><i class="fas fa-shopping-cart"></i> <span>Cart</span></button>
-            <button class="sidebar-item" onclick="showToast('BTS Tickets coming soon')"><i class="fas fa-microphone-alt"></i> <span>BTS</span></button>
-            <button class="sidebar-item" onclick="showToast('Contact page coming soon')"><i class="fas fa-headset"></i> <span>Contact</span></button>
+            <button class="sidebar-item" onclick="goToPage('index.html')"><i class="fas fa-home"></i> Home</button>
+            <button class="sidebar-item" onclick="goToPage('matches.html')"><i class="fas fa-futbol"></i> Matches</button>
+            <button class="sidebar-item" onclick="goToPage('events.html')"><i class="fas fa-calendar-alt"></i> Events</button>
+            <button class="sidebar-item" onclick="showToast('BTS tickets coming soon')"><i class="fas fa-microphone-alt"></i> BTS</button>
+            <button class="sidebar-item" onclick="showToast('Coming soon')"><i class="fas fa-ticket-alt"></i> My Tickets</button>
+            <button class="sidebar-item" onclick="showToast('Coming soon')"><i class="fas fa-headset"></i> Support</button>
         </div>
-        <div class="sidebar-footer">
-            <p>© 2026 TicketRoyal</p>
-            <p>Premium Ticket Marketplace</p>
-        </div>
+        <div class="sidebar-footer"><p>© 2026 TicketRoyal</p></div>
     </div>
 
-    <!-- Hero Section - Updated for BTS & Global Events -->
+    <!-- Hero Section -->
     <div class="hero">
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <div class="hero-badge">LIVE EVENTS • WORLDWIDE</div>
-            <h1 class="hero-title">Tickets for <span>BTS, World Cup</span> & More</h1>
-            <p class="hero-text">Your premier destination for concerts, sports, theatre, and festivals. BTS • Taylor Swift • FIFA World Cup • Broadway • Formula 1</p>
+            <div class="hero-badge"><i class="fas fa-bolt"></i> OFFICIAL TICKET MARKETPLACE</div>
+            <h1 class="hero-title">Tickets for <span>BTS, World Cup</span> & Live Events</h1>
+            <p class="hero-text">Your trusted source for concerts, sports, theatre, and festivals. 150% money-back guarantee.</p>
+            <div class="hero-stats">
+                <div><span class="hero-stat-number">2M+</span><div class="hero-stat-label">Tickets Sold</div></div>
+                <div><span class="hero-stat-number">98%</span><div class="hero-stat-label">Satisfaction</div></div>
+                <div><span class="hero-stat-number">24/7</span><div class="hero-stat-label">Support</div></div>
+            </div>
             <div class="hero-buttons">
                 <button class="btn-primary" onclick="goToPage('events.html')">Browse Events →</button>
-                <button class="btn-outline" onclick="showToast('BTS tickets coming soon! Sign up for alerts')">BTS Tickets</button>
+                <button class="btn-outline" onclick="showToast('BTS tickets coming soon')">BTS Tickets →</button>
             </div>
         </div>
     </div>
 
     <div class="container">
-        <!-- Events Section - Featured Events including BTS -->
+        <!-- Trust Badges -->
+        <div class="trust-badges">
+            <div class="trust-badge"><i class="fas fa-shield-alt"></i><span>150% Guarantee</span></div>
+            <div class="trust-badge"><i class="fas fa-lock"></i><span>Secure Payment</span></div>
+            <div class="trust-badge"><i class="fas fa-headset"></i><span>24/7 Support</span></div>
+            <div class="trust-badge"><i class="fas fa-envelope"></i><span>Instant Delivery</span></div>
+        </div>
+
+        <!-- Category Pills -->
+        <div class="category-pills">
+            <span class="category-pill active" data-category="all">All Events</span>
+            <span class="category-pill" data-category="concert">Concerts</span>
+            <span class="category-pill" data-category="sports">Sports</span>
+            <span class="category-pill" data-category="theatre">Theatre</span>
+            <span class="category-pill" data-category="festival">Festivals</span>
+        </div>
+
+        <!-- Featured Events -->
         <div class="section">
             <div class="section-header">
                 <h2 class="section-title"><span>Trending</span> Events</h2>
-                <p class="section-subtitle">BTS, concerts, festivals, and more — get your tickets now</p>
+                <p class="section-subtitle">Get tickets before they sell out</p>
             </div>
             <div class="events-grid" id="eventsGrid"></div>
-            <div class="view-all-link">
+            <div style="text-align: center; margin-top: 32px;">
                 <button class="btn-primary" onclick="goToPage('events.html')">View All Events →</button>
             </div>
         </div>
 
-        <!-- Upcoming Matches Section -->
+        <!-- Popular Cities -->
         <div class="section">
             <div class="section-header">
-                <h2 class="section-title"><span>Upcoming</span> Matches</h2>
-                <p class="section-subtitle">Secure your seats for the biggest football matches of 2026</p>
+                <h2 class="section-title"><span>Popular</span> Cities</h2>
+                <p class="section-subtitle">Find events in your city</p>
             </div>
-            <div class="matches-grid" id="matchesGrid"></div>
-            <div class="view-all-link">
-                <button class="btn-primary" onclick="goToPage('matches.html')">View All Matches →</button>
+            <div class="cities-grid" id="citiesGrid"></div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">What Our <span>Customers Say</span></h2>
+                <p class="section-subtitle">Trusted by thousands of fans worldwide</p>
+            </div>
+            <div class="testimonials-grid" id="testimonialsGrid"></div>
+        </div>
+
+        <!-- Newsletter Banner -->
+        <div class="newsletter-banner">
+            <h3>Get 10% Off Your First Order</h3>
+            <p>Subscribe to receive exclusive offers, presale codes, and event announcements</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" class="newsletter-input" id="newsletterEmail">
+                <button class="newsletter-btn" onclick="subscribeNewsletter()">Subscribe →</button>
             </div>
         </div>
 
-        <!-- How It Works -->
+        <!-- FAQ Section -->
         <div class="section">
             <div class="section-header">
-                <h2 class="section-title">How It <span>Works</span></h2>
-                <p class="section-subtitle">Get your tickets in three simple steps</p>
+                <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
             </div>
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <div class="step-title">Browse Events</div>
-                    <div class="step-text">Explore concerts, matches, or theatre performances</div>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <div class="step-title">Select Seats</div>
-                    <div class="step-text">Choose Standard, Premium, or VIP categories</div>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <div class="step-title">Get Tickets</div>
-                    <div class="step-text">Receive instant e-tickets via email</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Why Choose Us -->
-        <div class="section">
-            <div class="section-header">
-                <h2 class="section-title">Why Choose <span>TicketRoyal</span></h2>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🏆</div>
-                    <div class="feature-title">Premium Marketplace</div>
-                    <div class="feature-text">Curated tickets for world-class events</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <div class="feature-title">Secure Payment</div>
-                    <div class="feature-text">256-bit SSL encrypted transactions</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💬</div>
-                    <div class="feature-title">24/7 Support</div>
-                    <div class="feature-text">Dedicated customer service team</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <div class="feature-title">Instant Delivery</div>
-                    <div class="feature-text">E-tickets delivered immediately</div>
-                </div>
-            </div>
+            <div class="faq-grid" id="faqGrid"></div>
         </div>
     </div>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>TicketRoyal</h4>
-                    <a onclick="showToast('About Us coming soon')">About Us</a>
-                    <a onclick="showToast('Contact page coming soon')">Contact</a>
-                    <a onclick="showToast('Careers coming soon')">Careers</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Tickets</h4>
-                    <a onclick="goToPage('matches.html')">Football Matches</a>
-                    <a onclick="goToPage('events.html')">Concerts & Events</a>
-                    <a onclick="showToast('BTS tickets coming soon')">BTS Tickets</a>
-                    <a onclick="showToast('Hospitality coming soon')">VIP Hospitality</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Support</h4>
-                    <a onclick="showToast('FAQs coming soon')">FAQs</a>
-                    <a onclick="showToast('Terms coming soon')">Terms & Conditions</a>
-                    <a onclick="showToast('Privacy Policy coming soon')">Privacy Policy</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Follow Us</h4>
-                    <a onclick="showToast('Instagram coming soon')">Instagram</a>
-                    <a onclick="showToast('Twitter coming soon')">Twitter</a>
-                    <a onclick="showToast('Facebook coming soon')">Facebook</a>
-                </div>
-            </div>
+            <div class="footer-col"><h4>TicketRoyal</h4><a onclick="showToast('Coming soon')">About Us</a><a onclick="showToast('Coming soon')">Contact</a><a onclick="showToast('Coming soon')">Careers</a></div>
+            <div class="footer-col"><h4>Tickets</h4><a onclick="goToPage('matches.html')">Football</a><a onclick="goToPage('events.html')">Concerts</a><a onclick="showToast('Coming soon')">BTS</a><a onclick="showToast('Coming soon')">VIP Packages</a></div>
+            <div class="footer-col"><h4>Support</h4><a onclick="showToast('Coming soon')">FAQs</a><a onclick="showToast('Coming soon')">Terms & Conditions</a><a onclick="showToast('Coming soon')">Privacy Policy</a><a onclick="showToast('Coming soon')">Refund Policy</a></div>
+            <div class="footer-col"><h4>Follow Us</h4><a onclick="showToast('Coming soon')"><i class="fab fa-instagram"></i> Instagram</a><a onclick="showToast('Coming soon')"><i class="fab fa-twitter"></i> Twitter</a><a onclick="showToast('Coming soon')"><i class="fab fa-facebook"></i> Facebook</a></div>
         </div>
-        <div class="footer-bottom">© 2026 TicketRoyal — Premium Ticket Marketplace for BTS, World Cup, Concerts & Live Events</div>
+        <div class="footer-bottom">© 2026 TicketRoyal — Premium Ticket Marketplace. All rights reserved.</div>
     </footer>
 
     <div class="toast" id="toast">✓ Added to cart</div>
 
     <script>
-        // Events Data including BTS
+        // Events Data
         const events = [
-            { id: 1, name: "BTS · Yet to Come World Tour", venue: "SoFi Stadium, Los Angeles, CA", date: "Jun 10, 2026", price: 299, icon: "🎤", category: "concert" },
-            { id: 2, name: "BTS · Yet to Come World Tour", venue: "MetLife Stadium, New Jersey", date: "Jun 17, 2026", price: 299, icon: "🎤", category: "concert" },
-            { id: 3, name: "Taylor Swift · The Eras Tour", venue: "Wembley Stadium, London", date: "Jul 22, 2026", price: 245, icon: "🎸", category: "concert" },
-            { id: 4, name: "Hamilton · Broadway", venue: "Richard Rodgers Theatre, NYC", date: "Jun 28, 2026", price: 165, icon: "🎭", category: "theatre" },
-            { id: 5, name: "Formula 1 · British Grand Prix", venue: "Silverstone Circuit, UK", date: "Jul 05, 2026", price: 520, icon: "🏎️", category: "motorsport" },
-            { id: 6, name: "Coldplay · Music of the Spheres", venue: "Rose Bowl, Los Angeles", date: "Aug 15, 2026", price: 189, icon: "🌈", category: "concert" }
+            { id: 1, name: "BTS · Yet to Come Tour", venue: "SoFi Stadium, LA", date: "Jun 10, 2026", price: 299, category: "concert", image: "https://images.unsplash.com/photo-1618517351616-38fb9c5210c6?w=400&h=200&fit=crop" },
+            { id: 2, name: "BTS · Yet to Come Tour", venue: "MetLife Stadium, NJ", date: "Jun 17, 2026", price: 299, category: "concert", image: "https://images.unsplash.com/photo-1618517351616-38fb9c5210c6?w=400&h=200&fit=crop" },
+            { id: 3, name: "Taylor Swift · Eras Tour", venue: "Wembley, London", date: "Jul 22, 2026", price: 245, category: "concert", image: "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=400&h=200&fit=crop" }
         ];
 
-        // Match Data
-        const matches = [
-            { id: 1, stage: "Group A", team1: "USA", team2: "Mexico", flag1: "🇺🇸", flag2: "🇲🇽", stadium: "MetLife Stadium", city: "New Jersey", date: "Thu, Jun 11", time: "8:00 PM", price: 199 },
-            { id: 2, stage: "Group B", team1: "Brazil", team2: "Argentina", flag1: "🇧🇷", flag2: "🇦🇷", stadium: "SoFi Stadium", city: "Los Angeles", date: "Fri, Jun 12", time: "9:00 PM", price: 249 },
-            { id: 3, stage: "Group C", team1: "England", team2: "Germany", flag1: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", flag2: "🇩🇪", stadium: "AT&T Stadium", city: "Dallas", date: "Sat, Jun 13", time: "7:00 PM", price: 229 }
+        // Cities Data
+        const cities = [
+            { name: "Los Angeles", icon: "🌴", events: 42 },
+            { name: "New York", icon: "🗽", events: 38 },
+            { name: "London", icon: "🇬🇧", events: 35 },
+            { name: "Chicago", icon: "🌆", events: 28 },
+            { name: "Las Vegas", icon: "🎰", events: 31 },
+            { name: "Miami", icon: "🏖️", events: 24 }
         ];
 
-        // Render Events Grid
+        // Testimonials
+        const testimonials = [
+            { name: "Sarah Johnson", rating: 5, text: "Got BTS tickets easily! The process was smooth and tickets arrived instantly.", verified: "Verified Buyer" },
+            { name: "Michael Chen", rating: 5, text: "Best platform for World Cup tickets. Great customer service when I had questions.", verified: "Verified Buyer" },
+            { name: "Emma Wilson", rating: 5, text: "Secured VIP tickets for Taylor Swift. Will definitely use again!", verified: "Verified Buyer" }
+        ];
+
+        // FAQ
+        const faqs = [
+            { q: "How do I receive my tickets?", a: "Tickets are delivered instantly via email as e-tickets. You can also access them in your account dashboard." },
+            { q: "Are tickets refundable?", a: "All sales are final, but we offer a 150% guarantee if tickets aren't delivered before the event." },
+            { q: "Is TicketRoyal an official seller?", a: "Yes, we are an authorized ticket marketplace for all major events including FIFA World Cup and major concerts." },
+            { q: "How do I contact support?", a: "Our 24/7 customer support team is available via live chat, email, and phone." }
+        ];
+
         function renderEvents() {
             const grid = document.getElementById('eventsGrid');
-            if (!grid) return;
             grid.innerHTML = events.map(e => `
                 <div class="event-card">
-                    <div class="event-icon">${e.icon}</div>
-                    <div class="event-name">${e.name}</div>
-                    <div class="event-venue"><i class="fas fa-map-marker-alt"></i> ${e.venue}</div>
-                    <div class="event-date"><i class="far fa-calendar-alt"></i> ${e.date}</div>
-                    <div class="event-price">From $${e.price}</div>
-                    <button class="btn-ticket" onclick="showToast('Tickets for ${e.name} coming soon')">Get Tickets →</button>
-                </div>
-            `).join('');
-        }
-
-        // Render Matches
-        function renderMatches() {
-            const grid = document.getElementById('matchesGrid');
-            if (!grid) return;
-            grid.innerHTML = matches.map(m => `
-                <div class="card">
-                    <div class="match-header">
-                        <span class="match-date">${m.date} • ${m.time}</span>
-                        <span class="match-stage">${m.stage}</span>
+                    <div class="event-image" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), url('${e.image}');">
+                        <span class="event-category">${e.category}</span>
                     </div>
-                    <div class="match-teams">
-                        <div class="match-team">
-                            <div class="match-flag">${m.flag1}</div>
-                            <div class="match-team-name">${m.team1}</div>
+                    <div class="event-details">
+                        <div class="event-name">${e.name}</div>
+                        <div class="event-info"><i class="fas fa-map-marker-alt"></i> ${e.venue}</div>
+                        <div class="event-info"><i class="far fa-calendar-alt"></i> ${e.date}</div>
+                        <div class="event-price-row">
+                            <div class="event-price">$${e.price} <small>+ fees</small></div>
+                            <button class="btn-ticket" onclick="showToast('Tickets for ${e.name}')">Get Tickets →</button>
                         </div>
-                        <div class="match-vs">VS</div>
-                        <div class="match-team">
-                            <div class="match-flag">${m.flag2}</div>
-                            <div class="match-team-name">${m.team2}</div>
-                        </div>
-                    </div>
-                    <div class="match-venue">
-                        <span>🏟️ ${m.stadium}</span>
-                        <span>📍 ${m.city}</span>
-                    </div>
-                    <div class="match-footer">
-                        <div class="match-price">$${m.price} <small>from</small></div>
-                        <button class="btn-ticket" onclick="showToast('Select tickets for ${m.team1} vs ${m.team2}')">Get Tickets →</button>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Navigation Functions
-        function goToPage(page) {
-            window.location.href = page;
+        function renderCities() {
+            const grid = document.getElementById('citiesGrid');
+            grid.innerHTML = cities.map(c => `
+                <div class="city-card" onclick="showToast('Events in ${c.name} coming soon')">
+                    <div class="city-icon">${c.icon}</div>
+                    <div class="city-name">${c.name}</div>
+                    <div class="city-event-count">${c.events} upcoming events</div>
+                </div>
+            `).join('');
         }
 
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            toast.textContent = msg;
-            toast.style.display = 'block';
-            setTimeout(() => {
-                toast.style.display = 'none';
-            }, 2500);
+        function renderTestimonials() {
+            const grid = document.getElementById('testimonialsGrid');
+            grid.innerHTML = testimonials.map(t => `
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">${'★'.repeat(t.rating)}${'☆'.repeat(5-t.rating)}</div>
+                    <div class="testimonial-text">"${t.text}"</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">${t.name.charAt(0)}</div>
+                        <div><div class="testimonial-name">${t.name}</div><div class="testimonial-verified">${t.verified}</div></div>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        function openSidebar() {
-            document.getElementById('sidebar').classList.add('open');
-            document.getElementById('sidebarOverlay').classList.add('open');
-            document.body.style.overflow = 'hidden';
+        function renderFAQ() {
+            const grid = document.getElementById('faqGrid');
+            grid.innerHTML = faqs.map((f, i) => `
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">${f.q} <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">${f.a}</div>
+                </div>
+            `).join('');
         }
 
-        function closeSidebar() {
-            document.getElementById('sidebar').classList.remove('open');
-            document.getElementById('sidebarOverlay').classList.remove('open');
-            document.body.style.overflow = '';
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
         }
 
-        // Initialize
+        function subscribeNewsletter() {
+            const email = document.getElementById('newsletterEmail').value;
+            if (email) showToast('Subscribed! Check your email for 10% off');
+            else showToast('Please enter a valid email');
+        }
+
+        function goToPage(page) { window.location.href = page; }
+        function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 2500); }
+        function openSidebar() { document.getElementById('sidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; }
+        function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('open'); document.body.style.overflow = ''; }
+
         renderEvents();
-        renderMatches();
+        renderCities();
+        renderTestimonials();
+        renderFAQ();
     </script>
 </body>
 </html>
