@@ -339,11 +339,11 @@
 </head>
 <body>
 
-<!-- TOP BAR WITH BACK BUTTON (matches page return) -->
+<!-- TOP BAR WITH SIMPLE BACK BUTTON (returns to previous page) -->
 <div class="top-nav-bar">
-  <a href="#" id="backToMatchesBtn" class="btn-back">
-    <i class="fas fa-arrow-left"></i> Back to Matches
-  </a>
+  <button type="button" id="backButton" class="btn-back">
+    <i class="fas fa-arrow-left"></i> Back
+  </button>
   <div class="brand-tag">
     <i class="fas fa-crown"></i> TicketRoyal
   </div>
@@ -673,20 +673,21 @@
 
   refreshTotalsUI();
 
-  // ---------- BACK BUTTON FUNCTIONALITY (return to matches page) ----------
-  const backBtn = document.getElementById('backToMatchesBtn');
-  if (backBtn) {
-    backBtn.addEventListener('click', (e) => {
+  // ---------- BACK BUTTON FUNCTIONALITY (simple history back) ----------
+  const backButton = document.getElementById('backButton');
+  if (backButton) {
+    backButton.addEventListener('click', (e) => {
       e.preventDefault();
-      // In real scenario, this would link to the matches / events listing page.
-      // For demo, we show an alert and simulate navigation.
-      // You can replace window.location.href with your actual matches page URL.
-      if (confirm("Go back to matches page? Any unsaved changes will be lost.")) {
-        // Simulate redirect to matches page (replace with actual event listing URL)
-        // Example: window.location.href = "/matches.html";
-        alert("Redirecting to Matches page (demo). Replace with actual URL.");
-        // Uncomment next line for actual navigation:
-        // window.location.href = "https://www.ticketroyal.com/matches";
+      // Simple navigation: go back to previous page in browser history
+      // This works if user came from a matches/events page.
+      // If there's no history, it will do nothing or you can redirect to a default page.
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        // Fallback: if no history, go to homepage or matches (optional)
+        alert("No previous page in history. You can close this window or navigate manually.");
+        // Uncomment to redirect to a default matches page:
+        // window.location.href = "/matches.html";
       }
     });
   }
